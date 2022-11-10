@@ -3,6 +3,9 @@ package capstoneMainFrame;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.JButton;
 
 public class CapstoneMainFrame {
 
@@ -38,6 +41,15 @@ public class CapstoneMainFrame {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("FOS");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(171, 76, 93, 39);
+		frame.getContentPane().add(lblNewLabel);
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.setBounds(171, 128, 85, 21);
+		frame.getContentPane().add(btnNewButton);
 	}
-
 }
