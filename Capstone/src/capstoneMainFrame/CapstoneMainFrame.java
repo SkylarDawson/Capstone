@@ -8,6 +8,9 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 public class CapstoneMainFrame {
 
@@ -43,59 +46,92 @@ public class CapstoneMainFrame {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{25, 236, 25, 0};
+		gridBagLayout.rowHeights = new int[]{41, 39, 20, 20, 20, 20, 20, 20, 0, 0};
+		gridBagLayout.columnWeights = new double[]{1.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		frame.getContentPane().setLayout(gridBagLayout);
 		
-		JLabel lblNewLabel = new JLabel("FOS");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(171, 76, 93, 39);
-		frame.getContentPane().add(lblNewLabel);
-		
-		JButton btnNewButton = new JButton("Export");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnExport = new JButton("Export");
+		btnExport.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setBounds(100, 124, 236, 20);
-		frame.getContentPane().add(btnNewButton);
 		
-		JButton btnInventory = new JButton("Orders");
+		JLabel lblNewLabel = new JLabel("FOS");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.fill = GridBagConstraints.VERTICAL;
+		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel.gridx = 1;
+		gbc_lblNewLabel.gridy = 1;
+		frame.getContentPane().add(lblNewLabel, gbc_lblNewLabel);
+		GridBagConstraints gbc_btnExport = new GridBagConstraints();
+		gbc_btnExport.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnExport.insets = new Insets(0, 0, 5, 5);
+		gbc_btnExport.gridx = 1;
+		gbc_btnExport.gridy = 2;
+		frame.getContentPane().add(btnExport, gbc_btnExport);
+		
+		JButton btnOrders = new JButton("Orders");
+		btnOrders.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		GridBagConstraints gbc_btnOrders = new GridBagConstraints();
+		gbc_btnOrders.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnOrders.insets = new Insets(0, 0, 5, 5);
+		gbc_btnOrders.gridx = 1;
+		gbc_btnOrders.gridy = 3;
+		frame.getContentPane().add(btnOrders, gbc_btnOrders);
+		
+		JButton btnCustomer = new JButton("Customers");
+		btnCustomer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+		JButton btnSpreader = new JButton("Spreaders");
+		btnSpreader.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+		JButton btnInventory = new JButton("Inventory");
 		btnInventory.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnInventory.setBounds(100, 144, 236, 20);
-		frame.getContentPane().add(btnInventory);
+		GridBagConstraints gbc_btnInventory = new GridBagConstraints();
+		gbc_btnInventory.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnInventory.insets = new Insets(0, 0, 5, 5);
+		gbc_btnInventory.gridx = 1;
+		gbc_btnInventory.gridy = 4;
+		frame.getContentPane().add(btnInventory, gbc_btnInventory);
+		GridBagConstraints gbc_btnSpreader = new GridBagConstraints();
+		gbc_btnSpreader.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnSpreader.insets = new Insets(0, 0, 5, 5);
+		gbc_btnSpreader.gridx = 1;
+		gbc_btnSpreader.gridy = 5;
+		frame.getContentPane().add(btnSpreader, gbc_btnSpreader);
+		GridBagConstraints gbc_btnCustomer = new GridBagConstraints();
+		gbc_btnCustomer.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnCustomer.insets = new Insets(0, 0, 5, 5);
+		gbc_btnCustomer.gridx = 1;
+		gbc_btnCustomer.gridy = 6;
+		frame.getContentPane().add(btnCustomer, gbc_btnCustomer);
 		
-		JButton btnInventory_1 = new JButton("Inventory");
-		btnInventory_1.addActionListener(new ActionListener() {
+		JButton btnEmployee = new JButton("Employees");
+		btnEmployee.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnInventory_1.setBounds(100, 164, 236, 20);
-		frame.getContentPane().add(btnInventory_1);
-		
-		JButton btnSpreaders = new JButton("Spreaders");
-		btnSpreaders.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnSpreaders.setBounds(100, 184, 236, 20);
-		frame.getContentPane().add(btnSpreaders);
-		
-		JButton btnCustomers = new JButton("Customers");
-		btnCustomers.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnCustomers.setBounds(100, 204, 236, 20);
-		frame.getContentPane().add(btnCustomers);
-		
-		JButton btnEmployees = new JButton("Employees");
-		btnEmployees.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnEmployees.setBounds(100, 224, 236, 20);
-		frame.getContentPane().add(btnEmployees);
+		GridBagConstraints gbc_btnEmployee = new GridBagConstraints();
+		gbc_btnEmployee.insets = new Insets(0, 0, 5, 5);
+		gbc_btnEmployee.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnEmployee.gridx = 1;
+		gbc_btnEmployee.gridy = 7;
+		frame.getContentPane().add(btnEmployee, gbc_btnEmployee);
 	}
 }
