@@ -93,10 +93,6 @@ public class CapstoneMainFrame {
 		gbc_btnOrders.gridx = 1;
 		gbc_btnOrders.gridy = 3;
 		mainPanel.add(btnOrders, gbc_btnOrders);
-		btnOrders.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		
 		JButton btnInventory = new JButton("Inventory");
 		GridBagConstraints gbc_btnInventory = new GridBagConstraints();
@@ -105,10 +101,6 @@ public class CapstoneMainFrame {
 		gbc_btnInventory.gridx = 1;
 		gbc_btnInventory.gridy = 4;
 		mainPanel.add(btnInventory, gbc_btnInventory);
-		btnInventory.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		
 		JButton btnCustomer = new JButton("Customers");
 		GridBagConstraints gbc_btnCustomer = new GridBagConstraints();
@@ -116,11 +108,7 @@ public class CapstoneMainFrame {
 		gbc_btnCustomer.insets = new Insets(0, 0, 5, 5);
 		gbc_btnCustomer.gridx = 1;
 		gbc_btnCustomer.gridy = 6;
-		mainPanel.add(btnCustomer, gbc_btnCustomer);
-		btnCustomer.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});							
+		mainPanel.add(btnCustomer, gbc_btnCustomer);						
 		
 		JButton btnEmployee = new JButton("Employees");
 		GridBagConstraints gbc_btnEmployee = new GridBagConstraints();
@@ -137,10 +125,6 @@ public class CapstoneMainFrame {
 		gbc_btnSpreader.gridx = 1;
 		gbc_btnSpreader.gridy = 5;
 		mainPanel.add(btnSpreader, gbc_btnSpreader);
-		btnSpreader.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		
 		GridBagLayout gbl_exportPanel = new GridBagLayout();
 		gbl_exportPanel.columnWidths = new int[]{0, 0, 0, 0};
@@ -158,15 +142,17 @@ public class CapstoneMainFrame {
 		exportPanel.add(lblExport, gbc_lblExport);
 						
 		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				exportPanel.hide();
+				mainPanel.show();
+			}
+		});
 		GridBagConstraints gbc_btnBack = new GridBagConstraints();
 		gbc_btnBack.anchor = GridBagConstraints.BELOW_BASELINE;
 		gbc_btnBack.insets = new Insets(0, 0, 5, 5);
 		gbc_btnBack.gridx = 1;
 		gbc_btnBack.gridy = 2;
 		exportPanel.add(btnBack, gbc_btnBack);
-		btnEmployee.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 	}
 }
