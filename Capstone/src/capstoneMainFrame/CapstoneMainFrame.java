@@ -55,7 +55,7 @@ public class CapstoneMainFrame {
 		mainFrame.getContentPane().add(mainPanel, "name_768171061063700");
 		JPanel exportPanel = new JPanel();
 		mainFrame.getContentPane().add(exportPanel, "name_768316222739400");
-		
+	
 		GridBagLayout gbl_mainPanel = new GridBagLayout();
 		gbl_mainPanel.columnWidths = new int[]{0, 236, 0, 0};
 		gbl_mainPanel.rowHeights = new int[]{0, 39, 20, 20, 20, 20, 20, 20, 0, 0};
@@ -132,7 +132,9 @@ public class CapstoneMainFrame {
 		gbl_exportPanel.columnWeights = new double[]{1.0, 0.0, 1.0, Double.MIN_VALUE};
 		gbl_exportPanel.rowWeights = new double[]{1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		exportPanel.setLayout(gbl_exportPanel);
-						
+				
+		Export export = new Export();
+		
 		JLabel lblExport = new JLabel("Export");
 		lblExport.setHorizontalAlignment(SwingConstants.TRAILING);
 		GridBagConstraints gbc_lblExport = new GridBagConstraints();
@@ -144,8 +146,9 @@ public class CapstoneMainFrame {
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				exportPanel.hide();
-				mainPanel.show();
+				export.back(exportPanel,mainPanel);
+				//exportPanel.hide();
+				//mainPanel.show();
 			}
 		});
 		GridBagConstraints gbc_btnBack = new GridBagConstraints();
