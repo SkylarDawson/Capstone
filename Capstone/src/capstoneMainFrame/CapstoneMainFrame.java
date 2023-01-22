@@ -79,12 +79,18 @@ public class CapstoneMainFrame {
 		mainFrame.getContentPane().add(exportPanel, "name_768316222739400");
 		JPanel inventoryPanel = new JPanel();
 		mainFrame.getContentPane().add(inventoryPanel, "name_164680866775500");
+		JPanel orderPanel = new JPanel();
+		mainFrame.getContentPane().add(orderPanel, "name_244894356188800");
+		JPanel spreaderPanel = new JPanel();
+		mainFrame.getContentPane().add(spreaderPanel, "name_245549368124800");
 	
 		/**
 		 * Frame Class Initialization
 		 */
 		Export export = new Export();
 		Inventory inventory = new Inventory();
+		Order order = new Order();
+		Spreader spreader = new Spreader();
 		
 		/**
 		 * Main panel initialization
@@ -120,6 +126,12 @@ public class CapstoneMainFrame {
 		});
 				
 		JButton btnOrders = new JButton("Orders");
+		btnOrders.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mainPanel.hide();
+				orderPanel.show();
+			}
+		});
 		GridBagConstraints gbc_btnOrders = new GridBagConstraints();
 		gbc_btnOrders.fill = GridBagConstraints.BOTH;
 		gbc_btnOrders.insets = new Insets(0, 0, 5, 5);
@@ -158,6 +170,12 @@ public class CapstoneMainFrame {
 		mainPanel.add(btnEmployee, gbc_btnEmployee);
 		
 		JButton btnSpreader = new JButton("Spreaders");
+		btnSpreader.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mainPanel.hide();
+				spreaderPanel.show();
+			}
+		});
 		GridBagConstraints gbc_btnSpreader = new GridBagConstraints();
 		gbc_btnSpreader.fill = GridBagConstraints.BOTH;
 		gbc_btnSpreader.insets = new Insets(0, 0, 5, 5);
@@ -721,5 +739,55 @@ public class CapstoneMainFrame {
 		gbc_btnBack_1.gridx = 7;
 		gbc_btnBack_1.gridy = 13;
 		inventoryPanel.add(btnBack_1, gbc_btnBack_1);
+		
+		/**
+		 * 
+		 */
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0};
+		gridBagLayout.columnWeights = new double[]{1.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		orderPanel.setLayout(gridBagLayout);
+		
+		JLabel lblNewLabel_6 = new JLabel("Database Screen");
+		GridBagConstraints gbc_lblNewLabel_6 = new GridBagConstraints();
+		gbc_lblNewLabel_6.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_6.gridx = 1;
+		gbc_lblNewLabel_6.gridy = 1;
+		orderPanel.add(lblNewLabel_6, gbc_lblNewLabel_6);
+		
+		JButton btnNewButton_2 = new JButton("Back");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				order.back(orderPanel, mainPanel);
+			}
+		});
+		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
+		gbc_btnNewButton_2.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_2.gridx = 1;
+		gbc_btnNewButton_2.gridy = 2;
+		orderPanel.add(btnNewButton_2, gbc_btnNewButton_2);
+		
+		/**
+		 * 
+		 */
+		GridBagLayout gridBagLayout_1 = new GridBagLayout();
+		gridBagLayout_1.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout_1.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		spreaderPanel.setLayout(gridBagLayout_1);
+		
+		JButton btnNewButton_3 = new JButton("Back");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				spreader.back(spreaderPanel, mainPanel);
+			}
+		});
+		GridBagConstraints gbc_btnNewButton_3 = new GridBagConstraints();
+		gbc_btnNewButton_3.gridx = 6;
+		gbc_btnNewButton_3.gridy = 7;
+		spreaderPanel.add(btnNewButton_3, gbc_btnNewButton_3);
 	}
 }
