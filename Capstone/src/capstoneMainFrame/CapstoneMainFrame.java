@@ -133,6 +133,12 @@ public class CapstoneMainFrame {
 		Inventory inventory = new Inventory();
 		OrderGUI order = new OrderGUI();
 		Spreader spreader = new Spreader();
+		CustomerGUI customerGUI = new CustomerGUI();
+		EmployeeGUI employeeGUI = new EmployeeGUI();
+		CreateOrder createOrder = new CreateOrder();
+		CreateCustomer createCustomer = new CreateCustomer();
+		CreateEmployee createEmployee = new CreateEmployee();
+		
 		
 		
 		/**
