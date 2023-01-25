@@ -114,14 +114,26 @@ public class CapstoneMainFrame {
 		mainFrame.getContentPane().add(orderPanel, "name_244894356188800");
 		JPanel spreaderPanel = new JPanel();
 		mainFrame.getContentPane().add(spreaderPanel, "name_245549368124800");
-	
+		JPanel customerPanel = new JPanel();
+		mainFrame.getContentPane().add(customerPanel, "name_91413918142900");
+		JPanel employeePanel = new JPanel();
+		mainFrame.getContentPane().add(employeePanel, "name_92591373722400");
+		JPanel createCustomerPanel = new JPanel();
+		mainFrame.getContentPane().add(createCustomerPanel, "name_93463575990800");
+		JPanel createEmployeePanel = new JPanel();
+		mainFrame.getContentPane().add(createEmployeePanel, "name_94212916989400");
+		JPanel createOrderPanel = new JPanel();
+		mainFrame.getContentPane().add(createOrderPanel, "name_95035194878900");
+		
+		
 		/**
 		 * Frame Class Initialization
 		 */
 		Export export = new Export();
 		Inventory inventory = new Inventory();
-		Order order = new Order();
+		OrderGUI order = new OrderGUI();
 		Spreader spreader = new Spreader();
+		
 		
 		/**
 		 * Main panel initialization
@@ -1024,8 +1036,6 @@ public class CapstoneMainFrame {
 		gbc_btnNewButton_3.gridy = 2;
 		spreaderPanel.add(btnNewButton_3, gbc_btnNewButton_3);
 		
-		JPanel customerPanel = new JPanel();
-		mainFrame.getContentPane().add(customerPanel, "name_91413918142900");
 		GridBagLayout gbl_customerPanel = new GridBagLayout();
 		gbl_customerPanel.columnWidths = new int[]{0, 0, 0, 0};
 		gbl_customerPanel.rowHeights = new int[]{0, 0, 0, 0, 0};
@@ -1092,8 +1102,6 @@ public class CapstoneMainFrame {
 		JButton btnNewButton_9 = new JButton("Back");
 		horizontalBox_6.add(btnNewButton_9);
 		
-		JPanel employeePanel = new JPanel();
-		mainFrame.getContentPane().add(employeePanel, "name_92591373722400");
 		GridBagLayout gbl_employeePanel = new GridBagLayout();
 		gbl_employeePanel.columnWidths = new int[]{0, 0, 0, 0};
 		gbl_employeePanel.rowHeights = new int[]{0, 0, 0, 0, 0};
@@ -1147,8 +1155,6 @@ public class CapstoneMainFrame {
 		JButton btnNewButton_9_1 = new JButton("Back");
 		horizontalBox_7.add(btnNewButton_9_1);
 		
-		JPanel createCustomerPanel = new JPanel();
-		mainFrame.getContentPane().add(createCustomerPanel, "name_93463575990800");
 		GridBagLayout gbl_createCustomerPanel = new GridBagLayout();
 		gbl_createCustomerPanel.columnWidths = new int[]{0, 0, 0, 0, 0};
 		gbl_createCustomerPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -1305,8 +1311,6 @@ public class CapstoneMainFrame {
 		gbc_btnNewButton_12.gridy = 9;
 		createCustomerPanel.add(btnNewButton_12, gbc_btnNewButton_12);
 		
-		JPanel createEmployeePanel = new JPanel();
-		mainFrame.getContentPane().add(createEmployeePanel, "name_94212916989400");
 		GridBagLayout gbl_createEmployeePanel = new GridBagLayout();
 		gbl_createEmployeePanel.columnWidths = new int[]{0, 0, 0, 0, 0};
 		gbl_createEmployeePanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -1426,8 +1430,6 @@ public class CapstoneMainFrame {
 		gbc_btnBack_9.gridy = 7;
 		createEmployeePanel.add(btnBack_9, gbc_btnBack_9);
 		
-		JPanel createOrderPanel = new JPanel();
-		mainFrame.getContentPane().add(createOrderPanel, "name_95035194878900");
 		GridBagLayout gridBagLayout_2 = new GridBagLayout();
 		gridBagLayout_2.columnWidths = new int[]{0, 303, 0, 0, 0, 0};
 		gridBagLayout_2.rowHeights = new int[]{0, 0, 0, 0, 0};

@@ -9,12 +9,12 @@ import javax.swing.JPanel;
  * @author 19sky
  *
  */
-public class Order {
+public class OrderGUI {
 
 	/**
 	 * 
 	 */
-	public Order() {
+	public OrderGUI() {
 		// TODO Auto-generated constructor stub
 	}
 	
