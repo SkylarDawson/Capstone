@@ -33,6 +33,7 @@ public class CapstoneMainFrame {
 	private JTextField textFieldStorageInput;
 	private JTextField textField;
 	private JTextField textField_2;
+	private JTextField textField_1;
 	
 	/**
 	 * Launch the application.
@@ -915,10 +916,75 @@ public class CapstoneMainFrame {
 		 */
 		GridBagLayout gridBagLayout_1 = new GridBagLayout();
 		gridBagLayout_1.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout_1.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout_1.rowHeights = new int[]{0, 100, 0, 0, 0};
+		gridBagLayout_1.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout_1.rowWeights = new double[]{1.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
 		spreaderPanel.setLayout(gridBagLayout_1);
+		
+		Box verticalBox_1 = Box.createVerticalBox();
+		GridBagConstraints gbc_verticalBox_1 = new GridBagConstraints();
+		gbc_verticalBox_1.fill = GridBagConstraints.VERTICAL;
+		gbc_verticalBox_1.insets = new Insets(0, 0, 5, 5);
+		gbc_verticalBox_1.gridx = 1;
+		gbc_verticalBox_1.gridy = 1;
+		spreaderPanel.add(verticalBox_1, gbc_verticalBox_1);
+		
+		Box horizontalBox_3 = Box.createHorizontalBox();
+		verticalBox_1.add(horizontalBox_3);
+		
+		JLabel lblNewLabel_22 = new JLabel("Spreader");
+		horizontalBox_3.add(lblNewLabel_22);
+		
+		JLabel lblNewLabel_23 = new JLabel("Customer");
+		horizontalBox_3.add(lblNewLabel_23);
+		
+		JLabel lblNewLabel_24 = new JLabel("Date Taken");
+		horizontalBox_3.add(lblNewLabel_24);
+		
+		JLabel lblNewLabel_25 = new JLabel("Load");
+		horizontalBox_3.add(lblNewLabel_25);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		verticalBox_1.add(scrollPane_1);
+		
+		JLayeredPane layeredPane_1 = new JLayeredPane();
+		GridBagConstraints gbc_layeredPane_1 = new GridBagConstraints();
+		gbc_layeredPane_1.insets = new Insets(0, 0, 5, 5);
+		gbc_layeredPane_1.fill = GridBagConstraints.BOTH;
+		gbc_layeredPane_1.gridx = 3;
+		gbc_layeredPane_1.gridy = 1;
+		spreaderPanel.add(layeredPane_1, gbc_layeredPane_1);
+		layeredPane_1.setLayout(new MigLayout("", "[60.00][]", "[][][]"));
+		
+		JLabel lblNewLabel_26 = new JLabel("Spreader #");
+		lblNewLabel_26.setHorizontalAlignment(SwingConstants.CENTER);
+		layeredPane_1.add(lblNewLabel_26, "cell 0 0,growx");
+		
+		JLabel lblNewLabel_27 = new JLabel("Customer");
+		lblNewLabel_27.setHorizontalAlignment(SwingConstants.CENTER);
+		layeredPane_1.add(lblNewLabel_27, "cell 1 0");
+		
+		textField_1 = new JTextField();
+		layeredPane_1.add(textField_1, "cell 0 1,growx");
+		textField_1.setColumns(10);
+		
+		JLabel lblNewLabel_28 = new JLabel("-");
+		lblNewLabel_28.setHorizontalAlignment(SwingConstants.CENTER);
+		layeredPane_1.add(lblNewLabel_28, "cell 1 1,growx");
+		
+		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("Returned");
+		layeredPane_1.add(chckbxNewCheckBox_1, "cell 0 2");
+		
+		JButton btnNewButton_6 = new JButton("Save");
+		layeredPane_1.add(btnNewButton_6, "cell 1 2");
+		
+		JButton btnNewButton_5 = new JButton("New Spreader");
+		GridBagConstraints gbc_btnNewButton_5 = new GridBagConstraints();
+		gbc_btnNewButton_5.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_5.gridx = 1;
+		gbc_btnNewButton_5.gridy = 2;
+		spreaderPanel.add(btnNewButton_5, gbc_btnNewButton_5);
 		
 		JButton btnNewButton_3 = new JButton("Back");
 		btnNewButton_3.addActionListener(new ActionListener() {
@@ -927,8 +993,9 @@ public class CapstoneMainFrame {
 			}
 		});
 		GridBagConstraints gbc_btnNewButton_3 = new GridBagConstraints();
-		gbc_btnNewButton_3.gridx = 6;
-		gbc_btnNewButton_3.gridy = 7;
+		gbc_btnNewButton_3.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_3.gridx = 3;
+		gbc_btnNewButton_3.gridy = 2;
 		spreaderPanel.add(btnNewButton_3, gbc_btnNewButton_3);
 	}
 }
