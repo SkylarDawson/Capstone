@@ -34,6 +34,18 @@ public class CapstoneMainFrame {
 	private JTextField textField;
 	private JTextField textField_2;
 	private JTextField textField_1;
+	private JTextField textFieldCreateCustomerID;
+	private JTextField textFieldCreateCustomerFirst;
+	private JTextField textFieldCreateCustomerLast;
+	private JTextField textFieldPhone;
+	private JTextField textFieldCreateCustomerAddress;
+	private JTextField textFieldCreateCustomerEmail;
+	private JTextField textField_9;
+	private JTextField textFieldCreateEmployeeID;
+	private JTextField textFieldCreateEmployeeFirst;
+	private JTextField textFieldCreateEmployeeLast;
+	private JTextField textFieldCreateEmployeePhone;
+	private JTextField textFieldCreateEmployeeTitle;
 	
 	/**
 	 * Launch the application.
@@ -997,5 +1009,407 @@ public class CapstoneMainFrame {
 		gbc_btnNewButton_3.gridx = 3;
 		gbc_btnNewButton_3.gridy = 2;
 		spreaderPanel.add(btnNewButton_3, gbc_btnNewButton_3);
+		
+		JPanel customerPanel = new JPanel();
+		mainFrame.getContentPane().add(customerPanel, "name_91413918142900");
+		GridBagLayout gbl_customerPanel = new GridBagLayout();
+		gbl_customerPanel.columnWidths = new int[]{0, 0, 0, 0};
+		gbl_customerPanel.rowHeights = new int[]{0, 0, 0, 0, 0};
+		gbl_customerPanel.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_customerPanel.rowWeights = new double[]{1.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
+		customerPanel.setLayout(gbl_customerPanel);
+		
+		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		GridBagConstraints gbc_scrollPane_2 = new GridBagConstraints();
+		gbc_scrollPane_2.insets = new Insets(0, 0, 5, 5);
+		gbc_scrollPane_2.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane_2.gridx = 1;
+		gbc_scrollPane_2.gridy = 1;
+		customerPanel.add(scrollPane_2, gbc_scrollPane_2);
+		
+		Box horizontalBox_4 = Box.createHorizontalBox();
+		scrollPane_2.setColumnHeaderView(horizontalBox_4);
+		
+		JLabel lblCustomerID = new JLabel("Cusrtomer ID");
+		horizontalBox_4.add(lblCustomerID);
+		
+		JLabel lblCustomerFirst = new JLabel("First");
+		horizontalBox_4.add(lblCustomerFirst);
+		
+		JLabel lblCustomerLast = new JLabel("Last");
+		horizontalBox_4.add(lblCustomerLast);
+		
+		JLabel lblCustomerPhone = new JLabel("Phone");
+		horizontalBox_4.add(lblCustomerPhone);
+		
+		JLabel lblCustomerAddress = new JLabel("Address");
+		horizontalBox_4.add(lblCustomerAddress);
+		
+		JLabel lblCustomerEmail = new JLabel("Email");
+		horizontalBox_4.add(lblCustomerEmail);
+		
+		JLabel lblCustomerBalence = new JLabel("Balence");
+		horizontalBox_4.add(lblCustomerBalence);
+		
+		JLabel lblCustomerAssignedRep = new JLabel("Assigned Rep");
+		horizontalBox_4.add(lblCustomerAssignedRep);
+		
+		Box horizontalBox_6 = Box.createHorizontalBox();
+		GridBagConstraints gbc_horizontalBox_6 = new GridBagConstraints();
+		gbc_horizontalBox_6.insets = new Insets(0, 0, 5, 5);
+		gbc_horizontalBox_6.gridx = 1;
+		gbc_horizontalBox_6.gridy = 2;
+		customerPanel.add(horizontalBox_6, gbc_horizontalBox_6);
+		
+		JButton btnNewButton_7 = new JButton("Create New");
+		btnNewButton_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		horizontalBox_6.add(btnNewButton_7);
+		
+		JButton btnNewButton_8 = new JButton("Delete");
+		horizontalBox_6.add(btnNewButton_8);
+		
+		Component horizontalGlue_2 = Box.createHorizontalGlue();
+		horizontalBox_6.add(horizontalGlue_2);
+		
+		JButton btnNewButton_9 = new JButton("Back");
+		horizontalBox_6.add(btnNewButton_9);
+		
+		JPanel employeePanel = new JPanel();
+		mainFrame.getContentPane().add(employeePanel, "name_92591373722400");
+		GridBagLayout gbl_employeePanel = new GridBagLayout();
+		gbl_employeePanel.columnWidths = new int[]{0, 0, 0, 0};
+		gbl_employeePanel.rowHeights = new int[]{0, 0, 0, 0, 0};
+		gbl_employeePanel.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_employeePanel.rowWeights = new double[]{1.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
+		employeePanel.setLayout(gbl_employeePanel);
+		
+		JScrollPane scrollPane_3 = new JScrollPane();
+		scrollPane_3.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		GridBagConstraints gbc_scrollPane_3 = new GridBagConstraints();
+		gbc_scrollPane_3.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane_3.insets = new Insets(0, 0, 5, 5);
+		gbc_scrollPane_3.gridx = 1;
+		gbc_scrollPane_3.gridy = 1;
+		employeePanel.add(scrollPane_3, gbc_scrollPane_3);
+		
+		Box horizontalBox_4_1 = Box.createHorizontalBox();
+		scrollPane_3.setColumnHeaderView(horizontalBox_4_1);
+		
+		JLabel lblEmployeeID = new JLabel("Employee ID");
+		horizontalBox_4_1.add(lblEmployeeID);
+		
+		JLabel lblEmployeeFirst = new JLabel("First");
+		horizontalBox_4_1.add(lblEmployeeFirst);
+		
+		JLabel lblEmployeeLast = new JLabel("Last");
+		horizontalBox_4_1.add(lblEmployeeLast);
+		
+		JLabel lblEmployeePhone = new JLabel("Phone");
+		horizontalBox_4_1.add(lblEmployeePhone);
+		
+		JLabel lblEmployeeTitle = new JLabel("Title");
+		horizontalBox_4_1.add(lblEmployeeTitle);
+		
+		Box horizontalBox_7 = Box.createHorizontalBox();
+		GridBagConstraints gbc_horizontalBox_7 = new GridBagConstraints();
+		gbc_horizontalBox_7.insets = new Insets(0, 0, 5, 5);
+		gbc_horizontalBox_7.gridx = 1;
+		gbc_horizontalBox_7.gridy = 2;
+		employeePanel.add(horizontalBox_7, gbc_horizontalBox_7);
+		
+		JButton btnNewButton_7_1 = new JButton("Create New");
+		horizontalBox_7.add(btnNewButton_7_1);
+		
+		JButton btnNewButton_8_1 = new JButton("Delete");
+		horizontalBox_7.add(btnNewButton_8_1);
+		
+		Component horizontalGlue_2_1 = Box.createHorizontalGlue();
+		horizontalBox_7.add(horizontalGlue_2_1);
+		
+		JButton btnNewButton_9_1 = new JButton("Back");
+		horizontalBox_7.add(btnNewButton_9_1);
+		
+		JPanel createCustomerPanel = new JPanel();
+		mainFrame.getContentPane().add(createCustomerPanel, "name_93463575990800");
+		GridBagLayout gbl_createCustomerPanel = new GridBagLayout();
+		gbl_createCustomerPanel.columnWidths = new int[]{0, 0, 0, 0, 0};
+		gbl_createCustomerPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_createCustomerPanel.columnWeights = new double[]{1.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_createCustomerPanel.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		createCustomerPanel.setLayout(gbl_createCustomerPanel);
+		
+		JLabel lblCreateCustomerID = new JLabel("Customer ID");
+		lblCreateCustomerID.setHorizontalAlignment(SwingConstants.TRAILING);
+		GridBagConstraints gbc_lblCreateCustomerID = new GridBagConstraints();
+		gbc_lblCreateCustomerID.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblCreateCustomerID.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCreateCustomerID.gridx = 1;
+		gbc_lblCreateCustomerID.gridy = 1;
+		createCustomerPanel.add(lblCreateCustomerID, gbc_lblCreateCustomerID);
+		
+		textFieldCreateCustomerID = new JTextField();
+		GridBagConstraints gbc_textFieldCreateCustomerID = new GridBagConstraints();
+		gbc_textFieldCreateCustomerID.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldCreateCustomerID.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldCreateCustomerID.gridx = 2;
+		gbc_textFieldCreateCustomerID.gridy = 1;
+		createCustomerPanel.add(textFieldCreateCustomerID, gbc_textFieldCreateCustomerID);
+		textFieldCreateCustomerID.setColumns(10);
+		
+		JLabel lblCreateCustomerFirst = new JLabel("First Name");
+		lblCreateCustomerFirst.setHorizontalAlignment(SwingConstants.TRAILING);
+		GridBagConstraints gbc_lblCreateCustomerFirst = new GridBagConstraints();
+		gbc_lblCreateCustomerFirst.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblCreateCustomerFirst.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCreateCustomerFirst.gridx = 1;
+		gbc_lblCreateCustomerFirst.gridy = 2;
+		createCustomerPanel.add(lblCreateCustomerFirst, gbc_lblCreateCustomerFirst);
+		
+		textFieldCreateCustomerFirst = new JTextField();
+		textFieldCreateCustomerFirst.setColumns(10);
+		GridBagConstraints gbc_textFieldCreateCustomerFirst = new GridBagConstraints();
+		gbc_textFieldCreateCustomerFirst.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldCreateCustomerFirst.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldCreateCustomerFirst.gridx = 2;
+		gbc_textFieldCreateCustomerFirst.gridy = 2;
+		createCustomerPanel.add(textFieldCreateCustomerFirst, gbc_textFieldCreateCustomerFirst);
+		
+		JLabel lblCreateCustomerLast = new JLabel("Last Name");
+		lblCreateCustomerLast.setHorizontalAlignment(SwingConstants.TRAILING);
+		GridBagConstraints gbc_lblCreateCustomerLast = new GridBagConstraints();
+		gbc_lblCreateCustomerLast.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblCreateCustomerLast.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCreateCustomerLast.gridx = 1;
+		gbc_lblCreateCustomerLast.gridy = 3;
+		createCustomerPanel.add(lblCreateCustomerLast, gbc_lblCreateCustomerLast);
+		
+		textFieldCreateCustomerLast = new JTextField();
+		textFieldCreateCustomerLast.setColumns(10);
+		GridBagConstraints gbc_textFieldCreateCustomerLast = new GridBagConstraints();
+		gbc_textFieldCreateCustomerLast.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldCreateCustomerLast.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldCreateCustomerLast.gridx = 2;
+		gbc_textFieldCreateCustomerLast.gridy = 3;
+		createCustomerPanel.add(textFieldCreateCustomerLast, gbc_textFieldCreateCustomerLast);
+		
+		JLabel lblCreateCustomerPhone = new JLabel("Phone Number");
+		lblCreateCustomerPhone.setHorizontalAlignment(SwingConstants.TRAILING);
+		GridBagConstraints gbc_lblCreateCustomerPhone = new GridBagConstraints();
+		gbc_lblCreateCustomerPhone.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblCreateCustomerPhone.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCreateCustomerPhone.gridx = 1;
+		gbc_lblCreateCustomerPhone.gridy = 4;
+		createCustomerPanel.add(lblCreateCustomerPhone, gbc_lblCreateCustomerPhone);
+		
+		textFieldPhone = new JTextField();
+		textFieldPhone.setColumns(10);
+		GridBagConstraints gbc_textFieldPhone = new GridBagConstraints();
+		gbc_textFieldPhone.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldPhone.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldPhone.gridx = 2;
+		gbc_textFieldPhone.gridy = 4;
+		createCustomerPanel.add(textFieldPhone, gbc_textFieldPhone);
+		
+		JLabel lblCreateCustomerAddress = new JLabel("Address");
+		lblCreateCustomerAddress.setHorizontalAlignment(SwingConstants.TRAILING);
+		GridBagConstraints gbc_lblCreateCustomerAddress = new GridBagConstraints();
+		gbc_lblCreateCustomerAddress.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblCreateCustomerAddress.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCreateCustomerAddress.gridx = 1;
+		gbc_lblCreateCustomerAddress.gridy = 5;
+		createCustomerPanel.add(lblCreateCustomerAddress, gbc_lblCreateCustomerAddress);
+		
+		textFieldCreateCustomerAddress = new JTextField();
+		textFieldCreateCustomerAddress.setColumns(10);
+		GridBagConstraints gbc_textFieldCreateCustomerAddress = new GridBagConstraints();
+		gbc_textFieldCreateCustomerAddress.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldCreateCustomerAddress.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldCreateCustomerAddress.gridx = 2;
+		gbc_textFieldCreateCustomerAddress.gridy = 5;
+		createCustomerPanel.add(textFieldCreateCustomerAddress, gbc_textFieldCreateCustomerAddress);
+		
+		JLabel lblCreateCustomerEmail = new JLabel("Email");
+		lblCreateCustomerEmail.setHorizontalAlignment(SwingConstants.TRAILING);
+		GridBagConstraints gbc_lblCreateCustomerEmail = new GridBagConstraints();
+		gbc_lblCreateCustomerEmail.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblCreateCustomerEmail.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCreateCustomerEmail.gridx = 1;
+		gbc_lblCreateCustomerEmail.gridy = 6;
+		createCustomerPanel.add(lblCreateCustomerEmail, gbc_lblCreateCustomerEmail);
+		
+		textFieldCreateCustomerEmail = new JTextField();
+		textFieldCreateCustomerEmail.setColumns(10);
+		GridBagConstraints gbc_textFieldCreateCustomerEmail = new GridBagConstraints();
+		gbc_textFieldCreateCustomerEmail.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldCreateCustomerEmail.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldCreateCustomerEmail.gridx = 2;
+		gbc_textFieldCreateCustomerEmail.gridy = 6;
+		createCustomerPanel.add(textFieldCreateCustomerEmail, gbc_textFieldCreateCustomerEmail);
+		
+		JLabel lblCreateCustomerRep = new JLabel("Assigned Rep");
+		lblCreateCustomerRep.setHorizontalAlignment(SwingConstants.TRAILING);
+		GridBagConstraints gbc_lblCreateCustomerRep = new GridBagConstraints();
+		gbc_lblCreateCustomerRep.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblCreateCustomerRep.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCreateCustomerRep.gridx = 1;
+		gbc_lblCreateCustomerRep.gridy = 7;
+		createCustomerPanel.add(lblCreateCustomerRep, gbc_lblCreateCustomerRep);
+		
+		textField_9 = new JTextField();
+		textField_9.setColumns(10);
+		GridBagConstraints gbc_textField_9 = new GridBagConstraints();
+		gbc_textField_9.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_9.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_9.gridx = 2;
+		gbc_textField_9.gridy = 7;
+		createCustomerPanel.add(textField_9, gbc_textField_9);
+		
+		JButton btnNewButton_10 = new JButton("Clear");
+		GridBagConstraints gbc_btnNewButton_10 = new GridBagConstraints();
+		gbc_btnNewButton_10.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_10.gridx = 1;
+		gbc_btnNewButton_10.gridy = 8;
+		createCustomerPanel.add(btnNewButton_10, gbc_btnNewButton_10);
+		
+		JButton btnNewButton_11 = new JButton("Create");
+		GridBagConstraints gbc_btnNewButton_11 = new GridBagConstraints();
+		gbc_btnNewButton_11.anchor = GridBagConstraints.EAST;
+		gbc_btnNewButton_11.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_11.gridx = 2;
+		gbc_btnNewButton_11.gridy = 8;
+		createCustomerPanel.add(btnNewButton_11, gbc_btnNewButton_11);
+		
+		JButton btnNewButton_12 = new JButton("Back");
+		GridBagConstraints gbc_btnNewButton_12 = new GridBagConstraints();
+		gbc_btnNewButton_12.anchor = GridBagConstraints.EAST;
+		gbc_btnNewButton_12.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_12.gridx = 2;
+		gbc_btnNewButton_12.gridy = 9;
+		createCustomerPanel.add(btnNewButton_12, gbc_btnNewButton_12);
+		
+		JPanel createEmployeePanel = new JPanel();
+		mainFrame.getContentPane().add(createEmployeePanel, "name_94212916989400");
+		GridBagLayout gbl_createEmployeePanel = new GridBagLayout();
+		gbl_createEmployeePanel.columnWidths = new int[]{0, 0, 0, 0, 0};
+		gbl_createEmployeePanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_createEmployeePanel.columnWeights = new double[]{1.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_createEmployeePanel.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		createEmployeePanel.setLayout(gbl_createEmployeePanel);
+		
+		JLabel lblCreateEmployeeID = new JLabel("Employee ID");
+		lblCreateEmployeeID.setHorizontalAlignment(SwingConstants.TRAILING);
+		GridBagConstraints gbc_lblCreateEmployeeID = new GridBagConstraints();
+		gbc_lblCreateEmployeeID.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblCreateEmployeeID.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCreateEmployeeID.gridx = 1;
+		gbc_lblCreateEmployeeID.gridy = 1;
+		createEmployeePanel.add(lblCreateEmployeeID, gbc_lblCreateEmployeeID);
+		
+		textFieldCreateEmployeeID = new JTextField();
+		GridBagConstraints gbc_textFieldCreateEmployeeID = new GridBagConstraints();
+		gbc_textFieldCreateEmployeeID.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldCreateEmployeeID.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldCreateEmployeeID.gridx = 2;
+		gbc_textFieldCreateEmployeeID.gridy = 1;
+		createEmployeePanel.add(textFieldCreateEmployeeID, gbc_textFieldCreateEmployeeID);
+		textFieldCreateEmployeeID.setColumns(10);
+		
+		JLabel lblCreateEmployeeFirst = new JLabel("First Name");
+		lblCreateEmployeeFirst.setHorizontalAlignment(SwingConstants.TRAILING);
+		GridBagConstraints gbc_lblCreateEmployeeFirst = new GridBagConstraints();
+		gbc_lblCreateEmployeeFirst.anchor = GridBagConstraints.EAST;
+		gbc_lblCreateEmployeeFirst.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCreateEmployeeFirst.gridx = 1;
+		gbc_lblCreateEmployeeFirst.gridy = 2;
+		createEmployeePanel.add(lblCreateEmployeeFirst, gbc_lblCreateEmployeeFirst);
+		
+		textFieldCreateEmployeeFirst = new JTextField();
+		GridBagConstraints gbc_textFieldCreateEmployeeFirst = new GridBagConstraints();
+		gbc_textFieldCreateEmployeeFirst.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldCreateEmployeeFirst.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldCreateEmployeeFirst.gridx = 2;
+		gbc_textFieldCreateEmployeeFirst.gridy = 2;
+		createEmployeePanel.add(textFieldCreateEmployeeFirst, gbc_textFieldCreateEmployeeFirst);
+		textFieldCreateEmployeeFirst.setColumns(10);
+		
+		JLabel lblCreateEmployeeLast = new JLabel("Last Name");
+		lblCreateEmployeeLast.setHorizontalAlignment(SwingConstants.TRAILING);
+		GridBagConstraints gbc_lblCreateEmployeeLast = new GridBagConstraints();
+		gbc_lblCreateEmployeeLast.anchor = GridBagConstraints.EAST;
+		gbc_lblCreateEmployeeLast.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCreateEmployeeLast.gridx = 1;
+		gbc_lblCreateEmployeeLast.gridy = 3;
+		createEmployeePanel.add(lblCreateEmployeeLast, gbc_lblCreateEmployeeLast);
+		
+		textFieldCreateEmployeeLast = new JTextField();
+		GridBagConstraints gbc_textFieldCreateEmployeeLast = new GridBagConstraints();
+		gbc_textFieldCreateEmployeeLast.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldCreateEmployeeLast.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldCreateEmployeeLast.gridx = 2;
+		gbc_textFieldCreateEmployeeLast.gridy = 3;
+		createEmployeePanel.add(textFieldCreateEmployeeLast, gbc_textFieldCreateEmployeeLast);
+		textFieldCreateEmployeeLast.setColumns(10);
+		
+		JLabel lblCreateEmployeePhone = new JLabel("Phone");
+		GridBagConstraints gbc_lblCreateEmployeePhone = new GridBagConstraints();
+		gbc_lblCreateEmployeePhone.anchor = GridBagConstraints.EAST;
+		gbc_lblCreateEmployeePhone.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCreateEmployeePhone.gridx = 1;
+		gbc_lblCreateEmployeePhone.gridy = 4;
+		createEmployeePanel.add(lblCreateEmployeePhone, gbc_lblCreateEmployeePhone);
+		
+		textFieldCreateEmployeePhone = new JTextField();
+		GridBagConstraints gbc_textFieldCreateEmployeePhone = new GridBagConstraints();
+		gbc_textFieldCreateEmployeePhone.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldCreateEmployeePhone.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldCreateEmployeePhone.gridx = 2;
+		gbc_textFieldCreateEmployeePhone.gridy = 4;
+		createEmployeePanel.add(textFieldCreateEmployeePhone, gbc_textFieldCreateEmployeePhone);
+		textFieldCreateEmployeePhone.setColumns(10);
+		
+		JLabel lblCreateEmployeeTitle = new JLabel("Job Title");
+		lblCreateEmployeeTitle.setHorizontalAlignment(SwingConstants.TRAILING);
+		GridBagConstraints gbc_lblCreateEmployeeTitle = new GridBagConstraints();
+		gbc_lblCreateEmployeeTitle.anchor = GridBagConstraints.EAST;
+		gbc_lblCreateEmployeeTitle.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCreateEmployeeTitle.gridx = 1;
+		gbc_lblCreateEmployeeTitle.gridy = 5;
+		createEmployeePanel.add(lblCreateEmployeeTitle, gbc_lblCreateEmployeeTitle);
+		
+		textFieldCreateEmployeeTitle = new JTextField();
+		GridBagConstraints gbc_textFieldCreateEmployeeTitle = new GridBagConstraints();
+		gbc_textFieldCreateEmployeeTitle.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldCreateEmployeeTitle.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldCreateEmployeeTitle.gridx = 2;
+		gbc_textFieldCreateEmployeeTitle.gridy = 5;
+		createEmployeePanel.add(textFieldCreateEmployeeTitle, gbc_textFieldCreateEmployeeTitle);
+		textFieldCreateEmployeeTitle.setColumns(10);
+		
+		JButton btnClearEmployee = new JButton("Clear");
+		GridBagConstraints gbc_btnClearEmployee = new GridBagConstraints();
+		gbc_btnClearEmployee.insets = new Insets(0, 0, 5, 5);
+		gbc_btnClearEmployee.gridx = 1;
+		gbc_btnClearEmployee.gridy = 6;
+		createEmployeePanel.add(btnClearEmployee, gbc_btnClearEmployee);
+		
+		JButton btnCreateEmployee = new JButton("Create");
+		GridBagConstraints gbc_btnCreateEmployee = new GridBagConstraints();
+		gbc_btnCreateEmployee.anchor = GridBagConstraints.EAST;
+		gbc_btnCreateEmployee.insets = new Insets(0, 0, 5, 5);
+		gbc_btnCreateEmployee.gridx = 2;
+		gbc_btnCreateEmployee.gridy = 6;
+		createEmployeePanel.add(btnCreateEmployee, gbc_btnCreateEmployee);
+		
+		JButton btnBack_9 = new JButton("Back");
+		GridBagConstraints gbc_btnBack_9 = new GridBagConstraints();
+		gbc_btnBack_9.anchor = GridBagConstraints.EAST;
+		gbc_btnBack_9.insets = new Insets(0, 0, 5, 5);
+		gbc_btnBack_9.gridx = 2;
+		gbc_btnBack_9.gridy = 7;
+		createEmployeePanel.add(btnBack_9, gbc_btnBack_9);
 	}
 }
