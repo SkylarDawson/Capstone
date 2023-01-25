@@ -46,6 +46,14 @@ public class CapstoneMainFrame {
 	private JTextField textFieldCreateEmployeeLast;
 	private JTextField textFieldCreateEmployeePhone;
 	private JTextField textFieldCreateEmployeeTitle;
+	private JTextField textFieldPotash;
+	private JTextField textFieldMAP;
+	private JTextField textFieldAMS;
+	private JTextField textFieldUrea;
+	private JTextField textFieldGypsum;
+	private JTextField textFieldCreateAdditional;
+	private JTextField textFieldCustomer;
+	private JTextField textFieldPriority;
 	
 	/**
 	 * Launch the application.
@@ -80,7 +88,7 @@ public class CapstoneMainFrame {
 		 */
 		mainFrame = new JFrame();
 		mainFrame.setTitle("Main");
-		mainFrame.setBounds(100, 100, 562, 429);
+		mainFrame.setBounds(100, 100, 646, 472);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.getContentPane().setLayout(new CardLayout(0, 0));
 		
@@ -342,8 +350,8 @@ public class CapstoneMainFrame {
 		JLabel lblNewLabel_10 = new JLabel("Additional");
 		layeredPane.add(lblNewLabel_10, "cell 0 9,alignx right,aligny center");
 		
-		JList list = new JList();
-		layeredPane.add(list, "cell 2 9,grow");
+		JList listExportAdditional = new JList();
+		layeredPane.add(listExportAdditional, "cell 2 9,grow");
 		
 		textField_2 = new JTextField();
 		layeredPane.add(textField_2, "cell 4 9,growx,aligny top");
@@ -351,6 +359,12 @@ public class CapstoneMainFrame {
 		
 		JLabel lblNewLabel_19 = new JLabel("Cu. Density ____");
 		layeredPane.add(lblNewLabel_19, "cell 0 10,alignx left,aligny top");
+		
+		JLabel lblExportCost = new JLabel("Est. Cost:");
+		layeredPane.add(lblExportCost, "cell 2 10");
+		
+		JLabel lblExportCalcCost = new JLabel("-");
+		layeredPane.add(lblExportCalcCost, "cell 4 10");
 		
 		JLabel lblNewLabel_20 = new JLabel("Employee");
 		layeredPane.add(lblNewLabel_20, "cell 0 11,growx,aligny top");
@@ -1411,5 +1425,142 @@ public class CapstoneMainFrame {
 		gbc_btnBack_9.gridx = 2;
 		gbc_btnBack_9.gridy = 7;
 		createEmployeePanel.add(btnBack_9, gbc_btnBack_9);
+		
+		JPanel createOrderPanel = new JPanel();
+		mainFrame.getContentPane().add(createOrderPanel, "name_95035194878900");
+		GridBagLayout gridBagLayout_2 = new GridBagLayout();
+		gridBagLayout_2.columnWidths = new int[]{0, 303, 0, 0, 0, 0};
+		gridBagLayout_2.rowHeights = new int[]{0, 0, 0, 0, 0};
+		gridBagLayout_2.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout_2.rowWeights = new double[]{1.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
+		createOrderPanel.setLayout(gridBagLayout_2);
+		
+		JLayeredPane layeredPaneCreateOrder = new JLayeredPane();
+		GridBagConstraints gbc_layeredPaneCreateOrder = new GridBagConstraints();
+		gbc_layeredPaneCreateOrder.insets = new Insets(0, 0, 5, 5);
+		gbc_layeredPaneCreateOrder.fill = GridBagConstraints.BOTH;
+		gbc_layeredPaneCreateOrder.gridx = 1;
+		gbc_layeredPaneCreateOrder.gridy = 1;
+		createOrderPanel.add(layeredPaneCreateOrder, gbc_layeredPaneCreateOrder);
+		layeredPaneCreateOrder.setLayout(new MigLayout("", "[][53.00][27.00][73.00][38.00][45.00,grow]", "[][][][][][][grow][][grow][]"));
+		
+		JLabel lblPounds = new JLabel("Pounds");
+		lblPounds.setHorizontalAlignment(SwingConstants.CENTER);
+		layeredPaneCreateOrder.add(lblPounds, "cell 3 0 3 1,alignx center");
+		
+		JLabel lblCreatePotash = new JLabel("Potash 60-0-0");
+		layeredPaneCreateOrder.add(lblCreatePotash, "flowy,cell 0 1 3 1");
+		
+		textFieldPotash = new JTextField();
+		layeredPaneCreateOrder.add(textFieldPotash, "cell 3 1 3 1,growx");
+		textFieldPotash.setColumns(10);
+		
+		JLabel lblCreateMAP = new JLabel("MAP 11-52-0");
+		layeredPaneCreateOrder.add(lblCreateMAP, "cell 0 2 3 1");
+		
+		textFieldMAP = new JTextField();
+		textFieldMAP.setColumns(10);
+		layeredPaneCreateOrder.add(textFieldMAP, "cell 3 2 3 1,growx");
+		
+		JLabel lblCreateAMS = new JLabel("AMS 21-0-0-24s");
+		layeredPaneCreateOrder.add(lblCreateAMS, "cell 0 3 3 1");
+		
+		textFieldAMS = new JTextField();
+		textFieldAMS.setColumns(10);
+		layeredPaneCreateOrder.add(textFieldAMS, "cell 3 3 3 1,growx");
+		
+		JLabel lblCreateUrea = new JLabel("Urea 0-0-46");
+		layeredPaneCreateOrder.add(lblCreateUrea, "cell 0 4 3 1");
+		
+		textFieldUrea = new JTextField();
+		textFieldUrea.setColumns(10);
+		layeredPaneCreateOrder.add(textFieldUrea, "cell 3 4 3 1,growx");
+		
+		JLabel lblCreateGypsum = new JLabel("Gypsum");
+		layeredPaneCreateOrder.add(lblCreateGypsum, "cell 0 5 3 1");
+		
+		textFieldGypsum = new JTextField();
+		textFieldGypsum.setColumns(10);
+		layeredPaneCreateOrder.add(textFieldGypsum, "cell 3 5 3 1,growx");
+		
+		JLabel lblAdditional = new JLabel("Additional");
+		layeredPaneCreateOrder.add(lblAdditional, "cell 0 6 3 1");
+		
+		JList listCreateAdditional = new JList();
+		layeredPaneCreateOrder.add(listCreateAdditional, "cell 3 6 2 1,grow");
+		
+		textFieldCreateAdditional = new JTextField();
+		layeredPaneCreateOrder.add(textFieldCreateAdditional, "cell 5 6,growx");
+		textFieldCreateAdditional.setColumns(10);
+		
+		JLabel lblNPK = new JLabel("NPK Value:");
+		layeredPaneCreateOrder.add(lblNPK, "cell 0 7 3 1");
+		
+		JLabel lblCalcNPK = new JLabel("0-0-0-0s");
+		layeredPaneCreateOrder.add(lblCalcNPK, "cell 3 7 3 1");
+		
+		JLabel lblCreateCost = new JLabel("Est. Cost:");
+		layeredPaneCreateOrder.add(lblCreateCost, "cell 0 8 3 1");
+		
+		JLabel lblCreateCalcCost = new JLabel("-");
+		layeredPaneCreateOrder.add(lblCreateCalcCost, "cell 3 8");
+		
+		JLabel lblCreateOrderEmployee = new JLabel("Employee");
+		layeredPaneCreateOrder.add(lblCreateOrderEmployee, "cell 4 8");
+		
+		JList listEmployee = new JList();
+		layeredPaneCreateOrder.add(listEmployee, "cell 5 8,grow");
+		
+		JButton btnCustomMixes = new JButton("Custom Mixes");
+		layeredPaneCreateOrder.add(btnCustomMixes, "cell 0 9 2 1,alignx center");
+		
+		JButton btnOrderHistory = new JButton("Order History");
+		layeredPaneCreateOrder.add(btnOrderHistory, "cell 2 9 2 1,alignx center");
+		
+		JButton btnCreateOrderClear = new JButton("Clear");
+		layeredPaneCreateOrder.add(btnCreateOrderClear, "cell 4 9,alignx center");
+		
+		JLayeredPane layeredPane_2 = new JLayeredPane();
+		GridBagConstraints gbc_layeredPane_2 = new GridBagConstraints();
+		gbc_layeredPane_2.insets = new Insets(0, 0, 5, 5);
+		gbc_layeredPane_2.fill = GridBagConstraints.BOTH;
+		gbc_layeredPane_2.gridx = 3;
+		gbc_layeredPane_2.gridy = 1;
+		createOrderPanel.add(layeredPane_2, gbc_layeredPane_2);
+		layeredPane_2.setLayout(new MigLayout("", "[][100px:n,grow][54.00][][][39.00][grow]", "[][][][][][][grow][][][]"));
+		
+		JLabel lblCustomer = new JLabel("Customer");
+		layeredPane_2.add(lblCustomer, "cell 0 0");
+		
+		textFieldCustomer = new JTextField();
+		layeredPane_2.add(textFieldCustomer, "cell 1 0,growx");
+		textFieldCustomer.setColumns(10);
+		
+		JLabel lblNewLabel_31 = new JLabel("Address");
+		layeredPane_2.add(lblNewLabel_31, "cell 0 1 3 1");
+		
+		JCheckBox chckbxCreateDelivery = new JCheckBox("Delivery");
+		layeredPane_2.add(chckbxCreateDelivery, "cell 0 2");
+		
+		JCheckBox chckbxCreateSpreader = new JCheckBox("Spreader");
+		layeredPane_2.add(chckbxCreateSpreader, "cell 0 3");
+		
+		JLabel lblPriority = new JLabel("Priority");
+		layeredPane_2.add(lblPriority, "cell 0 4,alignx trailing");
+		
+		textFieldPriority = new JTextField();
+		layeredPane_2.add(textFieldPriority, "cell 1 4,growx");
+		textFieldPriority.setColumns(10);
+		
+		JButton btnDispatch = new JButton("Dispatch");
+		layeredPane_2.add(btnDispatch, "cell 1 6,alignx right,aligny bottom");
+		
+		JButton btnBack_8 = new JButton("Back");
+		GridBagConstraints gbc_btnBack_8 = new GridBagConstraints();
+		gbc_btnBack_8.anchor = GridBagConstraints.EAST;
+		gbc_btnBack_8.insets = new Insets(0, 0, 5, 5);
+		gbc_btnBack_8.gridx = 3;
+		gbc_btnBack_8.gridy = 2;
+		createOrderPanel.add(btnBack_8, gbc_btnBack_8);
 	}
 }
