@@ -13,9 +13,17 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JPanel;
 import java.awt.CardLayout;
-import javax.swing.JScrollBar;
 import javax.swing.Box;
 import javax.swing.JTextField;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
+import java.awt.Component;
+import javax.swing.JLayeredPane;
+import javax.swing.JCheckBox;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
+import javax.swing.JList;
+import net.miginfocom.swing.MigLayout;
 
 public class CapstoneMainFrame {
 
@@ -23,6 +31,8 @@ public class CapstoneMainFrame {
 	private JTextField textFieldBinInput;
 	private JTextField textFieldIngredientInput;
 	private JTextField textFieldStorageInput;
+	private JTextField textField;
+	private JTextField textField_2;
 	
 	/**
 	 * Launch the application.
@@ -187,16 +197,18 @@ public class CapstoneMainFrame {
 		 * Export panel initialization
 		 */
 		GridBagLayout gbl_exportPanel = new GridBagLayout();
-		gbl_exportPanel.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_exportPanel.rowHeights = new int[]{0, 25, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_exportPanel.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_exportPanel.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_exportPanel.columnWidths = new int[]{0, 0, 0, 115, 0, 0};
+		gbl_exportPanel.rowHeights = new int[]{20, 100, 0, 0, 20, 0};
+		gbl_exportPanel.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_exportPanel.rowWeights = new double[]{1.0, 1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		exportPanel.setLayout(gbl_exportPanel);
 		
 		Box verticalBox = Box.createVerticalBox();
+		verticalBox.setBorder(new LineBorder(new Color(0, 0, 0)));
 		GridBagConstraints gbc_verticalBox = new GridBagConstraints();
+		gbc_verticalBox.fill = GridBagConstraints.VERTICAL;
 		gbc_verticalBox.insets = new Insets(0, 0, 5, 5);
-		gbc_verticalBox.gridx = 3;
+		gbc_verticalBox.gridx = 1;
 		gbc_verticalBox.gridy = 1;
 		exportPanel.add(verticalBox, gbc_verticalBox);
 		
@@ -214,37 +226,138 @@ public class CapstoneMainFrame {
 		JLabel lblNewLabel_3 = new JLabel("Load");
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
 		horizontalBox.add(lblNewLabel_3);
-	
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		verticalBox.add(scrollPane);
 		
-		JLabel lblExport = new JLabel("Export");
-		lblExport.setHorizontalAlignment(SwingConstants.TRAILING);
-		GridBagConstraints gbc_lblExport = new GridBagConstraints();
-		gbc_lblExport.insets = new Insets(0, 0, 5, 5);
-		gbc_lblExport.gridx = 1;
-		gbc_lblExport.gridy = 5;
-		exportPanel.add(lblExport, gbc_lblExport);
-						
-		JButton btnBack = new JButton("Back");
-		btnBack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				export.back(exportPanel,mainPanel);
-				exportPanel.hide();
-				mainPanel.show();
-			}
-		});
-		GridBagConstraints gbc_btnBack = new GridBagConstraints();
-		gbc_btnBack.anchor = GridBagConstraints.BELOW_BASELINE;
-		gbc_btnBack.insets = new Insets(0, 0, 5, 5);
-		gbc_btnBack.gridx = 1;
-		gbc_btnBack.gridy = 6;
-		exportPanel.add(btnBack, gbc_btnBack);
+		Box verticalBoxQueue = Box.createVerticalBox();
+		scrollPane.setViewportView(verticalBoxQueue);
 		
-		JButton btnNewButton_1 = new JButton("New Order");
+		JLayeredPane layeredPane = new JLayeredPane();
+		GridBagConstraints gbc_layeredPane = new GridBagConstraints();
+		gbc_layeredPane.insets = new Insets(0, 0, 5, 5);
+		gbc_layeredPane.fill = GridBagConstraints.BOTH;
+		gbc_layeredPane.gridx = 3;
+		gbc_layeredPane.gridy = 1;
+		exportPanel.add(layeredPane, gbc_layeredPane);
+		layeredPane.setLayout(new MigLayout("", "[77px][6px][42px][6px][79px]", "[13px][13px][21px][13px][13px][13px][13px][13px][13px][19px][13px][13px]"));
+		
+		JLabel lblNewLabel_7 = new JLabel("Customer");
+		layeredPane.add(lblNewLabel_7, "cell 0 0 3 1,growx,aligny top");
+		
+		JLabel lblNewLabel_8 = new JLabel("Date");
+		layeredPane.add(lblNewLabel_8, "cell 4 0,alignx right,aligny top");
+		
+		JLabel lblNewLabel_7_1 = new JLabel("Address");
+		layeredPane.add(lblNewLabel_7_1, "cell 0 1 5 1,growx,aligny top");
+		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("Delivered");
+		layeredPane.add(chckbxNewCheckBox, "cell 0 2,growx,aligny top");
+		
+		JLabel lblNewLabel_11 = new JLabel("Spreader");
+		layeredPane.add(lblNewLabel_11, "cell 2 2,alignx right,aligny center");
+		
+		textField = new JTextField();
+		layeredPane.add(textField, "cell 4 2,growx,aligny center");
+		textField.setColumns(10);
+		
+		JLabel lblNewLabel_12 = new JLabel("Pounds");
+		lblNewLabel_12.setHorizontalAlignment(SwingConstants.CENTER);
+		layeredPane.add(lblNewLabel_12, "cell 2 3,growx,aligny top");
+		
+		JLabel lblNewLabel_13 = new JLabel("Mixing");
+		lblNewLabel_13.setHorizontalAlignment(SwingConstants.CENTER);
+		layeredPane.add(lblNewLabel_13, "cell 4 3,growx,aligny top");
+		
+		JLabel lblNewLabel_14 = new JLabel("Potash 60-0-0");
+		layeredPane.add(lblNewLabel_14, "cell 0 4,growx,aligny top");
+		
+		JLabel lblPotashPound = new JLabel("-");
+		lblPotashPound.setHorizontalAlignment(SwingConstants.CENTER);
+		layeredPane.add(lblPotashPound, "cell 2 4,growx,aligny top");
+		
+		JLabel lblPotashMix = new JLabel("-");
+		lblPotashMix.setHorizontalAlignment(SwingConstants.CENTER);
+		layeredPane.add(lblPotashMix, "cell 4 4,growx,aligny top");
+		
+		JLabel lblNewLabel_15 = new JLabel("MAP 11-52-0");
+		layeredPane.add(lblNewLabel_15, "cell 0 5,growx,aligny top");
+		
+		JLabel lblMAPPound = new JLabel("-");
+		lblMAPPound.setHorizontalAlignment(SwingConstants.CENTER);
+		layeredPane.add(lblMAPPound, "cell 2 5,growx,aligny top");
+		
+		JLabel lblMAPMix = new JLabel("-");
+		lblMAPMix.setHorizontalAlignment(SwingConstants.CENTER);
+		layeredPane.add(lblMAPMix, "cell 4 5,growx,aligny top");
+		
+		JLabel lblNewLabel_16 = new JLabel("AMS 21-0-0-24s");
+		layeredPane.add(lblNewLabel_16, "cell 0 6,growx,aligny top");
+		
+		JLabel lblAMSPound = new JLabel("-");
+		lblAMSPound.setHorizontalAlignment(SwingConstants.CENTER);
+		layeredPane.add(lblAMSPound, "cell 2 6,growx,aligny top");
+		
+		JLabel lblAMSMix = new JLabel("-");
+		lblAMSMix.setHorizontalAlignment(SwingConstants.CENTER);
+		layeredPane.add(lblAMSMix, "cell 4 6,growx,aligny top");
+		
+		JLabel lblNewLabel_17 = new JLabel("Urea 0-0-46");
+		layeredPane.add(lblNewLabel_17, "cell 0 7,growx,aligny top");
+		
+		JLabel lblUreaPound = new JLabel("-");
+		lblUreaPound.setHorizontalAlignment(SwingConstants.CENTER);
+		layeredPane.add(lblUreaPound, "cell 2 7,growx,aligny top");
+		
+		JLabel lblUreaMix = new JLabel("-");
+		lblUreaMix.setHorizontalAlignment(SwingConstants.CENTER);
+		layeredPane.add(lblUreaMix, "cell 4 7,growx,aligny top");
+		
+		JLabel lblNewLabel_18 = new JLabel("Gypsum");
+		layeredPane.add(lblNewLabel_18, "cell 0 8,growx,aligny top");
+		
+		JLabel lblGypsumPound = new JLabel("-");
+		lblGypsumPound.setHorizontalAlignment(SwingConstants.CENTER);
+		layeredPane.add(lblGypsumPound, "cell 2 8,growx,aligny top");
+		
+		JLabel lblGypsumMix = new JLabel("-");
+		lblGypsumMix.setHorizontalAlignment(SwingConstants.CENTER);
+		layeredPane.add(lblGypsumMix, "cell 4 8,growx,aligny top");
+		
+		JLabel lblNewLabel_10 = new JLabel("Additional");
+		layeredPane.add(lblNewLabel_10, "cell 0 9,alignx right,aligny center");
+		
+		JList list = new JList();
+		layeredPane.add(list, "cell 2 9,grow");
+		
+		textField_2 = new JTextField();
+		layeredPane.add(textField_2, "cell 4 9,growx,aligny top");
+		textField_2.setColumns(10);
+		
+		JLabel lblNewLabel_19 = new JLabel("Cu. Density ____");
+		layeredPane.add(lblNewLabel_19, "cell 0 10,alignx left,aligny top");
+		
+		JLabel lblNewLabel_20 = new JLabel("Employee");
+		layeredPane.add(lblNewLabel_20, "cell 0 11,growx,aligny top");
+		
+		JLabel lblNewLabel_21 = new JLabel("-");
+		layeredPane.add(lblNewLabel_21, "cell 2 11 3 1,growx,aligny top");
+		
+		Box horizontalBox_1 = Box.createHorizontalBox();
+		GridBagConstraints gbc_horizontalBox_1 = new GridBagConstraints();
+		gbc_horizontalBox_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_horizontalBox_1.insets = new Insets(0, 0, 5, 5);
+		gbc_horizontalBox_1.gridx = 3;
+		gbc_horizontalBox_1.gridy = 2;
+		exportPanel.add(horizontalBox_1, gbc_horizontalBox_1);
+		
+		JButton btnNewButton_1 = new JButton("Create");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Box horizontalBox_1 = Box.createHorizontalBox();
-				verticalBox.add(horizontalBox_1);
+				verticalBoxQueue.add(horizontalBox_1);
 		
 				JLabel lblNewLabel_4 = new JLabel("John Doe");
 				horizontalBox_1.add(lblNewLabel_4);
@@ -254,13 +367,41 @@ public class CapstoneMainFrame {
 		
 				JButton btnNewButton = new JButton("");
 				horizontalBox_1.add(btnNewButton);
+				
+				exportPanel.hide();
+				exportPanel.show();
 			}
 		});
-		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
-		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_1.gridx = 3;
-		gbc_btnNewButton_1.gridy = 6;
-		exportPanel.add(btnNewButton_1, gbc_btnNewButton_1);
+		horizontalBox_1.add(btnNewButton_1);
+		
+		Component horizontalGlue = Box.createHorizontalGlue();
+		horizontalBox_1.add(horizontalGlue);
+		
+		JButton btnNewButton = new JButton("Export");
+		btnNewButton.setHorizontalAlignment(SwingConstants.RIGHT);
+		horizontalBox_1.add(btnNewButton);
+		
+		Box horizontalBox_2 = Box.createHorizontalBox();
+		GridBagConstraints gbc_horizontalBox_2 = new GridBagConstraints();
+		gbc_horizontalBox_2.fill = GridBagConstraints.HORIZONTAL;
+		gbc_horizontalBox_2.insets = new Insets(0, 0, 5, 5);
+		gbc_horizontalBox_2.gridx = 3;
+		gbc_horizontalBox_2.gridy = 3;
+		exportPanel.add(horizontalBox_2, gbc_horizontalBox_2);
+		
+		JButton btnNewButton_4 = new JButton("Delete");
+		horizontalBox_2.add(btnNewButton_4);
+		
+		Component horizontalGlue_1 = Box.createHorizontalGlue();
+		horizontalBox_2.add(horizontalGlue_1);
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				export.back(exportPanel,mainPanel);
+			}
+		});
+		horizontalBox_2.add(btnBack);
 		
 		/**
 		 * Inventory panel initialization
