@@ -22,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CustomerGUI {
 
+	private static JTable myTable;
 	/**
 	 * 
 	 */
@@ -29,6 +30,13 @@ public class CustomerGUI {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public static void setTable(JTable table) {
+		myTable = table;
+	}
+	
+	public static JTable getTable() {
+		return myTable;
+	}
 	/*
 	 * connect to the database the specified based on the file path
 	 */
@@ -52,9 +60,9 @@ public class CustomerGUI {
      * @param JTextField firstNameField is the first name field from the GUI
      * @param JTextField lastNameField is the last name field from the GUI
      * @param JTextField phoneNumField is the phone number field from the GUI
-     * @return nothing
+     * @return JTable with yield from customerSearch
      */
-    public void execute(JTextField customerNumField, JTextField firstNameField, JTextField lastNameField, JTextField phoneNumField) {
+    public JTable execute(JTextField customerNumField, JTextField firstNameField, JTextField lastNameField, JTextField phoneNumField) {
     	
     	// Extract all passed through information
     	int customerNum = Integer.parseInt(customerNumField.getText());
@@ -64,7 +72,9 @@ public class CustomerGUI {
     	
     	// Conduct search on the database
     	runSearch(customerNum, firstName, lastName, phoneNum);
-    	return;
+    	
+    	JTable customerSearch = getTable();
+    	return customerSearch;
     }
     
     /*
@@ -232,12 +242,15 @@ public class CustomerGUI {
     		    customerTable.setCellEditor(null);
     		    customerTable.setBounds(37, 143, 397, 183);
 
+    		    setTable(customerTable);
+    		    
+    		    /* Save for reference
     		    // Show the frame
     		    JFrame frame = new JFrame();
     		    frame.add(new JScrollPane(customerTable));
     		    frame.setVisible(true);
     		    frame.pack();
-    		    
+    		    */
     			return;
     }
 

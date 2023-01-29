@@ -24,6 +24,7 @@ import javax.swing.JPanel;
  */
 public class OrderGUI {
 
+	private static JTable myTable;
 	/**
 	 * 
 	 */
@@ -42,6 +43,13 @@ public class OrderGUI {
 		NextPanel.show();
 	}
 	
+	public static void setTable(JTable table) {
+		myTable = table;
+	}
+	
+	public static JTable getTable() {
+		return myTable;
+	}
 	/*
 	 * connect to the database the specified based on the file path
 	 */
@@ -67,17 +75,19 @@ public class OrderGUI {
      * @param JTextField orderDateField is the order date field in the search options on the GUI
      * @return nothing
      */
-    public void execute(JTextField orderNumField, JTextField firstNameField, JTextField lastNameField, JTextField orderDateField) {
+    public JTable execute(JTextField orderNumField, JTextField firstNameField, JTextField lastNameField, JTextField orderDateField, JPanel currPanel) {
     	// Extract information from passed in GUIs
     	int orderNum = Integer.parseInt(orderNumField.getText());
     	String firstName = firstNameField.getText();
     	String lastName = lastNameField.getText();
     	String orderDate = orderDateField.getText();
     	
+    	
     	// Run a search on the database
     	runSearch(orderNum, firstName, lastName, orderDate);
     	
-    	return;
+    	JTable orderHistory = getTable();
+    	return orderHistory;
     }
     
     /*
@@ -281,11 +291,7 @@ public static void displayResults(Vector<String> firstName, Vector<String> lastN
     listTable.setCellEditor(null);
     listTable.setBounds(37, 143, 397, 183);
 
-    // Add and show frame
-    JFrame frame = new JFrame();
-    frame.add(new JScrollPane(listTable));
-    frame.setVisible(true);
-    frame.pack();
+    setTable(listTable);
     
 	return;
 }
