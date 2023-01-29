@@ -12,6 +12,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JPanel;
+
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import javax.swing.Box;
 import javax.swing.JTextField;
@@ -21,9 +23,14 @@ import java.awt.Component;
 import javax.swing.JLayeredPane;
 import javax.swing.JCheckBox;
 import javax.swing.border.LineBorder;
+import javax.swing.table.TableModel;
+
 import java.awt.Color;
 import javax.swing.JList;
 import net.miginfocom.swing.MigLayout;
+
+
+import javax.swing.JTable;
 
 public class CapstoneMainFrame {
 
@@ -54,6 +61,11 @@ public class CapstoneMainFrame {
 	private JTextField textFieldCreateAdditional;
 	private JTextField textFieldCustomer;
 	private JTextField textFieldPriority;
+	private JTextField orderHistoryOrderIDField;
+	private JTextField orderHistoryOrderDateField;
+	private JTextField orderHistoryFirstNameField;
+	private JTextField orderHistoryLastNameField;
+	private JTable orderHistoryTable;
 	
 	/**
 	 * Launch the application.
@@ -927,21 +939,14 @@ public class CapstoneMainFrame {
 		inventoryPanel.add(btnBack_1, gbc_btnBack_1);
 		
 		/**
-		 * 
+		 * Order History Panel
 		 */
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{1.0, 0.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.columnWidths = new int[]{0, 81, 103, 0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{27, 7, 35, 218, 94, 0, 0};
+		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
 		orderPanel.setLayout(gridBagLayout);
-		
-		JLabel lblNewLabel_6 = new JLabel("Database Screen");
-		GridBagConstraints gbc_lblNewLabel_6 = new GridBagConstraints();
-		gbc_lblNewLabel_6.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_6.gridx = 1;
-		gbc_lblNewLabel_6.gridy = 1;
-		orderPanel.add(lblNewLabel_6, gbc_lblNewLabel_6);
 		
 		JButton btnNewButton_2 = new JButton("Back");
 		btnNewButton_2.addActionListener(new ActionListener() {
@@ -949,11 +954,115 @@ public class CapstoneMainFrame {
 				order.back(orderPanel, mainPanel);
 			}
 		});
+		
+		JLabel lblNewLabel_6 = new JLabel("Order ID");
+		GridBagConstraints gbc_lblNewLabel_6 = new GridBagConstraints();
+		gbc_lblNewLabel_6.anchor = GridBagConstraints.SOUTH;
+		gbc_lblNewLabel_6.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_6.gridx = 1;
+		gbc_lblNewLabel_6.gridy = 1;
+		orderPanel.add(lblNewLabel_6, gbc_lblNewLabel_6);
+		
+		JLabel lblNewLabel_29 = new JLabel("First Name");
+		GridBagConstraints gbc_lblNewLabel_29 = new GridBagConstraints();
+		gbc_lblNewLabel_29.anchor = GridBagConstraints.SOUTH;
+		gbc_lblNewLabel_29.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_29.gridx = 2;
+		gbc_lblNewLabel_29.gridy = 1;
+		orderPanel.add(lblNewLabel_29, gbc_lblNewLabel_29);
+		
+		JLabel lblNewLabel_30 = new JLabel("Last Name");
+		GridBagConstraints gbc_lblNewLabel_30 = new GridBagConstraints();
+		gbc_lblNewLabel_30.anchor = GridBagConstraints.SOUTH;
+		gbc_lblNewLabel_30.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_30.gridx = 3;
+		gbc_lblNewLabel_30.gridy = 1;
+		orderPanel.add(lblNewLabel_30, gbc_lblNewLabel_30);
+		
+		JLabel lblNewLabel_32 = new JLabel("Order Date");
+		GridBagConstraints gbc_lblNewLabel_32 = new GridBagConstraints();
+		gbc_lblNewLabel_32.anchor = GridBagConstraints.SOUTH;
+		gbc_lblNewLabel_32.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_32.gridx = 4;
+		gbc_lblNewLabel_32.gridy = 1;
+		orderPanel.add(lblNewLabel_32, gbc_lblNewLabel_32);
+		
+		orderHistoryOrderIDField = new JTextField();
+		GridBagConstraints gbc_orderHistoryOrderIDField = new GridBagConstraints();
+		gbc_orderHistoryOrderIDField.insets = new Insets(0, 0, 5, 5);
+		gbc_orderHistoryOrderIDField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_orderHistoryOrderIDField.gridx = 1;
+		gbc_orderHistoryOrderIDField.gridy = 2;
+		orderPanel.add(orderHistoryOrderIDField, gbc_orderHistoryOrderIDField);
+		orderHistoryOrderIDField.setColumns(10);
+		
+		orderHistoryFirstNameField = new JTextField();
+		GridBagConstraints gbc_orderHistoryFirstNameField = new GridBagConstraints();
+		gbc_orderHistoryFirstNameField.insets = new Insets(0, 0, 5, 5);
+		gbc_orderHistoryFirstNameField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_orderHistoryFirstNameField.gridx = 2;
+		gbc_orderHistoryFirstNameField.gridy = 2;
+		orderPanel.add(orderHistoryFirstNameField, gbc_orderHistoryFirstNameField);
+		orderHistoryFirstNameField.setColumns(10);
+		
+		orderHistoryLastNameField = new JTextField();
+		GridBagConstraints gbc_orderHistoryLastNameField = new GridBagConstraints();
+		gbc_orderHistoryLastNameField.insets = new Insets(0, 0, 5, 5);
+		gbc_orderHistoryLastNameField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_orderHistoryLastNameField.gridx = 3;
+		gbc_orderHistoryLastNameField.gridy = 2;
+		orderPanel.add(orderHistoryLastNameField, gbc_orderHistoryLastNameField);
+		orderHistoryLastNameField.setColumns(10);
+		
+		orderHistoryOrderDateField = new JTextField();
+		GridBagConstraints gbc_orderHistoryOrderDateField = new GridBagConstraints();
+		gbc_orderHistoryOrderDateField.insets = new Insets(0, 0, 5, 5);
+		gbc_orderHistoryOrderDateField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_orderHistoryOrderDateField.gridx = 4;
+		gbc_orderHistoryOrderDateField.gridy = 2;
+		orderPanel.add(orderHistoryOrderDateField, gbc_orderHistoryOrderDateField);
+		orderHistoryOrderDateField.setColumns(10);
+		
+		orderHistoryTable = new JTable();
+		GridBagConstraints gbc_orderHistoryTable = new GridBagConstraints();
+		gbc_orderHistoryTable.gridwidth = 5;
+		gbc_orderHistoryTable.insets = new Insets(0, 0, 5, 5);
+		gbc_orderHistoryTable.fill = GridBagConstraints.BOTH;
+		gbc_orderHistoryTable.gridx = 1;
+		gbc_orderHistoryTable.gridy = 3;
+		orderPanel.add(orderHistoryTable, gbc_orderHistoryTable);
 		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
 		gbc_btnNewButton_2.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_2.gridx = 1;
-		gbc_btnNewButton_2.gridy = 2;
+		gbc_btnNewButton_2.gridx = 5;
+		gbc_btnNewButton_2.gridy = 4;
 		orderPanel.add(btnNewButton_2, gbc_btnNewButton_2);
+		
+		JScrollPane orderHistoryScroll = new JScrollPane(orderHistoryTable);
+		
+		JButton orderHistorySearchButton = new JButton("Search");
+		orderHistorySearchButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				OrderGUI mySearch = new OrderGUI();
+				
+				// Create the table based on the returned results
+				TableModel myModel = mySearch.execute(orderHistoryOrderIDField, orderHistoryFirstNameField, orderHistoryLastNameField, orderHistoryOrderDateField);
+			    orderHistoryTable.setModel(myModel);
+			    orderHistoryTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+			    orderHistoryTable.setCellEditor(null);
+			    orderHistoryTable.setBounds(37, 143, 397, 183);
+				
+				orderPanel.add(orderHistoryScroll);
+				
+				orderPanel.setVisible(true);
+			}
+		});
+		GridBagConstraints gbc_orderHistorySearchButton = new GridBagConstraints();
+		gbc_orderHistorySearchButton.insets = new Insets(0, 0, 5, 5);
+		gbc_orderHistorySearchButton.gridx = 5;
+		gbc_orderHistorySearchButton.gridy = 2;
+		orderPanel.add(orderHistorySearchButton, gbc_orderHistorySearchButton);
+		
+
 		
 		/**
 		 * 
@@ -1161,6 +1270,9 @@ public class CapstoneMainFrame {
 		JButton btnNewButton_9_1 = new JButton("Back");
 		horizontalBox_7.add(btnNewButton_9_1);
 		
+		/*
+		 * Customer Layout
+		 */
 		GridBagLayout gbl_createCustomerPanel = new GridBagLayout();
 		gbl_createCustomerPanel.columnWidths = new int[]{0, 0, 0, 0, 0};
 		gbl_createCustomerPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -1295,6 +1407,17 @@ public class CapstoneMainFrame {
 		createCustomerPanel.add(textField_9, gbc_textField_9);
 		
 		JButton btnNewButton_10 = new JButton("Clear");
+		btnNewButton_10.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textFieldCreateCustomerID.setText("");
+				textFieldCreateCustomerFirst.setText("");
+				textFieldCreateCustomerLast.setText("");
+				textFieldCreateCustomerAddress.setText("");
+				textFieldPhone.setText("");
+				textFieldCreateCustomerEmail.setText("");
+				textField_9.setText("");
+			}
+		});
 		GridBagConstraints gbc_btnNewButton_10 = new GridBagConstraints();
 		gbc_btnNewButton_10.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton_10.gridx = 1;
@@ -1302,6 +1425,12 @@ public class CapstoneMainFrame {
 		createCustomerPanel.add(btnNewButton_10, gbc_btnNewButton_10);
 		
 		JButton btnNewButton_11 = new JButton("Create");
+		btnNewButton_11.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CreateCustomer newCustomer = new CreateCustomer();
+				newCustomer.execute(textFieldCreateCustomerID, textFieldCreateCustomerFirst, textFieldCreateCustomerLast, textFieldCreateCustomerAddress, textFieldPhone, textFieldCreateCustomerEmail, textField_9);
+			}
+		});
 		GridBagConstraints gbc_btnNewButton_11 = new GridBagConstraints();
 		gbc_btnNewButton_11.anchor = GridBagConstraints.EAST;
 		gbc_btnNewButton_11.insets = new Insets(0, 0, 5, 5);
@@ -1317,6 +1446,9 @@ public class CapstoneMainFrame {
 		gbc_btnNewButton_12.gridy = 9;
 		createCustomerPanel.add(btnNewButton_12, gbc_btnNewButton_12);
 		
+		/*
+		 * Employee Panel
+		 */
 		GridBagLayout gbl_createEmployeePanel = new GridBagLayout();
 		gbl_createEmployeePanel.columnWidths = new int[]{0, 0, 0, 0, 0};
 		gbl_createEmployeePanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
