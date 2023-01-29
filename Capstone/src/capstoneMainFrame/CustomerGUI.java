@@ -15,6 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  * @author 19sky
@@ -22,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CustomerGUI {
 
-	private static JTable myTable;
+	private static TableModel myTable;
 	/**
 	 * 
 	 */
@@ -30,11 +31,11 @@ public class CustomerGUI {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public static void setTable(JTable table) {
+	public static void setTable(TableModel table) {
 		myTable = table;
 	}
 	
-	public static JTable getTable() {
+	public static TableModel getTable() {
 		return myTable;
 	}
 	/*
@@ -62,7 +63,7 @@ public class CustomerGUI {
      * @param JTextField phoneNumField is the phone number field from the GUI
      * @return JTable with yield from customerSearch
      */
-    public JTable execute(JTextField customerNumField, JTextField firstNameField, JTextField lastNameField, JTextField phoneNumField) {
+    public TableModel execute(JTextField customerNumField, JTextField firstNameField, JTextField lastNameField, JTextField phoneNumField) {
     	
     	// Extract all passed through information
     	int customerNum = Integer.parseInt(customerNumField.getText());
@@ -73,7 +74,7 @@ public class CustomerGUI {
     	// Conduct search on the database
     	runSearch(customerNum, firstName, lastName, phoneNum);
     	
-    	JTable customerSearch = getTable();
+    	TableModel customerSearch = getTable();
     	return customerSearch;
     }
     
@@ -235,14 +236,16 @@ public class CustomerGUI {
     			CustomerModel.addRow(new Object[]{ customerNum.elementAt(i),firstName.elementAt(i), lastName.elementAt(i),phone.elementAt(i), email.elementAt(i), address.elementAt(i), balance.elementAt(i)});
     			}
     			
+    			/* Save for Reference
     			// Create table based on information received
     			JTable customerTable;
     		    customerTable = new JTable(CustomerModel);
     		    customerTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
     		    customerTable.setCellEditor(null);
     		    customerTable.setBounds(37, 143, 397, 183);
-
-    		    setTable(customerTable);
+				*/
+    			
+    		    setTable(CustomerModel);
     		    
     		    /* Save for reference
     		    // Show the frame

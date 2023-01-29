@@ -15,7 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-
+import javax.swing.table.TableModel;
 import javax.swing.JPanel;
 
 /**
@@ -24,7 +24,7 @@ import javax.swing.JPanel;
  */
 public class OrderGUI {
 
-	private static JTable myTable;
+	private static TableModel myTable;
 	/**
 	 * 
 	 */
@@ -43,11 +43,11 @@ public class OrderGUI {
 		NextPanel.show();
 	}
 	
-	public static void setTable(JTable table) {
+	public static void setTable(TableModel table) {
 		myTable = table;
 	}
 	
-	public static JTable getTable() {
+	public static TableModel getTable() {
 		return myTable;
 	}
 	/*
@@ -75,7 +75,7 @@ public class OrderGUI {
      * @param JTextField orderDateField is the order date field in the search options on the GUI
      * @return nothing
      */
-    public JTable execute(JTextField orderNumField, JTextField firstNameField, JTextField lastNameField, JTextField orderDateField, JPanel currPanel) {
+    public TableModel execute(JTextField orderNumField, JTextField firstNameField, JTextField lastNameField, JTextField orderDateField) {
     	// Extract information from passed in GUIs
     	int orderNum = Integer.parseInt(orderNumField.getText());
     	String firstName = firstNameField.getText();
@@ -86,7 +86,7 @@ public class OrderGUI {
     	// Run a search on the database
     	runSearch(orderNum, firstName, lastName, orderDate);
     	
-    	JTable orderHistory = getTable();
+    	TableModel orderHistory = getTable();
     	return orderHistory;
     }
     
@@ -284,14 +284,26 @@ public static void displayResults(Vector<String> firstName, Vector<String> lastN
 		Potash.elementAt(i), MAP.elementAt(i), AMS.elementAt(i), Urea.elementAt(i), Gypsum.elementAt(i), orderDate.elementAt(i), comments.elementAt(i) });
 	}
 	
-	// Create the table based on the returned results
-	JTable listTable;
-    listTable = new JTable(orderModel);
-    listTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-    listTable.setCellEditor(null);
-    listTable.setBounds(37, 143, 397, 183);
-
-    setTable(listTable);
+	// Clear Vectors
+	firstName.clear();
+	lastName.clear();
+	orderNum.clear();
+	customerNum.clear();
+	employeeNum.clear();
+	orderPaid.clear();
+	orderComplete.clear();
+	orderDelivered.clear();
+	pickUpDate.clear();
+	pickUpTime.clear();
+	Potash.clear();
+	MAP.clear();
+	AMS.clear();
+	Urea.clear();
+	Gypsum.clear();
+	orderDate.clear();
+	comments.clear();
+	
+	setTable(orderModel);
     
 	return;
 }
