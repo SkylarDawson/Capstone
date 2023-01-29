@@ -27,7 +27,7 @@ import javax.swing.table.TableModel;
 
 import java.awt.Color;
 import javax.swing.JList;
-import net.miginfocom.swing.MigLayout;
+//import net.miginfocom.swing.MigLayout;
 
 
 import javax.swing.JTable;
@@ -293,7 +293,7 @@ public class CapstoneMainFrame {
 		gbc_layeredPane.gridx = 3;
 		gbc_layeredPane.gridy = 1;
 		exportPanel.add(layeredPane, gbc_layeredPane);
-		layeredPane.setLayout(new MigLayout("", "[77px][6px][42px][6px][79px]", "[13px][13px][21px][13px][13px][13px][13px][13px][13px][19px][13px][13px]"));
+		//layeredPane.setLayout(new MigLayout("", "[77px][6px][42px][6px][79px]", "[13px][13px][21px][13px][13px][13px][13px][13px][13px][19px][13px][13px]"));
 		
 		JLabel lblNewLabel_7 = new JLabel("Customer");
 		layeredPane.add(lblNewLabel_7, "cell 0 0 3 1,growx,aligny top");
@@ -1023,21 +1023,24 @@ public class CapstoneMainFrame {
 		orderPanel.add(orderHistoryOrderDateField, gbc_orderHistoryOrderDateField);
 		orderHistoryOrderDateField.setColumns(10);
 		
+		JScrollPane orderHistoryScroll = new JScrollPane();
+		GridBagConstraints gbc_orderHistoryScroll = new GridBagConstraints();
+		gbc_orderHistoryScroll.gridwidth = 5;
+		gbc_orderHistoryScroll.insets = new Insets(0, 0, 5, 5);
+		gbc_orderHistoryScroll.fill = GridBagConstraints.BOTH;
+		gbc_orderHistoryScroll.gridx = 1;
+		gbc_orderHistoryScroll.gridy = 3;
+		orderPanel.add(orderHistoryScroll, gbc_orderHistoryScroll);
+		
 		orderHistoryTable = new JTable();
-		GridBagConstraints gbc_orderHistoryTable = new GridBagConstraints();
-		gbc_orderHistoryTable.gridwidth = 5;
-		gbc_orderHistoryTable.insets = new Insets(0, 0, 5, 5);
-		gbc_orderHistoryTable.fill = GridBagConstraints.BOTH;
-		gbc_orderHistoryTable.gridx = 1;
-		gbc_orderHistoryTable.gridy = 3;
-		orderPanel.add(orderHistoryTable, gbc_orderHistoryTable);
+		orderHistoryScroll.setViewportView(orderHistoryTable);
 		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
 		gbc_btnNewButton_2.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton_2.gridx = 5;
 		gbc_btnNewButton_2.gridy = 4;
 		orderPanel.add(btnNewButton_2, gbc_btnNewButton_2);
 		
-		JScrollPane orderHistoryScroll = new JScrollPane(orderHistoryTable);
+		//JScrollPane orderHistoryScroll = new JScrollPane(orderHistoryTable);
 		
 		JButton orderHistorySearchButton = new JButton("Search");
 		orderHistorySearchButton.addActionListener(new ActionListener() {
@@ -1050,8 +1053,10 @@ public class CapstoneMainFrame {
 			    orderHistoryTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 			    orderHistoryTable.setCellEditor(null);
 			    orderHistoryTable.setBounds(37, 143, 397, 183);
-				
-				orderPanel.add(orderHistoryScroll);
+			    
+			    System.out.println(orderHistoryTable.getRowCount());
+			    //orderPanel.add(orderHistoryTable);
+				//orderPanel.add(orderHistoryScroll);
 				
 				orderPanel.setVisible(true);
 			}
@@ -1108,7 +1113,7 @@ public class CapstoneMainFrame {
 		gbc_layeredPane_1.gridx = 3;
 		gbc_layeredPane_1.gridy = 1;
 		spreaderPanel.add(layeredPane_1, gbc_layeredPane_1);
-		layeredPane_1.setLayout(new MigLayout("", "[60.00][]", "[][][]"));
+	//	layeredPane_1.setLayout(new MigLayout("", "[60.00][]", "[][][]"));
 		
 		JLabel lblNewLabel_26 = new JLabel("Spreader #");
 		lblNewLabel_26.setHorizontalAlignment(SwingConstants.CENTER);
@@ -1582,7 +1587,7 @@ public class CapstoneMainFrame {
 		gbc_layeredPaneCreateOrder.gridx = 1;
 		gbc_layeredPaneCreateOrder.gridy = 1;
 		createOrderPanel.add(layeredPaneCreateOrder, gbc_layeredPaneCreateOrder);
-		layeredPaneCreateOrder.setLayout(new MigLayout("", "[][53.00][27.00][73.00][38.00][45.00,grow]", "[][][][][][][grow][][grow][]"));
+	//	layeredPaneCreateOrder.setLayout(new MigLayout("", "[][53.00][27.00][73.00][38.00][45.00,grow]", "[][][][][][][grow][][grow][]"));
 		
 		JLabel lblPounds = new JLabel("Pounds");
 		lblPounds.setHorizontalAlignment(SwingConstants.CENTER);
@@ -1667,7 +1672,7 @@ public class CapstoneMainFrame {
 		gbc_layeredPane_2.gridx = 3;
 		gbc_layeredPane_2.gridy = 1;
 		createOrderPanel.add(layeredPane_2, gbc_layeredPane_2);
-		layeredPane_2.setLayout(new MigLayout("", "[][100px:n,grow][54.00][][][39.00][grow]", "[][][][][][][grow][][][]"));
+		//layeredPane_2.setLayout(new MigLayout("", "[][100px:n,grow][54.00][][][39.00][grow]", "[][][][][][][grow][][][]"));
 		
 		JLabel lblCustomer = new JLabel("Customer");
 		layeredPane_2.add(lblCustomer, "cell 0 0");

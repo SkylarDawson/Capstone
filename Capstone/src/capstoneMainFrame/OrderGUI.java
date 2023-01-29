@@ -77,7 +77,14 @@ public class OrderGUI {
      */
     public TableModel execute(JTextField orderNumField, JTextField firstNameField, JTextField lastNameField, JTextField orderDateField) {
     	// Extract information from passed in GUIs
-    	int orderNum = Integer.parseInt(orderNumField.getText());
+    	// Extract information from passed in GUIs
+    	int orderNum = 0;
+    	if(orderNumField.getText().length() == 0) {
+    		orderNum = 0;
+    	}
+    	else {
+    	orderNum = Integer.parseInt(orderNumField.getText());
+    	}
     	String firstName = firstNameField.getText();
     	String lastName = lastNameField.getText();
     	String orderDate = orderDateField.getText();
