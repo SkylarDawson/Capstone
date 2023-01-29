@@ -5,6 +5,8 @@ package capstoneMainFrame;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
@@ -24,6 +26,7 @@ public class EmployeeGUI {
 		String url = "";
 		String username = "";
 		String password = "";
+		
 		
 		try (Connection conn = DriverManager.getConnection(url, username, password)){
 			String query = "SELECT * FROM employees";
