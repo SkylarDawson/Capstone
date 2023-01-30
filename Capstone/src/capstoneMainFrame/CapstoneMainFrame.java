@@ -1070,6 +1070,20 @@ public class CapstoneMainFrame {
 		
 		orderHistoryTable = new JTable();
 		orderHistoryScroll.setViewportView(orderHistoryTable);
+		
+		JButton orderHistoryCreateButton = new JButton("Create New");
+		orderHistoryCreateButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				orderPanel.hide();
+				createOrderPanel.show();
+				setPrevious(orderPanel);
+			}
+		});
+		GridBagConstraints gbc_orderHistoryCreateButton = new GridBagConstraints();
+		gbc_orderHistoryCreateButton.insets = new Insets(0, 0, 5, 5);
+		gbc_orderHistoryCreateButton.gridx = 4;
+		gbc_orderHistoryCreateButton.gridy = 4;
+		orderPanel.add(orderHistoryCreateButton, gbc_orderHistoryCreateButton);
 		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
 		gbc_btnNewButton_2.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton_2.gridx = 5;
