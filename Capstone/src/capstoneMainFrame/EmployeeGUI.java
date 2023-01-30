@@ -35,10 +35,11 @@ public class EmployeeGUI {
 			
 			
 			while (resultSet.next()) {
-				int id = resultSet.getInt("id");
-				String name = resultSet.getString("name");
-				String position = resultSet.getString("position");
-				System.out.println("ID: " + id + ", Name: " + name + ", Position: " + position);
+				int employeeID = resultSet.getInt("employeeID");
+				String firstName = resultSet.getString("firstName");
+				String lastName = resultSet.getString("lastName");
+				String jobTitle = resultSet.getString("jobTitle");
+				System.out.println("Employee ID: " + employeeID + ", First Name: " + firstName +  ", Last Name: " + lastName + ", Job Title: " + jobTitle);
 			}
 		} catch (SQLException exception) {
 			System.out.println(exception.getMessage());
