@@ -986,7 +986,7 @@ public class CapstoneMainFrame {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				orderPanel.hide();
-				getPrevious().show();
+				mainPanel.show();
 				setPrevious(orderPanel);
 			}
 		});
@@ -1335,10 +1335,9 @@ public class CapstoneMainFrame {
 		JButton btnNewButton_9 = new JButton("Back");
 		btnNewButton_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JPanel newPrevious = customerPanel;
 				customerPanel.hide();
-				getPrevious().show();
-				setPrevious(newPrevious);
+				mainPanel.show();
+				setPrevious(customerPanel);
 				
 			}
 		});
