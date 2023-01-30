@@ -66,6 +66,11 @@ public class CapstoneMainFrame {
 	private JTextField orderHistoryFirstNameField;
 	private JTextField orderHistoryLastNameField;
 	private JTable orderHistoryTable;
+	private JTextField customerLookupCustomerIDField;
+	private JTextField customerLookupCustomerFirstNameField;
+	private JTextField customerLookupLastNameField;
+	private JTextField customerLookupPhoneNumberField;
+	private JTable customerLookupTable;
 	
 	/**
 	 * Launch the application.
@@ -215,6 +220,12 @@ public class CapstoneMainFrame {
 		mainPanel.add(btnInventory, gbc_btnInventory);
 		
 		JButton btnCustomer = new JButton("Customers");
+		btnCustomer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mainPanel.hide();
+				customerPanel.show();
+			}
+		});
 		GridBagConstraints gbc_btnCustomer = new GridBagConstraints();
 		gbc_btnCustomer.fill = GridBagConstraints.BOTH;
 		gbc_btnCustomer.insets = new Insets(0, 0, 5, 5);
@@ -1039,9 +1050,7 @@ public class CapstoneMainFrame {
 		gbc_btnNewButton_2.gridx = 5;
 		gbc_btnNewButton_2.gridy = 4;
 		orderPanel.add(btnNewButton_2, gbc_btnNewButton_2);
-		
-		//JScrollPane orderHistoryScroll = new JScrollPane(orderHistoryTable);
-		
+				
 		JButton orderHistorySearchButton = new JButton("Search");
 		orderHistorySearchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1054,9 +1063,6 @@ public class CapstoneMainFrame {
 			    orderHistoryTable.setCellEditor(null);
 			    orderHistoryTable.setBounds(37, 143, 397, 183);
 			    
-			    System.out.println(orderHistoryTable.getRowCount());
-			    //orderPanel.add(orderHistoryTable);
-				//orderPanel.add(orderHistoryScroll);
 				
 				orderPanel.setVisible(true);
 			}
@@ -1157,58 +1163,125 @@ public class CapstoneMainFrame {
 		spreaderPanel.add(btnNewButton_3, gbc_btnNewButton_3);
 		
 		GridBagLayout gbl_customerPanel = new GridBagLayout();
-		gbl_customerPanel.columnWidths = new int[]{0, 0, 0, 0};
-		gbl_customerPanel.rowHeights = new int[]{0, 0, 0, 0, 0};
-		gbl_customerPanel.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_customerPanel.rowWeights = new double[]{1.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_customerPanel.columnWidths = new int[]{40, 100, 100, 100, 100, 100, -62, 0};
+		gbl_customerPanel.rowHeights = new int[]{57, 0, 47, 0, 0, 0, 0};
+		gbl_customerPanel.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_customerPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		customerPanel.setLayout(gbl_customerPanel);
 		
-		JScrollPane scrollPane_2 = new JScrollPane();
-		scrollPane_2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		GridBagConstraints gbc_scrollPane_2 = new GridBagConstraints();
-		gbc_scrollPane_2.insets = new Insets(0, 0, 5, 5);
-		gbc_scrollPane_2.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane_2.gridx = 1;
-		gbc_scrollPane_2.gridy = 1;
-		customerPanel.add(scrollPane_2, gbc_scrollPane_2);
+		JLabel lblNewLabel_33 = new JLabel("Customer ID");
+		GridBagConstraints gbc_lblNewLabel_33 = new GridBagConstraints();
+		gbc_lblNewLabel_33.anchor = GridBagConstraints.SOUTH;
+		gbc_lblNewLabel_33.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_33.gridx = 1;
+		gbc_lblNewLabel_33.gridy = 1;
+		customerPanel.add(lblNewLabel_33, gbc_lblNewLabel_33);
 		
-		Box horizontalBox_4 = Box.createHorizontalBox();
-		scrollPane_2.setColumnHeaderView(horizontalBox_4);
+		JLabel lblNewLabel_34 = new JLabel("First Name");
+		GridBagConstraints gbc_lblNewLabel_34 = new GridBagConstraints();
+		gbc_lblNewLabel_34.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_34.gridx = 2;
+		gbc_lblNewLabel_34.gridy = 1;
+		customerPanel.add(lblNewLabel_34, gbc_lblNewLabel_34);
 		
-		JLabel lblCustomerID = new JLabel("Cusrtomer ID");
-		horizontalBox_4.add(lblCustomerID);
+		JLabel lblLastName = new JLabel("Last Name");
+		GridBagConstraints gbc_lblLastName = new GridBagConstraints();
+		gbc_lblLastName.insets = new Insets(0, 0, 5, 5);
+		gbc_lblLastName.gridx = 3;
+		gbc_lblLastName.gridy = 1;
+		customerPanel.add(lblLastName, gbc_lblLastName);
 		
-		JLabel lblCustomerFirst = new JLabel("First");
-		horizontalBox_4.add(lblCustomerFirst);
+		JLabel lblPhoneNumber = new JLabel("Phone Number");
+		GridBagConstraints gbc_lblPhoneNumber = new GridBagConstraints();
+		gbc_lblPhoneNumber.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPhoneNumber.gridx = 4;
+		gbc_lblPhoneNumber.gridy = 1;
+		customerPanel.add(lblPhoneNumber, gbc_lblPhoneNumber);
 		
-		JLabel lblCustomerLast = new JLabel("Last");
-		horizontalBox_4.add(lblCustomerLast);
+		customerLookupCustomerIDField = new JTextField();
+		GridBagConstraints gbc_customerLookupCustomerIDField = new GridBagConstraints();
+		gbc_customerLookupCustomerIDField.insets = new Insets(0, 0, 5, 5);
+		gbc_customerLookupCustomerIDField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_customerLookupCustomerIDField.gridx = 1;
+		gbc_customerLookupCustomerIDField.gridy = 2;
+		customerPanel.add(customerLookupCustomerIDField, gbc_customerLookupCustomerIDField);
+		customerLookupCustomerIDField.setColumns(10);
 		
-		JLabel lblCustomerPhone = new JLabel("Phone");
-		horizontalBox_4.add(lblCustomerPhone);
+		customerLookupCustomerFirstNameField = new JTextField();
+		GridBagConstraints gbc_customerLookupCustomerFirstNameField = new GridBagConstraints();
+		gbc_customerLookupCustomerFirstNameField.insets = new Insets(0, 0, 5, 5);
+		gbc_customerLookupCustomerFirstNameField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_customerLookupCustomerFirstNameField.gridx = 2;
+		gbc_customerLookupCustomerFirstNameField.gridy = 2;
+		customerPanel.add(customerLookupCustomerFirstNameField, gbc_customerLookupCustomerFirstNameField);
+		customerLookupCustomerFirstNameField.setColumns(10);
 		
-		JLabel lblCustomerAddress = new JLabel("Address");
-		horizontalBox_4.add(lblCustomerAddress);
+		customerLookupLastNameField = new JTextField();
+		GridBagConstraints gbc_customerLookupLastNameField = new GridBagConstraints();
+		gbc_customerLookupLastNameField.insets = new Insets(0, 0, 5, 5);
+		gbc_customerLookupLastNameField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_customerLookupLastNameField.gridx = 3;
+		gbc_customerLookupLastNameField.gridy = 2;
+		customerPanel.add(customerLookupLastNameField, gbc_customerLookupLastNameField);
+		customerLookupLastNameField.setColumns(10);
 		
-		JLabel lblCustomerEmail = new JLabel("Email");
-		horizontalBox_4.add(lblCustomerEmail);
+		customerLookupPhoneNumberField = new JTextField();
+		GridBagConstraints gbc_customerLookupPhoneNumberField = new GridBagConstraints();
+		gbc_customerLookupPhoneNumberField.insets = new Insets(0, 0, 5, 5);
+		gbc_customerLookupPhoneNumberField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_customerLookupPhoneNumberField.gridx = 4;
+		gbc_customerLookupPhoneNumberField.gridy = 2;
+		customerPanel.add(customerLookupPhoneNumberField, gbc_customerLookupPhoneNumberField);
+		customerLookupPhoneNumberField.setColumns(10);
 		
-		JLabel lblCustomerBalence = new JLabel("Balence");
-		horizontalBox_4.add(lblCustomerBalence);
+		JScrollPane customerPageScroll = new JScrollPane();
+		customerPageScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		GridBagConstraints gbc_customerPageScroll = new GridBagConstraints();
+		gbc_customerPageScroll.gridwidth = 5;
+		gbc_customerPageScroll.insets = new Insets(0, 0, 5, 5);
+		gbc_customerPageScroll.fill = GridBagConstraints.BOTH;
+		gbc_customerPageScroll.gridx = 1;
+		gbc_customerPageScroll.gridy = 3;
+		customerPanel.add(customerPageScroll, gbc_customerPageScroll);
 		
-		JLabel lblCustomerAssignedRep = new JLabel("Assigned Rep");
-		horizontalBox_4.add(lblCustomerAssignedRep);
+		customerLookupTable = new JTable();
+		customerPageScroll.setViewportView(customerLookupTable);
+		
+		JButton customerLookupSearchButton = new JButton("Search");
+		customerLookupSearchButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CustomerGUI mySearch = new CustomerGUI();
+				
+				// Create the table based on the returned results
+				TableModel myModel = mySearch.execute(customerLookupCustomerIDField, customerLookupCustomerFirstNameField, customerLookupLastNameField, customerLookupPhoneNumberField);
+			    customerLookupTable.setModel(myModel);
+			    customerLookupTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+			    customerLookupTable.setCellEditor(null);
+			    customerLookupTable.setBounds(37, 143, 397, 183);
+			    		
+				customerPanel.setVisible(true);
+			}
+		});
+		GridBagConstraints gbc_customerLookupSearchButton = new GridBagConstraints();
+		gbc_customerLookupSearchButton.insets = new Insets(0, 0, 5, 5);
+		gbc_customerLookupSearchButton.gridx = 5;
+		gbc_customerLookupSearchButton.gridy = 2;
+		customerPanel.add(customerLookupSearchButton, gbc_customerLookupSearchButton);
+		
 		
 		Box horizontalBox_6 = Box.createHorizontalBox();
 		GridBagConstraints gbc_horizontalBox_6 = new GridBagConstraints();
+		gbc_horizontalBox_6.gridwidth = 5;
 		gbc_horizontalBox_6.insets = new Insets(0, 0, 5, 5);
 		gbc_horizontalBox_6.gridx = 1;
-		gbc_horizontalBox_6.gridy = 2;
+		gbc_horizontalBox_6.gridy = 4;
 		customerPanel.add(horizontalBox_6, gbc_horizontalBox_6);
 		
 		JButton btnNewButton_7 = new JButton("Create New");
 		btnNewButton_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				customerPanel.hide();
+				createCustomerPanel.show();
 			}
 		});
 		horizontalBox_6.add(btnNewButton_7);
@@ -1222,6 +1295,9 @@ public class CapstoneMainFrame {
 		JButton btnNewButton_9 = new JButton("Back");
 		horizontalBox_6.add(btnNewButton_9);
 		
+		/*
+		 * Employee Panel
+		 */
 		GridBagLayout gbl_employeePanel = new GridBagLayout();
 		gbl_employeePanel.columnWidths = new int[]{0, 0, 0, 0};
 		gbl_employeePanel.rowHeights = new int[]{0, 0, 0, 0, 0};

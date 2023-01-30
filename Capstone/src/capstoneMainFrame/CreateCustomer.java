@@ -70,7 +70,7 @@ public class CreateCustomer {
 		boolean error = false;
 		
 		// String for error message(s)
-		String errorMessage = null;
+		String errorMessage = "";
 		
 		// Check that the fields are not empty and all needed information is included
 		// Needed information is ID, First Name, Last Name, and Address

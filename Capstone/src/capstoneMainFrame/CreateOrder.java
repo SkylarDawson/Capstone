@@ -12,6 +12,7 @@ import java.sql.Statement;
 
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 /**
@@ -85,7 +86,7 @@ public class CreateOrder {
 	        boolean error = false;
 	        
 	        // String for holding the Error Message(s)
-	        String errorMessage = null;
+	        String errorMessage = "";
 	        
 	        // Check to make sure that the required fields are not left empty
 	        if(orderIDField.getText() == null || orderIDField.getText() == null) {error = true; errorMessage += "Order ID Missing \n";}

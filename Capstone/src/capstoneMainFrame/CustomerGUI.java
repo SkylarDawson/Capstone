@@ -66,7 +66,13 @@ public class CustomerGUI {
     public TableModel execute(JTextField customerNumField, JTextField firstNameField, JTextField lastNameField, JTextField phoneNumField) {
     	
     	// Extract all passed through information
-    	int customerNum = Integer.parseInt(customerNumField.getText());
+    	int customerNum = 0;
+    	if(customerNumField.getText().length() == 0) {
+    		customerNum = 0;
+    	}
+    	else {
+    	customerNum = Integer.parseInt(customerNumField.getText());
+    	}
     	String firstName = firstNameField.getText();
     	String lastName = lastNameField.getText();
     	String phoneNum = phoneNumField.getText();
