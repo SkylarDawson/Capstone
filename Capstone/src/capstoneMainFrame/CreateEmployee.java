@@ -12,54 +12,48 @@ import java.util.List;
  */
 public class CreateEmployee {
 	
-	private String name;
-	private int num;
-	private String department;
-	private int age;
-	private double salary;
+	private String firstName;
+	private String lastName;
+	private int employeeID;
+	private String jobTitle;
 	
 
 	/**
 	 * 
 	 */
-	public CreateEmployee(String name, int num, String department, int age, double salary) {
+	public CreateEmployee(String firstName, String lastName, int employeeID, String jobTitle) {
 		// TODO Auto-generated constructor stub
-		this.name = name;
-		this.department = department;
-		this.age = age;
-		this.salary = salary;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.employeeID = employeeID;
+		this.jobTitle = jobTitle;
 	}
 	
 	// function to have the ability to delete an employee
 	
 	public void deleteEmployee() {
-		this.name = null;
-		this.num = 0;
-		this.department = null;
-		this.age = 0;
-		this.salary = 0.0;
+		this.firstName = null;
+		this.lastName = null;
+		this.employeeID = 0;
+		this.jobTitle = null;
 	}
 	
 	// Getter functions to obtain general employee information
 	
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
 	
-	public int getNum() {
-		return num;
+	public String getLastName() {
+		return lastName;
 	}
 	
-	public String getDepartment() {
-		return department;
+	public int getEmployeeID() {
+		return employeeID;
 	}
 	
-	public int getAge() {
-		return age;
-	}
-	
-	public double getSalary() {
-		return salary;
+	public String getJobTitle() {
+		return jobTitle;
 	}
 	
 	
@@ -74,9 +68,9 @@ public class CreateEmployee {
 		
 		// search by employee name
 		
-		public static CreateEmployee searchEmployeeName(String name) {
+		public static CreateEmployee searchEmployeeName(String firstName, String lastName) {
 			for (CreateEmployee employee : employees) {
-				if (employee.getName().equals(name)) {
+				if (employee.getFirstName().equals(firstName) && employee.getLastName().equals(lastName)) {
 					return employee;
 				}
 			}
@@ -85,9 +79,9 @@ public class CreateEmployee {
 		
 		// search by employee number
 		
-		public static CreateEmployee searchEmployeeNum(int num) {
+		public static CreateEmployee searchEmployeeID(int employeeID) {
 			for (CreateEmployee employee : employees) {
-				if (employee.getNum() == num) {
+				if (employee.getEmployeeID() == employeeID) {
 					return employee;
 				}
 			}
