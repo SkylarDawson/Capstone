@@ -71,6 +71,7 @@ public class CapstoneMainFrame {
 	private JTextField customerLookupLastNameField;
 	private JTextField customerLookupPhoneNumberField;
 	private JTable customerLookupTable;
+	private JPanel previousPanel;
 	
 	/**
 	 * Launch the application.
@@ -93,6 +94,16 @@ public class CapstoneMainFrame {
 	 */
 	public CapstoneMainFrame() {
 		initialize();
+	}
+	
+	/**
+	 * Previous panel setters and getters
+	 */	
+	public void setPrevious(JPanel previous) {
+		previousPanel = previous;
+	}
+	public JPanel getPrevious() {
+		return previousPanel;
 	}
 
 	/**
@@ -156,6 +167,7 @@ public class CapstoneMainFrame {
 		CreateCustomer createCustomer = new CreateCustomer();
 		CreateEmployee createEmployee = new CreateEmployee();
 		
+
 		
 		
 		/**
@@ -186,14 +198,17 @@ public class CapstoneMainFrame {
 		mainPanel.add(btnExport, gbc_btnExport);
 		btnExport.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setPrevious(mainPanel);
 				mainPanel.hide();
 				exportPanel.show();
+				
 			}
 		});
 				
 		JButton btnOrders = new JButton("Orders");
 		btnOrders.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setPrevious(mainPanel);
 				mainPanel.hide();
 				orderPanel.show();
 			}
@@ -208,6 +223,7 @@ public class CapstoneMainFrame {
 		JButton btnInventory = new JButton("Inventory");
 		btnInventory.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setPrevious(mainPanel);
 				mainPanel.hide();
 				inventoryPanel.show();
 			}
@@ -222,6 +238,7 @@ public class CapstoneMainFrame {
 		JButton btnCustomer = new JButton("Customers");
 		btnCustomer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setPrevious(mainPanel);
 				mainPanel.hide();
 				customerPanel.show();
 			}
@@ -244,6 +261,7 @@ public class CapstoneMainFrame {
 		JButton btnSpreader = new JButton("Spreaders");
 		btnSpreader.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setPrevious(mainPanel);
 				mainPanel.hide();
 				spreaderPanel.show();
 			}
@@ -962,7 +980,9 @@ public class CapstoneMainFrame {
 		JButton btnNewButton_2 = new JButton("Back");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				order.back(orderPanel, mainPanel);
+				orderPanel.hide();
+				getPrevious().show();
+				setPrevious(orderPanel);
 			}
 		});
 		
@@ -1280,6 +1300,7 @@ public class CapstoneMainFrame {
 		JButton btnNewButton_7 = new JButton("Create New");
 		btnNewButton_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setPrevious(customerPanel);
 				customerPanel.hide();
 				createCustomerPanel.show();
 			}
@@ -1293,6 +1314,15 @@ public class CapstoneMainFrame {
 		horizontalBox_6.add(horizontalGlue_2);
 		
 		JButton btnNewButton_9 = new JButton("Back");
+		btnNewButton_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JPanel newPrevious = customerPanel;
+				customerPanel.hide();
+				getPrevious().show();
+				setPrevious(newPrevious);
+				
+			}
+		});
 		horizontalBox_6.add(btnNewButton_9);
 		
 		/*
@@ -1520,6 +1550,13 @@ public class CapstoneMainFrame {
 		createCustomerPanel.add(btnNewButton_11, gbc_btnNewButton_11);
 		
 		JButton btnNewButton_12 = new JButton("Back");
+		btnNewButton_12.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				createCustomerPanel.hide();
+				getPrevious().show();
+				setPrevious(createCustomerPanel);
+			}
+		});
 		GridBagConstraints gbc_btnNewButton_12 = new GridBagConstraints();
 		gbc_btnNewButton_12.anchor = GridBagConstraints.EAST;
 		gbc_btnNewButton_12.insets = new Insets(0, 0, 5, 5);
@@ -1777,6 +1814,13 @@ public class CapstoneMainFrame {
 		layeredPane_2.add(btnDispatch, "cell 1 6,alignx right,aligny bottom");
 		
 		JButton btnBack_8 = new JButton("Back");
+		btnBack_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				createOrderPanel.hide();
+				getPrevious().show();
+				setPrevious(createOrderPanel);
+			}
+		});
 		GridBagConstraints gbc_btnBack_8 = new GridBagConstraints();
 		gbc_btnBack_8.anchor = GridBagConstraints.EAST;
 		gbc_btnBack_8.insets = new Insets(0, 0, 5, 5);
