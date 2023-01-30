@@ -53,14 +53,6 @@ public class CapstoneMainFrame {
 	private JTextField textFieldCreateEmployeeLast;
 	private JTextField textFieldCreateEmployeePhone;
 	private JTextField textFieldCreateEmployeeTitle;
-	private JTextField textFieldPotash;
-	private JTextField textFieldMAP;
-	private JTextField textFieldAMS;
-	private JTextField textFieldUrea;
-	private JTextField textFieldGypsum;
-	private JTextField textFieldCreateAdditional;
-	private JTextField textFieldCustomer;
-	private JTextField textFieldPriority;
 	private JTextField orderHistoryOrderIDField;
 	private JTextField orderHistoryOrderDateField;
 	private JTextField orderHistoryFirstNameField;
@@ -72,6 +64,19 @@ public class CapstoneMainFrame {
 	private JTextField customerLookupPhoneNumberField;
 	private JTable customerLookupTable;
 	private JPanel previousPanel;
+	private JTextField orderCreateOrderIDField;
+	private final JLabel lblNewLabel_37 = new JLabel("Employee Number");
+	private JTextField orderCreateCustomerIDField;
+	private JTextField orderCreateEmployeeIDField;
+	private JTextField orderCreatePickupDateField;
+	private JTextField orderCreatePickupTimeField;
+	private JTextField orderCreatePotashField;
+	private JTextField orderCreateMAPField;
+	private JTextField orderCreateAMSField;
+	private JTextField orderCreateUreaField;
+	private JTextField orderCreateGypsumField;
+	private JTextField orderCreateOrderCommentsField;
+	private JTextField orderCreateOrderDateField;
 	
 	/**
 	 * Launch the application.
@@ -1687,131 +1692,235 @@ public class CapstoneMainFrame {
 		createEmployeePanel.add(btnBack_9, gbc_btnBack_9);
 		
 		GridBagLayout gridBagLayout_2 = new GridBagLayout();
-		gridBagLayout_2.columnWidths = new int[]{0, 303, 0, 0, 0, 0};
-		gridBagLayout_2.rowHeights = new int[]{0, 0, 0, 0, 0};
-		gridBagLayout_2.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout_2.rowWeights = new double[]{1.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout_2.columnWidths = new int[]{0, 75, 65, 0, 0, 0, 60, 0, 0};
+		gridBagLayout_2.rowHeights = new int[]{0, 33, 0, 0, 0, 0, 0, 28, 0, 0, 47, 0, 0};
+		gridBagLayout_2.columnWeights = new double[]{1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout_2.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		createOrderPanel.setLayout(gridBagLayout_2);
 		
-		JLayeredPane layeredPaneCreateOrder = new JLayeredPane();
-		GridBagConstraints gbc_layeredPaneCreateOrder = new GridBagConstraints();
-		gbc_layeredPaneCreateOrder.insets = new Insets(0, 0, 5, 5);
-		gbc_layeredPaneCreateOrder.fill = GridBagConstraints.BOTH;
-		gbc_layeredPaneCreateOrder.gridx = 1;
-		gbc_layeredPaneCreateOrder.gridy = 1;
-		createOrderPanel.add(layeredPaneCreateOrder, gbc_layeredPaneCreateOrder);
-	//	layeredPaneCreateOrder.setLayout(new MigLayout("", "[][53.00][27.00][73.00][38.00][45.00,grow]", "[][][][][][][grow][][grow][]"));
+		JLabel lblNewLabel_35 = new JLabel("Order Number");
+		GridBagConstraints gbc_lblNewLabel_35 = new GridBagConstraints();
+		gbc_lblNewLabel_35.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_35.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_35.gridx = 1;
+		gbc_lblNewLabel_35.gridy = 1;
+		createOrderPanel.add(lblNewLabel_35, gbc_lblNewLabel_35);
 		
-		JLabel lblPounds = new JLabel("Pounds");
-		lblPounds.setHorizontalAlignment(SwingConstants.CENTER);
-		layeredPaneCreateOrder.add(lblPounds, "cell 3 0 3 1,alignx center");
+		orderCreateOrderIDField = new JTextField();
+		GridBagConstraints gbc_orderCreateOrderIDField = new GridBagConstraints();
+		gbc_orderCreateOrderIDField.gridwidth = 2;
+		gbc_orderCreateOrderIDField.insets = new Insets(0, 0, 5, 5);
+		gbc_orderCreateOrderIDField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_orderCreateOrderIDField.gridx = 2;
+		gbc_orderCreateOrderIDField.gridy = 1;
+		createOrderPanel.add(orderCreateOrderIDField, gbc_orderCreateOrderIDField);
+		orderCreateOrderIDField.setColumns(10);
 		
-		JLabel lblCreatePotash = new JLabel("Potash 60-0-0");
-		layeredPaneCreateOrder.add(lblCreatePotash, "flowy,cell 0 1 3 1");
+		JCheckBox orderCreateOrderPaidBox = new JCheckBox("Order Paid");
+		GridBagConstraints gbc_orderCreateOrderPaidBox = new GridBagConstraints();
+		gbc_orderCreateOrderPaidBox.anchor = GridBagConstraints.WEST;
+		gbc_orderCreateOrderPaidBox.insets = new Insets(0, 0, 5, 5);
+		gbc_orderCreateOrderPaidBox.gridx = 5;
+		gbc_orderCreateOrderPaidBox.gridy = 1;
+		createOrderPanel.add(orderCreateOrderPaidBox, gbc_orderCreateOrderPaidBox);
 		
-		textFieldPotash = new JTextField();
-		layeredPaneCreateOrder.add(textFieldPotash, "cell 3 1 3 1,growx");
-		textFieldPotash.setColumns(10);
+		JLabel lblNewLabel_36 = new JLabel("Customer Number");
+		GridBagConstraints gbc_lblNewLabel_36 = new GridBagConstraints();
+		gbc_lblNewLabel_36.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_36.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_36.gridx = 1;
+		gbc_lblNewLabel_36.gridy = 2;
+		createOrderPanel.add(lblNewLabel_36, gbc_lblNewLabel_36);
 		
-		JLabel lblCreateMAP = new JLabel("MAP 11-52-0");
-		layeredPaneCreateOrder.add(lblCreateMAP, "cell 0 2 3 1");
+		orderCreateCustomerIDField = new JTextField();
+		GridBagConstraints gbc_orderCreateCustomerIDField = new GridBagConstraints();
+		gbc_orderCreateCustomerIDField.gridwidth = 2;
+		gbc_orderCreateCustomerIDField.insets = new Insets(0, 0, 5, 5);
+		gbc_orderCreateCustomerIDField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_orderCreateCustomerIDField.gridx = 2;
+		gbc_orderCreateCustomerIDField.gridy = 2;
+		createOrderPanel.add(orderCreateCustomerIDField, gbc_orderCreateCustomerIDField);
+		orderCreateCustomerIDField.setColumns(10);
 		
-		textFieldMAP = new JTextField();
-		textFieldMAP.setColumns(10);
-		layeredPaneCreateOrder.add(textFieldMAP, "cell 3 2 3 1,growx");
+		JCheckBox orderCreateOrderCompleteBox = new JCheckBox("Order Complete");
+		GridBagConstraints gbc_orderCreateOrderCompleteBox = new GridBagConstraints();
+		gbc_orderCreateOrderCompleteBox.anchor = GridBagConstraints.WEST;
+		gbc_orderCreateOrderCompleteBox.insets = new Insets(0, 0, 5, 5);
+		gbc_orderCreateOrderCompleteBox.gridx = 5;
+		gbc_orderCreateOrderCompleteBox.gridy = 2;
+		createOrderPanel.add(orderCreateOrderCompleteBox, gbc_orderCreateOrderCompleteBox);
+		GridBagConstraints gbc_lblNewLabel_37 = new GridBagConstraints();
+		gbc_lblNewLabel_37.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_37.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_37.gridx = 1;
+		gbc_lblNewLabel_37.gridy = 3;
+		createOrderPanel.add(lblNewLabel_37, gbc_lblNewLabel_37);
 		
-		JLabel lblCreateAMS = new JLabel("AMS 21-0-0-24s");
-		layeredPaneCreateOrder.add(lblCreateAMS, "cell 0 3 3 1");
+		orderCreateEmployeeIDField = new JTextField();
+		GridBagConstraints gbc_orderCreateEmployeeIDField = new GridBagConstraints();
+		gbc_orderCreateEmployeeIDField.gridwidth = 2;
+		gbc_orderCreateEmployeeIDField.insets = new Insets(0, 0, 5, 5);
+		gbc_orderCreateEmployeeIDField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_orderCreateEmployeeIDField.gridx = 2;
+		gbc_orderCreateEmployeeIDField.gridy = 3;
+		createOrderPanel.add(orderCreateEmployeeIDField, gbc_orderCreateEmployeeIDField);
+		orderCreateEmployeeIDField.setColumns(10);
 		
-		textFieldAMS = new JTextField();
-		textFieldAMS.setColumns(10);
-		layeredPaneCreateOrder.add(textFieldAMS, "cell 3 3 3 1,growx");
+		JCheckBox orderCreateOrderDeliveredBox = new JCheckBox("New check box");
+		GridBagConstraints gbc_orderCreateOrderDeliveredBox = new GridBagConstraints();
+		gbc_orderCreateOrderDeliveredBox.anchor = GridBagConstraints.WEST;
+		gbc_orderCreateOrderDeliveredBox.insets = new Insets(0, 0, 5, 5);
+		gbc_orderCreateOrderDeliveredBox.gridx = 5;
+		gbc_orderCreateOrderDeliveredBox.gridy = 3;
+		createOrderPanel.add(orderCreateOrderDeliveredBox, gbc_orderCreateOrderDeliveredBox);
 		
-		JLabel lblCreateUrea = new JLabel("Urea 0-0-46");
-		layeredPaneCreateOrder.add(lblCreateUrea, "cell 0 4 3 1");
+		JLabel lblNewLabel_38 = new JLabel("Pick Up Date");
+		GridBagConstraints gbc_lblNewLabel_38 = new GridBagConstraints();
+		gbc_lblNewLabel_38.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_38.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_38.gridx = 1;
+		gbc_lblNewLabel_38.gridy = 4;
+		createOrderPanel.add(lblNewLabel_38, gbc_lblNewLabel_38);
 		
-		textFieldUrea = new JTextField();
-		textFieldUrea.setColumns(10);
-		layeredPaneCreateOrder.add(textFieldUrea, "cell 3 4 3 1,growx");
+		orderCreatePickupDateField = new JTextField();
+		GridBagConstraints gbc_orderCreatePickupDateField = new GridBagConstraints();
+		gbc_orderCreatePickupDateField.gridwidth = 2;
+		gbc_orderCreatePickupDateField.insets = new Insets(0, 0, 5, 5);
+		gbc_orderCreatePickupDateField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_orderCreatePickupDateField.gridx = 2;
+		gbc_orderCreatePickupDateField.gridy = 4;
+		createOrderPanel.add(orderCreatePickupDateField, gbc_orderCreatePickupDateField);
+		orderCreatePickupDateField.setColumns(10);
 		
-		JLabel lblCreateGypsum = new JLabel("Gypsum");
-		layeredPaneCreateOrder.add(lblCreateGypsum, "cell 0 5 3 1");
+		JLabel lblNewLabel_39 = new JLabel("Pick Up Time");
+		GridBagConstraints gbc_lblNewLabel_39 = new GridBagConstraints();
+		gbc_lblNewLabel_39.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_39.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_39.gridx = 1;
+		gbc_lblNewLabel_39.gridy = 5;
+		createOrderPanel.add(lblNewLabel_39, gbc_lblNewLabel_39);
 		
-		textFieldGypsum = new JTextField();
-		textFieldGypsum.setColumns(10);
-		layeredPaneCreateOrder.add(textFieldGypsum, "cell 3 5 3 1,growx");
+		orderCreatePickupTimeField = new JTextField();
+		GridBagConstraints gbc_orderCreatePickupTimeField = new GridBagConstraints();
+		gbc_orderCreatePickupTimeField.gridwidth = 2;
+		gbc_orderCreatePickupTimeField.insets = new Insets(0, 0, 5, 5);
+		gbc_orderCreatePickupTimeField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_orderCreatePickupTimeField.gridx = 2;
+		gbc_orderCreatePickupTimeField.gridy = 5;
+		createOrderPanel.add(orderCreatePickupTimeField, gbc_orderCreatePickupTimeField);
+		orderCreatePickupTimeField.setColumns(10);
 		
-		JLabel lblAdditional = new JLabel("Additional");
-		layeredPaneCreateOrder.add(lblAdditional, "cell 0 6 3 1");
+		JLabel lblNewLabel_46 = new JLabel("Order Date");
+		GridBagConstraints gbc_lblNewLabel_46 = new GridBagConstraints();
+		gbc_lblNewLabel_46.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_46.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_46.gridx = 1;
+		gbc_lblNewLabel_46.gridy = 6;
+		createOrderPanel.add(lblNewLabel_46, gbc_lblNewLabel_46);
 		
-		JList listCreateAdditional = new JList();
-		layeredPaneCreateOrder.add(listCreateAdditional, "cell 3 6 2 1,grow");
+		orderCreateOrderDateField = new JTextField();
+		GridBagConstraints gbc_orderCreateOrderDateField = new GridBagConstraints();
+		gbc_orderCreateOrderDateField.gridwidth = 2;
+		gbc_orderCreateOrderDateField.insets = new Insets(0, 0, 5, 5);
+		gbc_orderCreateOrderDateField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_orderCreateOrderDateField.gridx = 2;
+		gbc_orderCreateOrderDateField.gridy = 6;
+		createOrderPanel.add(orderCreateOrderDateField, gbc_orderCreateOrderDateField);
+		orderCreateOrderDateField.setColumns(10);
 		
-		textFieldCreateAdditional = new JTextField();
-		layeredPaneCreateOrder.add(textFieldCreateAdditional, "cell 5 6,growx");
-		textFieldCreateAdditional.setColumns(10);
+		JLabel lblNewLabel_40 = new JLabel("Potash");
+		GridBagConstraints gbc_lblNewLabel_40 = new GridBagConstraints();
+		gbc_lblNewLabel_40.anchor = GridBagConstraints.SOUTH;
+		gbc_lblNewLabel_40.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_40.gridx = 2;
+		gbc_lblNewLabel_40.gridy = 7;
+		createOrderPanel.add(lblNewLabel_40, gbc_lblNewLabel_40);
 		
-		JLabel lblNPK = new JLabel("NPK Value:");
-		layeredPaneCreateOrder.add(lblNPK, "cell 0 7 3 1");
+		JLabel lblNewLabel_41 = new JLabel("MAP");
+		GridBagConstraints gbc_lblNewLabel_41 = new GridBagConstraints();
+		gbc_lblNewLabel_41.anchor = GridBagConstraints.SOUTH;
+		gbc_lblNewLabel_41.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_41.gridx = 3;
+		gbc_lblNewLabel_41.gridy = 7;
+		createOrderPanel.add(lblNewLabel_41, gbc_lblNewLabel_41);
 		
-		JLabel lblCalcNPK = new JLabel("0-0-0-0s");
-		layeredPaneCreateOrder.add(lblCalcNPK, "cell 3 7 3 1");
+		JLabel lblNewLabel_42 = new JLabel("AMS");
+		GridBagConstraints gbc_lblNewLabel_42 = new GridBagConstraints();
+		gbc_lblNewLabel_42.anchor = GridBagConstraints.SOUTH;
+		gbc_lblNewLabel_42.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_42.gridx = 4;
+		gbc_lblNewLabel_42.gridy = 7;
+		createOrderPanel.add(lblNewLabel_42, gbc_lblNewLabel_42);
 		
-		JLabel lblCreateCost = new JLabel("Est. Cost:");
-		layeredPaneCreateOrder.add(lblCreateCost, "cell 0 8 3 1");
+		JLabel lblNewLabel_43 = new JLabel("Urea");
+		GridBagConstraints gbc_lblNewLabel_43 = new GridBagConstraints();
+		gbc_lblNewLabel_43.anchor = GridBagConstraints.SOUTH;
+		gbc_lblNewLabel_43.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_43.gridx = 5;
+		gbc_lblNewLabel_43.gridy = 7;
+		createOrderPanel.add(lblNewLabel_43, gbc_lblNewLabel_43);
 		
-		JLabel lblCreateCalcCost = new JLabel("-");
-		layeredPaneCreateOrder.add(lblCreateCalcCost, "cell 3 8");
+		JLabel lblNewLabel_44 = new JLabel("Gypsum");
+		GridBagConstraints gbc_lblNewLabel_44 = new GridBagConstraints();
+		gbc_lblNewLabel_44.anchor = GridBagConstraints.SOUTH;
+		gbc_lblNewLabel_44.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_44.gridx = 6;
+		gbc_lblNewLabel_44.gridy = 7;
+		createOrderPanel.add(lblNewLabel_44, gbc_lblNewLabel_44);
 		
-		JLabel lblCreateOrderEmployee = new JLabel("Employee");
-		layeredPaneCreateOrder.add(lblCreateOrderEmployee, "cell 4 8");
+		JLabel lblNewLabel_31 = new JLabel("Pounds");
+		GridBagConstraints gbc_lblNewLabel_31 = new GridBagConstraints();
+		gbc_lblNewLabel_31.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_31.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_31.gridx = 1;
+		gbc_lblNewLabel_31.gridy = 8;
+		createOrderPanel.add(lblNewLabel_31, gbc_lblNewLabel_31);
 		
-		JList listEmployee = new JList();
-		layeredPaneCreateOrder.add(listEmployee, "cell 5 8,grow");
+		orderCreatePotashField = new JTextField();
+		GridBagConstraints gbc_orderCreatePotashField = new GridBagConstraints();
+		gbc_orderCreatePotashField.anchor = GridBagConstraints.NORTH;
+		gbc_orderCreatePotashField.insets = new Insets(0, 0, 5, 5);
+		gbc_orderCreatePotashField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_orderCreatePotashField.gridx = 2;
+		gbc_orderCreatePotashField.gridy = 8;
+		createOrderPanel.add(orderCreatePotashField, gbc_orderCreatePotashField);
+		orderCreatePotashField.setColumns(10);
 		
-		JButton btnCustomMixes = new JButton("Custom Mixes");
-		layeredPaneCreateOrder.add(btnCustomMixes, "cell 0 9 2 1,alignx center");
+		orderCreateMAPField = new JTextField();
+		GridBagConstraints gbc_orderCreateMAPField = new GridBagConstraints();
+		gbc_orderCreateMAPField.insets = new Insets(0, 0, 5, 5);
+		gbc_orderCreateMAPField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_orderCreateMAPField.gridx = 3;
+		gbc_orderCreateMAPField.gridy = 8;
+		createOrderPanel.add(orderCreateMAPField, gbc_orderCreateMAPField);
+		orderCreateMAPField.setColumns(10);
 		
-		JButton btnOrderHistory = new JButton("Order History");
-		layeredPaneCreateOrder.add(btnOrderHistory, "cell 2 9 2 1,alignx center");
+		orderCreateAMSField = new JTextField();
+		GridBagConstraints gbc_orderCreateAMSField = new GridBagConstraints();
+		gbc_orderCreateAMSField.insets = new Insets(0, 0, 5, 5);
+		gbc_orderCreateAMSField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_orderCreateAMSField.gridx = 4;
+		gbc_orderCreateAMSField.gridy = 8;
+		createOrderPanel.add(orderCreateAMSField, gbc_orderCreateAMSField);
+		orderCreateAMSField.setColumns(10);
 		
-		JButton btnCreateOrderClear = new JButton("Clear");
-		layeredPaneCreateOrder.add(btnCreateOrderClear, "cell 4 9,alignx center");
+		orderCreateUreaField = new JTextField();
+		GridBagConstraints gbc_orderCreateUreaField = new GridBagConstraints();
+		gbc_orderCreateUreaField.insets = new Insets(0, 0, 5, 5);
+		gbc_orderCreateUreaField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_orderCreateUreaField.gridx = 5;
+		gbc_orderCreateUreaField.gridy = 8;
+		createOrderPanel.add(orderCreateUreaField, gbc_orderCreateUreaField);
+		orderCreateUreaField.setColumns(10);
 		
-		JLayeredPane layeredPane_2 = new JLayeredPane();
-		GridBagConstraints gbc_layeredPane_2 = new GridBagConstraints();
-		gbc_layeredPane_2.insets = new Insets(0, 0, 5, 5);
-		gbc_layeredPane_2.fill = GridBagConstraints.BOTH;
-		gbc_layeredPane_2.gridx = 3;
-		gbc_layeredPane_2.gridy = 1;
-		createOrderPanel.add(layeredPane_2, gbc_layeredPane_2);
-		//layeredPane_2.setLayout(new MigLayout("", "[][100px:n,grow][54.00][][][39.00][grow]", "[][][][][][][grow][][][]"));
-		
-		JLabel lblCustomer = new JLabel("Customer");
-		layeredPane_2.add(lblCustomer, "cell 0 0");
-		
-		textFieldCustomer = new JTextField();
-		layeredPane_2.add(textFieldCustomer, "cell 1 0,growx");
-		textFieldCustomer.setColumns(10);
-		
-		JLabel lblNewLabel_31 = new JLabel("Address");
-		layeredPane_2.add(lblNewLabel_31, "cell 0 1 3 1");
-		
-		JCheckBox chckbxCreateDelivery = new JCheckBox("Delivery");
-		layeredPane_2.add(chckbxCreateDelivery, "cell 0 2");
-		
-		JCheckBox chckbxCreateSpreader = new JCheckBox("Spreader");
-		layeredPane_2.add(chckbxCreateSpreader, "cell 0 3");
-		
-		JLabel lblPriority = new JLabel("Priority");
-		layeredPane_2.add(lblPriority, "cell 0 4,alignx trailing");
-		
-		textFieldPriority = new JTextField();
-		layeredPane_2.add(textFieldPriority, "cell 1 4,growx");
-		textFieldPriority.setColumns(10);
-		
-		JButton btnDispatch = new JButton("Dispatch");
-		layeredPane_2.add(btnDispatch, "cell 1 6,alignx right,aligny bottom");
+		orderCreateGypsumField = new JTextField();
+		GridBagConstraints gbc_orderCreateGypsumField = new GridBagConstraints();
+		gbc_orderCreateGypsumField.insets = new Insets(0, 0, 5, 5);
+		gbc_orderCreateGypsumField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_orderCreateGypsumField.gridx = 6;
+		gbc_orderCreateGypsumField.gridy = 8;
+		createOrderPanel.add(orderCreateGypsumField, gbc_orderCreateGypsumField);
+		orderCreateGypsumField.setColumns(10);
 		
 		JButton btnBack_8 = new JButton("Back");
 		btnBack_8.addActionListener(new ActionListener() {
@@ -1821,11 +1930,68 @@ public class CapstoneMainFrame {
 				setPrevious(createOrderPanel);
 			}
 		});
+		
+		JLabel lblNewLabel_45 = new JLabel("Comments");
+		GridBagConstraints gbc_lblNewLabel_45 = new GridBagConstraints();
+		gbc_lblNewLabel_45.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_45.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_45.gridx = 1;
+		gbc_lblNewLabel_45.gridy = 10;
+		createOrderPanel.add(lblNewLabel_45, gbc_lblNewLabel_45);
+		
+		orderCreateOrderCommentsField = new JTextField();
+		GridBagConstraints gbc_orderCreateOrderCommentsField = new GridBagConstraints();
+		gbc_orderCreateOrderCommentsField.gridwidth = 5;
+		gbc_orderCreateOrderCommentsField.insets = new Insets(0, 0, 5, 5);
+		gbc_orderCreateOrderCommentsField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_orderCreateOrderCommentsField.gridx = 2;
+		gbc_orderCreateOrderCommentsField.gridy = 10;
+		createOrderPanel.add(orderCreateOrderCommentsField, gbc_orderCreateOrderCommentsField);
+		orderCreateOrderCommentsField.setColumns(10);
+		
+		JButton orderCreateClearButton = new JButton("Clear");
+		orderCreateClearButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				orderCreateOrderIDField.setText("");
+				orderCreateCustomerIDField.setText("");
+				orderCreateEmployeeIDField.setText("");
+				orderCreatePickupDateField.setText("");
+				orderCreatePickupTimeField.setText("");
+				orderCreatePotashField.setText("");
+				orderCreateMAPField.setText("");
+				orderCreateAMSField.setText("");
+				orderCreateUreaField.setText("");
+				orderCreateGypsumField.setText("");
+				orderCreateOrderCommentsField.setText("");
+				orderCreateOrderDateField.setText("");
+				orderCreateOrderPaidBox.setSelected(false);
+				orderCreateOrderCompleteBox.setSelected(false);
+				orderCreateOrderDeliveredBox.setSelected(false);
+			}
+		});
+		GridBagConstraints gbc_orderCreateClearButton = new GridBagConstraints();
+		gbc_orderCreateClearButton.insets = new Insets(0, 0, 0, 5);
+		gbc_orderCreateClearButton.gridx = 3;
+		gbc_orderCreateClearButton.gridy = 11;
+		createOrderPanel.add(orderCreateClearButton, gbc_orderCreateClearButton);
+		
+		JButton orderCreateRunButton = new JButton("Create");
+		orderCreateRunButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CreateOrder newOrder = new CreateOrder();
+				newOrder.execute(orderCreateOrderIDField, orderCreateCustomerIDField, orderCreateEmployeeIDField, orderCreatePickupDateField, orderCreatePickupTimeField, orderCreatePotashField, orderCreateMAPField, orderCreateAMSField, orderCreateUreaField, orderCreateGypsumField, orderCreateOrderCommentsField, orderCreateOrderDateField, orderCreateOrderPaidBox, orderCreateOrderCompleteBox, orderCreateOrderDeliveredBox);
+			}
+		});
+		GridBagConstraints gbc_orderCreateRunButton = new GridBagConstraints();
+		gbc_orderCreateRunButton.insets = new Insets(0, 0, 0, 5);
+		gbc_orderCreateRunButton.gridx = 4;
+		gbc_orderCreateRunButton.gridy = 11;
+		createOrderPanel.add(orderCreateRunButton, gbc_orderCreateRunButton);
 		GridBagConstraints gbc_btnBack_8 = new GridBagConstraints();
-		gbc_btnBack_8.anchor = GridBagConstraints.EAST;
-		gbc_btnBack_8.insets = new Insets(0, 0, 5, 5);
-		gbc_btnBack_8.gridx = 3;
-		gbc_btnBack_8.gridy = 2;
+		gbc_btnBack_8.anchor = GridBagConstraints.WEST;
+		gbc_btnBack_8.insets = new Insets(0, 0, 0, 5);
+		gbc_btnBack_8.gridx = 5;
+		gbc_btnBack_8.gridy = 11;
 		createOrderPanel.add(btnBack_8, gbc_btnBack_8);
 	}
 }
