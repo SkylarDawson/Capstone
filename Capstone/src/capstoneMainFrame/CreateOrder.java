@@ -293,14 +293,21 @@ public class CreateOrder {
 	   }  
 	   
 	   /*
-	     * Function to update a customer's entry in the database
-	     * @param String customerNum is the unique customer ID of the customer being edited
-	     * @param JTextField FirstNameField is the Text Field Containing the Customer's first name
-	     * @param JTextField LastNameField is the Text Field Containing the Customer's Last name
-	     * @param JTextField AddressField is the Text Field Containing the Customer's address
-	     * @param JTextField PhoneNumField is the Text Field Containing the Customer's phone num
-	     * @param JTextField EmailField is the Text Field Containing the Customer's email
-	     * @param JTextField AssignedRepID is the Text Field Containing the Customer's assigned sales rep
+	     * Function to update an order's entry in the database
+	     * @param String orderNum is the unique order ID of the order being edited
+	     * @param JTextField CustomerNumField is the Text Field Containing the Customer ID for the Order
+	     * @param JTextField EmployeeNumField is the Text Field Containing the Employee IF for the Order
+	     * @param JTextField PickUpDateField is the Text Field Containing the order pick up date
+	     * @param JTextField PickUpTimeField is the Text Field Containing the order pick up time
+	     * @param JTextField PotashField is the Text Field Containing the order potash amount
+	     * @param JTextField MAPField is the Text Field Containing the order MAP amount
+	     * @param JTextField AMSField is the Text Field Containing the order AMS Amount
+	     * @param JTextField UreaField is the Text Field Containing the order Urea Amount
+	     * @param JTextField GypsumField is the Text Field Containing the order pick up date
+	     * @param JTextField CommentsField is the Text Field Containing the order comments
+	     * @param JTextCheckBox PaidBox is the check box stating if the order is paid
+	     * @param JTextCheckBox CompleteBox is the check box stating if the order is complete
+	     * @param JTextCheckBox DeliveredBox is the check box stating if the order is delivered
 	     * @return nothing
 	     */
 	    public void updateOrder(String OrderNum, JTextField CustomerNumField, JTextField EmployeeNumField, JTextField PickupDateField, JTextField PickupTimeField, JTextField PotashField, JTextField MAPField, JTextField AMSField, JTextField UreaField,
@@ -375,15 +382,22 @@ public class CreateOrder {
 	    
 	    /*
 	     * Function to load a customer's entry in the database
-	     * @param String customerNum is the unique customer ID of the customer being edited
-	     * @param JLabel IDLabel is the label used to show the customer's ID
-	     * @param JTextField FirstNameField is the Text Field Containing the Customer's first name
-	     * @param JTextField LastNameField is the Text Field Containing the Customer's Last name
-	     * @param JTextField AddressField is the Text Field Containing the Customer's address
-	     * @param JTextField PhoneNumField is the Text Field Containing the Customer's phone num
-	     * @param JTextField EmailField is the Text Field Containing the Customer's email
-	     * @param JTextField AssignedRepID is the Text Field Containing the Customer's assigned sales rep
-	     * @return nothing
+	     * @param JLabel orderIDLabel is the label holding the order ID
+	     * @param String orderNum is the unique order ID of the order being edited
+	     * @param JTextField CustomerNumField is the Text Field Containing the Customer ID for the Order
+	     * @param JTextField EmployeeNumField is the Text Field Containing the Employee IF for the Order
+	     * @param JTextField PickUpDateField is the Text Field Containing the order pick up date
+	     * @param JTextField PickUpTimeField is the Text Field Containing the order pick up time
+	     * @param JTextField PotashField is the Text Field Containing the order potash amount
+	     * @param JTextField MAPField is the Text Field Containing the order MAP amount
+	     * @param JTextField AMSField is the Text Field Containing the order AMS Amount
+	     * @param JTextField UreaField is the Text Field Containing the order Urea Amount
+	     * @param JTextField GypsumField is the Text Field Containing the order pick up date
+	     * @param JTextField CommentsField is the Text Field Containing the order comments
+	     * @param JTextCheckBox PaidBox is the check box stating if the order is paid
+	     * @param JTextCheckBox CompleteBox is the check box stating if the order is complete
+	     * @param JTextCheckBox DeliveredBox is the check box stating if the order is delivered
+	     * @param JLabel orderDateField is the label holding the date the order was placed
 	     */
 	    public void loadOrder(String OrderNum, JLabel orderIDLabel, JTextField CustomerNumField, JTextField EmployeeNumField, JTextField PickupDateField, JTextField PickupTimeField, JTextField PotashField, JTextField MAPField, JTextField AMSField, JTextField UreaField,
 	    		JTextField GypsumField, JTextField CommentsField, JCheckBox PaidBox, JCheckBox CompleteBox, JCheckBox DeliveredBox, JLabel orderDateLabel) {
