@@ -28,8 +28,7 @@ import javax.swing.table.TableModel;
 import java.awt.Color;
 import javax.swing.JList;
 //import net.miginfocom.swing.MigLayout;
-
-
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 public class CapstoneMainFrame {
@@ -77,6 +76,13 @@ public class CapstoneMainFrame {
 	private JTextField orderCreateGypsumField;
 	private JTextField orderCreateOrderCommentsField;
 	private JTextField orderCreateOrderDateField;
+	private final JLabel lblNewLabel_51 = new JLabel("Address");
+	private JTextField updateCustomerFirstNameField;
+	private JTextField updateCustomerLastNameField;
+	private JTextField updateCustomerPhoneNumField;
+	private JTextField updateCustomerEmailField;
+	private JTextField updateCustomerAddressField;
+	private JTextField updateCustomerRepIDField;
 	
 	/**
 	 * Launch the application.
@@ -157,7 +163,10 @@ public class CapstoneMainFrame {
 		mainFrame.getContentPane().add(createEmployeePanel, "name_94212916989400");
 		JPanel createOrderPanel = new JPanel();
 		mainFrame.getContentPane().add(createOrderPanel, "name_95035194878900");
+		JPanel updateCustomerPanel = new JPanel();
+		mainFrame.getContentPane().add(updateCustomerPanel, "name_164304063288900");
 		
+		JLabel updateCustomerIDLabel = new JLabel("");
 		
 		/**
 		 * Frame Class Initialization
@@ -1326,6 +1335,21 @@ public class CapstoneMainFrame {
 		});
 		horizontalBox_6.add(btnNewButton_7);
 		
+		JButton updateButton = new JButton("Edit Customer");
+		updateButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrame frame = new JFrame();
+			    String customerID = JOptionPane.showInputDialog(frame, "Enter ID of Customer to Edit:");
+			    
+			    setPrevious(customerPanel);
+			    customerPanel.hide();
+			    CreateCustomer myCustomer = new CreateCustomer();
+			    myCustomer.loadCustomer(customerID, updateCustomerIDLabel, updateCustomerFirstNameField, updateCustomerLastNameField, updateCustomerAddressField, updateCustomerPhoneNumField, updateCustomerEmailField, updateCustomerRepIDField );
+			    updateCustomerPanel.show();
+			}
+		});
+		horizontalBox_6.add(updateButton);
+		
 		JButton btnNewButton_8 = new JButton("Delete");
 		horizontalBox_6.add(btnNewButton_8);
 		
@@ -2006,5 +2030,163 @@ public class CapstoneMainFrame {
 		gbc_btnBack_8.gridx = 5;
 		gbc_btnBack_8.gridy = 11;
 		createOrderPanel.add(btnBack_8, gbc_btnBack_8);
+		
+		/**
+		 * Update Customer Panel
+		 */
+		GridBagLayout gbl_updateCustomerPanel = new GridBagLayout();
+		gbl_updateCustomerPanel.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
+		gbl_updateCustomerPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_updateCustomerPanel.columnWeights = new double[]{1.0, 0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_updateCustomerPanel.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		updateCustomerPanel.setLayout(gbl_updateCustomerPanel);
+		
+		JLabel lblNewLabel_47 = new JLabel("Customer ID");
+		GridBagConstraints gbc_lblNewLabel_47 = new GridBagConstraints();
+		gbc_lblNewLabel_47.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_47.gridx = 1;
+		gbc_lblNewLabel_47.gridy = 1;
+		updateCustomerPanel.add(lblNewLabel_47, gbc_lblNewLabel_47);
+		
+		GridBagConstraints gbc_updateCustomerIDLabel = new GridBagConstraints();
+		gbc_updateCustomerIDLabel.anchor = GridBagConstraints.WEST;
+		gbc_updateCustomerIDLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_updateCustomerIDLabel.gridx = 2;
+		gbc_updateCustomerIDLabel.gridy = 1;
+		updateCustomerPanel.add(updateCustomerIDLabel, gbc_updateCustomerIDLabel);
+		
+		JLabel customerIDLabel = new JLabel("");
+		GridBagConstraints gbc_customerIDLabel = new GridBagConstraints();
+		gbc_customerIDLabel.insets = new Insets(0, 0, 5, 0);
+		gbc_customerIDLabel.gridx = 4;
+		gbc_customerIDLabel.gridy = 2;
+		updateCustomerPanel.add(customerIDLabel, gbc_customerIDLabel);
+		
+		JLabel lblNewLabel_48 = new JLabel("First Name");
+		GridBagConstraints gbc_lblNewLabel_48 = new GridBagConstraints();
+		gbc_lblNewLabel_48.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_48.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_48.gridx = 1;
+		gbc_lblNewLabel_48.gridy = 3;
+		updateCustomerPanel.add(lblNewLabel_48, gbc_lblNewLabel_48);
+		
+		updateCustomerFirstNameField = new JTextField();
+		GridBagConstraints gbc_updateCustomerFirstNameField = new GridBagConstraints();
+		gbc_updateCustomerFirstNameField.insets = new Insets(0, 0, 5, 5);
+		gbc_updateCustomerFirstNameField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_updateCustomerFirstNameField.gridx = 2;
+		gbc_updateCustomerFirstNameField.gridy = 3;
+		updateCustomerPanel.add(updateCustomerFirstNameField, gbc_updateCustomerFirstNameField);
+		updateCustomerFirstNameField.setColumns(10);
+		
+		JLabel lblNewLabel_49 = new JLabel("Last Name");
+		GridBagConstraints gbc_lblNewLabel_49 = new GridBagConstraints();
+		gbc_lblNewLabel_49.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_49.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_49.gridx = 1;
+		gbc_lblNewLabel_49.gridy = 4;
+		updateCustomerPanel.add(lblNewLabel_49, gbc_lblNewLabel_49);
+		
+		updateCustomerLastNameField = new JTextField();
+		GridBagConstraints gbc_updateCustomerLastNameField = new GridBagConstraints();
+		gbc_updateCustomerLastNameField.insets = new Insets(0, 0, 5, 5);
+		gbc_updateCustomerLastNameField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_updateCustomerLastNameField.gridx = 2;
+		gbc_updateCustomerLastNameField.gridy = 4;
+		updateCustomerPanel.add(updateCustomerLastNameField, gbc_updateCustomerLastNameField);
+		updateCustomerLastNameField.setColumns(10);
+		
+		JLabel lblNewLabel_50 = new JLabel("Phone Number");
+		GridBagConstraints gbc_lblNewLabel_50 = new GridBagConstraints();
+		gbc_lblNewLabel_50.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_50.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_50.gridx = 1;
+		gbc_lblNewLabel_50.gridy = 5;
+		updateCustomerPanel.add(lblNewLabel_50, gbc_lblNewLabel_50);
+		
+		updateCustomerPhoneNumField = new JTextField();
+		GridBagConstraints gbc_updateCustomerPhoneNumField = new GridBagConstraints();
+		gbc_updateCustomerPhoneNumField.insets = new Insets(0, 0, 5, 5);
+		gbc_updateCustomerPhoneNumField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_updateCustomerPhoneNumField.gridx = 2;
+		gbc_updateCustomerPhoneNumField.gridy = 5;
+		updateCustomerPanel.add(updateCustomerPhoneNumField, gbc_updateCustomerPhoneNumField);
+		updateCustomerPhoneNumField.setColumns(10);
+		
+		JLabel lblNewLabel_53 = new JLabel("Email Address");
+		GridBagConstraints gbc_lblNewLabel_53 = new GridBagConstraints();
+		gbc_lblNewLabel_53.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_53.gridx = 1;
+		gbc_lblNewLabel_53.gridy = 6;
+		updateCustomerPanel.add(lblNewLabel_53, gbc_lblNewLabel_53);
+		
+		updateCustomerEmailField = new JTextField();
+		updateCustomerEmailField.setText("");
+		GridBagConstraints gbc_updateCustomerEmailField = new GridBagConstraints();
+		gbc_updateCustomerEmailField.insets = new Insets(0, 0, 5, 5);
+		gbc_updateCustomerEmailField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_updateCustomerEmailField.gridx = 2;
+		gbc_updateCustomerEmailField.gridy = 6;
+		updateCustomerPanel.add(updateCustomerEmailField, gbc_updateCustomerEmailField);
+		updateCustomerEmailField.setColumns(10);
+		GridBagConstraints gbc_lblNewLabel_51 = new GridBagConstraints();
+		gbc_lblNewLabel_51.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_51.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_51.gridx = 1;
+		gbc_lblNewLabel_51.gridy = 7;
+		updateCustomerPanel.add(lblNewLabel_51, gbc_lblNewLabel_51);
+		
+		updateCustomerAddressField = new JTextField();
+		GridBagConstraints gbc_updateCustomerAddressField = new GridBagConstraints();
+		gbc_updateCustomerAddressField.insets = new Insets(0, 0, 5, 5);
+		gbc_updateCustomerAddressField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_updateCustomerAddressField.gridx = 2;
+		gbc_updateCustomerAddressField.gridy = 7;
+		updateCustomerPanel.add(updateCustomerAddressField, gbc_updateCustomerAddressField);
+		updateCustomerAddressField.setColumns(10);
+		
+		JLabel lblNewLabel_52 = new JLabel("Assigned Rep ID");
+		GridBagConstraints gbc_lblNewLabel_52 = new GridBagConstraints();
+		gbc_lblNewLabel_52.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_52.gridx = 1;
+		gbc_lblNewLabel_52.gridy = 8;
+		updateCustomerPanel.add(lblNewLabel_52, gbc_lblNewLabel_52);
+		
+		updateCustomerRepIDField = new JTextField();
+		updateCustomerRepIDField.setText("");
+		GridBagConstraints gbc_updateCustomerRepIDField = new GridBagConstraints();
+		gbc_updateCustomerRepIDField.insets = new Insets(0, 0, 5, 5);
+		gbc_updateCustomerRepIDField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_updateCustomerRepIDField.gridx = 2;
+		gbc_updateCustomerRepIDField.gridy = 8;
+		updateCustomerPanel.add(updateCustomerRepIDField, gbc_updateCustomerRepIDField);
+		updateCustomerRepIDField.setColumns(10);
+		
+		Box horizontalBox_4 = Box.createHorizontalBox();
+		GridBagConstraints gbc_horizontalBox_4 = new GridBagConstraints();
+		gbc_horizontalBox_4.insets = new Insets(0, 0, 5, 5);
+		gbc_horizontalBox_4.gridx = 2;
+		gbc_horizontalBox_4.gridy = 10;
+		updateCustomerPanel.add(horizontalBox_4, gbc_horizontalBox_4);
+		
+		JButton customerUpdateButton = new JButton("Update");
+		customerUpdateButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CreateCustomer updateCustomer = new CreateCustomer();
+				updateCustomer.updateCustomer(updateCustomerIDLabel.getText(), updateCustomerFirstNameField, updateCustomerLastNameField, updateCustomerAddressField, updateCustomerPhoneNumField, updateCustomerEmailField, updateCustomerRepIDField);
+				updateCustomerPanel.hide();
+				customerPanel.show();
+			}
+		});
+		horizontalBox_4.add(customerUpdateButton);
+		
+		JButton customerBackButton = new JButton("Back");
+		customerBackButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				updateCustomerPanel.hide();
+				getPrevious().show();
+			}
+		});
+		horizontalBox_4.add(customerBackButton);
 	}
 }

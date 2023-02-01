@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -207,4 +208,127 @@ public class CreateCustomer {
         }  
     }
 
+    public void updateCustomer(String customerNum, JTextField FirstNameField, JTextField LastNameField, JTextField AddressField, JTextField PhoneNumField, JTextField EmailField, JTextField AssignedRepIDField) {
+		int customerID = Integer.parseInt(customerNum);
+		
+		// Load with information based on the customer ID
+    	String firstName = null;
+		String lastName = null;
+		String phoneNum = null;
+		String address = null;
+		String emailAddress = null;
+		int assignedRepID = 0;
+            
+            firstName = FirstNameField.getText();
+            lastName = LastNameField.getText();
+            phoneNum = PhoneNumField.getText();
+            address = AddressField.getText();
+            emailAddress = EmailField.getText();
+            assignedRepID = Integer.parseInt(AssignedRepIDField.getText());
+    	
+		if(FirstNameField.getText().length() != 0)
+		{
+			firstName = FirstNameField.getText();
+		}
+		
+		if(LastNameField.getText().length() != 0) {
+			lastName = LastNameField.getText();
+		}
+		
+		if(PhoneNumField.getText().length() != 0)
+		{
+			phoneNum = PhoneNumField.getText();
+		}
+		
+		if(AddressField.getText().length() != 0)
+		{
+			address = AddressField.getText();
+		}
+		
+		if(EmailField.getText().length() != 0) 
+		{
+			emailAddress = EmailField.getText();
+		}
+		
+		if(AssignedRepIDField.getText().length() != 0)
+		{
+			assignedRepID = Integer.parseInt(AssignedRepIDField.getText());
+		}
+		
+		// Update
+		String updateCustomer = "Update customers "
+				+ "SET firstName = ? , "
+				+ "lastName = ?,"
+				+ "phoneNum = ?,"
+				+ "address = ?,"
+				+ "email = ?,"
+				+ "assignedRepID = ? "
+				+ "WHERE customerNum = ?";
+				
+		try {
+            Connection conn = this.connect();  
+            PreparedStatement pstmt  = conn.prepareStatement(updateCustomer);  
+            pstmt.setString(1, firstName);
+            pstmt.setString(2, lastName);
+            pstmt.setString(3, phoneNum);
+            pstmt.setString(4, address);
+            pstmt.setString(5, emailAddress);
+            pstmt.setInt(6, assignedRepID);
+            pstmt.setInt(7, customerID);
+            pstmt.executeUpdate();
+		
+            return;
+        } catch (SQLException e) {  
+            System.out.println(e.getMessage());  
+            return;
+            
+        }  
+    }
+    
+    public void loadCustomer(String customerNum, JLabel IDLabel, JTextField FirstNameField, JTextField LastNameField, JTextField AddressField, JTextField PhoneNumField, JTextField EmailField, JTextField AssignedRepIDField) {
+    	int customerID = Integer.parseInt(customerNum);
+		
+		// Load with information based on the customer ID
+    	String firstName = null;
+		String lastName = null;
+		String phoneNum = null;
+		String address = null;
+		String emailAddress = null;
+		int assignedRepID = 0;
+		
+		String sql = String.format("SELECT * from customers where customerNum = \"%d\"", customerID); 
+		// Try and connect to the database
+        try {  
+            Connection conn = this.connect();  
+            Statement stmt  = conn.createStatement();  
+            
+            // Run SQL statement and return the result
+            ResultSet rs    = stmt.executeQuery(sql);
+            
+            firstName = rs.getString("firstName");
+            lastName = rs.getString("lastName");
+            phoneNum = rs.getString("phoneNum");
+            address = rs.getString("address");
+            emailAddress = rs.getString("email");
+            assignedRepID = rs.getInt("assignedRepID");
+            
+            IDLabel.setText(customerID + "");
+            FirstNameField.setText(firstName);
+            LastNameField.setText(lastName);
+            PhoneNumField.setText(phoneNum);
+            AddressField.setText(address);
+            EmailField.setText(emailAddress);
+            AssignedRepIDField.setText(assignedRepID + "");
+            
+            stmt.close();
+            conn.close();
+            return;
+    
+        } catch (SQLException e) {  
+        	System.out.println(e.getMessage());  
+        	return;
+        
+        }  
+    }
+    
 }
