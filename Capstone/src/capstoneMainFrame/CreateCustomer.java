@@ -208,10 +208,22 @@ public class CreateCustomer {
         }  
     }
 
+    /*
+     * Function to update a customer's entry in the database
+     * @param String customerNum is the unique customer ID of the customer being edited
+     * @param JTextField FirstNameField is the Text Field Containing the Customer's first name
+     * @param JTextField LastNameField is the Text Field Containing the Customer's Last name
+     * @param JTextField AddressField is the Text Field Containing the Customer's address
+     * @param JTextField PhoneNumField is the Text Field Containing the Customer's phone num
+     * @param JTextField EmailField is the Text Field Containing the Customer's email
+     * @param JTextField AssignedRepID is the Text Field Containing the Customer's assigned sales rep
+     * @return nothing
+     */
     public void updateCustomer(String customerNum, JTextField FirstNameField, JTextField LastNameField, JTextField AddressField, JTextField PhoneNumField, JTextField EmailField, JTextField AssignedRepIDField) {
-		int customerID = Integer.parseInt(customerNum);
+		// Convert the customerNum from String to Int
+    	int customerID = Integer.parseInt(customerNum);
 		
-		// Load with information based on the customer ID
+		// Load with information based on the loaded information in the text fields
     	String firstName = null;
 		String lastName = null;
 		String phoneNum = null;
@@ -226,6 +238,9 @@ public class CreateCustomer {
             emailAddress = EmailField.getText();
             assignedRepID = Integer.parseInt(AssignedRepIDField.getText());
     	
+        /*
+         * Pass through the fields & ensure that they aren't blank - if not alter what the variable is assigned
+         */
 		if(FirstNameField.getText().length() != 0)
 		{
 			firstName = FirstNameField.getText();
@@ -285,7 +300,20 @@ public class CreateCustomer {
         }  
     }
     
+    /*
+     * Function to load a customer's entry in the database
+     * @param String customerNum is the unique customer ID of the customer being edited
+     * @param JLabel IDLabel is the label used to show the customer's ID
+     * @param JTextField FirstNameField is the Text Field Containing the Customer's first name
+     * @param JTextField LastNameField is the Text Field Containing the Customer's Last name
+     * @param JTextField AddressField is the Text Field Containing the Customer's address
+     * @param JTextField PhoneNumField is the Text Field Containing the Customer's phone num
+     * @param JTextField EmailField is the Text Field Containing the Customer's email
+     * @param JTextField AssignedRepID is the Text Field Containing the Customer's assigned sales rep
+     * @return nothing
+     */
     public void loadCustomer(String customerNum, JLabel IDLabel, JTextField FirstNameField, JTextField LastNameField, JTextField AddressField, JTextField PhoneNumField, JTextField EmailField, JTextField AssignedRepIDField) {
+    	// Convert the ID into an integer
     	int customerID = Integer.parseInt(customerNum);
 		
 		// Load with information based on the customer ID
@@ -305,6 +333,7 @@ public class CreateCustomer {
             // Run SQL statement and return the result
             ResultSet rs    = stmt.executeQuery(sql);
             
+            // Extract the needed information
             firstName = rs.getString("firstName");
             lastName = rs.getString("lastName");
             phoneNum = rs.getString("phoneNum");
@@ -312,6 +341,7 @@ public class CreateCustomer {
             emailAddress = rs.getString("email");
             assignedRepID = rs.getInt("assignedRepID");
             
+            // Set the text of the fields
             IDLabel.setText(customerID + "");
             FirstNameField.setText(firstName);
             LastNameField.setText(lastName);

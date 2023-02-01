@@ -83,6 +83,17 @@ public class CapstoneMainFrame {
 	private JTextField updateCustomerEmailField;
 	private JTextField updateCustomerAddressField;
 	private JTextField updateCustomerRepIDField;
+	private final JLabel lblNewLabel_58 = new JLabel("Pick Up Time");
+	private JTextField orderUpdateCustomerNumberField;
+	private JTextField updateOrderEmployeeNumField;
+	private JTextField orderUpdatePickupDateField;
+	private JTextField orderUpdatePickupTimeField;
+	private JTextField orderUpdatePotashField;
+	private JTextField orderUpdateMapField;
+	private JTextField orderUpdateAMSField;
+	private JTextField orderUpdateUreaField;
+	private JTextField orderUpdateGypsumField;
+	private JTextField orderUpdateCommentsField;
 	
 	/**
 	 * Launch the application.
@@ -165,8 +176,15 @@ public class CapstoneMainFrame {
 		mainFrame.getContentPane().add(createOrderPanel, "name_95035194878900");
 		JPanel updateCustomerPanel = new JPanel();
 		mainFrame.getContentPane().add(updateCustomerPanel, "name_164304063288900");
+		JPanel updateOrderPanel = new JPanel();
+		mainFrame.getContentPane().add(updateOrderPanel, "name_1181103588400");
 		
 		JLabel updateCustomerIDLabel = new JLabel("");
+		JLabel orderUpdateOrderDateLabel = new JLabel("");
+		JLabel orderUpdateOrderIDLabel = new JLabel("");
+		JCheckBox orderUpdateOrderPaidBox = new JCheckBox("Order Paid");
+		JCheckBox orderUpdateOrderDelivered = new JCheckBox("Order Delivered");
+		JCheckBox orderUpdateOrderComplete = new JCheckBox("Order Complete");
 		
 		/**
 		 * Frame Class Initialization
@@ -1088,6 +1106,25 @@ public class CapstoneMainFrame {
 				setPrevious(orderPanel);
 			}
 		});
+		
+		JButton orderEditButton = new JButton("Edit Order");
+		orderEditButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrame frame = new JFrame();
+			    String orderID = JOptionPane.showInputDialog(frame, "Enter ID of Order to Edit:");
+			    
+			    setPrevious(orderPanel);
+			    orderPanel.hide();
+			    CreateOrder myOrder = new CreateOrder();
+			    myOrder.loadOrder(orderID, orderUpdateOrderIDLabel, orderUpdateCustomerNumberField, updateOrderEmployeeNumField, orderUpdatePickupDateField, orderUpdatePickupTimeField, orderUpdatePotashField, orderUpdateMapField, orderUpdateAMSField, orderUpdateUreaField, orderUpdateGypsumField, orderUpdateCommentsField, orderUpdateOrderPaidBox, orderUpdateOrderComplete, orderUpdateOrderDelivered, orderUpdateOrderDateLabel);
+			    updateOrderPanel.show();
+			}
+		});
+		GridBagConstraints gbc_orderEditButton = new GridBagConstraints();
+		gbc_orderEditButton.insets = new Insets(0, 0, 5, 5);
+		gbc_orderEditButton.gridx = 3;
+		gbc_orderEditButton.gridy = 4;
+		orderPanel.add(orderEditButton, gbc_orderEditButton);
 		GridBagConstraints gbc_orderHistoryCreateButton = new GridBagConstraints();
 		gbc_orderHistoryCreateButton.insets = new Insets(0, 0, 5, 5);
 		gbc_orderHistoryCreateButton.gridx = 4;
@@ -2184,9 +2221,280 @@ public class CapstoneMainFrame {
 		customerBackButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				updateCustomerPanel.hide();
-				getPrevious().show();
+				customerPanel.show();
 			}
 		});
 		horizontalBox_4.add(customerBackButton);
+		
+		/**
+		 * Order Update Panel
+		 */
+
+		GridBagLayout gbl_updateOrderPanel = new GridBagLayout();
+		gbl_updateOrderPanel.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_updateOrderPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_updateOrderPanel.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_updateOrderPanel.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		updateOrderPanel.setLayout(gbl_updateOrderPanel);
+		
+		JLabel lblNewLabel_54 = new JLabel("Order Number");
+		GridBagConstraints gbc_lblNewLabel_54 = new GridBagConstraints();
+		gbc_lblNewLabel_54.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_54.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_54.gridx = 1;
+		gbc_lblNewLabel_54.gridy = 2;
+		updateOrderPanel.add(lblNewLabel_54, gbc_lblNewLabel_54);
+		
+		GridBagConstraints gbc_orderUpdateOrderIDLabel = new GridBagConstraints();
+		gbc_orderUpdateOrderIDLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_orderUpdateOrderIDLabel.gridx = 2;
+		gbc_orderUpdateOrderIDLabel.gridy = 2;
+		updateOrderPanel.add(orderUpdateOrderIDLabel, gbc_orderUpdateOrderIDLabel);
+		
+		GridBagConstraints gbc_orderUpdateOrderPaidBox = new GridBagConstraints();
+		gbc_orderUpdateOrderPaidBox.anchor = GridBagConstraints.WEST;
+		gbc_orderUpdateOrderPaidBox.insets = new Insets(0, 0, 5, 5);
+		gbc_orderUpdateOrderPaidBox.gridx = 5;
+		gbc_orderUpdateOrderPaidBox.gridy = 2;
+		updateOrderPanel.add(orderUpdateOrderPaidBox, gbc_orderUpdateOrderPaidBox);
+		
+		JLabel lblNewLabel_55 = new JLabel("Customer Number");
+		GridBagConstraints gbc_lblNewLabel_55 = new GridBagConstraints();
+		gbc_lblNewLabel_55.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_55.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_55.gridx = 1;
+		gbc_lblNewLabel_55.gridy = 3;
+		updateOrderPanel.add(lblNewLabel_55, gbc_lblNewLabel_55);
+		
+		orderUpdateCustomerNumberField = new JTextField();
+		GridBagConstraints gbc_orderUpdateCustomerNumberField = new GridBagConstraints();
+		gbc_orderUpdateCustomerNumberField.gridwidth = 2;
+		gbc_orderUpdateCustomerNumberField.insets = new Insets(0, 0, 5, 5);
+		gbc_orderUpdateCustomerNumberField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_orderUpdateCustomerNumberField.gridx = 2;
+		gbc_orderUpdateCustomerNumberField.gridy = 3;
+		updateOrderPanel.add(orderUpdateCustomerNumberField, gbc_orderUpdateCustomerNumberField);
+		orderUpdateCustomerNumberField.setColumns(10);
+		
+		
+		GridBagConstraints gbc_orderUpdateOrderComplete = new GridBagConstraints();
+		gbc_orderUpdateOrderComplete.anchor = GridBagConstraints.WEST;
+		gbc_orderUpdateOrderComplete.insets = new Insets(0, 0, 5, 5);
+		gbc_orderUpdateOrderComplete.gridx = 5;
+		gbc_orderUpdateOrderComplete.gridy = 3;
+		updateOrderPanel.add(orderUpdateOrderComplete, gbc_orderUpdateOrderComplete);
+		
+		JLabel lblNewLabel_56 = new JLabel("Employee Number");
+		GridBagConstraints gbc_lblNewLabel_56 = new GridBagConstraints();
+		gbc_lblNewLabel_56.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_56.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_56.gridx = 1;
+		gbc_lblNewLabel_56.gridy = 4;
+		updateOrderPanel.add(lblNewLabel_56, gbc_lblNewLabel_56);
+		
+		updateOrderEmployeeNumField = new JTextField();
+		GridBagConstraints gbc_updateOrderEmployeeNumField = new GridBagConstraints();
+		gbc_updateOrderEmployeeNumField.gridwidth = 2;
+		gbc_updateOrderEmployeeNumField.insets = new Insets(0, 0, 5, 5);
+		gbc_updateOrderEmployeeNumField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_updateOrderEmployeeNumField.gridx = 2;
+		gbc_updateOrderEmployeeNumField.gridy = 4;
+		updateOrderPanel.add(updateOrderEmployeeNumField, gbc_updateOrderEmployeeNumField);
+		updateOrderEmployeeNumField.setColumns(10);
+		
+		
+		GridBagConstraints gbc_orderUpdateOrderDelivered = new GridBagConstraints();
+		gbc_orderUpdateOrderDelivered.anchor = GridBagConstraints.WEST;
+		gbc_orderUpdateOrderDelivered.insets = new Insets(0, 0, 5, 5);
+		gbc_orderUpdateOrderDelivered.gridx = 5;
+		gbc_orderUpdateOrderDelivered.gridy = 4;
+		updateOrderPanel.add(orderUpdateOrderDelivered, gbc_orderUpdateOrderDelivered);
+		
+		JLabel lblNewLabel_57 = new JLabel("Pick Up Date");
+		GridBagConstraints gbc_lblNewLabel_57 = new GridBagConstraints();
+		gbc_lblNewLabel_57.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_57.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_57.gridx = 1;
+		gbc_lblNewLabel_57.gridy = 5;
+		updateOrderPanel.add(lblNewLabel_57, gbc_lblNewLabel_57);
+		
+		orderUpdatePickupDateField = new JTextField();
+		orderUpdatePickupDateField.setText("");
+		GridBagConstraints gbc_orderUpdatePickupDateField = new GridBagConstraints();
+		gbc_orderUpdatePickupDateField.gridwidth = 2;
+		gbc_orderUpdatePickupDateField.insets = new Insets(0, 0, 5, 5);
+		gbc_orderUpdatePickupDateField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_orderUpdatePickupDateField.gridx = 2;
+		gbc_orderUpdatePickupDateField.gridy = 5;
+		updateOrderPanel.add(orderUpdatePickupDateField, gbc_orderUpdatePickupDateField);
+		orderUpdatePickupDateField.setColumns(10);
+		GridBagConstraints gbc_lblNewLabel_58 = new GridBagConstraints();
+		gbc_lblNewLabel_58.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_58.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_58.gridx = 1;
+		gbc_lblNewLabel_58.gridy = 6;
+		updateOrderPanel.add(lblNewLabel_58, gbc_lblNewLabel_58);
+		
+		orderUpdatePickupTimeField = new JTextField();
+		orderUpdatePickupTimeField.setText("");
+		GridBagConstraints gbc_orderUpdatePickupTimeField = new GridBagConstraints();
+		gbc_orderUpdatePickupTimeField.gridwidth = 2;
+		gbc_orderUpdatePickupTimeField.insets = new Insets(0, 0, 5, 5);
+		gbc_orderUpdatePickupTimeField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_orderUpdatePickupTimeField.gridx = 2;
+		gbc_orderUpdatePickupTimeField.gridy = 6;
+		updateOrderPanel.add(orderUpdatePickupTimeField, gbc_orderUpdatePickupTimeField);
+		orderUpdatePickupTimeField.setColumns(10);
+		
+		JLabel lblNewLabel_59 = new JLabel("Order Date");
+		GridBagConstraints gbc_lblNewLabel_59 = new GridBagConstraints();
+		gbc_lblNewLabel_59.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_59.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_59.gridx = 1;
+		gbc_lblNewLabel_59.gridy = 7;
+		updateOrderPanel.add(lblNewLabel_59, gbc_lblNewLabel_59);
+		
+		GridBagConstraints gbc_orderUpdateOrderDateLabel = new GridBagConstraints();
+		gbc_orderUpdateOrderDateLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_orderUpdateOrderDateLabel.gridx = 2;
+		gbc_orderUpdateOrderDateLabel.gridy = 7;
+		updateOrderPanel.add(orderUpdateOrderDateLabel, gbc_orderUpdateOrderDateLabel);
+		
+		JLabel lblNewLabel_61 = new JLabel("Potash");
+		GridBagConstraints gbc_lblNewLabel_61 = new GridBagConstraints();
+		gbc_lblNewLabel_61.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_61.gridx = 2;
+		gbc_lblNewLabel_61.gridy = 9;
+		updateOrderPanel.add(lblNewLabel_61, gbc_lblNewLabel_61);
+		
+		JLabel lblNewLabel_62 = new JLabel("MAP");
+		GridBagConstraints gbc_lblNewLabel_62 = new GridBagConstraints();
+		gbc_lblNewLabel_62.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_62.gridx = 3;
+		gbc_lblNewLabel_62.gridy = 9;
+		updateOrderPanel.add(lblNewLabel_62, gbc_lblNewLabel_62);
+		
+		JLabel lblNewLabel_63 = new JLabel("AMS");
+		GridBagConstraints gbc_lblNewLabel_63 = new GridBagConstraints();
+		gbc_lblNewLabel_63.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_63.gridx = 4;
+		gbc_lblNewLabel_63.gridy = 9;
+		updateOrderPanel.add(lblNewLabel_63, gbc_lblNewLabel_63);
+		
+		JLabel lblNewLabel_64 = new JLabel("Urea");
+		GridBagConstraints gbc_lblNewLabel_64 = new GridBagConstraints();
+		gbc_lblNewLabel_64.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_64.gridx = 5;
+		gbc_lblNewLabel_64.gridy = 9;
+		updateOrderPanel.add(lblNewLabel_64, gbc_lblNewLabel_64);
+		
+		JLabel lblNewLabel_65 = new JLabel("Gypsum");
+		GridBagConstraints gbc_lblNewLabel_65 = new GridBagConstraints();
+		gbc_lblNewLabel_65.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_65.gridx = 6;
+		gbc_lblNewLabel_65.gridy = 9;
+		updateOrderPanel.add(lblNewLabel_65, gbc_lblNewLabel_65);
+		
+		JLabel lblNewLabel_60 = new JLabel("Pounds");
+		GridBagConstraints gbc_lblNewLabel_60 = new GridBagConstraints();
+		gbc_lblNewLabel_60.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_60.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_60.gridx = 1;
+		gbc_lblNewLabel_60.gridy = 10;
+		updateOrderPanel.add(lblNewLabel_60, gbc_lblNewLabel_60);
+		
+		orderUpdatePotashField = new JTextField();
+		GridBagConstraints gbc_orderUpdatePotashField = new GridBagConstraints();
+		gbc_orderUpdatePotashField.insets = new Insets(0, 0, 5, 5);
+		gbc_orderUpdatePotashField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_orderUpdatePotashField.gridx = 2;
+		gbc_orderUpdatePotashField.gridy = 10;
+		updateOrderPanel.add(orderUpdatePotashField, gbc_orderUpdatePotashField);
+		orderUpdatePotashField.setColumns(10);
+		
+		orderUpdateMapField = new JTextField();
+		GridBagConstraints gbc_orderUpdateMapField = new GridBagConstraints();
+		gbc_orderUpdateMapField.insets = new Insets(0, 0, 5, 5);
+		gbc_orderUpdateMapField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_orderUpdateMapField.gridx = 3;
+		gbc_orderUpdateMapField.gridy = 10;
+		updateOrderPanel.add(orderUpdateMapField, gbc_orderUpdateMapField);
+		orderUpdateMapField.setColumns(10);
+		
+		orderUpdateAMSField = new JTextField();
+		orderUpdateAMSField.setText("");
+		GridBagConstraints gbc_orderUpdateAMSField = new GridBagConstraints();
+		gbc_orderUpdateAMSField.insets = new Insets(0, 0, 5, 5);
+		gbc_orderUpdateAMSField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_orderUpdateAMSField.gridx = 4;
+		gbc_orderUpdateAMSField.gridy = 10;
+		updateOrderPanel.add(orderUpdateAMSField, gbc_orderUpdateAMSField);
+		orderUpdateAMSField.setColumns(10);
+		
+		orderUpdateUreaField = new JTextField();
+		GridBagConstraints gbc_orderUpdateUreaField = new GridBagConstraints();
+		gbc_orderUpdateUreaField.insets = new Insets(0, 0, 5, 5);
+		gbc_orderUpdateUreaField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_orderUpdateUreaField.gridx = 5;
+		gbc_orderUpdateUreaField.gridy = 10;
+		updateOrderPanel.add(orderUpdateUreaField, gbc_orderUpdateUreaField);
+		orderUpdateUreaField.setColumns(10);
+		
+		orderUpdateGypsumField = new JTextField();
+		orderUpdateGypsumField.setText("");
+		GridBagConstraints gbc_orderUpdateGypsumField = new GridBagConstraints();
+		gbc_orderUpdateGypsumField.insets = new Insets(0, 0, 5, 5);
+		gbc_orderUpdateGypsumField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_orderUpdateGypsumField.gridx = 6;
+		gbc_orderUpdateGypsumField.gridy = 10;
+		updateOrderPanel.add(orderUpdateGypsumField, gbc_orderUpdateGypsumField);
+		orderUpdateGypsumField.setColumns(10);
+		
+		JLabel lblNewLabel_66 = new JLabel("Comments");
+		GridBagConstraints gbc_lblNewLabel_66 = new GridBagConstraints();
+		gbc_lblNewLabel_66.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_66.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_66.gridx = 1;
+		gbc_lblNewLabel_66.gridy = 12;
+		updateOrderPanel.add(lblNewLabel_66, gbc_lblNewLabel_66);
+		
+		orderUpdateCommentsField = new JTextField();
+		GridBagConstraints gbc_orderUpdateCommentsField = new GridBagConstraints();
+		gbc_orderUpdateCommentsField.gridwidth = 5;
+		gbc_orderUpdateCommentsField.insets = new Insets(0, 0, 5, 5);
+		gbc_orderUpdateCommentsField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_orderUpdateCommentsField.gridx = 2;
+		gbc_orderUpdateCommentsField.gridy = 12;
+		updateOrderPanel.add(orderUpdateCommentsField, gbc_orderUpdateCommentsField);
+		orderUpdateCommentsField.setColumns(10);
+		
+		JButton orderUpdateButton = new JButton("Update");
+		orderUpdateButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					
+				CreateOrder updateOrder = new CreateOrder();
+				updateOrder.updateOrder(orderUpdateOrderIDLabel.getText(), orderUpdateCustomerNumberField, updateOrderEmployeeNumField, orderUpdatePickupDateField, orderUpdatePickupTimeField, orderUpdatePotashField, orderUpdateMapField, orderUpdateAMSField, orderUpdateUreaField, orderUpdateGypsumField, orderUpdateCommentsField, orderUpdateOrderPaidBox, orderCreateOrderCompleteBox, orderCreateOrderDeliveredBox);
+				updateOrderPanel.hide();
+				orderPanel.show();
+			}
+		});
+		GridBagConstraints gbc_orderUpdateButton = new GridBagConstraints();
+		gbc_orderUpdateButton.insets = new Insets(0, 0, 5, 5);
+		gbc_orderUpdateButton.gridx = 5;
+		gbc_orderUpdateButton.gridy = 13;
+		updateOrderPanel.add(orderUpdateButton, gbc_orderUpdateButton);
+		
+		JButton orderUpdateBackButton = new JButton("Back");
+		orderUpdateBackButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				updateOrderPanel.hide();
+				orderPanel.show();
+			}
+		});
+		GridBagConstraints gbc_orderUpdateBackButton = new GridBagConstraints();
+		gbc_orderUpdateBackButton.insets = new Insets(0, 0, 5, 5);
+		gbc_orderUpdateBackButton.gridx = 6;
+		gbc_orderUpdateBackButton.gridy = 13;
+		updateOrderPanel.add(orderUpdateBackButton, gbc_orderUpdateBackButton);
 	}
 }

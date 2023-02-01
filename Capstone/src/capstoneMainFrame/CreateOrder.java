@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.swing.JCheckBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -290,5 +291,172 @@ public class CreateOrder {
 	           return;
 	       }  
 	   }  
+	   
+	   /*
+	     * Function to update a customer's entry in the database
+	     * @param String customerNum is the unique customer ID of the customer being edited
+	     * @param JTextField FirstNameField is the Text Field Containing the Customer's first name
+	     * @param JTextField LastNameField is the Text Field Containing the Customer's Last name
+	     * @param JTextField AddressField is the Text Field Containing the Customer's address
+	     * @param JTextField PhoneNumField is the Text Field Containing the Customer's phone num
+	     * @param JTextField EmailField is the Text Field Containing the Customer's email
+	     * @param JTextField AssignedRepID is the Text Field Containing the Customer's assigned sales rep
+	     * @return nothing
+	     */
+	    public void updateOrder(String OrderNum, JTextField CustomerNumField, JTextField EmployeeNumField, JTextField PickupDateField, JTextField PickupTimeField, JTextField PotashField, JTextField MAPField, JTextField AMSField, JTextField UreaField,
+	    		JTextField GypsumField, JTextField CommentsField, JCheckBox PaidBox, JCheckBox CompleteBox, JCheckBox DeliveredBox) {
+			// Convert the customerNum from String to Int
+	    	int orderID = Integer.parseInt(OrderNum);
+			
+			// Load with information based on the loaded information in the text fields
+	    	int customerNum = 0;
+			int employeeNum = 0;
+			String PickUpDate = null;
+			String PickUpTime = null;
+			Double Potash = 0.0;
+			Double MAP = 0.0;
+			Double AMS = 0.0;
+			Double Urea= 0.0;
+			Double Gypsum = 0.0;
+			String Comments = null;
+			Boolean paid = false;
+			Boolean complete = false;
+			Boolean delivered = false;
+	            
+	            customerNum = Integer.parseInt(CustomerNumField.getText());
+	            employeeNum = Integer.parseInt(EmployeeNumField.getText());
+	            PickUpDate = PickupDateField.getText();
+	            PickUpTime = PickupTimeField.getText();
+	            Potash = Double.parseDouble(PotashField.getText());
+	            MAP = Double.parseDouble(MAPField.getText());
+	            AMS = Double.parseDouble(AMSField.getText());
+	            Urea = Double.parseDouble(UreaField.getText());
+	            Gypsum = Double.parseDouble(GypsumField.getText());
+	            Comments = CommentsField.getText();
+	            
+	            paid = PaidBox.isSelected();
+	            complete = CompleteBox.isSelected();
+	            delivered = DeliveredBox.isSelected();
+	    	
+			
+			// Update
+			String updateOrder = "Update orders SET "
+					+ "customerNum = ?, employeeNum = ?, orderPaid = ?, orderComplete = ?, "
+		       		+ "orderDelivered = ?, pickUpDate = ?, pickupTime = ?, Potash = ?, MAP = ?"
+		       		+ ", AMS = ?, Urea = ?, Gypsum = ?, comments = ?"
+		       		+ " WHERE orderNum = ?";
+					
+			try {
+	            Connection conn = this.connect();  
+	            PreparedStatement pstmt  = conn.prepareStatement(updateOrder);  
+	            pstmt.setInt(1, customerNum);
+	            pstmt.setInt(2, employeeNum);
+	            pstmt.setBoolean(3, paid);
+	            pstmt.setBoolean(4, complete);
+	            pstmt.setBoolean(5, delivered);
+	            pstmt.setString(6, PickUpDate);
+	            pstmt.setString(7, PickUpTime);
+	            pstmt.setDouble(8, Potash);
+	            pstmt.setDouble(9, MAP);
+	            pstmt.setDouble(10, AMS);
+	            pstmt.setDouble(11, Urea);
+	            pstmt.setDouble(12, Gypsum);
+	            pstmt.setString(13, Comments);
+	            pstmt.setInt(14, orderID);
+	            pstmt.executeUpdate();
+			
+	            return;
+	        } catch (SQLException e) {  
+	            System.out.println(e.getMessage());  
+	            return;
+	            
+	        }  
+	    }
+	    
+	    /*
+	     * Function to load a customer's entry in the database
+	     * @param String customerNum is the unique customer ID of the customer being edited
+	     * @param JLabel IDLabel is the label used to show the customer's ID
+	     * @param JTextField FirstNameField is the Text Field Containing the Customer's first name
+	     * @param JTextField LastNameField is the Text Field Containing the Customer's Last name
+	     * @param JTextField AddressField is the Text Field Containing the Customer's address
+	     * @param JTextField PhoneNumField is the Text Field Containing the Customer's phone num
+	     * @param JTextField EmailField is the Text Field Containing the Customer's email
+	     * @param JTextField AssignedRepID is the Text Field Containing the Customer's assigned sales rep
+	     * @return nothing
+	     */
+	    public void loadOrder(String OrderNum, JLabel orderIDLabel, JTextField CustomerNumField, JTextField EmployeeNumField, JTextField PickupDateField, JTextField PickupTimeField, JTextField PotashField, JTextField MAPField, JTextField AMSField, JTextField UreaField,
+	    		JTextField GypsumField, JTextField CommentsField, JCheckBox PaidBox, JCheckBox CompleteBox, JCheckBox DeliveredBox, JLabel orderDateLabel) {
+			// Convert the customerNum from String to Int
+	    	int orderID = Integer.parseInt(OrderNum);
+			
+			// Load with information based on the loaded information in the text fields
+	    	int customerNum = 0;
+			int employeeNum = 0;
+			String PickUpDate = null;
+			String PickUpTime = null;
+			Double Potash = 0.0;
+			Double MAP = 0.0;
+			Double AMS = 0.0;
+			Double Urea= 0.0;
+			Double Gypsum = 0.0;
+			String Comments = null;
+			Boolean paid = false;
+			Boolean complete = false;
+			Boolean delivered = false;
+			String orderDate = null;
+			
+			String sql = String.format("SELECT * from orders where orderNum = \"%d\"", orderID); 
+			// Try and connect to the database
+	        try {  
+	            Connection conn = this.connect();  
+	            Statement stmt  = conn.createStatement();  
+	            
+	            // Run SQL statement and return the result
+	            ResultSet rs    = stmt.executeQuery(sql);
+	            
+	            // Extract the needed information
+	            customerNum = rs.getInt("customerNum");
+            	employeeNum = rs.getInt("employeeNum");
+            	paid = rs.getBoolean("orderPaid");
+            	complete = rs.getBoolean("orderComplete");
+            	delivered = rs.getBoolean("orderDelivered");
+            	PickUpDate = rs.getString("pickUpDate");
+            	PickUpTime = rs.getString("pickUpTime");
+            	Potash = rs.getDouble("Potash");
+            	MAP = rs.getDouble("MAP");
+            	AMS = rs.getDouble("AMS");
+            	Urea = rs.getDouble("Urea");
+            	Gypsum = rs.getDouble("Gypsum");
+            	Comments = rs.getString("comments");
+            	orderDate = rs.getString("orderDate");
+	            
+	            // Set the text of the fields
+	            orderIDLabel.setText(orderID + "");
+	            CustomerNumField.setText(customerNum + "");
+	            EmployeeNumField.setText(employeeNum + "");
+	            PickupDateField.setText(PickUpDate);
+	            PickupTimeField.setText(PickUpTime);
+	            PotashField.setText(Potash + "");
+	            MAPField.setText(MAP + "");
+	            AMSField.setText(AMS + "");
+	            UreaField.setText(Urea + "");
+	            GypsumField.setText(Gypsum + "");
+	            CommentsField.setText(Comments);
+	            orderDateLabel.setText(orderDate);
+	            PaidBox.setSelected(paid);
+	            CompleteBox.setSelected(complete);
+	            DeliveredBox.setSelected(delivered);
+	            
+	            stmt.close();
+	            conn.close();
+	            return;
+	    
+	        } catch (SQLException e) {  
+	        	System.out.println(e.getMessage());  
+	        	return;
+	        
+	        }  
+	    }
 
 }
