@@ -186,6 +186,7 @@ public class CapstoneMainFrame {
 		JCheckBox orderUpdateOrderDelivered = new JCheckBox("Order Delivered");
 		JCheckBox orderUpdateOrderComplete = new JCheckBox("Order Complete");
 		JButton customerUpdateButton = new JButton("Update");
+		JButton orderUpdateButton = new JButton("Update");
 		
 		/**
 		 * Frame Class Initialization
@@ -1121,6 +1122,26 @@ public class CapstoneMainFrame {
 			    updateOrderPanel.show();
 			}
 		});
+		
+		JButton deleteOrderButton = new JButton("Delete Order");
+		deleteOrderButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrame frame = new JFrame();
+			    String orderID = JOptionPane.showInputDialog(frame, "Enter ID of Order to Delete:");
+			    
+			    setPrevious(orderPanel);
+			    orderPanel.hide();
+			    CreateOrder myOrder = new CreateOrder();
+			    myOrder.loadOrder(orderID, orderUpdateOrderIDLabel, orderUpdateCustomerNumberField, updateOrderEmployeeNumField, orderUpdatePickupDateField, orderUpdatePickupTimeField, orderUpdatePotashField, orderUpdateMapField, orderUpdateAMSField, orderUpdateUreaField, orderUpdateGypsumField, orderUpdateCommentsField, orderUpdateOrderPaidBox, orderUpdateOrderComplete, orderUpdateOrderDelivered, orderUpdateOrderDateLabel);
+			    orderUpdateButton.setText("Delete");
+			    updateOrderPanel.show();
+			}
+		});
+		GridBagConstraints gbc_deleteOrderButton = new GridBagConstraints();
+		gbc_deleteOrderButton.insets = new Insets(0, 0, 5, 5);
+		gbc_deleteOrderButton.gridx = 2;
+		gbc_deleteOrderButton.gridy = 4;
+		orderPanel.add(deleteOrderButton, gbc_deleteOrderButton);
 		GridBagConstraints gbc_orderEditButton = new GridBagConstraints();
 		gbc_orderEditButton.insets = new Insets(0, 0, 5, 5);
 		gbc_orderEditButton.gridx = 3;
@@ -2497,14 +2518,31 @@ public class CapstoneMainFrame {
 		updateOrderPanel.add(orderUpdateCommentsField, gbc_orderUpdateCommentsField);
 		orderUpdateCommentsField.setColumns(10);
 		
-		JButton orderUpdateButton = new JButton("Update");
+		
 		orderUpdateButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					
+				
+				if(orderUpdateButton.getText() == "Update") {
 				CreateOrder updateOrder = new CreateOrder();
 				updateOrder.updateOrder(orderUpdateOrderIDLabel.getText(), orderUpdateCustomerNumberField, updateOrderEmployeeNumField, orderUpdatePickupDateField, orderUpdatePickupTimeField, orderUpdatePotashField, orderUpdateMapField, orderUpdateAMSField, orderUpdateUreaField, orderUpdateGypsumField, orderUpdateCommentsField, orderUpdateOrderPaidBox, orderCreateOrderCompleteBox, orderCreateOrderDeliveredBox);
 				updateOrderPanel.hide();
 				orderPanel.show();
+				}
+				
+				else if(orderUpdateButton.getText() == "Delete")
+				{
+					JFrame frame = new JFrame();
+					int result = JOptionPane.showConfirmDialog(frame,"Are you sure you want to delete order", "CAUTION",
+				               JOptionPane.YES_NO_OPTION,
+				               JOptionPane.QUESTION_MESSAGE);
+					
+				    if(result == JOptionPane.YES_OPTION){
+					CreateOrder deleteOrder = new CreateOrder();
+					deleteOrder.deleteOrder(orderUpdateOrderIDLabel.getText());
+					}
+				    updateOrderPanel.hide();
+					orderPanel.show();
+				}
 			}
 		});
 		GridBagConstraints gbc_orderUpdateButton = new GridBagConstraints();

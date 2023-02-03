@@ -371,9 +371,38 @@ public class CreateOrder {
 	            pstmt.setString(13, Comments);
 	            pstmt.setInt(14, orderID);
 	            pstmt.executeUpdate();
+	            
+	            pstmt.close();
+	            conn.close();
 			
 	            return;
 	        } catch (SQLException e) {  
+	            System.out.println(e.getMessage());  
+	            return;
+	            
+	        }  
+	    }
+	    
+	    /*
+	     * Function deletes order from database 
+	     * @param String orderID is the input orderID to delete
+	     */
+	    public void deleteOrder(String orderID) {
+	    	int orderNum = Integer.parseInt(orderID);
+	    	
+	    	String sqlDelete = "Delete from orders where orderNum = ?";
+	    	
+	    	try {
+	            Connection conn = this.connect();
+	            PreparedStatement pstmt  = conn.prepareStatement(sqlDelete);  
+	            pstmt.setInt(1, orderNum);
+	            
+	            pstmt.executeUpdate();
+	    		
+	            pstmt.close();
+	            conn.close();
+	            return;
+	    	} catch (SQLException e) {  
 	            System.out.println(e.getMessage());  
 	            return;
 	            
