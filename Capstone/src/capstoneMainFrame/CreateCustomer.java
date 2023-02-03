@@ -292,8 +292,36 @@ public class CreateCustomer {
             pstmt.setInt(7, customerID);
             pstmt.executeUpdate();
 		
+            pstmt.close();
+            conn.close();
             return;
         } catch (SQLException e) {  
+            System.out.println(e.getMessage());  
+            return;
+            
+        }  
+    }
+    
+    /*
+     * Function deletes customer from database 
+     * @param String customerID is the input customerID to delete
+     */
+    public void deleteCustomer(String customerID) {
+    	int customerNum = Integer.parseInt(customerID);
+    	
+    	String sqlDelete = "Delete from customers where customerNum = ?";
+    	
+    	try {
+            Connection conn = this.connect();
+            PreparedStatement pstmt  = conn.prepareStatement(sqlDelete);  
+            pstmt.setInt(1, customerNum);
+            
+            pstmt.executeUpdate();
+    		
+            pstmt.close();
+            conn.close();
+            return;
+    	} catch (SQLException e) {  
             System.out.println(e.getMessage());  
             return;
             

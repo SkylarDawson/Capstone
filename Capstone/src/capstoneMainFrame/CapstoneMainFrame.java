@@ -185,6 +185,7 @@ public class CapstoneMainFrame {
 		JCheckBox orderUpdateOrderPaidBox = new JCheckBox("Order Paid");
 		JCheckBox orderUpdateOrderDelivered = new JCheckBox("Order Delivered");
 		JCheckBox orderUpdateOrderComplete = new JCheckBox("Order Complete");
+		JButton customerUpdateButton = new JButton("Update");
 		
 		/**
 		 * Frame Class Initialization
@@ -1147,8 +1148,7 @@ public class CapstoneMainFrame {
 			    orderHistoryTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 			    orderHistoryTable.setCellEditor(null);
 			    orderHistoryTable.setBounds(37, 143, 397, 183);
-			    
-				
+			    				
 				orderPanel.setVisible(true);
 			}
 		});
@@ -1382,12 +1382,25 @@ public class CapstoneMainFrame {
 			    customerPanel.hide();
 			    CreateCustomer myCustomer = new CreateCustomer();
 			    myCustomer.loadCustomer(customerID, updateCustomerIDLabel, updateCustomerFirstNameField, updateCustomerLastNameField, updateCustomerAddressField, updateCustomerPhoneNumField, updateCustomerEmailField, updateCustomerRepIDField );
+			    customerUpdateButton.setText("Update");
 			    updateCustomerPanel.show();
 			}
 		});
 		horizontalBox_6.add(updateButton);
 		
 		JButton btnNewButton_8 = new JButton("Delete");
+		btnNewButton_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrame frame = new JFrame();
+			    String customerID = JOptionPane.showInputDialog(frame, "Enter ID of Customer to Delete:");
+			    setPrevious(customerPanel);
+			    customerPanel.hide();
+			    CreateCustomer myCustomer = new CreateCustomer();
+			    myCustomer.loadCustomer(customerID, updateCustomerIDLabel, updateCustomerFirstNameField, updateCustomerLastNameField, updateCustomerAddressField, updateCustomerPhoneNumField, updateCustomerEmailField, updateCustomerRepIDField );
+			    customerUpdateButton.setText("Delete");
+			    updateCustomerPanel.show();
+			}
+		});
 		horizontalBox_6.add(btnNewButton_8);
 		
 		Component horizontalGlue_2 = Box.createHorizontalGlue();
@@ -2206,13 +2219,29 @@ public class CapstoneMainFrame {
 		gbc_horizontalBox_4.gridy = 10;
 		updateCustomerPanel.add(horizontalBox_4, gbc_horizontalBox_4);
 		
-		JButton customerUpdateButton = new JButton("Update");
+		
 		customerUpdateButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(customerUpdateButton.getText() == "Update") {
 				CreateCustomer updateCustomer = new CreateCustomer();
 				updateCustomer.updateCustomer(updateCustomerIDLabel.getText(), updateCustomerFirstNameField, updateCustomerLastNameField, updateCustomerAddressField, updateCustomerPhoneNumField, updateCustomerEmailField, updateCustomerRepIDField);
 				updateCustomerPanel.hide();
 				customerPanel.show();
+				}
+				else if(customerUpdateButton.getText() == "Delete")
+				{
+					JFrame frame = new JFrame();
+					int result = JOptionPane.showConfirmDialog(frame,"Are you sure you want to delete user", "CAUTION",
+				               JOptionPane.YES_NO_OPTION,
+				               JOptionPane.QUESTION_MESSAGE);
+					
+				    if(result == JOptionPane.YES_OPTION){
+					CreateCustomer deleteCustomer = new CreateCustomer();
+					deleteCustomer.deleteCustomer(updateCustomerIDLabel.getText());
+					}
+					updateCustomerPanel.hide();
+					customerPanel.show();
+				}
 			}
 		});
 		horizontalBox_4.add(customerUpdateButton);
