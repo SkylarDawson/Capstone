@@ -23,6 +23,7 @@ import java.awt.Component;
 import javax.swing.JLayeredPane;
 import javax.swing.JCheckBox;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import java.awt.Color;
@@ -1016,6 +1017,7 @@ public class CapstoneMainFrame {
 			public void actionPerformed(ActionEvent e) {
 				orderPanel.hide();
 				mainPanel.show();
+				orderHistoryTable.setModel(new DefaultTableModel());
 				setPrevious(orderPanel);
 			}
 		});
@@ -1105,6 +1107,7 @@ public class CapstoneMainFrame {
 			public void actionPerformed(ActionEvent e) {
 				orderPanel.hide();
 				createOrderPanel.show();
+				orderHistoryTable.setModel(new DefaultTableModel());
 				setPrevious(orderPanel);
 			}
 		});
@@ -1119,6 +1122,7 @@ public class CapstoneMainFrame {
 			    orderPanel.hide();
 			    CreateOrder myOrder = new CreateOrder();
 			    myOrder.loadOrder(orderID, orderUpdateOrderIDLabel, orderUpdateCustomerNumberField, updateOrderEmployeeNumField, orderUpdatePickupDateField, orderUpdatePickupTimeField, orderUpdatePotashField, orderUpdateMapField, orderUpdateAMSField, orderUpdateUreaField, orderUpdateGypsumField, orderUpdateCommentsField, orderUpdateOrderPaidBox, orderUpdateOrderComplete, orderUpdateOrderDelivered, orderUpdateOrderDateLabel);
+			    orderHistoryTable.setModel(new DefaultTableModel());
 			    updateOrderPanel.show();
 			}
 		});
@@ -1134,6 +1138,7 @@ public class CapstoneMainFrame {
 			    CreateOrder myOrder = new CreateOrder();
 			    myOrder.loadOrder(orderID, orderUpdateOrderIDLabel, orderUpdateCustomerNumberField, updateOrderEmployeeNumField, orderUpdatePickupDateField, orderUpdatePickupTimeField, orderUpdatePotashField, orderUpdateMapField, orderUpdateAMSField, orderUpdateUreaField, orderUpdateGypsumField, orderUpdateCommentsField, orderUpdateOrderPaidBox, orderUpdateOrderComplete, orderUpdateOrderDelivered, orderUpdateOrderDateLabel);
 			    orderUpdateButton.setText("Delete");
+			    orderHistoryTable.setModel(new DefaultTableModel());
 			    updateOrderPanel.show();
 			}
 		});
@@ -1162,7 +1167,7 @@ public class CapstoneMainFrame {
 		orderHistorySearchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				OrderGUI mySearch = new OrderGUI();
-				
+				orderHistoryTable.setModel(new DefaultTableModel());
 				// Create the table based on the returned results
 				TableModel myModel = mySearch.execute(orderHistoryOrderIDField, orderHistoryFirstNameField, orderHistoryLastNameField, orderHistoryOrderDateField);
 			    orderHistoryTable.setModel(myModel);
@@ -1268,6 +1273,9 @@ public class CapstoneMainFrame {
 		gbc_btnNewButton_3.gridy = 2;
 		spreaderPanel.add(btnNewButton_3, gbc_btnNewButton_3);
 		
+		/**
+		 * Customer Panel
+		 */
 		GridBagLayout gbl_customerPanel = new GridBagLayout();
 		gbl_customerPanel.columnWidths = new int[]{40, 100, 100, 100, 100, 100, -62, 0};
 		gbl_customerPanel.rowHeights = new int[]{57, 0, 47, 0, 0, 0, 0};
@@ -1388,6 +1396,7 @@ public class CapstoneMainFrame {
 			public void actionPerformed(ActionEvent e) {
 				setPrevious(customerPanel);
 				customerPanel.hide();
+				customerLookupTable.setModel(new DefaultTableModel());
 				createCustomerPanel.show();
 			}
 		});
@@ -1404,6 +1413,7 @@ public class CapstoneMainFrame {
 			    CreateCustomer myCustomer = new CreateCustomer();
 			    myCustomer.loadCustomer(customerID, updateCustomerIDLabel, updateCustomerFirstNameField, updateCustomerLastNameField, updateCustomerAddressField, updateCustomerPhoneNumField, updateCustomerEmailField, updateCustomerRepIDField );
 			    customerUpdateButton.setText("Update");
+			    customerLookupTable.setModel(new DefaultTableModel());
 			    updateCustomerPanel.show();
 			}
 		});
@@ -1419,6 +1429,7 @@ public class CapstoneMainFrame {
 			    CreateCustomer myCustomer = new CreateCustomer();
 			    myCustomer.loadCustomer(customerID, updateCustomerIDLabel, updateCustomerFirstNameField, updateCustomerLastNameField, updateCustomerAddressField, updateCustomerPhoneNumField, updateCustomerEmailField, updateCustomerRepIDField );
 			    customerUpdateButton.setText("Delete");
+			    customerLookupTable.setModel(new DefaultTableModel());
 			    updateCustomerPanel.show();
 			}
 		});
@@ -1432,6 +1443,7 @@ public class CapstoneMainFrame {
 			public void actionPerformed(ActionEvent e) {
 				customerPanel.hide();
 				mainPanel.show();
+				customerLookupTable.setModel(new DefaultTableModel());
 				setPrevious(customerPanel);
 				
 			}
