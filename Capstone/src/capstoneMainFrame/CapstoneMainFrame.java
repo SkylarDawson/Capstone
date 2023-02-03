@@ -1108,6 +1108,10 @@ public class CapstoneMainFrame {
 				orderPanel.hide();
 				createOrderPanel.show();
 				orderHistoryTable.setModel(new DefaultTableModel());
+				orderHistoryOrderIDField.setText("");
+				orderHistoryFirstNameField.setText("");
+				orderHistoryLastNameField.setText("");
+				orderHistoryOrderDateField.setText("");
 				setPrevious(orderPanel);
 			}
 		});
@@ -1123,6 +1127,10 @@ public class CapstoneMainFrame {
 			    CreateOrder myOrder = new CreateOrder();
 			    myOrder.loadOrder(orderID, orderUpdateOrderIDLabel, orderUpdateCustomerNumberField, updateOrderEmployeeNumField, orderUpdatePickupDateField, orderUpdatePickupTimeField, orderUpdatePotashField, orderUpdateMapField, orderUpdateAMSField, orderUpdateUreaField, orderUpdateGypsumField, orderUpdateCommentsField, orderUpdateOrderPaidBox, orderUpdateOrderComplete, orderUpdateOrderDelivered, orderUpdateOrderDateLabel);
 			    orderHistoryTable.setModel(new DefaultTableModel());
+			    orderHistoryOrderIDField.setText("");
+				orderHistoryFirstNameField.setText("");
+				orderHistoryLastNameField.setText("");
+				orderHistoryOrderDateField.setText("");
 			    updateOrderPanel.show();
 			}
 		});
@@ -1139,6 +1147,10 @@ public class CapstoneMainFrame {
 			    myOrder.loadOrder(orderID, orderUpdateOrderIDLabel, orderUpdateCustomerNumberField, updateOrderEmployeeNumField, orderUpdatePickupDateField, orderUpdatePickupTimeField, orderUpdatePotashField, orderUpdateMapField, orderUpdateAMSField, orderUpdateUreaField, orderUpdateGypsumField, orderUpdateCommentsField, orderUpdateOrderPaidBox, orderUpdateOrderComplete, orderUpdateOrderDelivered, orderUpdateOrderDateLabel);
 			    orderUpdateButton.setText("Delete");
 			    orderHistoryTable.setModel(new DefaultTableModel());
+			    orderHistoryOrderIDField.setText("");
+				orderHistoryFirstNameField.setText("");
+				orderHistoryLastNameField.setText("");
+				orderHistoryOrderDateField.setText("");
 			    updateOrderPanel.show();
 			}
 		});
@@ -1167,7 +1179,7 @@ public class CapstoneMainFrame {
 		orderHistorySearchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				OrderGUI mySearch = new OrderGUI();
-				orderHistoryTable.setModel(new DefaultTableModel());
+				
 				// Create the table based on the returned results
 				TableModel myModel = mySearch.execute(orderHistoryOrderIDField, orderHistoryFirstNameField, orderHistoryLastNameField, orderHistoryOrderDateField);
 			    orderHistoryTable.setModel(myModel);
@@ -1397,6 +1409,10 @@ public class CapstoneMainFrame {
 				setPrevious(customerPanel);
 				customerPanel.hide();
 				customerLookupTable.setModel(new DefaultTableModel());
+				customerLookupCustomerIDField.setText("");
+				customerLookupCustomerFirstNameField.setText("");
+				customerLookupLastNameField.setText("");
+				customerLookupPhoneNumberField.setText("");
 				createCustomerPanel.show();
 			}
 		});
@@ -1414,6 +1430,10 @@ public class CapstoneMainFrame {
 			    myCustomer.loadCustomer(customerID, updateCustomerIDLabel, updateCustomerFirstNameField, updateCustomerLastNameField, updateCustomerAddressField, updateCustomerPhoneNumField, updateCustomerEmailField, updateCustomerRepIDField );
 			    customerUpdateButton.setText("Update");
 			    customerLookupTable.setModel(new DefaultTableModel());
+			    customerLookupCustomerIDField.setText("");
+				customerLookupCustomerFirstNameField.setText("");
+				customerLookupLastNameField.setText("");
+				customerLookupPhoneNumberField.setText("");
 			    updateCustomerPanel.show();
 			}
 		});
@@ -1430,6 +1450,10 @@ public class CapstoneMainFrame {
 			    myCustomer.loadCustomer(customerID, updateCustomerIDLabel, updateCustomerFirstNameField, updateCustomerLastNameField, updateCustomerAddressField, updateCustomerPhoneNumField, updateCustomerEmailField, updateCustomerRepIDField );
 			    customerUpdateButton.setText("Delete");
 			    customerLookupTable.setModel(new DefaultTableModel());
+			    customerLookupCustomerIDField.setText("");
+				customerLookupCustomerFirstNameField.setText("");
+				customerLookupLastNameField.setText("");
+				customerLookupPhoneNumberField.setText("");
 			    updateCustomerPanel.show();
 			}
 		});
@@ -1444,6 +1468,10 @@ public class CapstoneMainFrame {
 				customerPanel.hide();
 				mainPanel.show();
 				customerLookupTable.setModel(new DefaultTableModel());
+				customerLookupCustomerIDField.setText("");
+				customerLookupCustomerFirstNameField.setText("");
+				customerLookupLastNameField.setText("");
+				customerLookupPhoneNumberField.setText("");
 				setPrevious(customerPanel);
 				
 			}
