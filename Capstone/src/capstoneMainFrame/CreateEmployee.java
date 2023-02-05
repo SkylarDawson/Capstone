@@ -3,6 +3,9 @@
  */
 package capstoneMainFrame;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +30,22 @@ public class CreateEmployee {
 		this.lastName = lastName;
 		this.employeeID = employeeID;
 		this.jobTitle = jobTitle;
+	}
+	
+	
+	private Connection connect() {
+		
+		// SQLite connection string - this string is the file path to the database
+		String url = "jdbc:sqlite:C://sqlite/fertilizer.db";
+		Connection conn = null;
+		
+		// Test to make sure that the database exists
+		try {
+			conn = DriverManager.getConnection(url);
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return conn;
 	}
 	
 	// function to have the ability to delete an employee
