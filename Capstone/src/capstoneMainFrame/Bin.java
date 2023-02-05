@@ -18,13 +18,33 @@ public class Bin {
 		this.ingredient = "-";
 		this.storage = 0;
 	}
-
+	
 	public String getIngredient() {
 		return this.ingredient;
 	}
 	
+	public void setIngredient(String ingredient) {
+		this.ingredient = ingredient;
+		return;
+	}
+	
 	public int getStorage() {
 		return storage;
+	}
+	
+	public void addStorage(int inbound) {
+		this.storage += inbound;
+	}
+	
+	public boolean subStorage(int outbound) {
+		if(this.storage >= outbound) {
+			this.storage -= outbound;
+			if(this.storage == 0) {
+				this.ingredient = "-";
+			}
+			return true;
+		}
+		return false;
 	}
 	
 	/**

@@ -734,13 +734,6 @@ public class CapstoneMainFrame {
 		gbc_btnInvLoad_5.gridy = 7;
 		inventoryPanel.add(btnInvLoad_5, gbc_btnInvLoad_5);
 		
-		JButton btnEmpty = new JButton("Save");
-		GridBagConstraints gbc_btnEmpty = new GridBagConstraints();
-		gbc_btnEmpty.insets = new Insets(0, 0, 5, 5);
-		gbc_btnEmpty.gridx = 7;
-		gbc_btnEmpty.gridy = 7;
-		inventoryPanel.add(btnEmpty, gbc_btnEmpty);
-		
 		JLabel lblBin_6 = new JLabel("6");
 		lblBin_6.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lblBin_6 = new GridBagConstraints();
@@ -910,6 +903,20 @@ public class CapstoneMainFrame {
 		gbc_btnInvLoad_10.gridx = 4;
 		gbc_btnInvLoad_10.gridy = 12;
 		inventoryPanel.add(btnInvLoad_10, gbc_btnInvLoad_10);
+		
+		JButton btnEmpty = new JButton("Save");
+		btnEmpty.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				inventory.inboundBin(Integer.valueOf(textFieldBinInput.getText()) - 1, textFieldIngredientInput.getText(), Integer.valueOf(textFieldStorageInput.getText()));
+				inventory.updateInventory(lblIngredient_1, lblIngredient_2, lblIngredient_3, lblIngredient_4, lblIngredient_5, lblIngredient_6, lblIngredient_7, lblIngredient_8, lblIngredient_9, lblIngredient_10, lblStorage_1, lblStorage_2, lblStorage_3, lblStorage_4, lblStorage_5, lblStorage_6, lblStorage_7, lblStorage_8, lblStorage_9, lblStorage_10);
+				textFieldStorageInput.setText(null);
+			}
+		});
+		GridBagConstraints gbc_btnEmpty = new GridBagConstraints();
+		gbc_btnEmpty.insets = new Insets(0, 0, 5, 5);
+		gbc_btnEmpty.gridx = 7;
+		gbc_btnEmpty.gridy = 7;
+		inventoryPanel.add(btnEmpty, gbc_btnEmpty);
 		
 		// Temporary Back button
 		JButton btnBack_1 = new JButton("Back");
