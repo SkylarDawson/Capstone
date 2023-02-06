@@ -5,6 +5,15 @@ package capstoneMainFrame;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +22,345 @@ import java.util.List;
  * @author 19sky
  *
  */
+public class CreateEmployee {
+
+	/**
+	 * 
+	 */
+	public CreateEmployee() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	/*
+	 * connect to the database the specified based on the file path
+	 */
+    private Connection connect() {  
+    	 // SQLite connection string  - this string is the file path to the database 
+        String url = "jdbc:sqlite:C://sqlite/fertilizer.db";  
+        Connection conn = null;  
+        
+        // Test to make sure that the database exists
+        try {  
+            conn = DriverManager.getConnection(url);  
+        } catch (SQLException e) {  
+            System.out.println(e.getMessage());  
+        }  
+        return conn;  
+    }
+    
+    /*
+     * This function executes the functionality of the create employee page
+     * @param JTextField EmployeeIDField is the passed in employee ID field from the GUI. This field is used create the needed EmployeeNum for the input. 
+     * @param JTextField FirstNameField is the passed in First Name Field from the GUI
+     * @param JTextField LastNameField is the passed in Last Name Field from the GUI
+     * @param JTextField JobTitleField is the passed in Job Title Field from the GUI
+     * @param JTextField AssignedRepID is the passed in Employee Number from the GUI
+     * @return nothing
+     */
+	public void execute(JTextField EmployeeIDField, JTextField FirstNameField, JTextField LastNameField, JTextField JobTitleField, JTextField AssignedRepIDField) {
+		
+		// Attributes needed for new Employee (based on the attributes found in the Employees Table in the Database)
+		int employeeNum = 0;
+		String firstName = null;
+		String lastName = null;
+		String jobTitle = null;
+		int assignedRepID = 0;
+		
+		// For error checking
+		boolean error = false;
+		
+		// String for error message(s)
+		String errorMessage = "";
+		
+		// Check that the fields are not empty and all needed information is included
+		// Needed information is ID, First Name, Last Name, Job Title
+		
+		if(EmployeeIDField.getText() == null || EmployeeIDField.getText() == "") { error = true; errorMessage += "Employee ID Missing \n";}
+		if(FirstNameField.getText() == null || FirstNameField.getText() == "") { error = true; errorMessage += "First Name Missing \n";}
+		if(LastNameField.getText() == null || LastNameField.getText() == "") { error = true; errorMessage += "Last Name Missing \n";}
+		if(JobTitleField.getText() == null || JobTitleField.getText() == "") { error = true; errorMessage += "Job Title Missing \n";}
+		
+		// Using the passed in JTextFields - extract the needed information to create a Employee
+		employeeNum = Integer.parseInt(EmployeeIDField.getText());
+		firstName = FirstNameField.getText();
+		lastName = LastNameField.getText();
+		jobTitle = JobTitleField.getText();
+		assignedRepID = Integer.parseInt(AssignedRepIDField.getText());
+		
+		
+		// Check to make sure that the information put in is valid
+    		// Employee ID Doesn't Exist
+		 	String sqlCheckID = String.format("Select employeeNum from Employees where employeeNum = \"%d\"", employeeNum);
+	        
+	        try {
+	        Connection conn = this.connect();  
+	        Statement stmt  = conn.createStatement(); 
+	        
+	        // Run SQL statement and return the result
+	        ResultSet rs  = stmt.executeQuery(sqlCheckID);
+	        
+	        // loop through the result set - prints out each attribute for each tuple pulled
+	        while (rs.next()) {  
+	        	// If the Employee ID already exists
+	            if(rs.getInt("employeeNum") == employeeNum) {error = true; errorMessage += "Employee ID Already Exists \n";}
+	        }  
+	        	} catch (SQLException e) {  
+	        System.out.println(e.getMessage());  
+	        	}  
+	        
+        	// Employee ID is not a negative
+	        if(employeeNum <= 0 ) {error = true; errorMessage += "Employee ID Cannot Be Negative \n";}
+	        
+        	// Employee ID exists in system
+	        String employeeIDExists = String.format("Select employeeNum from employees where employeeNum = \"%d\"", assignedRepID);
+	        
+	        try {
+	            Connection conn = this.connect();  
+	            Statement stmt  = conn.createStatement(); 
+	            
+	            // Run SQL statement and return the result
+	            ResultSet rs  = stmt.executeQuery(employeeIDExists);
+	            
+	            // loop through the result set - prints out each attribute for each tuple pulled
+	            while (rs.next()) {  
+	                if(rs.getInt("employeeNum") != assignedRepID) {error = true; errorMessage += "Employee ID Does Not Exist \n";}
+	            }  
+	            	} catch (SQLException e) {  
+	            System.out.println(e.getMessage());  
+	            	}  
+	        
+			// Phone Number is valid & does not exist
+
+	     // Check for SQL injection
+			
+			// If no error was found in the input information - insert the employee and clear
+			if(!error) {
+				// Insert the employee into the Database
+				insertEmployee(employeeNum, firstName, lastName, jobTitle, assignedRepID);
+				
+				// Update System
+				
+				// Clear the text fields
+				
+				EmployeeIDField.setText("");
+				FirstNameField.setText("");
+				LastNameField.setText("");
+				JobTitleField.setText("");
+				AssignedRepIDField.setText("");
+				
+				return;
+			}
+			
+			// If an error was discovered - show error message to the user. 
+			else {
+				// Display pop up showing that the employee could not be found
+	        	JOptionPane.showMessageDialog(null, errorMessage);
+	        	return;
+			}
+		}
+
+	
+	 /*
+     * Function adds an entry into the employee table within the fertilizer database
+     * @param int employeeID is the unique employeeID assigned to a specific employee
+     * @param String firstName is the employee's first name
+     * @param String lastName is the employee's last name
+     * @param String jobTitle is the employee's phone number
+     * @param int assignedRepID is the corresponding employeeID for the sales rep associated
+     * @return nothing
+     */
+    public void insertEmployee(int employeeNum, String firstName, String lastName, String jobTitle, int assignedRepID) {  
+        
+    	// The needed SQL command to be executed on the database to successfully insert an employee
+    	String sql = "INSERT INTO employee(employeeNum, firstName, lastName, jobTitle, assignedRepID)"
+        		+ " VALUES(?,?,?,?,?)";  
+   
+        try{  
+        	// Connect to the database
+            Connection conn = this.connect();  
+            
+            // Execute the statement and insert the passed values
+            PreparedStatement pstmt = conn.prepareStatement(sql);  
+            pstmt.setInt(1, employeeNum);  
+            pstmt.setString(2, firstName);
+            pstmt.setString(3, lastName);
+            pstmt.setString(4, jobTitle);
+            pstmt.setInt(5, assignedRepID); 
+            
+            // Update after executing
+            pstmt.executeUpdate();  
+            
+            return;
+        } catch (SQLException e) {  
+            System.out.println(e.getMessage()); 
+            return;
+        }  
+    }
+    
+    
+    /*
+     * Function to update a employee's entry in the database
+     * @param String employeeNum is the unique employee ID of the employee being edited
+     * @param JTextField FirstNameField is the Text Field Containing the Employee's first name
+     * @param JTextField LastNameField is the Text Field Containing the Employee's Last name
+     * @param JTextField JobTitleField is the Text Field Containing the Employee's job title
+     * @param JTextField AssignedRepID is the Text Field Containing the Customer's assigned sales rep
+     * @return nothing
+     */
+    public void updateEmployee(String employeeNum, JTextField FirstNameField, JTextField LastNameField, JTextField JobTitleField, JTextField AssignedRepIDField) {
+		// Convert the employeeNum from String to Int
+    	int employeeID = Integer.parseInt(employeeNum);
+		
+		// Load with information based on the loaded information in the text fields
+    	String firstName = null;
+		String lastName = null;
+		String jobTitle = null;
+		int assignedRepID = 0;
+            
+            firstName = FirstNameField.getText();
+            lastName = LastNameField.getText();
+            jobTitle = JobTitleField.getText();
+            assignedRepID = Integer.parseInt(AssignedRepIDField.getText());
+    	
+        /*
+         * Pass through the fields & ensure that they aren't blank - if not alter what the variable is assigned
+         */
+		if(FirstNameField.getText().length() != 0)
+		{
+			firstName = FirstNameField.getText();
+		}
+		
+		if(LastNameField.getText().length() != 0) {
+			lastName = LastNameField.getText();
+		}
+		
+		if(JobTitleField.getText().length() != 0)
+		{
+			jobTitle = JobTitleField.getText();
+		}
+		
+		if(AssignedRepIDField.getText().length() != 0)
+		{
+			assignedRepID = Integer.parseInt(AssignedRepIDField.getText());
+		}
+		
+		// Update
+		String updateEmployee = "Update employee "
+				+ "SET firstName = ? , "
+				+ "lastName = ?,"
+				+ "jobTitle = ?,"
+				+ "assignedRepID = ? "
+				+ "WHERE employeeNum = ?";
+				
+		try {
+            Connection conn = this.connect();  
+            PreparedStatement pstmt  = conn.prepareStatement(updateEmployee);  
+            pstmt.setString(1, firstName);
+            pstmt.setString(2, lastName);
+            pstmt.setString(3, jobTitle);
+            pstmt.setInt(4, assignedRepID);
+            pstmt.setInt(5, employeeID);
+            pstmt.executeUpdate();
+		
+            pstmt.close();
+            conn.close();
+            return;
+        } catch (SQLException e) {  
+            System.out.println(e.getMessage());  
+            return;
+            
+        }  
+    }
+
+    
+    /*
+     * Function deletes employee from database 
+     * @param String employeeID is the input employeeID to delete
+     */
+    public void deleteEmployee(String employeeID) {
+    	int employeeNum = Integer.parseInt(employeeID);
+    	
+    	String sqlDelete = "Delete from employees where employeeNum = ?";
+    	
+    	try {
+            Connection conn = this.connect();
+            PreparedStatement pstmt  = conn.prepareStatement(sqlDelete);  
+            pstmt.setInt(1, employeeNum);
+            
+            pstmt.executeUpdate();
+    		
+            pstmt.close();
+            conn.close();
+            return;
+    	} catch (SQLException e) {  
+            System.out.println(e.getMessage());  
+            return;
+            
+        }  
+    }
+
+
+    /*
+     * Function to load a employee's entry in the database
+     * @param String employeeNum is the unique employee ID of the employee being edited
+     * @param JLabel IDLabel is the label used to show the employee's ID
+     * @param JTextField FirstNameField is the Text Field Containing the Employee's first name
+     * @param JTextField LastNameField is the Text Field Containing the Employee's Last name
+     * @param JTextField JobTitleField is the Text Field Containing the Employee's job title
+     * @param JTextField AssignedRepID is the Text Field Containing the Customer's assigned sales rep
+     * @return nothing
+     */
+    public void loadEmployee(String employeeNum, JLabel IDLabel, JTextField FirstNameField, JTextField LastNameField, JTextField JobTitleField, JTextField AssignedRepIDField) {
+    	// Convert the ID into an integer
+    	int employeeID = Integer.parseInt(employeeNum);
+		
+		// Load with information based on the employee ID
+    	String firstName = null;
+		String lastName = null;
+		String jobTitle = null;
+		int assignedRepID = 0;
+		
+		String sql = String.format("SELECT * from employees where employeeNum = \"%d\"", employeeID); 
+		// Try and connect to the database
+        try {  
+            Connection conn = this.connect();  
+            Statement stmt  = conn.createStatement();  
+            
+            // Run SQL statement and return the result
+            ResultSet rs    = stmt.executeQuery(sql);
+            
+            // Extract the needed information
+            firstName = rs.getString("firstName");
+            lastName = rs.getString("lastName");
+            jobTitle = rs.getString("jobTitle");
+            assignedRepID = rs.getInt("assignedRepID");
+            
+            // Set the text of the fields
+            IDLabel.setText(employeeID + "");
+            FirstNameField.setText(firstName);
+            LastNameField.setText(lastName);
+            JobTitleField.setText(jobTitle);
+            AssignedRepIDField.setText(assignedRepID + "");
+            
+            stmt.close();
+            conn.close();
+            return;
+    
+        } catch (SQLException e) {  
+        	System.out.println(e.getMessage());  
+        	return;
+        
+        }  
+    }
+    
+}
+
+
+
+
+
+
+/*
 public class CreateEmployee {
 	
 	private String firstName;
@@ -24,6 +372,8 @@ public class CreateEmployee {
 	/**
 	 * 
 	 */
+
+/*
 	public CreateEmployee(String firstName, String lastName, int employeeID, String jobTitle) {
 		// TODO Auto-generated constructor stub
 		this.firstName = firstName;
@@ -112,4 +462,4 @@ public class CreateEmployee {
 		
 	}
 
-} 
+} */
