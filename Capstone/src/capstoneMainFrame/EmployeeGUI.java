@@ -105,9 +105,163 @@ public class EmployeeGUI {
     	}
     	
     	
-    	//PICK BACK UP HERE!!!
+    	// Phone Number search is second priority
+    	// If there exists a phone number passed into the search
+    	if(phoneNum.length() > 0) {
+    		// run the SQL command searching by phone
+    		String sqlPhoneNum = String.format( "Select employeeNum, firstName, lastName, phoneNum, jobTitle"
+	        		+ " from employees"
+	        		+ " where phoneNum = \"%s\" ;", phoneNum);
+    		
+    		// Select Employees based on the SQL Command
+    		selectEmployees(sqlPhoneNum);
+    		return;
+    	}
+    	
+    	// Names Are Last Priority for Searching
+    	// If First Name is entered but no last name - only search based on entered values for first name				
+		if(firstName.length() > 0 && lastName.length() == 0) {
+			// Executed SQL command
+			String sqlFirst = String.format( "Select employeeNum, firstName, lastName, phoneNum, jobTitle"
+	        		+ " from employees"
+	        		+ " where  firstName like \"%s%c\" ;", firstName, '%');
+			
+			// Select employees based on first name
+			selectEmployees(sqlFirst);
+			return;
+		}
+		
+		// Else if only the last name is entered
+				else if(firstName.length() == 0 && lastName.length() > 0)
+				{
+					// Execute SQL command - for searching last name only
+					String sqlLast = String.format( "Select employeeNum, firstName, lastName, phoneNum, jobTitle"
+			        		+ " from employees"
+			        		+ " where lastName like \"%s%c\";", lastName, '%');
+			  
+					// Select employees based on last name
+					selectEmployees(sqlLast);
+					return;
+				}
+				// Else execute based on first and last name combination
+				else if(firstName.length() > 0 && lastName.length() > 0){
+					// SQL command to be executed
+					String sqlFirstLast = String.format( "Select employeeNum, firstName, lastName, phoneNum, jobTitle"
+			        		+ " from employees"
+			        		+ " where firstName like \"%s%c\" AND lastName like \"%s%c\";", firstName, '%', lastName, '%');
+			  
+					// Execute the SQL command based on the names passed in
+					selectEmployees(sqlFirstLast);	
+					return;
+				}
+				
+				else {
+					
+				// No specific search - pull all orders
+				String allOrders = "Select employeeNum, firstName, lastName, phoneNum, jobTitle"
+		        		+ " from employees";
+				
+				// Select all
+				selectEmployees(allOrders);
+				return;
+				}
+		    }
+    
+    /*
+     * function that runs selection on Employees table - specifically to pull information from all columns
+     * @param String sql is the passed in SQL command to be sent to the Database
+     * @return nothing
+     */
+    public void selectEmployees(String sql){  
+    	// Create a vector for each attribute returned in SQL command 
+    	Vector<Integer> employeeNums = new Vector<Integer>();
+    	Vector<String> firstNames = new Vector<String>();
+    	Vector<String> lastNames = new Vector<String>();
+    	Vector<String> phoneNums = new Vector<String>();
+    	Vector<String> jobTitles = new Vector<String>();
+    	
+    	
+    	// Try and connect to the database
+        try {  
+            Connection conn = this.connect();  
+            Statement stmt  = conn.createStatement();  
+            
+            
+            // Run SQL statement and return the result
+            ResultSet rs    = stmt.executeQuery(sql);  
+              
+            // While there exists another result
+            while (rs.next()) {  
+                
+            	// Add returned result to corresponding vector
+            	employeeNums.add(rs.getInt("employeeNum"));
+            	firstNames.add(rs.getString("firstName"));
+            	lastNames.add(rs.getString("lastName"));
+            	phoneNums.add(rs.getString("phoneNum"));
+            	jobTitles.add(rs.getString("jobTitle"));
+                
+            }
+           
+           // After results are gathered - display result
+          displayResults(employeeNums, firstNames, lastNames, phoneNums, jobTitles);
+           
+          return;
+          
+        // Catch if database could not be connected to
+        } catch (SQLException e) {  
+            System.out.println(e.getMessage());  
+            return;
+            
+        }  
+    }
     
     
+    /*
+     * Function displays result of employee search query into a JTable for easy viewing
+     * @param Vector<Integer> employeeNum is list of all returned employee IDs
+     * @param Vector<String> firstName is the list of all returned employee first names
+     * @param Vector<String> lastName is the list of all returned employee last names
+     * @param Vector<String> phone is the list of all returned employee phone numbers
+     * @param Vector<String> jobTitle is the list of all returned employee job titles
+     * @return nothing
+     */
+    public void displayResults(Vector<Integer> employeeNum, Vector<String> firstName, Vector<String> lastName, Vector<String> phone, Vector<String> jobTitle) {
+    	// Create objects to hold the data for the table
+    			Object[][] rowData = {};
+    			Object[] headers = {"Employee Number", "First Name", "Last Name", "Phone Number", "Job Title"};
+    			
+    			// Create table object
+    			DefaultTableModel EmployeeModel;
+    			EmployeeModel = new DefaultTableModel (rowData, headers);
+    			
+    			// Step through each result from the query pulling each piece of employee information
+    			for(int i = 0; i < firstName.size(); i++) {
+    			EmployeeModel.addRow(new Object[]{ employeeNum.elementAt(i),firstName.elementAt(i), lastName.elementAt(i),phone.elementAt(i), jobTitle.elementAt(i)});
+    			}
+    			
+    			/* Save for Reference
+    			// Create table based on information received
+    			JTable employeeTable;
+    		    employeeTable = new JTable(EmployeeModel);
+    		    employeeTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+    		    employeeTable.setCellEditor(null);
+    		    employeeTable.setBounds(37, 143, 397, 183);
+				*/
+    			
+    		    setTable(EmployeeModel);
+    		    
+    		    /* Save for reference
+    		    // Show the frame
+    		    JFrame frame = new JFrame();
+    		    frame.add(new JScrollPane(employeeTable));
+    		    frame.setVisible(true);
+    		    frame.pack();
+    		    */
+    			return;
+    }
+}
+    
+    /*
 	public static void main(String[] args) {
 		String url = "";
 		String username = "";
@@ -132,4 +286,4 @@ public class EmployeeGUI {
 		}
 	} 
 
-}
+} */
