@@ -907,9 +907,11 @@ public class CapstoneMainFrame {
 		JButton btnEmpty = new JButton("Save");
 		btnEmpty.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				inventory.inboundBin(Integer.valueOf(textFieldBinInput.getText()) - 1, textFieldIngredientInput.getText(), Integer.valueOf(textFieldStorageInput.getText()));
+				if(!(textFieldBinInput.getText().equals("")) && !(textFieldIngredientInput.getText().equals("")) && !(textFieldStorageInput.getText().equals(""))) {
+					inventory.inboundBin(Integer.valueOf(textFieldBinInput.getText()) - 1, textFieldIngredientInput.getText(), Integer.valueOf(textFieldStorageInput.getText()));
+				}
 				inventory.updateInventory(lblIngredient_1, lblIngredient_2, lblIngredient_3, lblIngredient_4, lblIngredient_5, lblIngredient_6, lblIngredient_7, lblIngredient_8, lblIngredient_9, lblIngredient_10, lblStorage_1, lblStorage_2, lblStorage_3, lblStorage_4, lblStorage_5, lblStorage_6, lblStorage_7, lblStorage_8, lblStorage_9, lblStorage_10);
-				textFieldStorageInput.setText(null);
+				textFieldStorageInput.setText("");
 			}
 		});
 		GridBagConstraints gbc_btnEmpty = new GridBagConstraints();
