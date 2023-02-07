@@ -23,6 +23,8 @@ import javax.swing.JCheckBox;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 import net.miginfocom.swing.MigLayout;
 
 public class CapstoneMainFrame {
@@ -693,13 +695,6 @@ public class CapstoneMainFrame {
 		gbc_btnInvLoad_4.gridy = 6;
 		inventoryPanel.add(btnInvLoad_4, gbc_btnInvLoad_4);
 		
-		JButton btnSave = new JButton("Empty");
-		GridBagConstraints gbc_btnSave = new GridBagConstraints();
-		gbc_btnSave.insets = new Insets(0, 0, 5, 5);
-		gbc_btnSave.gridx = 7;
-		gbc_btnSave.gridy = 6;
-		inventoryPanel.add(btnSave, gbc_btnSave);
-		
 		JLabel lblBin_5 = new JLabel("5");
 		lblBin_5.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lblBin_5 = new GridBagConstraints();
@@ -904,21 +899,45 @@ public class CapstoneMainFrame {
 		gbc_btnInvLoad_10.gridy = 12;
 		inventoryPanel.add(btnInvLoad_10, gbc_btnInvLoad_10);
 		
-		JButton btnEmpty = new JButton("Save");
+		JButton btnEmpty = new JButton("Empty");
 		btnEmpty.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(!(textFieldBinInput.getText().equals("")) && !(textFieldIngredientInput.getText().equals("")) && !(textFieldStorageInput.getText().equals(""))) {
-					inventory.inboundBin(Integer.valueOf(textFieldBinInput.getText()) - 1, textFieldIngredientInput.getText(), Integer.valueOf(textFieldStorageInput.getText()));
+				try {
+					int currIndex = Integer.valueOf(textFieldBinInput.getText()) - 1;
+					String input = JOptionPane.showInputDialog("Enter bin to move excess to:");
+					int nextIndex = Integer.valueOf(input) - 1;
+					inventory.emptyBin(currIndex, nextIndex);
+				}
+				catch(Exception ex) {
+					System.out.print("Invalid Input\n");
 				}
 				inventory.updateInventory(lblIngredient_1, lblIngredient_2, lblIngredient_3, lblIngredient_4, lblIngredient_5, lblIngredient_6, lblIngredient_7, lblIngredient_8, lblIngredient_9, lblIngredient_10, lblStorage_1, lblStorage_2, lblStorage_3, lblStorage_4, lblStorage_5, lblStorage_6, lblStorage_7, lblStorage_8, lblStorage_9, lblStorage_10);
-				textFieldStorageInput.setText("");
 			}
 		});
 		GridBagConstraints gbc_btnEmpty = new GridBagConstraints();
 		gbc_btnEmpty.insets = new Insets(0, 0, 5, 5);
 		gbc_btnEmpty.gridx = 7;
-		gbc_btnEmpty.gridy = 7;
+		gbc_btnEmpty.gridy = 6;
 		inventoryPanel.add(btnEmpty, gbc_btnEmpty);
+		
+		JButton btnSave = new JButton("Save");
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					inventory.inboundBin(Integer.valueOf(textFieldBinInput.getText()) - 1, textFieldIngredientInput.getText(), Integer.valueOf(textFieldStorageInput.getText()));
+					inventory.updateInventory(lblIngredient_1, lblIngredient_2, lblIngredient_3, lblIngredient_4, lblIngredient_5, lblIngredient_6, lblIngredient_7, lblIngredient_8, lblIngredient_9, lblIngredient_10, lblStorage_1, lblStorage_2, lblStorage_3, lblStorage_4, lblStorage_5, lblStorage_6, lblStorage_7, lblStorage_8, lblStorage_9, lblStorage_10);
+					textFieldStorageInput.setText("");
+				}
+				catch (Exception ex) {
+					System.out.print("Invalid Input\n");
+				}					
+			}
+		});
+		GridBagConstraints gbc_btnSave = new GridBagConstraints();
+		gbc_btnSave.insets = new Insets(0, 0, 5, 5);
+		gbc_btnSave.gridx = 7;
+		gbc_btnSave.gridy = 7;
+		inventoryPanel.add(btnSave, gbc_btnSave);
 		
 		// Temporary Back button
 		JButton btnBack_1 = new JButton("Back");

@@ -43,6 +43,12 @@ public class Inventory {
 		return false;
 	}
 	
+	public void emptyBin(int currIndex, int nextIndex) {
+		if(Bins[currIndex].getIngredient().equals(Bins[nextIndex].getIngredient())) {
+			Bins[nextIndex].addStorage(Bins[currIndex].emptyBin());
+		}
+	}
+	
 	public void updateInventory(JLabel bin1Ingredient, JLabel bin2Ingredient, JLabel bin3Ingredient, JLabel bin4Ingredient, JLabel bin5Ingredient, JLabel bin6Ingredient, JLabel bin7Ingredient, JLabel bin8Ingredient, JLabel bin9Ingredient, JLabel bin10Ingredient, JLabel bin1Storage, JLabel bin2Storage, JLabel bin3Storage, JLabel bin4Storage, JLabel bin5Storage, JLabel bin6Storage, JLabel bin7Storage, JLabel bin8Storage, JLabel bin9Storage, JLabel bin10Storage ) {
 		bin1Ingredient.setText(Bins[0].getIngredient());
 		bin1Storage.setText(Integer.toString(Bins[0].getStorage()));

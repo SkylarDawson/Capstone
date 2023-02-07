@@ -49,14 +49,12 @@ public class Bin {
 	
 	/**
 	 * This emptyBin function will reset a bin to be empty.
-	 * @return true if bin emptied successfully
+	 * @return amount remaining in bin before emptied.
 	 */
-	public boolean emptyBin() {
-		if(this.ingredient != "-") {
-			this.ingredient = "-";
-			this.storage = 0;
-			return true;
-		}
-		return false;
+	public int emptyBin() {
+		int temp = this.storage;
+		this.ingredient = "-";
+		this.storage = 0;
+		return temp;
 	}
 }
