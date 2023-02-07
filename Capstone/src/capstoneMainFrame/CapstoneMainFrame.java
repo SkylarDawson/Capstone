@@ -532,6 +532,13 @@ public class CapstoneMainFrame {
 		inventoryPanel.add(lblStorage_1, gbc_lblStorage_1);
 		
 		JButton btnInvLoad_1 = new JButton("");
+		btnInvLoad_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textFieldBinInput.setText("1");
+				textFieldIngredientInput.setText(lblIngredient_1.getText());
+				textFieldStorageInput.setText("");
+			}
+		});
 		GridBagConstraints gbc_btnInvLoad_1 = new GridBagConstraints();
 		gbc_btnInvLoad_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnInvLoad_1.insets = new Insets(0, 0, 5, 5);
@@ -584,6 +591,13 @@ public class CapstoneMainFrame {
 		inventoryPanel.add(lblStorage_2, gbc_lblStorage_2);
 		
 		JButton btnInvLoad_2 = new JButton("");
+		btnInvLoad_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textFieldBinInput.setText("2");
+				textFieldIngredientInput.setText(lblIngredient_2.getText());
+				textFieldStorageInput.setText("");
+			}
+		});
 		GridBagConstraints gbc_btnInvLoad_2 = new GridBagConstraints();
 		gbc_btnInvLoad_2.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnInvLoad_2.insets = new Insets(0, 0, 5, 5);
@@ -636,6 +650,13 @@ public class CapstoneMainFrame {
 		inventoryPanel.add(lblStorage_3, gbc_lblStorage_3);
 		
 		JButton btnInvLoad_3 = new JButton("");
+		btnInvLoad_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textFieldBinInput.setText("3");
+				textFieldIngredientInput.setText(lblIngredient_3.getText());
+				textFieldStorageInput.setText("");
+			}
+		});
 		GridBagConstraints gbc_btnInvLoad_3 = new GridBagConstraints();
 		gbc_btnInvLoad_3.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnInvLoad_3.insets = new Insets(0, 0, 5, 5);
@@ -688,6 +709,13 @@ public class CapstoneMainFrame {
 		inventoryPanel.add(lblStorage_4, gbc_lblStorage_4);
 		
 		JButton btnInvLoad_4 = new JButton("");
+		btnInvLoad_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textFieldBinInput.setText("4");
+				textFieldIngredientInput.setText(lblIngredient_4.getText());
+				textFieldStorageInput.setText("");
+			}
+		});
 		GridBagConstraints gbc_btnInvLoad_4 = new GridBagConstraints();
 		gbc_btnInvLoad_4.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnInvLoad_4.insets = new Insets(0, 0, 5, 5);
@@ -722,6 +750,13 @@ public class CapstoneMainFrame {
 		inventoryPanel.add(lblStorage_5, gbc_lblStorage_5);
 		
 		JButton btnInvLoad_5 = new JButton("");
+		btnInvLoad_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textFieldBinInput.setText("5");
+				textFieldIngredientInput.setText(lblIngredient_5.getText());
+				textFieldStorageInput.setText("");
+			}
+		});
 		GridBagConstraints gbc_btnInvLoad_5 = new GridBagConstraints();
 		gbc_btnInvLoad_5.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnInvLoad_5.insets = new Insets(0, 0, 5, 5);
@@ -756,6 +791,13 @@ public class CapstoneMainFrame {
 		inventoryPanel.add(lblStorage_6, gbc_lblStorage_6);
 		
 		JButton btnInvLoad_6 = new JButton("");
+		btnInvLoad_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textFieldBinInput.setText("6");
+				textFieldIngredientInput.setText(lblIngredient_6.getText());
+				textFieldStorageInput.setText("");
+			}
+		});
 		GridBagConstraints gbc_btnInvLoad_6 = new GridBagConstraints();
 		gbc_btnInvLoad_6.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnInvLoad_6.insets = new Insets(0, 0, 5, 5);
@@ -790,6 +832,13 @@ public class CapstoneMainFrame {
 		inventoryPanel.add(lblStorage_7, gbc_lblStorage_7);
 		
 		JButton btnInvLoad_7 = new JButton("");
+		btnInvLoad_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textFieldBinInput.setText("7");
+				textFieldIngredientInput.setText(lblIngredient_7.getText());
+				textFieldStorageInput.setText("");
+			}
+		});
 		GridBagConstraints gbc_btnInvLoad_7 = new GridBagConstraints();
 		gbc_btnInvLoad_7.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnInvLoad_7.insets = new Insets(0, 0, 5, 5);
@@ -824,6 +873,13 @@ public class CapstoneMainFrame {
 		inventoryPanel.add(lblStorage_8, gbc_lblStorage_8);
 		
 		JButton btnInvLoad_8 = new JButton("");
+		btnInvLoad_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textFieldBinInput.setText("8");
+				textFieldIngredientInput.setText(lblIngredient_8.getText());
+				textFieldStorageInput.setText("");
+			}
+		});
 		GridBagConstraints gbc_btnInvLoad_8 = new GridBagConstraints();
 		gbc_btnInvLoad_8.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnInvLoad_8.insets = new Insets(0, 0, 5, 5);
@@ -858,6 +914,13 @@ public class CapstoneMainFrame {
 		inventoryPanel.add(lblStorage_9, gbc_lblStorage_9);
 		
 		JButton btnInvLoad_9 = new JButton("");
+		btnInvLoad_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textFieldBinInput.setText("9");
+				textFieldIngredientInput.setText(lblIngredient_9.getText());
+				textFieldStorageInput.setText("");
+			}
+		});
 		GridBagConstraints gbc_btnInvLoad_9 = new GridBagConstraints();
 		gbc_btnInvLoad_9.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnInvLoad_9.insets = new Insets(0, 0, 5, 5);
@@ -892,6 +955,13 @@ public class CapstoneMainFrame {
 		inventoryPanel.add(lblStorage_10, gbc_lblStorage_10);
 		
 		JButton btnInvLoad_10 = new JButton("");
+		btnInvLoad_10.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textFieldBinInput.setText("10");
+				textFieldIngredientInput.setText(lblIngredient_10.getText());
+				textFieldStorageInput.setText("");
+			}
+		});
 		GridBagConstraints gbc_btnInvLoad_10 = new GridBagConstraints();
 		gbc_btnInvLoad_10.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnInvLoad_10.insets = new Insets(0, 0, 5, 5);

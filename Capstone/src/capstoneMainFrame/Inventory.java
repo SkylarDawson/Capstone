@@ -31,11 +31,11 @@ public class Inventory {
 	}
 	
 	public boolean inboundBin(int index, String ingredient, int inbound) {
-		if(Bins[index].getIngredient().equals(ingredient) && inbound > 0) {
+		if(Bins[index].getIngredient().equals(ingredient) && inbound > 0 && !ingredient.equals("-")) {
 			Bins[index].addStorage(inbound);
 			return true;
 		}
-		else if(Bins[index].getIngredient().equals("-") && ingredient != null) {
+		else if(Bins[index].getIngredient().equals("-") && !ingredient.equals("-")) {
 			Bins[index].setIngredient(ingredient);
 			Bins[index].addStorage(inbound);
 			return true;
