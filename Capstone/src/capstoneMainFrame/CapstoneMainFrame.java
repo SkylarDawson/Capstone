@@ -206,7 +206,7 @@ public class CapstoneMainFrame {
 		EmployeeGUI employeeGUI = new EmployeeGUI();
 		CreateOrder createOrder = new CreateOrder();
 		CreateCustomer createCustomer = new CreateCustomer();
-		CreateEmployee createEmployee = new CreateEmployee();
+		//CreateEmployee createEmployee = new CreateEmployee();
 		
 
 		
