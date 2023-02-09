@@ -292,6 +292,12 @@ public class CapstoneMainFrame {
 		mainPanel.add(btnCustomer, gbc_btnCustomer);						
 		
 		JButton btnEmployee = new JButton("Employees");
+		btnEmployee.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mainPanel.hide();
+				employeePanel.show();
+			}
+		});
 		GridBagConstraints gbc_btnEmployee = new GridBagConstraints();
 		gbc_btnEmployee.insets = new Insets(0, 0, 5, 5);
 		gbc_btnEmployee.fill = GridBagConstraints.BOTH;
