@@ -222,7 +222,7 @@ public class EmployeeGUI {
      * @param Vector<String> jobTitle is the list of all returned employee job titles
      * @return nothing
      */
-    public void displayResults(Vector<Integer> employeeNum, Vector<String> firstName, Vector<String> lastName, Vector<String> phone, Vector<String> jobTitle) {
+    public void displayResults(Vector<Integer> employeeNum, Vector<String> firstName, Vector<String> lastName, Vector<String> jobTitle) {
     	// Create objects to hold the data for the table
     			Object[][] rowData = {};
     			Object[] headers = {"Employee Number", "First Name", "Last Name", "Job Title"};
@@ -233,7 +233,7 @@ public class EmployeeGUI {
     			
     			// Step through each result from the query pulling each piece of employee information
     			for(int i = 0; i < firstName.size(); i++) {
-    			EmployeeModel.addRow(new Object[]{ employeeNum.elementAt(i),firstName.elementAt(i), lastName.elementAt(i),phone.elementAt(i), jobTitle.elementAt(i)});
+    			EmployeeModel.addRow(new Object[]{ employeeNum.elementAt(i),firstName.elementAt(i), lastName.elementAt(i), jobTitle.elementAt(i)});
     			}
     			
     			/* Save for Reference
