@@ -1632,6 +1632,10 @@ public class CapstoneMainFrame {
 		employeePanel.add(horizontalBox_7, gbc_horizontalBox_7);
 		
 		JButton btnNewButton_7_1 = new JButton("Create New");
+		btnNewButton_7_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		horizontalBox_7.add(btnNewButton_7_1);
 		
 		JButton btnNewButton_8_1 = new JButton("Delete");
