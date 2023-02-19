@@ -185,6 +185,8 @@ public class CapstoneMainFrame {
 		mainFrame.getContentPane().add(updateCustomerPanel, "name_164304063288900");
 		JPanel updateOrderPanel = new JPanel();
 		mainFrame.getContentPane().add(updateOrderPanel, "name_1181103588400");
+		JPanel adminPanel = new JPanel();
+		mainFrame.getContentPane().add(adminPanel, "name_17707844245200");
 		
 		JLabel updateCustomerIDLabel = new JLabel("");
 		JLabel orderUpdateOrderDateLabel = new JLabel("");
@@ -216,9 +218,9 @@ public class CapstoneMainFrame {
 		 */
 		GridBagLayout gbl_mainPanel = new GridBagLayout();
 		gbl_mainPanel.columnWidths = new int[]{0, 236, 0, 0};
-		gbl_mainPanel.rowHeights = new int[]{0, 39, 20, 20, 20, 20, 20, 20, 0, 0};
+		gbl_mainPanel.rowHeights = new int[]{0, 39, 20, 20, 20, 20, 20, 20, 0, 0, 0};
 		gbl_mainPanel.columnWeights = new double[]{1.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_mainPanel.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_mainPanel.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		mainPanel.setLayout(gbl_mainPanel);
 		
 		JLabel lblNewLabel = new JLabel("FOS");
@@ -319,6 +321,20 @@ public class CapstoneMainFrame {
 		gbc_btnSpreader.gridx = 1;
 		gbc_btnSpreader.gridy = 5;
 		mainPanel.add(btnSpreader, gbc_btnSpreader);
+		
+		JButton adminButton = new JButton("Admin");
+		adminButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mainPanel.hide();
+				adminPanel.show();
+			}
+		});
+		GridBagConstraints gbc_adminButton = new GridBagConstraints();
+		gbc_adminButton.fill = GridBagConstraints.HORIZONTAL;
+		gbc_adminButton.insets = new Insets(0, 0, 5, 5);
+		gbc_adminButton.gridx = 1;
+		gbc_adminButton.gridy = 8;
+		mainPanel.add(adminButton, gbc_adminButton);
 		
 		/**
 		 * Export panel initialization
@@ -2716,5 +2732,6 @@ public class CapstoneMainFrame {
 		gbc_orderUpdateBackButton.gridx = 6;
 		gbc_orderUpdateBackButton.gridy = 13;
 		updateOrderPanel.add(orderUpdateBackButton, gbc_orderUpdateBackButton);
+		
 	}
 }
