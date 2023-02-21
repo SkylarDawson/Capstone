@@ -75,9 +75,9 @@ public class CapstoneMainFrame {
 	 * Create the application.
 	 */
 	public CapstoneMainFrame() {
-		initialize();
 		Login login = new Login();
 		login.actionPerformed(null);
+		initialize();
 	}
 
 	/**
