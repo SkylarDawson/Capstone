@@ -76,6 +76,8 @@ public class CapstoneMainFrame {
 	 */
 	public CapstoneMainFrame() {
 		initialize();
+		Login login = new Login();
+		login.actionPerformed(null);
 	}
 
 	/**
@@ -203,6 +205,10 @@ public class CapstoneMainFrame {
 		mainPanel.add(btnInventory, gbc_btnInventory);
 		
 		JButton btnCustomer = new JButton("Customers");
+		btnCustomer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		GridBagConstraints gbc_btnCustomer = new GridBagConstraints();
 		gbc_btnCustomer.fill = GridBagConstraints.BOTH;
 		gbc_btnCustomer.insets = new Insets(0, 0, 5, 5);
@@ -211,6 +217,10 @@ public class CapstoneMainFrame {
 		mainPanel.add(btnCustomer, gbc_btnCustomer);						
 		
 		JButton btnEmployee = new JButton("Employees");
+		btnEmployee.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		GridBagConstraints gbc_btnEmployee = new GridBagConstraints();
 		gbc_btnEmployee.insets = new Insets(0, 0, 5, 5);
 		gbc_btnEmployee.fill = GridBagConstraints.BOTH;
