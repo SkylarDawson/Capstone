@@ -207,9 +207,50 @@ public class CreateOrder {
 	        // Update System
 	        	// Remove Amount from BINS
 	        	// Automatically add billing
-	        	// Rates for each ingredient per weight
+	        	double orderPrice = (Potash * potashPrice) + (MAP * mapPrice) + (AMS * amsPrice) + (Urea * ureaPrice) + (Gypsum * gypsumPrice);
 	        	// Update Customer's Outstanding Balance
-	        	// If orderPaid then don't add to balance
+	        	if(orderPaid == false)
+	        	{
+	        		double currentBalance = 0.0;
+	        		String sqlCurrentBalance = String.format("Select outstandingBalance from customers where customerNum = \"%d\"", customerNum);
+	        		 try {
+	     	            Connection conn = this.connect();  
+	     	            Statement stmt  = conn.createStatement(); 
+	     	            
+	     	            // Run SQL statement and return the result
+	     	            ResultSet rs  = stmt.executeQuery(sqlCurrentBalance);
+	     	            
+	     	            // loop through the result set - prints out each attribute for each tuple pulled
+	     	            while (rs.next()) {  
+	     	                currentBalance = rs.getDouble("outstandingBalance");
+	     	            }
+	     	            	} catch (SQLException e) {  
+	     	            System.out.println(e.getMessage());  
+	     	            	}  
+	        		
+	        		 double updatedBalance = currentBalance + orderPrice;
+	        		// Update
+	     			String updateBalance = "Update customers SET "
+	     					+ "outstandingBalance = ?"
+	     		       		+ " WHERE customerNum = ?";
+	     					
+	     			try {
+	     	            Connection conn = this.connect();  
+	     	            PreparedStatement pstmt  = conn.prepareStatement(updateBalance);  
+	     	            pstmt.setDouble(1, updatedBalance);
+	     	            pstmt.setInt(2, customerNum);
+	     	            pstmt.executeUpdate();
+	     	            
+	     	            pstmt.close();
+	     	            conn.close();
+	     			
+	     	            return;
+	     	        } catch (SQLException e) {  
+	     	            System.out.println(e.getMessage());  
+	     	            return;
+	     	            
+	     	        }  
+	        	}
 	        
 	        // Clear
 			orderIDField.setText("");
@@ -316,7 +357,7 @@ public class CreateOrder {
 	     * @return nothing
 	     */
 	    public void updateOrder(String OrderNum, JTextField CustomerNumField, JTextField EmployeeNumField, JTextField PickupDateField, JTextField PickupTimeField, JTextField PotashField, JTextField MAPField, JTextField AMSField, JTextField UreaField,
-	    		JTextField GypsumField, JTextField CommentsField, JCheckBox PaidBox, JCheckBox CompleteBox, JCheckBox DeliveredBox) {
+	    		JTextField GypsumField, JTextField CommentsField, JCheckBox PaidBox, JCheckBox CompleteBox, JCheckBox DeliveredBox, double potashPrice, double mapPrice, double amsPrice, double ureaPrice, double gypsumPrice) {
 			// Convert the customerNum from String to Int
 	    	int orderID = Integer.parseInt(OrderNum);
 			
@@ -332,6 +373,7 @@ public class CreateOrder {
 			Double Gypsum = 0.0;
 			String Comments = null;
 			Boolean paid = false;
+			Boolean previouslyPaid = false;
 			Boolean complete = false;
 			Boolean delivered = false;
 	            
@@ -349,6 +391,26 @@ public class CreateOrder {
 	            paid = PaidBox.isSelected();
 	            complete = CompleteBox.isSelected();
 	            delivered = DeliveredBox.isSelected();
+	            
+	            String checkIfPaid = String.format("Select orderPaid from orders where orderNum = \"%d\"", orderID);
+	            try {
+     	            Connection conn = this.connect();  
+     	            Statement stmt  = conn.createStatement(); 
+     	            
+     	            // Run SQL statement and return the result
+     	            ResultSet rs  = stmt.executeQuery(checkIfPaid);
+     	            
+     	            // loop through the result set - prints out each attribute for each tuple pulled
+     	            while (rs.next()) {  
+     	                previouslyPaid = rs.getBoolean("orderPaid");
+     	            }
+     	            conn.close();
+     	            stmt.close();
+     	            	} catch (SQLException e) {  
+     	            System.out.println(e.getMessage());  
+     	            	}  
+	            
+	            
 	    	
 			
 			// Update
@@ -379,14 +441,101 @@ public class CreateOrder {
 	            
 	            pstmt.close();
 	            conn.close();
-			
-	            return;
 	        } catch (SQLException e) {  
 	            System.out.println(e.getMessage());  
 	            return;
+	        }
 	            
-	        }  
-	    }
+			// Update Billing
+			// Automatically add billing
+        	double orderPrice = (Potash * potashPrice) + (MAP * mapPrice) + (AMS * amsPrice) + (Urea * ureaPrice) + (Gypsum * gypsumPrice);
+        	// Update Customer's Outstanding Balance
+        	if(paid == false)
+        	{
+        		double currentBalance = 0.0;
+        		String sqlCurrentBalance = String.format("Select outstandingBalance from customers where customerNum = \"%d\"", customerNum);
+        		 try {
+     	            Connection conn = this.connect();  
+     	            Statement stmt  = conn.createStatement(); 
+     	            
+     	            // Run SQL statement and return the result
+     	            ResultSet rs  = stmt.executeQuery(sqlCurrentBalance);
+     	            
+     	            // loop through the result set - prints out each attribute for each tuple pulled
+     	            while (rs.next()) {  
+     	                currentBalance = rs.getDouble("outstandingBalance");
+     	                System.out.println(currentBalance + "");
+     	            }
+     	            	} catch (SQLException e) {  
+     	            System.out.println(e.getMessage());  
+     	            	}  
+        		
+        		 double updatedBalance = currentBalance + orderPrice;
+        		 System.out.println(updatedBalance + "");
+        		// Update
+     			String updateBalance = "Update customers SET "
+     					+ "outstandingBalance = ?"
+     		       		+ " WHERE customerNum = ?";
+     					
+     			try {
+     	            Connection conn = this.connect();  
+     	            PreparedStatement pstmt  = conn.prepareStatement(updateBalance);  
+     	            pstmt.setDouble(1, updatedBalance);
+     	            pstmt.setInt(2, customerNum);
+     	            pstmt.executeUpdate();
+     	            
+     	            pstmt.close();
+     	            conn.close();
+     			
+     	            return;
+     	        } catch (SQLException e) {  
+     	            System.out.println(e.getMessage());  
+     	            return;
+     	            
+     	        } 
+        	}
+     			else if(paid == true && previouslyPaid == false) {
+     				double currentBalance = 0.0;
+            		String sqlCurrentBalance = String.format("Select outstandingBalance from customers where customerNum = \"%d\"", customerNum);
+            		 try {
+         	            Connection conn = this.connect();  
+         	            Statement stmt  = conn.createStatement(); 
+         	            
+         	            // Run SQL statement and return the result
+         	            ResultSet rs  = stmt.executeQuery(sqlCurrentBalance);
+         	            
+         	            // loop through the result set - prints out each attribute for each tuple pulled
+         	            while (rs.next()) {  
+         	                currentBalance = rs.getDouble("outstandingBalance");
+         	            }
+         	            	} catch (SQLException e) {  
+         	            System.out.println(e.getMessage());  
+         	            	}  
+            		
+            		 double updatedBalance = currentBalance - orderPrice;
+            		// Update
+         			String updateBalance = "Update customers SET "
+         					+ "outstandingBalance = ?"
+         		       		+ " WHERE customerNum = ?";
+         					
+         			try {
+         	            Connection conn = this.connect();  
+         	            PreparedStatement pstmt  = conn.prepareStatement(updateBalance);  
+         	            pstmt.setDouble(1, updatedBalance);
+         	            pstmt.setInt(2, customerNum);
+         	            pstmt.executeUpdate();
+         	            
+         	            pstmt.close();
+         	            conn.close();
+         			
+         	            return;
+         	        } catch (SQLException e) {  
+         	            System.out.println(e.getMessage());  
+         	            return;
+         	            
+         	        }  
+     			}
+        	}
 	    
 	    /*
 	     * Function deletes order from database 

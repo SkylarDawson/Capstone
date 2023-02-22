@@ -110,11 +110,11 @@ public class CapstoneMainFrame {
 	private JTextField gypsumPriceField;
 	private GridBagConstraints gbc_potashLabel;
 	
-	private double potashPriceAmnt = 0.0;
-	private double mapPriceAmnt = 0.0;
-	private double amsPriceAmnt = 0.0;
-	private double ureaPriceAmnt = 0.0;
-	private double gypsumPriceAmnt = 0.0;
+	private double potashPriceAmnt = 10.0;
+	private double mapPriceAmnt = 10.0;
+	private double amsPriceAmnt = 10.0;
+	private double ureaPriceAmnt = 10.0;
+	private double gypsumPriceAmnt = 10.0;
 	
 	/**
 	 * Launch the application.
@@ -2825,7 +2825,7 @@ public class CapstoneMainFrame {
 				
 				if(orderUpdateButton.getText() == "Update") {
 				CreateOrder updateOrder = new CreateOrder();
-				updateOrder.updateOrder(orderUpdateOrderIDLabel.getText(), orderUpdateCustomerNumberField, updateOrderEmployeeNumField, orderUpdatePickupDateField, orderUpdatePickupTimeField, orderUpdatePotashField, orderUpdateMapField, orderUpdateAMSField, orderUpdateUreaField, orderUpdateGypsumField, orderUpdateCommentsField, orderUpdateOrderPaidBox, orderCreateOrderCompleteBox, orderCreateOrderDeliveredBox);
+				updateOrder.updateOrder(orderUpdateOrderIDLabel.getText(), orderUpdateCustomerNumberField, updateOrderEmployeeNumField, orderUpdatePickupDateField, orderUpdatePickupTimeField, orderUpdatePotashField, orderUpdateMapField, orderUpdateAMSField, orderUpdateUreaField, orderUpdateGypsumField, orderUpdateCommentsField, orderUpdateOrderPaidBox, orderCreateOrderCompleteBox, orderCreateOrderDeliveredBox, potashPriceAmnt, mapPriceAmnt, amsPriceAmnt, ureaPriceAmnt, gypsumPriceAmnt);
 				updateOrderPanel.hide();
 				orderPanel.show();
 				}
