@@ -1,0 +1,222 @@
+package capstoneMainFrame;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Vector;
+
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
+public class Admin {
+
+	private Connection connect() {  
+	   	 // SQLite connection string  - this string is the file path to the database 
+	       String url = "jdbc:sqlite:C://sqlite/fertilizer.db";  
+	       Connection conn = null;  
+	       
+	       // Test to make sure that the database exists
+	       try {  
+	           conn = DriverManager.getConnection(url);  
+	       } catch (SQLException e) {  
+	           System.out.println(e.getMessage());  
+	       }  
+	       return conn;  
+			}  
+	
+	public void execute(JLabel orders, JLabel customers) {
+		String sqlOrderCount = String.format("Select COUNT(*) AS total from orders");
+		String sqlCustomerCount = String.format("Select COUNT(*) AS total from customers");
+        int orderCount = 0;
+        int customerCount = 0;
+        
+        try {
+        Connection conn = this.connect();  
+        Statement stmt  = conn.createStatement(); 
+        
+        // Run SQL statement and return the result
+        ResultSet rs  = stmt.executeQuery(sqlOrderCount);
+        
+        while (rs.next()) {  
+        	// Get Order Count
+        	orderCount = rs.getInt("total");
+        }  
+        
+        stmt.close();
+        conn.close();
+        
+	} catch (SQLException e) {  
+        System.out.println(e.getMessage());  
+        	} 
+        
+        try {
+            Connection conn = this.connect();  
+            Statement stmt  = conn.createStatement(); 
+            
+            // Run SQL statement and return the result
+            ResultSet rs  = stmt.executeQuery(sqlCustomerCount);
+            
+            while (rs.next()) {  
+            	// Get Order Count
+            	customerCount = rs.getInt("total");
+            }  
+            
+            stmt.close();
+            conn.close();
+            
+    	} catch (SQLException e) {  
+            System.out.println(e.getMessage());  
+            	} 
+        
+        orders.setText(orderCount +"");
+        customers.setText(customerCount + "");
+        
+        return;
+	}
+	public TableModel runReport(String report) {
+		String[] reports = {"Outstanding Orders", "Customers with Balances"};
+		String sqlCommand;
+    	
+    	
+    	if(report.equals( reports[0])){
+				sqlCommand = "Select firstName, lastName, orders.customerNum, orderNum, employeeNum, orderPaid, orderComplete, orderDelivered, pickUpDate, pickupTime, Potash, MAP, AMS, Urea, Gypsum, comments, orderDate"
+		        		+ " from customers,orders "
+		        		+ "where customers.customerNum = orders.customerNum AND orderComplete = False";
+				Object[][] rowData = {};
+				String[] headers1 = {"First Name", "Last Name", "orderNum", "customerNum", "employeeNum", "Paid", "Complete", "Delivered", "PickUp Date", "PickUp Time"
+						, "Potash", "MAP", "AMS", "Urea", "Gypsum", "Order Date", "Comments"};
+
+				DefaultTableModel orderModel;
+				orderModel = new DefaultTableModel (rowData, headers1);
+				
+				// Create a vector for each attribute returned in SQL command 
+		    	Vector<String> firstNames = new Vector<String>();
+		    	Vector<String> lastNames = new Vector<String>();
+		    	Vector<Integer> orderNums = new Vector<Integer>();
+		    	Vector<Integer> customerNums = new Vector<Integer>();
+		    	Vector<Integer> employeeNums = new Vector<Integer>();
+		    	Vector<Boolean> ordersPaid = new Vector<Boolean>();
+		    	Vector<Boolean> ordersComplete = new Vector<Boolean>();
+		    	Vector<Boolean> ordersDelivered = new Vector<Boolean>();
+		    	Vector<String> pickUpDates = new Vector<String>();
+		    	Vector<String> pickUpTimes = new Vector<String>();
+		    	Vector<Double> Potashes = new Vector<Double>();
+		    	Vector<Double> MAPS = new Vector<Double>();
+		    	Vector<Double> AMS = new Vector<Double>();
+		    	Vector<Double> Ureas = new Vector<Double>();
+		    	Vector<Double> Gypsums = new Vector<Double>();
+		    	Vector<String> Comments = new Vector<String>();
+		    	Vector<String> orderDates = new Vector<String>();
+		    	
+		    	// Try and connect to the database
+		        try {  
+		            Connection conn = this.connect();  
+		            Statement stmt  = conn.createStatement();  
+		            
+		            
+		            // Run SQL statement and return the result
+		            ResultSet rs    = stmt.executeQuery(sqlCommand);  
+		              
+		            // While there exists another result
+		            while (rs.next()) {  
+		                
+		            	// Add returned result to corresponding vector
+		            	firstNames.add(rs.getString("firstName"));
+		            	lastNames.add(rs.getString("lastName"));
+		            	orderNums.add(rs.getInt("orderNum"));
+		            	customerNums.add(rs.getInt("customerNum"));
+		            	employeeNums.add(rs.getInt("employeeNum"));
+		            	ordersPaid.add(rs.getBoolean("orderPaid"));
+		            	ordersComplete.add(rs.getBoolean("orderComplete"));
+		            	ordersDelivered.add(rs.getBoolean("orderDelivered"));
+		            	pickUpDates.add(rs.getString("pickUpDate"));
+		            	pickUpTimes.add(rs.getString("pickUpTime"));
+		            	Potashes.add(rs.getDouble("Potash"));
+		            	MAPS.add(rs.getDouble("MAP"));
+		            	AMS.add(rs.getDouble("AMS"));
+		            	Ureas.add(rs.getDouble("Urea"));
+		            	Gypsums.add(rs.getDouble("Gypsum"));
+		            	Comments.add(rs.getString("comments"));
+		            	orderDates.add(rs.getString("orderDate"));
+		                
+		            }
+		            
+		            for(int i = 0; i < firstNames.size(); i++) {
+		            	orderModel.addRow(new Object[]{ firstNames.elementAt(i), lastNames.elementAt(i), orderNums.elementAt(i), customerNums.elementAt(i), employeeNums.elementAt(i), ordersPaid.elementAt(i), ordersComplete.elementAt(i), ordersDelivered.elementAt(i), pickUpDates.elementAt(i), pickUpTimes.elementAt(i),
+		            		Potashes.elementAt(i), MAPS.elementAt(i), AMS.elementAt(i), Ureas.elementAt(i), Gypsums.elementAt(i), orderDates.elementAt(i), Comments.elementAt(i) });
+		            	}
+				return orderModel;
+				
+				 // Catch if database could not be connected to
+		        } catch (SQLException e) {  
+		            System.out.println(e.getMessage());  
+		            return new DefaultTableModel();
+		            
+		        }  
+    	}
+    	else if(report.equals(reports[1])) { 
+    			
+				sqlCommand = "Select customerNum, firstName, lastName, phoneNum, email, address, outstandingBalance from customers where outstandingBalance > 0";
+				Object[][] rowData = {};
+				String[] headers2 = {"Customer Number", "First Name", "Last Name", "Phone Number", "Email", "Address", "Outstanding Balance"};
+				
+				
+				Vector<Integer> customerNums = new Vector<Integer>();
+		    	Vector<String> firstNames = new Vector<String>();
+		    	Vector<String> lastNames = new Vector<String>();
+		    	Vector<String> phoneNums = new Vector<String>();
+		    	Vector<String> address = new Vector<String>();
+		    	Vector<String> email = new Vector<String>();
+		    	Vector<Double> balances = new Vector<Double>();
+		    	
+				// Create table object
+				DefaultTableModel customerModel;
+				customerModel = new DefaultTableModel (rowData, headers2);
+				
+				try {  
+			            Connection conn = this.connect();  
+			            Statement stmt  = conn.createStatement();  
+			            
+			            
+			            // Run SQL statement and return the result
+			            ResultSet rs    = stmt.executeQuery(sqlCommand);  
+			              
+			            // While there exists another result
+			            while (rs.next()) {  
+			                
+			            	// Add returned result to corresponding vector
+			            	customerNums.add(rs.getInt("customerNum"));
+			            	firstNames.add(rs.getString("firstName"));
+			            	lastNames.add(rs.getString("lastName"));
+			            	phoneNums.add(rs.getString("phoneNum"));
+			            	email.add(rs.getString("email"));
+			            	address.add(rs.getString("address"));
+			            	balances.add(rs.getDouble("outstandingBalance"));
+			                
+			            }
+			       
+			            // Step through each result from the query pulling each piece of customer infromation
+		    			for(int i = 0; i < firstNames.size(); i++) {
+		    			customerModel.addRow(new Object[]{ customerNums.elementAt(i),firstNames.elementAt(i), lastNames.elementAt(i),phoneNums.elementAt(i), email.elementAt(i), address.elementAt(i), balances.elementAt(i)});
+		    			}
+		    			
+		    			return customerModel;
+			            
+			            // Catch if database could not be connected to
+			            } catch (SQLException e) {  
+			                System.out.println(e.getMessage());  
+			                return new DefaultTableModel();
+			                
+			            }
+    	}
+    	else {
+			return new DefaultTableModel();
+			}
+		}
+		
+		
+	}
+

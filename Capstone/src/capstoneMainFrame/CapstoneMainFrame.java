@@ -36,6 +36,7 @@ import javax.swing.JTable;
 import javax.swing.JOptionPane;
 
 import net.miginfocom.swing.MigLayout;
+import javax.swing.JComboBox;
 
 
 public class CapstoneMainFrame {
@@ -187,6 +188,101 @@ public class CapstoneMainFrame {
 		mainFrame.getContentPane().add(updateOrderPanel, "name_1181103588400");
 		JPanel adminPanel = new JPanel();
 		mainFrame.getContentPane().add(adminPanel, "name_17707844245200");
+		GridBagLayout gbl_adminPanel = new GridBagLayout();
+		gbl_adminPanel.columnWidths = new int[]{15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_adminPanel.rowHeights = new int[]{45, 0, -117, 0, 216, 0, 0, 0};
+		gbl_adminPanel.columnWeights = new double[]{1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_adminPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		adminPanel.setLayout(gbl_adminPanel);
+		
+		JLabel Reports = new JLabel("Reports");
+		GridBagConstraints gbc_Reports = new GridBagConstraints();
+		gbc_Reports.gridwidth = 2;
+		gbc_Reports.insets = new Insets(0, 0, 5, 5);
+		gbc_Reports.gridx = 2;
+		gbc_Reports.gridy = 1;
+		adminPanel.add(Reports, gbc_Reports);
+		
+		JLabel lblNewLabel_67 = new JLabel("Total Orders");
+		GridBagConstraints gbc_lblNewLabel_67 = new GridBagConstraints();
+		gbc_lblNewLabel_67.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_67.gridx = 6;
+		gbc_lblNewLabel_67.gridy = 1;
+		adminPanel.add(lblNewLabel_67, gbc_lblNewLabel_67);
+		
+		JLabel adminTotalOrdersLabel = new JLabel("New label");
+		GridBagConstraints gbc_adminTotalOrdersLabel = new GridBagConstraints();
+		gbc_adminTotalOrdersLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_adminTotalOrdersLabel.gridx = 8;
+		gbc_adminTotalOrdersLabel.gridy = 1;
+		adminPanel.add(adminTotalOrdersLabel, gbc_adminTotalOrdersLabel);
+		
+		JScrollPane reportsPane = new JScrollPane();
+		GridBagConstraints gbc_reportsPane = new GridBagConstraints();
+		gbc_reportsPane.gridheight = 2;
+		gbc_reportsPane.gridwidth = 8;
+		gbc_reportsPane.insets = new Insets(0, 0, 5, 5);
+		gbc_reportsPane.fill = GridBagConstraints.BOTH;
+		gbc_reportsPane.gridx = 1;
+		gbc_reportsPane.gridy = 3;
+		adminPanel.add(reportsPane, gbc_reportsPane);
+		
+		String[] reports = {"", "Outstanding Orders", "Customers with Balances"};
+		JComboBox adminReportsMenu = new JComboBox(reports);
+		//adminReportsMenu.setSelectedIndex(reports.length - 1);		
+		JTable reportsTable = new JTable();
+		reportsPane.setViewportView(reportsTable);
+		
+		adminReportsMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JComboBox cb = (JComboBox)e.getSource();
+		        String reportType = (String)cb.getSelectedItem();
+		        Admin myAdmin = new Admin();
+		        TableModel myModel =  myAdmin.runReport(reportType);
+		       	
+		       reportsTable.setModel(myModel);
+			   reportsTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+			   reportsTable.setCellEditor(null);
+			   reportsTable.setBounds(37, 143, 397, 183);
+			}
+		});
+		GridBagConstraints gbc_adminReportsMenu = new GridBagConstraints();
+		gbc_adminReportsMenu.gridwidth = 2;
+		gbc_adminReportsMenu.insets = new Insets(0, 0, 5, 5);
+		gbc_adminReportsMenu.fill = GridBagConstraints.HORIZONTAL;
+		gbc_adminReportsMenu.gridx = 2;
+		gbc_adminReportsMenu.gridy = 2;
+		adminPanel.add(adminReportsMenu, gbc_adminReportsMenu);
+		
+		JLabel adminTotalCustomerLabel = new JLabel("Total Customers");
+		GridBagConstraints gbc_lblNewLabel_68 = new GridBagConstraints();
+		gbc_lblNewLabel_68.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_68.gridx = 6;
+		gbc_lblNewLabel_68.gridy = 2;
+		adminPanel.add(adminTotalCustomerLabel, gbc_lblNewLabel_68);
+		
+		JLabel adminTotalCustomerOrder = new JLabel("New label");
+		GridBagConstraints gbc_adminTotalCustomerOrder = new GridBagConstraints();
+		gbc_adminTotalCustomerOrder.insets = new Insets(0, 0, 5, 5);
+		gbc_adminTotalCustomerOrder.gridx = 8;
+		gbc_adminTotalCustomerOrder.gridy = 2;
+		adminPanel.add(adminTotalCustomerOrder, gbc_adminTotalCustomerOrder);
+		
+		JButton adminBack = new JButton("Back");
+		adminBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				reportsTable.setModel(new DefaultTableModel());
+				adminPanel.hide();
+				mainPanel.show();
+			}
+		});
+		GridBagConstraints gbc_adminBack = new GridBagConstraints();
+		gbc_adminBack.insets = new Insets(0, 0, 5, 5);
+		gbc_adminBack.gridx = 7;
+		gbc_adminBack.gridy = 5;
+		adminPanel.add(adminBack, gbc_adminBack);
+		
+		
 		
 		JLabel updateCustomerIDLabel = new JLabel("");
 		JLabel orderUpdateOrderDateLabel = new JLabel("");
@@ -327,6 +423,8 @@ public class CapstoneMainFrame {
 			public void actionPerformed(ActionEvent e) {
 				mainPanel.hide();
 				adminPanel.show();
+				Admin myAdmin = new Admin();
+				myAdmin.execute(adminTotalOrdersLabel, adminTotalCustomerOrder);
 			}
 		});
 		GridBagConstraints gbc_adminButton = new GridBagConstraints();
