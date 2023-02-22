@@ -98,7 +98,7 @@ public class Admin {
 	 */
 	public TableModel runReport(String report) {
 		// Array to hold all possible reports
-		String[] reports = {"Outstanding Orders", "Customers with Balances"};
+		String[] reports = {"Outstanding Orders", "Customers with Balances", "Unpaid Orders"};
 		
 		// String to hold SQL command
 		String sqlCommand;
@@ -112,12 +112,12 @@ public class Admin {
 				
     			// Data for created table
     			Object[][] rowData = {};
-				String[] headers1 = {"First Name", "Last Name", "orderNum", "customerNum", "employeeNum", "Paid", "Complete", "Delivered", "PickUp Date", "PickUp Time"
+				String[] headers = {"First Name", "Last Name", "orderNum", "customerNum", "employeeNum", "Paid", "Complete", "Delivered", "PickUp Date", "PickUp Time"
 						, "Potash", "MAP", "AMS", "Urea", "Gypsum", "Order Date", "Comments"};
 				
 				// Holds the table model
 				DefaultTableModel orderModel;
-				orderModel = new DefaultTableModel (rowData, headers1);
+				orderModel = new DefaultTableModel (rowData, headers);
 				
 				// Create a vector for each attribute returned in SQL command 
 		    	Vector<String> firstNames = new Vector<String>();
@@ -193,7 +193,7 @@ public class Admin {
 				
 				// Data storage for the table 
 				Object[][] rowData = {};
-				String[] headers2 = {"Customer Number", "First Name", "Last Name", "Phone Number", "Email", "Address", "Outstanding Balance"};
+				String[] headers = {"Customer Number", "First Name", "Last Name", "Phone Number", "Email", "Address", "Outstanding Balance"};
 				
 				// Vectors to store the data collected from the query
 				Vector<Integer> customerNums = new Vector<Integer>();
@@ -206,7 +206,7 @@ public class Admin {
 		    	
 				// Create table object
 				DefaultTableModel customerModel;
-				customerModel = new DefaultTableModel (rowData, headers2);
+				customerModel = new DefaultTableModel (rowData, headers);
 				
 				try {  
 			            Connection conn = this.connect();  
@@ -245,7 +245,87 @@ public class Admin {
 			                
 			            }
     	}
-    	
+    	else if(report.equals(reports[2])) {
+    		// Run SQL Command
+			sqlCommand = "Select firstName, lastName, orders.customerNum, orderNum, employeeNum, orderPaid, orderComplete, orderDelivered, pickUpDate, pickupTime, Potash, MAP, AMS, Urea, Gypsum, comments, orderDate"
+	        		+ " from customers,orders "
+	        		+ "where customers.customerNum = orders.customerNum AND orderPaid = False";
+			
+			// Data for created table
+			Object[][] rowData = {};
+			String[] headers = {"First Name", "Last Name", "orderNum", "customerNum", "employeeNum", "Paid", "Complete", "Delivered", "PickUp Date", "PickUp Time"
+					, "Potash", "MAP", "AMS", "Urea", "Gypsum", "Order Date", "Comments"};
+			
+			// Create a vector for each attribute returned in SQL command 
+	    	Vector<String> firstNames = new Vector<String>();
+	    	Vector<String> lastNames = new Vector<String>();
+	    	Vector<Integer> orderNums = new Vector<Integer>();
+	    	Vector<Integer> customerNums = new Vector<Integer>();
+	    	Vector<Integer> employeeNums = new Vector<Integer>();
+	    	Vector<Boolean> ordersPaid = new Vector<Boolean>();
+	    	Vector<Boolean> ordersComplete = new Vector<Boolean>();
+	    	Vector<Boolean> ordersDelivered = new Vector<Boolean>();
+	    	Vector<String> pickUpDates = new Vector<String>();
+	    	Vector<String> pickUpTimes = new Vector<String>();
+	    	Vector<Double> Potashes = new Vector<Double>();
+	    	Vector<Double> MAPS = new Vector<Double>();
+	    	Vector<Double> AMS = new Vector<Double>();
+	    	Vector<Double> Ureas = new Vector<Double>();
+	    	Vector<Double> Gypsums = new Vector<Double>();
+	    	Vector<String> Comments = new Vector<String>();
+	    	Vector<String> orderDates = new Vector<String>();
+	    	
+			// Create table object
+			DefaultTableModel paidModel;
+			paidModel = new DefaultTableModel (rowData, headers);
+			
+			try {  
+		            Connection conn = this.connect();  
+		            Statement stmt  = conn.createStatement();  
+		            
+		            
+		            // Run SQL statement and return the result
+		            ResultSet rs    = stmt.executeQuery(sqlCommand); 
+		            
+		            // While there exists another result
+		            while (rs.next()) {  
+		                
+		            	// Add returned result to corresponding vector
+		            	firstNames.add(rs.getString("firstName"));
+		            	lastNames.add(rs.getString("lastName"));
+		            	orderNums.add(rs.getInt("orderNum"));
+		            	customerNums.add(rs.getInt("customerNum"));
+		            	employeeNums.add(rs.getInt("employeeNum"));
+		            	ordersPaid.add(rs.getBoolean("orderPaid"));
+		            	ordersComplete.add(rs.getBoolean("orderComplete"));
+		            	ordersDelivered.add(rs.getBoolean("orderDelivered"));
+		            	pickUpDates.add(rs.getString("pickUpDate"));
+		            	pickUpTimes.add(rs.getString("pickUpTime"));
+		            	Potashes.add(rs.getDouble("Potash"));
+		            	MAPS.add(rs.getDouble("MAP"));
+		            	AMS.add(rs.getDouble("AMS"));
+		            	Ureas.add(rs.getDouble("Urea"));
+		            	Gypsums.add(rs.getDouble("Gypsum"));
+		            	Comments.add(rs.getString("comments"));
+		            	orderDates.add(rs.getString("orderDate"));
+		                
+		            }
+		            
+		            // Add each entry to the JTable
+		            for(int i = 0; i < firstNames.size(); i++) {
+		            	paidModel.addRow(new Object[]{ firstNames.elementAt(i), lastNames.elementAt(i), orderNums.elementAt(i), customerNums.elementAt(i), employeeNums.elementAt(i), ordersPaid.elementAt(i), ordersComplete.elementAt(i), ordersDelivered.elementAt(i), pickUpDates.elementAt(i), pickUpTimes.elementAt(i),
+		            		Potashes.elementAt(i), MAPS.elementAt(i), AMS.elementAt(i), Ureas.elementAt(i), Gypsums.elementAt(i), orderDates.elementAt(i), Comments.elementAt(i) });
+		            	}
+		            
+		        // Return the table model
+				return paidModel;
+		    // Catch if database could not be connected to
+            } catch (SQLException e) {  
+                System.out.println(e.getMessage());  
+                return new DefaultTableModel();
+                
+            }
+    	}
     	// If no report matches - return a default table model
     	else {
 			return new DefaultTableModel();

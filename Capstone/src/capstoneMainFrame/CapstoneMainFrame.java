@@ -256,7 +256,7 @@ public class CapstoneMainFrame {
 		gbc_reportsPane.gridy = 3;
 		adminPanel.add(reportsPane, gbc_reportsPane);
 		
-		String[] reports = {"", "Outstanding Orders", "Customers with Balances"};
+		String[] reports = {"", "Outstanding Orders", "Customers with Balances", "Unpaid Orders"};
 		JComboBox adminReportsMenu = new JComboBox(reports);		
 		reportsTable = new JTable();
 		reportsPane.setViewportView(reportsTable);
