@@ -13,6 +13,9 @@ import javax.swing.table.TableModel;
 
 public class Admin {
 
+	/*
+	 * connect to the database the specified based on the file path
+	 */
 	private Connection connect() {  
 	   	 // SQLite connection string  - this string is the file path to the database 
 	       String url = "jdbc:sqlite:C://sqlite/fertilizer.db";  
@@ -27,10 +30,18 @@ public class Admin {
 	       return conn;  
 			}  
 	
+	/*
+	 * Function sets the labels on the admin page
+	 * @param JLabel orders is the total orders label
+	 * @param JLabel customers is the total customers label
+	 */
 	public void execute(JLabel orders, JLabel customers) {
+		// SQL commands to find the total orders and customers
 		String sqlOrderCount = String.format("Select COUNT(*) AS total from orders");
 		String sqlCustomerCount = String.format("Select COUNT(*) AS total from customers");
-        int orderCount = 0;
+       
+		// VARS to store the total
+		int orderCount = 0;
         int customerCount = 0;
         
         try {
@@ -45,6 +56,7 @@ public class Admin {
         	orderCount = rs.getInt("total");
         }  
         
+        // Close connection
         stmt.close();
         conn.close();
         
@@ -60,10 +72,11 @@ public class Admin {
             ResultSet rs  = stmt.executeQuery(sqlCustomerCount);
             
             while (rs.next()) {  
-            	// Get Order Count
+            	// Get customer Count
             	customerCount = rs.getInt("total");
             }  
             
+            // Close connection
             stmt.close();
             conn.close();
             
@@ -71,24 +84,38 @@ public class Admin {
             System.out.println(e.getMessage());  
             	} 
         
+        // Set the text of the labels
         orders.setText(orderCount +"");
         customers.setText(customerCount + "");
         
         return;
 	}
+	
+	/*
+	 * Function runs a report based on the user's selection
+	 * @param report is the selected report to run
+	 * @return TableModel for JTable on Admin page
+	 */
 	public TableModel runReport(String report) {
+		// Array to hold all possible reports
 		String[] reports = {"Outstanding Orders", "Customers with Balances"};
+		
+		// String to hold SQL command
 		String sqlCommand;
     	
-    	
+		// Based on selection run certain reports    	
     	if(report.equals( reports[0])){
-				sqlCommand = "Select firstName, lastName, orders.customerNum, orderNum, employeeNum, orderPaid, orderComplete, orderDelivered, pickUpDate, pickupTime, Potash, MAP, AMS, Urea, Gypsum, comments, orderDate"
+				// Run SQL Command
+    			sqlCommand = "Select firstName, lastName, orders.customerNum, orderNum, employeeNum, orderPaid, orderComplete, orderDelivered, pickUpDate, pickupTime, Potash, MAP, AMS, Urea, Gypsum, comments, orderDate"
 		        		+ " from customers,orders "
 		        		+ "where customers.customerNum = orders.customerNum AND orderComplete = False";
-				Object[][] rowData = {};
+				
+    			// Data for created table
+    			Object[][] rowData = {};
 				String[] headers1 = {"First Name", "Last Name", "orderNum", "customerNum", "employeeNum", "Paid", "Complete", "Delivered", "PickUp Date", "PickUp Time"
 						, "Potash", "MAP", "AMS", "Urea", "Gypsum", "Order Date", "Comments"};
-
+				
+				// Holds the table model
 				DefaultTableModel orderModel;
 				orderModel = new DefaultTableModel (rowData, headers1);
 				
@@ -144,10 +171,13 @@ public class Admin {
 		                
 		            }
 		            
+		            // Add each entry to the JTable
 		            for(int i = 0; i < firstNames.size(); i++) {
 		            	orderModel.addRow(new Object[]{ firstNames.elementAt(i), lastNames.elementAt(i), orderNums.elementAt(i), customerNums.elementAt(i), employeeNums.elementAt(i), ordersPaid.elementAt(i), ordersComplete.elementAt(i), ordersDelivered.elementAt(i), pickUpDates.elementAt(i), pickUpTimes.elementAt(i),
 		            		Potashes.elementAt(i), MAPS.elementAt(i), AMS.elementAt(i), Ureas.elementAt(i), Gypsums.elementAt(i), orderDates.elementAt(i), Comments.elementAt(i) });
 		            	}
+		            
+		        // Return the table model
 				return orderModel;
 				
 				 // Catch if database could not be connected to
@@ -158,12 +188,14 @@ public class Admin {
 		        }  
     	}
     	else if(report.equals(reports[1])) { 
-    			
+    			// Run SQL Command
 				sqlCommand = "Select customerNum, firstName, lastName, phoneNum, email, address, outstandingBalance from customers where outstandingBalance > 0";
+				
+				// Data storage for the table 
 				Object[][] rowData = {};
 				String[] headers2 = {"Customer Number", "First Name", "Last Name", "Phone Number", "Email", "Address", "Outstanding Balance"};
 				
-				
+				// Vectors to store the data collected from the query
 				Vector<Integer> customerNums = new Vector<Integer>();
 		    	Vector<String> firstNames = new Vector<String>();
 		    	Vector<String> lastNames = new Vector<String>();
@@ -203,6 +235,7 @@ public class Admin {
 		    			customerModel.addRow(new Object[]{ customerNums.elementAt(i),firstNames.elementAt(i), lastNames.elementAt(i),phoneNums.elementAt(i), email.elementAt(i), address.elementAt(i), balances.elementAt(i)});
 		    			}
 		    			
+		    			// Return table model
 		    			return customerModel;
 			            
 			            // Catch if database could not be connected to
@@ -212,6 +245,8 @@ public class Admin {
 			                
 			            }
     	}
+    	
+    	// If no report matches - return a default table model
     	else {
 			return new DefaultTableModel();
 			}

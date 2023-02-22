@@ -65,6 +65,7 @@ public class CapstoneMainFrame {
 	private JTextField orderHistoryFirstNameField;
 	private JTextField orderHistoryLastNameField;
 	private JTable orderHistoryTable;
+	private JTable reportsTable;
 	private JTextField customerLookupCustomerIDField;
 	private JTextField customerLookupCustomerFirstNameField;
 	private JTextField customerLookupLastNameField;
@@ -102,6 +103,18 @@ public class CapstoneMainFrame {
 	private JTextField orderUpdateUreaField;
 	private JTextField orderUpdateGypsumField;
 	private JTextField orderUpdateCommentsField;
+	private JTextField potashPriceField;
+	private JTextField mapPriceField;
+	private JTextField amsPriceField;
+	private JTextField ureaPriceField;
+	private JTextField gypsumPriceField;
+	private GridBagConstraints gbc_potashLabel;
+	
+	private double potashPriceAmnt = 0.0;
+	private double mapPriceAmnt = 0.0;
+	private double amsPriceAmnt = 0.0;
+	private double ureaPriceAmnt = 0.0;
+	private double gypsumPriceAmnt = 0.0;
 	
 	/**
 	 * Launch the application.
@@ -186,6 +199,8 @@ public class CapstoneMainFrame {
 		mainFrame.getContentPane().add(updateCustomerPanel, "name_164304063288900");
 		JPanel updateOrderPanel = new JPanel();
 		mainFrame.getContentPane().add(updateOrderPanel, "name_1181103588400");
+		JPanel settingsPanel = new JPanel();
+		mainFrame.getContentPane().add(settingsPanel, "name_12832195507900");
 		JPanel adminPanel = new JPanel();
 		mainFrame.getContentPane().add(adminPanel, "name_17707844245200");
 		GridBagLayout gbl_adminPanel = new GridBagLayout();
@@ -206,7 +221,7 @@ public class CapstoneMainFrame {
 		JLabel lblNewLabel_67 = new JLabel("Total Orders");
 		GridBagConstraints gbc_lblNewLabel_67 = new GridBagConstraints();
 		gbc_lblNewLabel_67.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_67.gridx = 6;
+		gbc_lblNewLabel_67.gridx = 7;
 		gbc_lblNewLabel_67.gridy = 1;
 		adminPanel.add(lblNewLabel_67, gbc_lblNewLabel_67);
 		
@@ -216,6 +231,20 @@ public class CapstoneMainFrame {
 		gbc_adminTotalOrdersLabel.gridx = 8;
 		gbc_adminTotalOrdersLabel.gridy = 1;
 		adminPanel.add(adminTotalOrdersLabel, gbc_adminTotalOrdersLabel);
+		
+		JLabel adminTotalCustomerLabel = new JLabel("Total Customers");
+		GridBagConstraints gbc_lblNewLabel_68 = new GridBagConstraints();
+		gbc_lblNewLabel_68.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_68.gridx = 7;
+		gbc_lblNewLabel_68.gridy = 2;
+		adminPanel.add(adminTotalCustomerLabel, gbc_lblNewLabel_68);
+		
+		JLabel adminTotalCustomerOrder = new JLabel("New label");
+		GridBagConstraints gbc_adminTotalCustomerOrder = new GridBagConstraints();
+		gbc_adminTotalCustomerOrder.insets = new Insets(0, 0, 5, 5);
+		gbc_adminTotalCustomerOrder.gridx = 8;
+		gbc_adminTotalCustomerOrder.gridy = 2;
+		adminPanel.add(adminTotalCustomerOrder, gbc_adminTotalCustomerOrder);
 		
 		JScrollPane reportsPane = new JScrollPane();
 		GridBagConstraints gbc_reportsPane = new GridBagConstraints();
@@ -228,9 +257,8 @@ public class CapstoneMainFrame {
 		adminPanel.add(reportsPane, gbc_reportsPane);
 		
 		String[] reports = {"", "Outstanding Orders", "Customers with Balances"};
-		JComboBox adminReportsMenu = new JComboBox(reports);
-		//adminReportsMenu.setSelectedIndex(reports.length - 1);		
-		JTable reportsTable = new JTable();
+		JComboBox adminReportsMenu = new JComboBox(reports);		
+		reportsTable = new JTable();
 		reportsPane.setViewportView(reportsTable);
 		
 		adminReportsMenu.addActionListener(new ActionListener() {
@@ -254,20 +282,6 @@ public class CapstoneMainFrame {
 		gbc_adminReportsMenu.gridy = 2;
 		adminPanel.add(adminReportsMenu, gbc_adminReportsMenu);
 		
-		JLabel adminTotalCustomerLabel = new JLabel("Total Customers");
-		GridBagConstraints gbc_lblNewLabel_68 = new GridBagConstraints();
-		gbc_lblNewLabel_68.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_68.gridx = 6;
-		gbc_lblNewLabel_68.gridy = 2;
-		adminPanel.add(adminTotalCustomerLabel, gbc_lblNewLabel_68);
-		
-		JLabel adminTotalCustomerOrder = new JLabel("New label");
-		GridBagConstraints gbc_adminTotalCustomerOrder = new GridBagConstraints();
-		gbc_adminTotalCustomerOrder.insets = new Insets(0, 0, 5, 5);
-		gbc_adminTotalCustomerOrder.gridx = 8;
-		gbc_adminTotalCustomerOrder.gridy = 2;
-		adminPanel.add(adminTotalCustomerOrder, gbc_adminTotalCustomerOrder);
-		
 		JButton adminBack = new JButton("Back");
 		adminBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -281,6 +295,26 @@ public class CapstoneMainFrame {
 		gbc_adminBack.gridx = 7;
 		gbc_adminBack.gridy = 5;
 		adminPanel.add(adminBack, gbc_adminBack);
+		
+		JButton settingsButton = new JButton("Settings");
+		settingsButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				adminPanel.hide();
+				settingsPanel.show();
+				reportsTable.setModel(new DefaultTableModel());
+				
+				potashPriceField.setText(potashPriceAmnt + "");
+				mapPriceField.setText(mapPriceAmnt + "");
+				amsPriceField.setText(amsPriceAmnt + "");
+				ureaPriceField.setText(ureaPriceAmnt + "");
+				gypsumPriceField.setText(gypsumPriceAmnt + "");
+			}
+		});
+		GridBagConstraints gbc_settingsButton = new GridBagConstraints();
+		gbc_settingsButton.insets = new Insets(0, 0, 5, 5);
+		gbc_settingsButton.gridx = 8;
+		gbc_settingsButton.gridy = 5;
+		adminPanel.add(settingsButton, gbc_settingsButton);
 		
 		
 		
@@ -2354,7 +2388,7 @@ public class CapstoneMainFrame {
 		orderCreateRunButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CreateOrder newOrder = new CreateOrder();
-				newOrder.execute(orderCreateOrderIDField, orderCreateCustomerIDField, orderCreateEmployeeIDField, orderCreatePickupDateField, orderCreatePickupTimeField, orderCreatePotashField, orderCreateMAPField, orderCreateAMSField, orderCreateUreaField, orderCreateGypsumField, orderCreateOrderCommentsField, orderCreateOrderDateField, orderCreateOrderPaidBox, orderCreateOrderCompleteBox, orderCreateOrderDeliveredBox);
+				newOrder.execute(orderCreateOrderIDField, orderCreateCustomerIDField, orderCreateEmployeeIDField, orderCreatePickupDateField, orderCreatePickupTimeField, orderCreatePotashField, orderCreateMAPField, orderCreateAMSField, orderCreateUreaField, orderCreateGypsumField, orderCreateOrderCommentsField, orderCreateOrderDateField, orderCreateOrderPaidBox, orderCreateOrderCompleteBox, orderCreateOrderDeliveredBox, potashPriceAmnt, mapPriceAmnt, amsPriceAmnt, ureaPriceAmnt, gypsumPriceAmnt);
 			}
 		});
 		GridBagConstraints gbc_orderCreateRunButton = new GridBagConstraints();
@@ -2830,6 +2864,135 @@ public class CapstoneMainFrame {
 		gbc_orderUpdateBackButton.gridx = 6;
 		gbc_orderUpdateBackButton.gridy = 13;
 		updateOrderPanel.add(orderUpdateBackButton, gbc_orderUpdateBackButton);
+		
+		
+		GridBagLayout gbl_settingsPanel = new GridBagLayout();
+		gbl_settingsPanel.columnWidths = new int[]{0, 0, 0, 0, 0};
+		gbl_settingsPanel.rowHeights = new int[]{100, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_settingsPanel.columnWeights = new double[]{1.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_settingsPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		settingsPanel.setLayout(gbl_settingsPanel);
+		
+		JLabel potashLabel = new JLabel("Potash Price");
+		gbc_potashLabel = new GridBagConstraints();
+		gbc_potashLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_potashLabel.anchor = GridBagConstraints.EAST;
+		gbc_potashLabel.gridx = 1;
+		gbc_potashLabel.gridy = 1;
+		settingsPanel.add(potashLabel, gbc_potashLabel);
+		
+		potashPriceField = new JTextField();
+		GridBagConstraints gbc_potashPriceField = new GridBagConstraints();
+		gbc_potashPriceField.insets = new Insets(0, 0, 5, 5);
+		gbc_potashPriceField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_potashPriceField.gridx = 2;
+		gbc_potashPriceField.gridy = 1;
+		settingsPanel.add(potashPriceField, gbc_potashPriceField);
+		potashPriceField.setColumns(10);
+		
+		JLabel lblNewLabel_69 = new JLabel("MAP Price");
+		GridBagConstraints gbc_lblNewLabel_69 = new GridBagConstraints();
+		gbc_lblNewLabel_69.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_69.gridx = 1;
+		gbc_lblNewLabel_69.gridy = 2;
+		settingsPanel.add(lblNewLabel_69, gbc_lblNewLabel_69);
+		
+		mapPriceField = new JTextField();
+		mapPriceField.setText("");
+		GridBagConstraints gbc_mapPriceField = new GridBagConstraints();
+		gbc_mapPriceField.insets = new Insets(0, 0, 5, 5);
+		gbc_mapPriceField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_mapPriceField.gridx = 2;
+		gbc_mapPriceField.gridy = 2;
+		settingsPanel.add(mapPriceField, gbc_mapPriceField);
+		mapPriceField.setColumns(10);
+		
+		JLabel lblNewLabel_70 = new JLabel("AMS Price");
+		GridBagConstraints gbc_lblNewLabel_70 = new GridBagConstraints();
+		gbc_lblNewLabel_70.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_70.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_70.gridx = 1;
+		gbc_lblNewLabel_70.gridy = 3;
+		settingsPanel.add(lblNewLabel_70, gbc_lblNewLabel_70);
+		
+		amsPriceField = new JTextField();
+		amsPriceField.setText("");
+		GridBagConstraints gbc_amsPriceField = new GridBagConstraints();
+		gbc_amsPriceField.insets = new Insets(0, 0, 5, 5);
+		gbc_amsPriceField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_amsPriceField.gridx = 2;
+		gbc_amsPriceField.gridy = 3;
+		settingsPanel.add(amsPriceField, gbc_amsPriceField);
+		amsPriceField.setColumns(10);
+		
+		JLabel lblNewLabel_71 = new JLabel("Urea Price");
+		GridBagConstraints gbc_lblNewLabel_71 = new GridBagConstraints();
+		gbc_lblNewLabel_71.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_71.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_71.gridx = 1;
+		gbc_lblNewLabel_71.gridy = 4;
+		settingsPanel.add(lblNewLabel_71, gbc_lblNewLabel_71);
+		
+		ureaPriceField = new JTextField();
+		ureaPriceField.setText("");
+		GridBagConstraints gbc_ureaPriceField = new GridBagConstraints();
+		gbc_ureaPriceField.insets = new Insets(0, 0, 5, 5);
+		gbc_ureaPriceField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_ureaPriceField.gridx = 2;
+		gbc_ureaPriceField.gridy = 4;
+		settingsPanel.add(ureaPriceField, gbc_ureaPriceField);
+		ureaPriceField.setColumns(10);
+		
+		JLabel lblNewLabel_72 = new JLabel("Gypsum Price");
+		GridBagConstraints gbc_lblNewLabel_72 = new GridBagConstraints();
+		gbc_lblNewLabel_72.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_72.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_72.gridx = 1;
+		gbc_lblNewLabel_72.gridy = 5;
+		settingsPanel.add(lblNewLabel_72, gbc_lblNewLabel_72);
+		
+		gypsumPriceField = new JTextField();
+		GridBagConstraints gbc_gypsumPriceField = new GridBagConstraints();
+		gbc_gypsumPriceField.insets = new Insets(0, 0, 5, 5);
+		gbc_gypsumPriceField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_gypsumPriceField.gridx = 2;
+		gbc_gypsumPriceField.gridy = 5;
+		settingsPanel.add(gypsumPriceField, gbc_gypsumPriceField);
+		gypsumPriceField.setColumns(10);
+		
+		JButton btnNewButton_13 = new JButton("Update");
+		btnNewButton_13.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				potashPriceAmnt = Double.parseDouble(potashPriceField.getText());
+				mapPriceAmnt = Double.parseDouble(mapPriceField.getText());
+				amsPriceAmnt = Double.parseDouble(amsPriceField.getText());
+				ureaPriceAmnt = Double.parseDouble(ureaPriceField.getText());
+				gypsumPriceAmnt = Double.parseDouble(gypsumPriceField.getText());
+				
+				settingsPanel.hide();
+				adminPanel.show();
+			}
+		});
+		GridBagConstraints gbc_btnNewButton_13 = new GridBagConstraints();
+		gbc_btnNewButton_13.anchor = GridBagConstraints.EAST;
+		gbc_btnNewButton_13.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_13.gridx = 2;
+		gbc_btnNewButton_13.gridy = 6;
+		settingsPanel.add(btnNewButton_13, gbc_btnNewButton_13);
+		
+		JButton btnNewButton_14 = new JButton("Back");
+		btnNewButton_14.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				settingsPanel.hide();
+				adminPanel.show();
+			}
+		});
+		GridBagConstraints gbc_btnNewButton_14 = new GridBagConstraints();
+		gbc_btnNewButton_14.anchor = GridBagConstraints.EAST;
+		gbc_btnNewButton_14.insets = new Insets(0, 0, 0, 5);
+		gbc_btnNewButton_14.gridx = 2;
+		gbc_btnNewButton_14.gridy = 7;
+		settingsPanel.add(btnNewButton_14, gbc_btnNewButton_14);
 		
 	}
 }

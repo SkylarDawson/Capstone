@@ -60,11 +60,16 @@ public class CreateOrder {
 		 * @param JCheckBox OrderPaidBox is the box from the GUI stating if the order was paid
 		 * @param JCheckBox OrderCompleteBox is the box from the GUI stating if the order was complete
 		 * @param JCheckBox OrderDeliveredBox is the box from the GUI stating if the order was delivered
+		 * @param double potashPrice is the price per unit of potash
+		 * @param double mapPrice is the price per unit of MAP
+		 * @param double amsPrice is the price per unit of AMS
+		 * @param double ureaPrice is the price per unit of Urea
+		 * @param double gypsumPrice is the price per unit of Gypsum
 		 * @return nothing
 		 */
 		public void execute(JTextField orderIDField, JTextField customerIDField, JTextField employeeIDField, JTextField pickupDateField, JTextField pickupTimeField,
 				JTextField potashField, JTextField mapField, JTextField amsField, JTextField ureaField, JTextField gypsumField, JTextField commentsField, JTextField orderDateField,
-				JCheckBox OrderPaidBox, JCheckBox OrderCompleteBox, JCheckBox OrderDeliveredBox) {
+				JCheckBox OrderPaidBox, JCheckBox OrderCompleteBox, JCheckBox OrderDeliveredBox, double potashPrice, double mapPrice, double amsPrice, double ureaPrice, double gypsumPrice) {
 	        
 	        // All Attributes For Order
 	        int orderNum = 0;
@@ -202,9 +207,9 @@ public class CreateOrder {
 	        // Update System
 	        	// Remove Amount from BINS
 	        	// Automatically add billing
-	        		// Rates for each ingredient per weight
+	        	// Rates for each ingredient per weight
 	        	// Update Customer's Outstanding Balance
-	        		// If orderPaid then don't add to balance
+	        	// If orderPaid then don't add to balance
 	        
 	        // Clear
 			orderIDField.setText("");
