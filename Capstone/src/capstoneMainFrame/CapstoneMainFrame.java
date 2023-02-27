@@ -1118,18 +1118,21 @@ public class CapstoneMainFrame {
 		JButton btnNewButton_9 = new JButton("Back");
 		horizontalBox_6.add(btnNewButton_9);
 		
+		/*
+		 * Employee Panel
+		 */
 		GridBagLayout gbl_employeePanel = new GridBagLayout();
-		gbl_employeePanel.columnWidths = new int[]{0, 0, 0, 0};
-		gbl_employeePanel.rowHeights = new int[]{0, 0, 0, 0, 0};
-		gbl_employeePanel.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_employeePanel.rowWeights = new double[]{1.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_employeePanel.columnWidths = new int[]{142, 343, 0};
+		gbl_employeePanel.rowHeights = new int[]{130, 144, 21, 0};
+		gbl_employeePanel.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		gbl_employeePanel.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		employeePanel.setLayout(gbl_employeePanel);
 		
 		JScrollPane scrollPane_3 = new JScrollPane();
 		scrollPane_3.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		GridBagConstraints gbc_scrollPane_3 = new GridBagConstraints();
 		gbc_scrollPane_3.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane_3.insets = new Insets(0, 0, 5, 5);
+		gbc_scrollPane_3.insets = new Insets(0, 0, 5, 0);
 		gbc_scrollPane_3.gridx = 1;
 		gbc_scrollPane_3.gridy = 1;
 		employeePanel.add(scrollPane_3, gbc_scrollPane_3);
@@ -1138,23 +1141,43 @@ public class CapstoneMainFrame {
 		scrollPane_3.setColumnHeaderView(horizontalBox_4_1);
 		
 		JLabel lblEmployeeID = new JLabel("Employee ID");
-		horizontalBox_4_1.add(lblEmployeeID);
-		
+		GridBagConstraints gbc_lblEmployeeID = new GridBagConstraints();
+		gbc_lblEmployeeID.insets = new Insets(0, 0, 5, 5);
+		gbc_lblEmployeeID.gridx = 0;  // column 0
+		gbc_lblEmployeeID.gridy = 0;
+		employeePanel.add(lblEmployeeID, gbc_lblEmployeeID);
+
 		JLabel lblEmployeeFirst = new JLabel("First");
-		horizontalBox_4_1.add(lblEmployeeFirst);
-		
+		GridBagConstraints gbc_lblEmployeeFirst = new GridBagConstraints();
+		gbc_lblEmployeeFirst.insets = new Insets(0, 0, 5, 5);
+		gbc_lblEmployeeFirst.gridx = 1;  // column 1
+		gbc_lblEmployeeFirst.gridy = 0;
+		employeePanel.add(lblEmployeeFirst, gbc_lblEmployeeFirst);
+
 		JLabel lblEmployeeLast = new JLabel("Last");
-		horizontalBox_4_1.add(lblEmployeeLast);
-		
+		GridBagConstraints gbc_lblEmployeeLast = new GridBagConstraints();
+		gbc_lblEmployeeLast.insets = new Insets(0, 0, 5, 5);
+		gbc_lblEmployeeLast.gridx = 2;  // column 2
+		gbc_lblEmployeeLast.gridy = 0;
+		employeePanel.add(lblEmployeeLast, gbc_lblEmployeeLast);
+
 		JLabel lblEmployeePhone = new JLabel("Phone");
-		horizontalBox_4_1.add(lblEmployeePhone);
-		
+		GridBagConstraints gbc_lblEmployeePhone = new GridBagConstraints();
+		gbc_lblEmployeePhone.insets = new Insets(0, 0, 5, 5);
+		gbc_lblEmployeePhone.gridx = 3;  // column 3
+		gbc_lblEmployeePhone.gridy = 0;
+		employeePanel.add(lblEmployeePhone, gbc_lblEmployeePhone);
+
 		JLabel lblEmployeeTitle = new JLabel("Title");
-		horizontalBox_4_1.add(lblEmployeeTitle);
+		GridBagConstraints gbc_lblEmployeeTitle = new GridBagConstraints();
+		gbc_lblEmployeeTitle.insets = new Insets(0, 0, 5, 0);
+		gbc_lblEmployeeTitle.gridx = 4;  // column 4
+		gbc_lblEmployeeTitle.gridy = 0;
+		employeePanel.add(lblEmployeeTitle, gbc_lblEmployeeTitle);
+
 		
 		Box horizontalBox_7 = Box.createHorizontalBox();
 		GridBagConstraints gbc_horizontalBox_7 = new GridBagConstraints();
-		gbc_horizontalBox_7.insets = new Insets(0, 0, 5, 5);
 		gbc_horizontalBox_7.gridx = 1;
 		gbc_horizontalBox_7.gridy = 2;
 		employeePanel.add(horizontalBox_7, gbc_horizontalBox_7);
