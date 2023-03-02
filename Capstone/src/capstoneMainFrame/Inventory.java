@@ -18,6 +18,7 @@ public class Inventory {
 	 * 
 	 */
 	public Inventory() {
+		//Load Bin information from database
 		Bins[0] = new Bin();
 		Bins[1] = new Bin();
 		Bins[2] = new Bin();
