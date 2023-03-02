@@ -1376,6 +1376,11 @@ public class CapstoneMainFrame {
 		layeredPane_1.add(btnNewButton_6, "cell 1 2");
 		
 		JButton btnNewButton_5 = new JButton("New Spreader");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		GridBagConstraints gbc_btnNewButton_5 = new GridBagConstraints();
 		gbc_btnNewButton_5.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton_5.gridx = 1;
