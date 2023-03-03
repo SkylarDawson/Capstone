@@ -12,6 +12,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -1344,7 +1346,12 @@ public class CapstoneMainFrame {
 		orderPanel.add(orderHistoryLastNameField, gbc_orderHistoryLastNameField);
 		orderHistoryLastNameField.setColumns(10);
 		
+		SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
+		SimpleDateFormat timeFormatter = new SimpleDateFormat("hh:mm");
+		
 		orderHistoryOrderDateField = new JTextField();
+		Date date = new Date();  
+		orderHistoryOrderDateField.setText(formatter.format(date));
 		GridBagConstraints gbc_orderHistoryOrderDateField = new GridBagConstraints();
 		gbc_orderHistoryOrderDateField.insets = new Insets(0, 0, 5, 5);
 		gbc_orderHistoryOrderDateField.fill = GridBagConstraints.HORIZONTAL;
