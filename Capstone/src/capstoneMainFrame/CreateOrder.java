@@ -127,7 +127,9 @@ public class CreateOrder {
 	        if(OrderCompleteBox.isSelected()) { orderComplete = true;}
 	        if(OrderDeliveredBox.isSelected()) { orderDelivered = true;}
 	        pickUpDate = pickupDateField.getText();
+	        if(!pickUpDate.matches("^\\d{2}-\\d{2}-\\d{4}$")) {error = true; errorMessage += "Pick Up Date not in right format \n";}
 	        pickupTime = pickupTimeField.getText();
+	        if(!pickupTime.matches("^\\d{2}:\\d{2}$")) {error = true; errorMessage += "Pick up time not in right format \n";}
 	        
 	        try {
 	        	   Potash = Double.parseDouble(potashField.getText());
@@ -166,6 +168,8 @@ public class CreateOrder {
 	            }
 	        comments = commentsField.getText();
 	        orderDate = orderDateField.getText();
+	        if(!orderDate.matches("^\\d{2}-\\d{2}-\\d{4}$")) {error = true; errorMessage += "Pick Up Date not in right format \n";}
+		       
 	        
 	     // Check to make sure that the information put in is valid
 	    	// Order ID Doesn't Exist
@@ -199,7 +203,7 @@ public class CreateOrder {
 	            
 	            // Run SQL statement and return the result
 	            ResultSet rs  = stmt.executeQuery(customerIDExists);
-	            
+	            if(rs.next() == false) {error = true; errorMessage += "Customer ID does not exist \n";}
 	            // loop through the result set - prints out each attribute for each tuple pulled
 	            while (rs.next()) {  
 	                if(rs.getInt("customerNum") != customerNum) {error = true; errorMessage += "Customer ID does not exist \n";}
@@ -217,6 +221,7 @@ public class CreateOrder {
 	            // Run SQL statement and return the result
 	            ResultSet rs  = stmt.executeQuery(employeeIDExists);
 	            
+	            if(rs.next() == false) {error = true; errorMessage += "Employee ID does not exist \n";}
 	            // loop through the result set - prints out each attribute for each tuple pulled
 	            while (rs.next()) {  
 	                if(rs.getInt("employeeNum") != employeeNum) {error = true; errorMessage += "Employee ID does not exist \n";}
@@ -448,8 +453,9 @@ public class CreateOrder {
 			}
 			
 	            PickUpDate = PickupDateField.getText();
+	            if(!PickUpDate.matches("^\\d{2}-\\d{2}-\\d{4}$")) {error = true; errorMessage += "Pick Up Date not in right format \n";}
 	            PickUpTime = PickupTimeField.getText();
-	           
+	            if(!PickUpTime.matches("^\\d{2}:\\d{2}$")) {error = true; errorMessage += "Pick up time not in right format \n";}
 	           try {
 	        	   Potash = Double.parseDouble(PotashField.getText());
 	        	   
@@ -492,6 +498,42 @@ public class CreateOrder {
 	            complete = CompleteBox.isSelected();
 	            delivered = DeliveredBox.isSelected();
 	            
+	         // Customer ID exists in system
+		        String customerIDExists = String.format("Select customerNum from customers where customerNum = \"%d\"", customerNum);
+		        
+		        try {
+		            Connection conn = this.connect();  
+		            Statement stmt  = conn.createStatement(); 
+		            
+		            // Run SQL statement and return the result
+		            ResultSet rs  = stmt.executeQuery(customerIDExists);
+		            if(rs.next() == false) {error = true; errorMessage += "Customer ID does not exist \n";}
+		            // loop through the result set - prints out each attribute for each tuple pulled
+		            while (rs.next()) {  
+		                if(rs.getInt("customerNum") != customerNum) {error = true; errorMessage += "Customer ID does not exist \n";}
+		            }  
+		            	} catch (SQLException e) {  
+		            		System.out.println(e.getMessage());  
+		            	}  
+		        // Employee ID exists in system
+		        String employeeIDExists = String.format("Select employeeNum from employees where employeeNum = \"%d\"", employeeNum);
+		       
+		        try {
+		            Connection conn = this.connect();  
+		            Statement stmt  = conn.createStatement(); 
+		            
+		            // Run SQL statement and return the result
+		            ResultSet rs  = stmt.executeQuery(employeeIDExists);
+		            
+		            if(rs.next() == false) {error = true; errorMessage += "Employee ID does not exist \n";}
+		            // loop through the result set - prints out each attribute for each tuple pulled
+		            while (rs.next()) {  
+		                if(rs.getInt("employeeNum") != employeeNum) {error = true; errorMessage += "Employee ID does not exist \n";}
+		            }  
+		            	} catch (SQLException e) {  
+		            System.out.println(e.getMessage());  
+		            	}  
+		        
 	            // Bounds for ingredients
 		        double minValue = 0;
 		        double maxValue = 100;

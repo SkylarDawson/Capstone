@@ -308,25 +308,6 @@ public static void displayResults(Vector<String> firstName, Vector<String> lastN
 		Potash.elementAt(i), MAP.elementAt(i), AMS.elementAt(i), Urea.elementAt(i), Gypsum.elementAt(i), orderDate.elementAt(i), comments.elementAt(i) });
 	}
 	
-	// Clear Vectors
-	firstName.clear();
-	lastName.clear();
-	orderNum.clear();
-	customerNum.clear();
-	employeeNum.clear();
-	orderPaid.clear();
-	orderComplete.clear();
-	orderDelivered.clear();
-	pickUpDate.clear();
-	pickUpTime.clear();
-	Potash.clear();
-	MAP.clear();
-	AMS.clear();
-	Urea.clear();
-	Gypsum.clear();
-	orderDate.clear();
-	comments.clear();
-	
 	setTable(orderModel);
     
 	return;

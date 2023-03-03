@@ -2130,9 +2130,9 @@ public class CapstoneMainFrame {
 		createEmployeePanel.add(btnBack_9, gbc_btnBack_9);
 		
 		GridBagLayout gridBagLayout_2 = new GridBagLayout();
-		gridBagLayout_2.columnWidths = new int[]{0, 75, 65, 0, 0, 0, 60, 0, 0};
+		gridBagLayout_2.columnWidths = new int[]{0, 75, 65, 65, 65, 65, 65, 0, 0};
 		gridBagLayout_2.rowHeights = new int[]{0, 33, 0, 0, 0, 0, 0, 28, 0, 0, 47, 0, 0};
-		gridBagLayout_2.columnWeights = new double[]{1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout_2.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		gridBagLayout_2.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		createOrderPanel.setLayout(gridBagLayout_2);
 		
@@ -2148,7 +2148,6 @@ public class CapstoneMainFrame {
 		CreateOrder app1 = new CreateOrder();
 		String sqlMaxOrders = "Select orderNum From orders where orderNum = (Select max(orderNum) from orders);";
 		int maxID = app1.selectMaxOrders(sqlMaxOrders);
-		orderCreateOrderIDField.setText(maxID + 1 + "");
 		
 		GridBagConstraints gbc_orderCreateOrderIDField = new GridBagConstraints();
 		gbc_orderCreateOrderIDField.gridwidth = 2;
@@ -2404,15 +2403,18 @@ public class CapstoneMainFrame {
 			public void actionPerformed(ActionEvent e) {
 				orderCreateCustomerIDField.setText("");
 				orderCreateEmployeeIDField.setText("");
-				orderCreatePickupDateField.setText("");
-				orderCreatePickupTimeField.setText("");
+				orderCreatePickupDateField.setText("MM-dd-yyyy");
+				orderCreatePickupTimeField.setText("hh:mm");
 				orderCreatePotashField.setText("");
 				orderCreateMAPField.setText("");
 				orderCreateAMSField.setText("");
 				orderCreateUreaField.setText("");
 				orderCreateGypsumField.setText("");
 				orderCreateOrderCommentsField.setText("");
-				orderCreateOrderDateField.setText("");
+				SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
+				SimpleDateFormat timeFormatter = new SimpleDateFormat("hh:mm");
+				Date date = new Date();  
+				orderCreateOrderDateField.setText(formatter.format(date));
 				orderCreateOrderPaidBox.setSelected(false);
 				orderCreateOrderCompleteBox.setSelected(false);
 				orderCreateOrderDeliveredBox.setSelected(false);
@@ -2618,7 +2620,7 @@ public class CapstoneMainFrame {
 		 */
 
 		GridBagLayout gbl_updateOrderPanel = new GridBagLayout();
-		gbl_updateOrderPanel.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_updateOrderPanel.columnWidths = new int[]{0, 0, 65, 65, 65, 65, 65, 0, 0};
 		gbl_updateOrderPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_updateOrderPanel.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		gbl_updateOrderPanel.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
@@ -2996,6 +2998,9 @@ public class CapstoneMainFrame {
 		btnNewButton_13.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+				
+				if(Double.parseDouble(potashPriceField.getText()) <= 0 || Double.parseDouble(mapPriceField.getText()) <= 0 || Double.parseDouble(amsPriceField.getText()) <=0 || Double.parseDouble(ureaPriceField.getText()) <= 0 || Double.parseDouble(gypsumPriceField.getText()) <= 0) {throw new Exception ("Invalid Input");}
+					
 				potashPriceAmnt = Double.parseDouble(potashPriceField.getText());
 				mapPriceAmnt = Double.parseDouble(mapPriceField.getText());
 				amsPriceAmnt = Double.parseDouble(amsPriceField.getText());

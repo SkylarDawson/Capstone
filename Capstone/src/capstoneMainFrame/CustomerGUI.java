@@ -256,24 +256,9 @@ public class CustomerGUI {
     			CustomerModel.addRow(new Object[]{ customerNum.elementAt(i),firstName.elementAt(i), lastName.elementAt(i),phone.elementAt(i), email.elementAt(i), address.elementAt(i), balance.elementAt(i)});
     			}
     			
-    			/* Save for Reference
-    			// Create table based on information received
-    			JTable customerTable;
-    		    customerTable = new JTable(CustomerModel);
-    		    customerTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-    		    customerTable.setCellEditor(null);
-    		    customerTable.setBounds(37, 143, 397, 183);
-				*/
-    			
     		    setTable(CustomerModel);
     		    
-    		    /* Save for reference
-    		    // Show the frame
-    		    JFrame frame = new JFrame();
-    		    frame.add(new JScrollPane(customerTable));
-    		    frame.setVisible(true);
-    		    frame.pack();
-    		    */
+  
     			return;
     }
 
