@@ -1385,8 +1385,10 @@ public class CapstoneMainFrame {
 		JButton orderEditButton = new JButton("Edit Order");
 		orderEditButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JFrame frame = new JFrame();
-			    String orderID = JOptionPane.showInputDialog(frame, "Enter ID of Order to Edit:");
+			    try{
+			    	JFrame frame = new JFrame();
+			    	String orderID = JOptionPane.showInputDialog(frame, "Enter ID of Order to Edit:");
+			    
 			    
 			    setPrevious(orderPanel);
 			    orderPanel.hide();
@@ -1398,12 +1400,16 @@ public class CapstoneMainFrame {
 				orderHistoryLastNameField.setText("");
 				orderHistoryOrderDateField.setText("");
 			    updateOrderPanel.show();
+			    } catch (Exception p) {
+			    	 orderPanel.show();
+			    }
 			}
 		});
 		
 		JButton deleteOrderButton = new JButton("Delete Order");
 		deleteOrderButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
 				JFrame frame = new JFrame();
 			    String orderID = JOptionPane.showInputDialog(frame, "Enter ID of Order to Delete:");
 			    
@@ -1418,6 +1424,9 @@ public class CapstoneMainFrame {
 				orderHistoryLastNameField.setText("");
 				orderHistoryOrderDateField.setText("");
 			    updateOrderPanel.show();
+				} catch (Exception p) {
+					orderPanel.show();
+				}
 			}
 		});
 		GridBagConstraints gbc_deleteOrderButton = new GridBagConstraints();
@@ -1687,6 +1696,7 @@ public class CapstoneMainFrame {
 		JButton updateButton = new JButton("Edit Customer");
 		updateButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
 				JFrame frame = new JFrame();
 			    String customerID = JOptionPane.showInputDialog(frame, "Enter ID of Customer to Edit:");
 			    
@@ -1701,6 +1711,9 @@ public class CapstoneMainFrame {
 				customerLookupLastNameField.setText("");
 				customerLookupPhoneNumberField.setText("");
 			    updateCustomerPanel.show();
+				} catch (Exception p) {
+					customerPanel.show();
+				}
 			}
 		});
 		horizontalBox_6.add(updateButton);
@@ -1708,6 +1721,7 @@ public class CapstoneMainFrame {
 		JButton btnNewButton_8 = new JButton("Delete");
 		btnNewButton_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
 				JFrame frame = new JFrame();
 			    String customerID = JOptionPane.showInputDialog(frame, "Enter ID of Customer to Delete:");
 			    setPrevious(customerPanel);
@@ -1721,6 +1735,9 @@ public class CapstoneMainFrame {
 				customerLookupLastNameField.setText("");
 				customerLookupPhoneNumberField.setText("");
 			    updateCustomerPanel.show();
+				} catch (Exception t) {
+					customerPanel.show();
+				}
 			}
 		});
 		horizontalBox_6.add(btnNewButton_8);
