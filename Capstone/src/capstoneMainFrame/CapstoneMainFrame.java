@@ -1346,12 +1346,8 @@ public class CapstoneMainFrame {
 		orderPanel.add(orderHistoryLastNameField, gbc_orderHistoryLastNameField);
 		orderHistoryLastNameField.setColumns(10);
 		
-		SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
-		SimpleDateFormat timeFormatter = new SimpleDateFormat("hh:mm");
 		
-		orderHistoryOrderDateField = new JTextField();
-		Date date = new Date();  
-		orderHistoryOrderDateField.setText(formatter.format(date));
+		orderHistoryOrderDateField = new JTextField();		
 		GridBagConstraints gbc_orderHistoryOrderDateField = new GridBagConstraints();
 		gbc_orderHistoryOrderDateField.insets = new Insets(0, 0, 5, 5);
 		gbc_orderHistoryOrderDateField.fill = GridBagConstraints.HORIZONTAL;
@@ -2213,6 +2209,7 @@ public class CapstoneMainFrame {
 		createOrderPanel.add(lblNewLabel_38, gbc_lblNewLabel_38);
 		
 		orderCreatePickupDateField = new JTextField();
+		orderCreatePickupDateField.setText("MM-dd-yyyy");
 		GridBagConstraints gbc_orderCreatePickupDateField = new GridBagConstraints();
 		gbc_orderCreatePickupDateField.gridwidth = 2;
 		gbc_orderCreatePickupDateField.insets = new Insets(0, 0, 5, 5);
@@ -2231,6 +2228,7 @@ public class CapstoneMainFrame {
 		createOrderPanel.add(lblNewLabel_39, gbc_lblNewLabel_39);
 		
 		orderCreatePickupTimeField = new JTextField();
+		orderCreatePickupTimeField.setText("hh:mm");
 		GridBagConstraints gbc_orderCreatePickupTimeField = new GridBagConstraints();
 		gbc_orderCreatePickupTimeField.gridwidth = 2;
 		gbc_orderCreatePickupTimeField.insets = new Insets(0, 0, 5, 5);
@@ -2249,6 +2247,11 @@ public class CapstoneMainFrame {
 		createOrderPanel.add(lblNewLabel_46, gbc_lblNewLabel_46);
 		
 		orderCreateOrderDateField = new JTextField();
+		SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
+		SimpleDateFormat timeFormatter = new SimpleDateFormat("hh:mm");
+		Date date = new Date();  
+		orderCreateOrderDateField.setText(formatter.format(date));
+		
 		GridBagConstraints gbc_orderCreateOrderDateField = new GridBagConstraints();
 		gbc_orderCreateOrderDateField.gridwidth = 2;
 		gbc_orderCreateOrderDateField.insets = new Insets(0, 0, 5, 5);
