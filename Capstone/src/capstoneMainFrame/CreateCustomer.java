@@ -76,10 +76,10 @@ public class CreateCustomer {
 		// Check that the fields are not empty and all needed information is included
 		// Needed information is ID, First Name, Last Name, and Address
 		
-		if(CustomerIDField.getText() == null || CustomerIDField.getText() == "") { error = true; errorMessage += "Customer ID Missing \n";}
-		if(FirstNameField.getText() == null || FirstNameField.getText() == "") { error = true; errorMessage += "First Name Missing \n";}
-		if(LastNameField.getText() == null || LastNameField.getText() == "") { error = true; errorMessage += "Last Name Missing \n";}
-		if(AddressField.getText() == null || AddressField.getText() == "") { error = true; errorMessage += "Address Missing \n";}
+		if(CustomerIDField.getText().equals(null) || CustomerIDField.getText().equals("")) { error = true; errorMessage += "Customer ID Missing \n";}
+		if(FirstNameField.getText().equals(null) || FirstNameField.getText().equals("")) { error = true; errorMessage += "First Name Missing \n";}
+		if(LastNameField.getText().equals(null) || LastNameField.getText().equals("")) { error = true; errorMessage += "Last Name Missing \n";}
+		if(PhoneNumField.getText().equals(null) || PhoneNumField.getText().equals("")) { error = true; errorMessage += "Phone Number Missing \n";}
 		
 		// Using the passed in JTextFields - extract the needed information to create a customer
 		try {customerNum = Integer.parseInt(CustomerIDField.getText());
@@ -243,12 +243,16 @@ public class CreateCustomer {
 		Boolean error = false;
 		String errorMessage = "";
 		
-            
+		if(FirstNameField.getText().equals(null) || FirstNameField.getText().equals("")) { error = true; errorMessage += "First Name Missing \n";}
+		if(LastNameField.getText().equals(null) || LastNameField.getText().equals("")) { error = true; errorMessage += "Last Name Missing \n";}
+		if(PhoneNumField.getText().equals(null) || PhoneNumField.getText().equals("")) { error = true; errorMessage += "Phone Number Missing \n";}
+		
             firstName = FirstNameField.getText();
             lastName = LastNameField.getText();
             phoneNum = PhoneNumField.getText();
             address = AddressField.getText();
             emailAddress = EmailField.getText();
+            
             try {
             assignedRepID = Integer.parseInt(AssignedRepIDField.getText());
             } catch (Exception e) {
