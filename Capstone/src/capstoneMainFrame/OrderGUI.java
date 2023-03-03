@@ -11,6 +11,7 @@ import java.sql.Statement;
 import java.util.Vector;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -79,22 +80,38 @@ public class OrderGUI {
     	// Extract information from passed in GUIs
     	// Extract information from passed in GUIs
     	int orderNum = 0;
+    	boolean error = false;
+    	String errorMessage = "";
     	if(orderNumField.getText().length() == 0) {
     		orderNum = 0;
     	}
     	else {
-    	orderNum = Integer.parseInt(orderNumField.getText());
+    	
+    		try{orderNum = Integer.parseInt(orderNumField.getText());}
+    		catch (Exception e)
+    		{
+    			error = true;
+    			errorMessage += "Order Number not an integer \n";
+    		}
     	}
     	String firstName = firstNameField.getText();
     	String lastName = lastNameField.getText();
     	String orderDate = orderDateField.getText();
     	
-    	
+    	if(!error) {
     	// Run a search on the database
     	runSearch(orderNum, firstName, lastName, orderDate);
     	
+    	
     	TableModel orderHistory = getTable();
     	return orderHistory;
+    	}
+    	else
+    	{
+    		 // Tell user that operation was successful
+        	JOptionPane.showMessageDialog(null, errorMessage);
+        	return new DefaultTableModel();
+    	}
     }
     
     /*

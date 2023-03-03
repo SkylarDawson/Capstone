@@ -11,6 +11,7 @@ import java.sql.Statement;
 import java.util.Vector;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -67,21 +68,34 @@ public class CustomerGUI {
     	
     	// Extract all passed through information
     	int customerNum = 0;
+    	boolean error = false;
+    	String errorMessage = "";
     	if(customerNumField.getText().length() == 0) {
     		customerNum = 0;
     	}
     	else {
-    	customerNum = Integer.parseInt(customerNumField.getText());
+    		try{customerNum = Integer.parseInt(customerNumField.getText());}
+    		catch (Exception e) {
+    			error = true;
+    			errorMessage += "Customer Number is not an Integer \n";
+    		}
     	}
     	String firstName = firstNameField.getText();
     	String lastName = lastNameField.getText();
     	String phoneNum = phoneNumField.getText();
     	
+    	if(!error) {
     	// Conduct search on the database
     	runSearch(customerNum, firstName, lastName, phoneNum);
     	
     	TableModel customerSearch = getTable();
     	return customerSearch;
+    	}
+    	else {
+    		 // Tell user that operation was successful
+        	JOptionPane.showMessageDialog(null, errorMessage);
+        	return new DefaultTableModel();
+    	}
     }
     
     /*
