@@ -128,11 +128,42 @@ public class CreateOrder {
 	        if(OrderDeliveredBox.isSelected()) { orderDelivered = true;}
 	        pickUpDate = pickupDateField.getText();
 	        pickupTime = pickupTimeField.getText();
-	        Potash = Double.parseDouble(potashField.getText());
-	        MAP = Double.parseDouble(mapField.getText());
-	        AMS = Double.parseDouble(amsField.getText());
-	        Urea = Double.parseDouble(ureaField.getText());
-	        Gypsum = Double.parseDouble(gypsumField.getText());
+	        
+	        try {
+	        	   Potash = Double.parseDouble(potashField.getText());
+	        	   
+	           } catch (Exception e) {
+	        	   error = true;
+	        	   errorMessage += "Potash Invalid # \n";
+	           }
+	            
+	            try {
+	            MAP = Double.parseDouble(mapField.getText());
+	            } catch (Exception e) {
+	            	error = true;
+		        	errorMessage += "MAP Invalid # \n";
+	            }
+	            
+	            try {
+	            AMS = Double.parseDouble(amsField.getText());
+	            } catch (Exception e) {
+	            	error = true;
+		        	errorMessage += "AMS Invalid # \n";
+	            }
+	            
+	            try {
+	            Urea = Double.parseDouble(ureaField.getText());
+	            } catch (Exception e) {
+	            	error = true;
+		        	errorMessage += "Urea Invalid # \n";
+	            }
+	            
+	            try {
+	            Gypsum = Double.parseDouble(gypsumField.getText());
+	            } catch (Exception e) {
+	            	error = true;
+		        	errorMessage += "Gypsum Invalid # \n";
+	            }
 	        comments = commentsField.getText();
 	        orderDate = orderDateField.getText();
 	        
@@ -346,6 +377,7 @@ public class CreateOrder {
 	           // Update the database
 	           pstmt.executeUpdate();  
 	           
+	           JOptionPane.showMessageDialog(null, "Order Created Successfully");
 	           return;
 	           
 	       } catch (SQLException e) {  
@@ -567,6 +599,8 @@ public class CreateOrder {
      	            pstmt.close();
      	            conn.close();
      			
+     	        // Tell user that operation was successful
+    	        	JOptionPane.showMessageDialog(null, "Order Updated");
      	            return;
      	        } catch (SQLException e) {  
      	            System.out.println(e.getMessage());  
@@ -608,6 +642,9 @@ public class CreateOrder {
          	            pstmt.close();
          	            conn.close();
          			
+         	            // Tell user that operation was successful
+        	        	JOptionPane.showMessageDialog(null, "Order Updated");
+  
          	            return;
          	        } catch (SQLException e) {  
          	            System.out.println(e.getMessage());  
@@ -641,6 +678,8 @@ public class CreateOrder {
 	    		
 	            pstmt.close();
 	            conn.close();
+	            
+	            JOptionPane.showMessageDialog(null, "Order Deleted");
 	            return;
 	    	} catch (SQLException e) {  
 	            System.out.println(e.getMessage());  
@@ -741,5 +780,32 @@ public class CreateOrder {
 	        
 	        }  
 	    }
+	    
+	    /*
+	     * function that runs selection on Customers table - specifically to pull information from all columns
+	     * @param String sql is the passed in SQL command to be sent to the Database
+	     */
+	    public Integer selectMaxOrders(String sql){  
+	    	// Connect to the database
+	        try {  
+	            Connection conn = this.connect();  
+	            Statement stmt  = conn.createStatement();
+	            
+	            // Run SQL statement and return the result
+	            ResultSet rs    = stmt.executeQuery(sql);  
+	            // Result
+	            int result = 0;
+	            // loop through the result set - prints out each attribute for each tuple pulled
+	            while (rs.next()) {  
+	                result = (rs.getInt("orderNum"));  
+	            }  
+	           
+	            return result;
+	            
+	        } catch (SQLException e) {  
+	            System.out.println(e.getMessage());  
+	            return -1;
+	        }  
+	    }  
 
 }

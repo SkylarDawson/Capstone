@@ -82,13 +82,21 @@ public class CreateCustomer {
 		if(AddressField.getText() == null || AddressField.getText() == "") { error = true; errorMessage += "Address Missing \n";}
 		
 		// Using the passed in JTextFields - extract the needed information to create a customer
-		customerNum = Integer.parseInt(CustomerIDField.getText());
+		try {customerNum = Integer.parseInt(CustomerIDField.getText());
+		} catch (Exception e) {
+			error = true;
+			errorMessage += "Customer Number not an integer \n";
+		}
 		firstName = FirstNameField.getText();
 		lastName = LastNameField.getText();
 		phoneNum = PhoneNumField.getText();
 		address = AddressField.getText();
 		emailAddress = EmailField.getText();
-		assignedRepID = Integer.parseInt(AssignedRepIDField.getText());
+		try {assignedRepID = Integer.parseInt(AssignedRepIDField.getText());
+		} catch (Exception e) {
+			error = true;
+			errorMessage += "Employee Number not an integer \n";
+		}
 		
 		// Check to make sure that the information put in is valid
     		// Customer ID Doesn't Exist
@@ -152,6 +160,8 @@ public class CreateCustomer {
 			EmailField.setText("");
 			AssignedRepIDField.setText("");
 			
+			// Tell user that operation was successful
+        	JOptionPane.showMessageDialog(null, "Customer Created");
 			return;
 		}
 		
@@ -230,14 +240,23 @@ public class CreateCustomer {
 		String address = null;
 		String emailAddress = null;
 		int assignedRepID = 0;
+		Boolean error = false;
+		String errorMessage = "";
+		
             
             firstName = FirstNameField.getText();
             lastName = LastNameField.getText();
             phoneNum = PhoneNumField.getText();
             address = AddressField.getText();
             emailAddress = EmailField.getText();
+            try {
             assignedRepID = Integer.parseInt(AssignedRepIDField.getText());
-    	
+            } catch (Exception e) {
+            	error = true;
+            	errorMessage += "Employee Number Not an Integer";
+            }
+            
+    	if(!error) {
         /*
          * Pass through the fields & ensure that they aren't blank - if not alter what the variable is assigned
          */
@@ -294,12 +313,20 @@ public class CreateCustomer {
 		
             pstmt.close();
             conn.close();
+            
+         // Tell user that operation was successful
+        	JOptionPane.showMessageDialog(null, "Customer Updated");
             return;
         } catch (SQLException e) {  
             System.out.println(e.getMessage());  
             return;
             
         }  
+    } else {
+			// Tell user that operation was successful
+        	JOptionPane.showMessageDialog(null, errorMessage);
+        	return;
+		}
     }
     
     /*
@@ -320,6 +347,8 @@ public class CreateCustomer {
     		
             pstmt.close();
             conn.close();
+         // Tell user that operation was successful
+        	JOptionPane.showMessageDialog(null, "Customer Deleted");
             return;
     	} catch (SQLException e) {  
             System.out.println(e.getMessage());  
@@ -388,5 +417,32 @@ public class CreateCustomer {
         
         }  
     }
+    
+    /*
+     * function that runs selection on Customers table - specifically to pull information from all columns
+     * @param String sql is the passed in SQL command to be sent to the Database
+     */
+    public Integer selectMaxCustomers(String sql){  
+    	// Connect to the database
+        try {  
+            Connection conn = this.connect();  
+            Statement stmt  = conn.createStatement();
+            
+            // Run SQL statement and return the result
+            ResultSet rs    = stmt.executeQuery(sql);  
+            // Result
+            int result = 0;
+            // loop through the result set - prints out each attribute for each tuple pulled
+            while (rs.next()) {  
+                result = (rs.getInt("customerNum"));  
+            }  
+           
+            return result;
+            
+        } catch (SQLException e) {  
+            System.out.println(e.getMessage());  
+            return -1;
+        }  
+    }  
     
 }

@@ -7,6 +7,11 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -30,6 +35,7 @@ import java.awt.Color;
 import javax.swing.JList;
 
 import net.miginfocom.swing.MigLayout;
+
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
@@ -1815,6 +1821,10 @@ public class CapstoneMainFrame {
 		createCustomerPanel.add(lblCreateCustomerID, gbc_lblCreateCustomerID);
 		
 		textFieldCreateCustomerID = new JTextField();
+		CreateCustomer app = new CreateCustomer();
+		String sqlMaxCustomers = "Select customerNum From customers where customerNum = (Select max(customerNum) from customers);";
+		int automaticID = app.selectMaxCustomers(sqlMaxCustomers);
+		textFieldCreateCustomerID.setText(automaticID+1+"");
 		GridBagConstraints gbc_textFieldCreateCustomerID = new GridBagConstraints();
 		gbc_textFieldCreateCustomerID.insets = new Insets(0, 0, 5, 5);
 		gbc_textFieldCreateCustomerID.fill = GridBagConstraints.HORIZONTAL;
@@ -1934,7 +1944,6 @@ public class CapstoneMainFrame {
 		JButton btnNewButton_10 = new JButton("Clear");
 		btnNewButton_10.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textFieldCreateCustomerID.setText("");
 				textFieldCreateCustomerFirst.setText("");
 				textFieldCreateCustomerLast.setText("");
 				textFieldCreateCustomerAddress.setText("");
@@ -2116,6 +2125,11 @@ public class CapstoneMainFrame {
 		createOrderPanel.add(lblNewLabel_35, gbc_lblNewLabel_35);
 		
 		orderCreateOrderIDField = new JTextField();
+		CreateOrder app1 = new CreateOrder();
+		String sqlMaxOrders = "Select orderNum From orders where orderNum = (Select max(orderNum) from orders);";
+		int maxID = app1.selectMaxOrders(sqlMaxOrders);
+		orderCreateOrderIDField.setText(maxID + 1 + "");
+		
 		GridBagConstraints gbc_orderCreateOrderIDField = new GridBagConstraints();
 		gbc_orderCreateOrderIDField.gridwidth = 2;
 		gbc_orderCreateOrderIDField.insets = new Insets(0, 0, 5, 5);
@@ -2361,7 +2375,6 @@ public class CapstoneMainFrame {
 		JButton orderCreateClearButton = new JButton("Clear");
 		orderCreateClearButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				orderCreateOrderIDField.setText("");
 				orderCreateCustomerIDField.setText("");
 				orderCreateEmployeeIDField.setText("");
 				orderCreatePickupDateField.setText("");
@@ -2547,8 +2560,6 @@ public class CapstoneMainFrame {
 				if(customerUpdateButton.getText() == "Update") {
 				CreateCustomer updateCustomer = new CreateCustomer();
 				updateCustomer.updateCustomer(updateCustomerIDLabel.getText(), updateCustomerFirstNameField, updateCustomerLastNameField, updateCustomerAddressField, updateCustomerPhoneNumField, updateCustomerEmailField, updateCustomerRepIDField);
-				updateCustomerPanel.hide();
-				customerPanel.show();
 				}
 				else if(customerUpdateButton.getText() == "Delete")
 				{
@@ -2561,8 +2572,6 @@ public class CapstoneMainFrame {
 					CreateCustomer deleteCustomer = new CreateCustomer();
 					deleteCustomer.deleteCustomer(updateCustomerIDLabel.getText());
 					}
-					updateCustomerPanel.hide();
-					customerPanel.show();
 				}
 			}
 		});
@@ -2826,8 +2835,6 @@ public class CapstoneMainFrame {
 				if(orderUpdateButton.getText() == "Update") {
 				CreateOrder updateOrder = new CreateOrder();
 				updateOrder.updateOrder(orderUpdateOrderIDLabel.getText(), orderUpdateCustomerNumberField, updateOrderEmployeeNumField, orderUpdatePickupDateField, orderUpdatePickupTimeField, orderUpdatePotashField, orderUpdateMapField, orderUpdateAMSField, orderUpdateUreaField, orderUpdateGypsumField, orderUpdateCommentsField, orderUpdateOrderPaidBox, orderCreateOrderCompleteBox, orderCreateOrderDeliveredBox, potashPriceAmnt, mapPriceAmnt, amsPriceAmnt, ureaPriceAmnt, gypsumPriceAmnt);
-				updateOrderPanel.hide();
-				orderPanel.show();
 				}
 				
 				else if(orderUpdateButton.getText() == "Delete")
@@ -2841,8 +2848,6 @@ public class CapstoneMainFrame {
 					CreateOrder deleteOrder = new CreateOrder();
 					deleteOrder.deleteOrder(orderUpdateOrderIDLabel.getText());
 					}
-				    updateOrderPanel.hide();
-					orderPanel.show();
 				}
 			}
 		});
