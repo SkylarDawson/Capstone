@@ -80,6 +80,8 @@ public class CreateCustomer {
 		if(FirstNameField.getText().equals(null) || FirstNameField.getText().equals("")) { error = true; errorMessage += "First Name Missing \n";}
 		if(LastNameField.getText().equals(null) || LastNameField.getText().equals("")) { error = true; errorMessage += "Last Name Missing \n";}
 		if(PhoneNumField.getText().equals(null) || PhoneNumField.getText().equals("")) { error = true; errorMessage += "Phone Number Missing \n";}
+		if(AssignedRepIDField.getText().equals(null) || AssignedRepIDField.getText().equals("")) { error = true; errorMessage += "Assigned Rep Missing \n";}
+		
 		
 		// Using the passed in JTextFields - extract the needed information to create a customer
 		try {customerNum = Integer.parseInt(CustomerIDField.getText());
@@ -92,7 +94,11 @@ public class CreateCustomer {
 		phoneNum = PhoneNumField.getText();
 		address = AddressField.getText();
 		emailAddress = EmailField.getText();
-		try {assignedRepID = Integer.parseInt(AssignedRepIDField.getText());
+		
+		
+		try {
+			assignedRepID = Integer.parseInt(AssignedRepIDField.getText());
+			if(assignedRepID <= 0) {error = true; errorMessage += "Assigned Rep ID cannot be negative \n";}
 		} catch (Exception e) {
 			error = true;
 			errorMessage += "Employee Number not an integer \n";
@@ -130,7 +136,7 @@ public class CreateCustomer {
 	            
 	            // Run SQL statement and return the result
 	            ResultSet rs  = stmt.executeQuery(employeeIDExists);
-	            
+	             if(rs.next() == false) {error = true; errorMessage += "Employee ID Does Not Exist \n";}
 	            // loop through the result set - prints out each attribute for each tuple pulled
 	            while (rs.next()) {  
 	                if(rs.getInt("employeeNum") != assignedRepID) {error = true; errorMessage += "Employee ID Does Not Exist \n";}
@@ -246,6 +252,7 @@ public class CreateCustomer {
 		if(FirstNameField.getText().equals(null) || FirstNameField.getText().equals("")) { error = true; errorMessage += "First Name Missing \n";}
 		if(LastNameField.getText().equals(null) || LastNameField.getText().equals("")) { error = true; errorMessage += "Last Name Missing \n";}
 		if(PhoneNumField.getText().equals(null) || PhoneNumField.getText().equals("")) { error = true; errorMessage += "Phone Number Missing \n";}
+		if(AssignedRepIDField.getText().equals(null) || AssignedRepIDField.getText().equals("")) { error = true; errorMessage += "Assigned Rep Missing \n";}
 		
             firstName = FirstNameField.getText();
             lastName = LastNameField.getText();
@@ -260,6 +267,23 @@ public class CreateCustomer {
             	errorMessage += "Employee Number Not an Integer";
             }
             
+         // Employee ID exists in system
+	        String employeeIDExists = String.format("Select employeeNum from employees where employeeNum = \"%d\"", assignedRepID);
+	        
+	        try {
+	            Connection conn = this.connect();  
+	            Statement stmt  = conn.createStatement(); 
+	            
+	            // Run SQL statement and return the result
+	            ResultSet rs  = stmt.executeQuery(employeeIDExists);
+	             if(rs.next() == false) {error = true; errorMessage += "Employee ID Does Not Exist \n";}
+	            // loop through the result set - prints out each attribute for each tuple pulled
+	            while (rs.next()) {  
+	                if(rs.getInt("employeeNum") != assignedRepID) {error = true; errorMessage += "Employee ID Does Not Exist \n";}
+	            }  
+	            	} catch (SQLException e) {  
+	            System.out.println(e.getMessage());  
+	            }  
     	if(!error) {
         /*
          * Pass through the fields & ensure that they aren't blank - if not alter what the variable is assigned
