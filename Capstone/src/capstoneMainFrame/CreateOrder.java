@@ -95,12 +95,12 @@ public class CreateOrder {
 	        String errorMessage = "";
 	        
 	        // Check to make sure that the required fields are not left empty
-	        if(orderIDField.getText() == null || orderIDField.getText() == null) {error = true; errorMessage += "Order ID Missing \n";}
-	        if(customerIDField.getText() == null || customerIDField.getText() == "") {error = true; errorMessage += "Customer ID Missing \n";}
-	        if(employeeIDField.getText() == null || employeeIDField.getText() == "") {error = true; errorMessage += "Employee ID Missing \n";}
-	        if(pickupDateField.getText() == null || pickupDateField.getText() == "") {error = true; errorMessage += "Pickup Date Missing \n";}
-	        if(pickupTimeField.getText() == null || pickupTimeField.getText() == "") {error = true; errorMessage += "Pickup Time Missing \n";}
-	        if(orderDateField.getText() == null || orderDateField.getText() == "") {error = true; errorMessage += "Order Date Missing \n";}
+	        if(orderIDField.getText().equals(null) || orderIDField.getText().equals("")) {error = true; errorMessage += "Order ID Missing \n";}
+	        if(customerIDField.getText().equals(null) || customerIDField.getText().equals("")) {error = true; errorMessage += "Customer ID Missing \n";}
+	        if(employeeIDField.getText().equals(null) || employeeIDField.getText().equals("")) {error = true; errorMessage += "Employee ID Missing \n";}
+	        if(pickupDateField.getText().equals(null) || pickupDateField.getText().equals("")) {error = true; errorMessage += "Pickup Date Missing \n";}
+	        if(pickupTimeField.getText().equals(null)|| pickupTimeField.getText().equals("")) {error = true; errorMessage += "Pickup Time Missing \n";}
+	        if(orderDateField.getText().equals(null)|| orderDateField.getText().equals("")) {error = true; errorMessage += "Order Date Missing \n";}
 	        
 	        // Attributes obtained by the user entered values
 	        try {
@@ -428,6 +428,11 @@ public class CreateOrder {
 			Boolean error = false;
 			String errorMessage = "";
 	            
+			  if(CustomerNumField.getText().equals(null) || CustomerNumField.getText().equals("")) {error = true; errorMessage += "Customer ID Missing \n";}
+		      if(EmployeeNumField.getText().equals(null) || EmployeeNumField.getText().equals("")) {error = true; errorMessage += "Employee ID Missing \n";}
+		      if(PickupDateField.getText().equals(null) || PickupDateField.getText().equals("")) {error = true; errorMessage += "Pickup Date Missing \n";}
+		      if(PickupTimeField.getText().equals(null)|| PickupTimeField.getText().equals("")) {error = true; errorMessage += "Pickup Time Missing \n";}
+		       
 			try {
 	            customerNum = Integer.parseInt(CustomerNumField.getText());
 			} catch (Exception e) {
