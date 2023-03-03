@@ -2968,14 +2968,21 @@ public class CapstoneMainFrame {
 		JButton btnNewButton_13 = new JButton("Update");
 		btnNewButton_13.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
 				potashPriceAmnt = Double.parseDouble(potashPriceField.getText());
 				mapPriceAmnt = Double.parseDouble(mapPriceField.getText());
 				amsPriceAmnt = Double.parseDouble(amsPriceField.getText());
 				ureaPriceAmnt = Double.parseDouble(ureaPriceField.getText());
 				gypsumPriceAmnt = Double.parseDouble(gypsumPriceField.getText());
+				 
+				// Tell user that operation was successful
+	        	JOptionPane.showMessageDialog(null, "Price Updated");
+				} catch (Exception f) {
+					 // Tell user that operation was successful
+    	        	JOptionPane.showMessageDialog(null, "Invalid Input");
+				}
 				
-				settingsPanel.hide();
-				adminPanel.show();
+				
 			}
 		});
 		GridBagConstraints gbc_btnNewButton_13 = new GridBagConstraints();
