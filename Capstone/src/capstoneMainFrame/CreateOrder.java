@@ -103,9 +103,26 @@ public class CreateOrder {
 	        if(orderDateField.getText() == null || orderDateField.getText() == "") {error = true; errorMessage += "Order Date Missing \n";}
 	        
 	        // Attributes obtained by the user entered values
+	        try {
 	        orderNum = Integer.parseInt(orderIDField.getText());
+	        } catch (Exception e) {
+	        	error = true;
+	        	errorMessage += "Order Number not an integer \n";
+	        }
+	        
+	        try {
 	        customerNum = Integer.parseInt(customerIDField.getText());
+	        } catch (Exception e) {
+	 	        error = true;
+	 	        errorMessage += "Customer Number not an integer \n";
+	 	    }
+	        
+	        try {
 	        employeeNum = Integer.parseInt(employeeIDField.getText());
+	        } catch (Exception e) {
+	        	error = true;
+	        	errorMessage += "Employee Number is not an integer \n";
+	        }
 	        if(OrderPaidBox.isSelected()) { orderPaid = true;}
 	        if(OrderCompleteBox.isSelected()) { orderComplete = true;}
 	        if(OrderDeliveredBox.isSelected()) { orderDelivered = true;}
@@ -136,7 +153,7 @@ public class CreateOrder {
 	            if(rs.getInt("orderNum") == orderNum) {error = true; errorMessage += "Order ID already exists \n";}
 	        }  
 	        	} catch (SQLException e) {  
-	        System.out.println(e.getMessage());  
+	        		System.out.println(e.getMessage());  
 	        	}  
 	        
 	        // Order ID is not a negative
@@ -157,7 +174,7 @@ public class CreateOrder {
 	                if(rs.getInt("customerNum") != customerNum) {error = true; errorMessage += "Customer ID does not exist \n";}
 	            }  
 	            	} catch (SQLException e) {  
-	            System.out.println(e.getMessage());  
+	            		System.out.println(e.getMessage());  
 	            	}  
 	        // Employee ID exists in system
 	        String employeeIDExists = String.format("Select employeeNum from employees where employeeNum = \"%d\"", employeeNum);
@@ -376,22 +393,88 @@ public class CreateOrder {
 			Boolean previouslyPaid = false;
 			Boolean complete = false;
 			Boolean delivered = false;
+			Boolean error = false;
+			String errorMessage = "";
 	            
+			try {
 	            customerNum = Integer.parseInt(CustomerNumField.getText());
+			} catch (Exception e) {
+				error = true;
+				errorMessage += "Customer Number not an integer \n";
+			}
+			
+			try {
 	            employeeNum = Integer.parseInt(EmployeeNumField.getText());
+			} catch (Exception e){
+				error = true;
+				errorMessage += "Employee Number not an integer \n";
+			}
+			
 	            PickUpDate = PickupDateField.getText();
 	            PickUpTime = PickupTimeField.getText();
-	            Potash = Double.parseDouble(PotashField.getText());
+	           
+	           try {
+	        	   Potash = Double.parseDouble(PotashField.getText());
+	        	   
+	           } catch (Exception e) {
+	        	   error = true;
+	        	   errorMessage += "Potash Invalid # \n";
+	           }
+	            
+	            try {
 	            MAP = Double.parseDouble(MAPField.getText());
+	            } catch (Exception e) {
+	            	error = true;
+		        	errorMessage += "MAP Invalid # \n";
+	            }
+	            
+	            try {
 	            AMS = Double.parseDouble(AMSField.getText());
+	            } catch (Exception e) {
+	            	error = true;
+		        	errorMessage += "AMS Invalid # \n";
+	            }
+	            
+	            try {
 	            Urea = Double.parseDouble(UreaField.getText());
+	            } catch (Exception e) {
+	            	error = true;
+		        	errorMessage += "Urea Invalid # \n";
+	            }
+	            
+	            try {
 	            Gypsum = Double.parseDouble(GypsumField.getText());
+	            } catch (Exception e) {
+	            	error = true;
+		        	errorMessage += "Gypsum Invalid # \n";
+	            }
+	            
 	            Comments = CommentsField.getText();
 	            
 	            paid = PaidBox.isSelected();
 	            complete = CompleteBox.isSelected();
 	            delivered = DeliveredBox.isSelected();
 	            
+	            // Bounds for ingredients
+		        double minValue = 0;
+		        double maxValue = 100;
+		        
+		        // Potash is valid number (not negative & does not exceed bound)
+		        if(Potash < minValue || Potash > maxValue) {error = true; errorMessage += "Potash Invalid # \n";}
+		        
+		        // MAP is valid number (not negative & does not exceed bound)
+		        if(MAP < minValue || MAP > maxValue) {error = true; errorMessage += "MAP Invalid # \n";}
+		        
+		        // AMS is valid number (not negative & does not exceed bound)
+		        if(AMS < minValue || AMS > maxValue) {error = true; errorMessage += "AMS Invalid # \n";}
+		        
+		        // Urea is valid number (not negative & does not exceed bound)
+		        if(Urea < minValue || Urea > maxValue) {error = true; errorMessage += "Urea Invalid # \n";}
+		        
+		        // Gypsum is valid number (not negative & does not exceed bound)
+		        if(Gypsum < minValue || Gypsum > maxValue) {error = true; errorMessage += "Gypsum Invalid #";}
+		        
+	            if(!error) {
 	            String checkIfPaid = String.format("Select orderPaid from orders where orderNum = \"%d\"", orderID);
 	            try {
      	            Connection conn = this.connect();  
@@ -408,10 +491,7 @@ public class CreateOrder {
      	            stmt.close();
      	            	} catch (SQLException e) {  
      	            System.out.println(e.getMessage());  
-     	            	}  
-	            
-	            
-	    	
+     	            	} 
 			
 			// Update
 			String updateOrder = "Update orders SET "
@@ -535,6 +615,12 @@ public class CreateOrder {
          	            
          	        }  
      			}
+        	
+	    } else {
+    	        	 // If an error was found - display error message to the user
+    	        	JOptionPane.showMessageDialog(null, errorMessage);
+    	        	return;
+    	        }
         	}
 	    
 	    /*
