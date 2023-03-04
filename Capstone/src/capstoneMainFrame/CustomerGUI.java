@@ -245,7 +245,7 @@ public class CustomerGUI {
     public void displayResults(Vector<Integer> customerNum, Vector<String> firstName, Vector<String> lastName, Vector<String> phone, Vector<String> email, Vector<String> address, Vector<Double> balance ) {
     	// Create objects to hold the data for the table
     			Object[][] rowData = {};
-    			Object[] headers = {"Customer Number", "First Name", "Last Name", "Phone Number", "Email", "Address", "Outstanding Balance"};
+    			Object[] headers = {"Customer #", "First Name", "Last Name", "Phone Number", "Email", "Address", "Outstanding $"};
     			
     			// Create table object
     			DefaultTableModel CustomerModel;
