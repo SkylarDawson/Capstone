@@ -295,7 +295,7 @@ public static void displayResults(Vector<String> firstName, Vector<String> lastN
 {
 	// Create objects to hold the data for the table
 	Object[][] rowData = {};
-	Object[] headers = {"First Name", "Last Name", "orderNum", "customerNum", "employeeNum", "Paid", "Complete", "Delivered", "PickUp Date", "PickUp Time"
+	Object[] headers = {"First Name", "Last Name", "Order #", "Customer #", "Employee #", "Paid", "Complete", "Delivered", "PickUp Date", "PickUp Time"
 			, "Potash", "MAP", "AMS", "Urea", "Gypsum", "Order Date", "Comments"};
 	
 	// Create table object

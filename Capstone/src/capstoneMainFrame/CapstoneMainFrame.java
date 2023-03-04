@@ -1357,6 +1357,7 @@ public class CapstoneMainFrame {
 		orderHistoryOrderDateField.setColumns(10);
 		
 		JScrollPane orderHistoryScroll = new JScrollPane();
+		orderHistoryScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		GridBagConstraints gbc_orderHistoryScroll = new GridBagConstraints();
 		gbc_orderHistoryScroll.gridwidth = 5;
 		gbc_orderHistoryScroll.insets = new Insets(0, 0, 5, 5);
@@ -1454,15 +1455,16 @@ public class CapstoneMainFrame {
 		orderHistorySearchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				OrderGUI mySearch = new OrderGUI();
-				
+							
 				// Create the table based on the returned results
 				TableModel myModel = mySearch.execute(orderHistoryOrderIDField, orderHistoryFirstNameField, orderHistoryLastNameField, orderHistoryOrderDateField);
 			    orderHistoryTable.setModel(myModel);
 			    orderHistoryTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+			    orderHistoryTable.getColumnModel().getColumn(16).setPreferredWidth(300);
 			    orderHistoryTable.setCellEditor(null);
 			    orderHistoryTable.setBounds(37, 143, 397, 183);
 			    				
-				orderPanel.setVisible(true);
+				
 			}
 		});
 		GridBagConstraints gbc_orderHistorySearchButton = new GridBagConstraints();
@@ -1644,6 +1646,8 @@ public class CapstoneMainFrame {
 		gbc_customerPageScroll.gridx = 1;
 		gbc_customerPageScroll.gridy = 3;
 		customerPanel.add(customerPageScroll, gbc_customerPageScroll);
+		
+		
 		
 		customerLookupTable = new JTable();
 		customerPageScroll.setViewportView(customerLookupTable);
