@@ -1704,6 +1704,7 @@ public class CapstoneMainFrame {
 		customerLookupPhoneNumberField.setColumns(10);
 		
 		JScrollPane customerPageScroll = new JScrollPane();
+		customerPageScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		customerPageScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		GridBagConstraints gbc_customerPageScroll = new GridBagConstraints();
 		gbc_customerPageScroll.gridwidth = 5;
