@@ -45,6 +45,7 @@ import javax.swing.JOptionPane;
 
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JComboBox;
+import java.awt.Font;
 
 
 public class CapstoneMainFrame {
@@ -117,6 +118,7 @@ public class CapstoneMainFrame {
 	private JTextField ureaPriceField;
 	private JTextField gypsumPriceField;
 	private GridBagConstraints gbc_potashLabel;
+	
 	
 	private double potashPriceAmnt = 10.0;
 	private double mapPriceAmnt = 10.0;
@@ -211,47 +213,71 @@ public class CapstoneMainFrame {
 		mainFrame.getContentPane().add(settingsPanel, "name_12832195507900");
 		JPanel adminPanel = new JPanel();
 		mainFrame.getContentPane().add(adminPanel, "name_17707844245200");
+		
+		JLabel updateCustomerLabel = new JLabel("UPDATE CUSTOMER");
+		updateCustomerLabel.setFont(new Font("Tahoma", Font.BOLD, 24));
+		
+		JLabel updateOrderLabel = new JLabel("UPDATE ORDER");
+		updateOrderLabel.setFont(new Font("Tahoma", Font.BOLD, 24));
+		
 		GridBagLayout gbl_adminPanel = new GridBagLayout();
 		gbl_adminPanel.columnWidths = new int[]{15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_adminPanel.rowHeights = new int[]{45, 0, -117, 0, 216, 0, 0, 0};
+		gbl_adminPanel.rowHeights = new int[]{45, 0, 0, -117, 0, 216, 0, 0, 0};
 		gbl_adminPanel.columnWeights = new double[]{1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_adminPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_adminPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		adminPanel.setLayout(gbl_adminPanel);
 		
+		JLabel lblNewLabel_75 = new JLabel("ADMINISTRATIVE PAGE");
+		lblNewLabel_75.setFont(new Font("Tahoma", Font.BOLD, 24));
+		GridBagConstraints gbc_lblNewLabel_75 = new GridBagConstraints();
+		gbc_lblNewLabel_75.gridwidth = 7;
+		gbc_lblNewLabel_75.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_75.gridx = 2;
+		gbc_lblNewLabel_75.gridy = 1;
+		adminPanel.add(lblNewLabel_75, gbc_lblNewLabel_75);
+		
 		JLabel Reports = new JLabel("Reports");
+		Reports.setToolTipText("Select Report to Run");
+		Reports.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_Reports = new GridBagConstraints();
 		gbc_Reports.gridwidth = 2;
 		gbc_Reports.insets = new Insets(0, 0, 5, 5);
 		gbc_Reports.gridx = 2;
-		gbc_Reports.gridy = 1;
+		gbc_Reports.gridy = 2;
 		adminPanel.add(Reports, gbc_Reports);
 		
 		JLabel lblNewLabel_67 = new JLabel("Total Orders");
+		lblNewLabel_67.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_67 = new GridBagConstraints();
+		gbc_lblNewLabel_67.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel_67.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_67.gridx = 7;
-		gbc_lblNewLabel_67.gridy = 1;
+		gbc_lblNewLabel_67.gridy = 2;
 		adminPanel.add(lblNewLabel_67, gbc_lblNewLabel_67);
 		
 		JLabel adminTotalOrdersLabel = new JLabel("New label");
+		adminTotalOrdersLabel.setForeground(new Color(0, 0, 255));
 		GridBagConstraints gbc_adminTotalOrdersLabel = new GridBagConstraints();
 		gbc_adminTotalOrdersLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_adminTotalOrdersLabel.gridx = 8;
-		gbc_adminTotalOrdersLabel.gridy = 1;
+		gbc_adminTotalOrdersLabel.gridy = 2;
 		adminPanel.add(adminTotalOrdersLabel, gbc_adminTotalOrdersLabel);
 		
 		JLabel adminTotalCustomerLabel = new JLabel("Total Customers");
-		GridBagConstraints gbc_lblNewLabel_68 = new GridBagConstraints();
-		gbc_lblNewLabel_68.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_68.gridx = 7;
-		gbc_lblNewLabel_68.gridy = 2;
-		adminPanel.add(adminTotalCustomerLabel, gbc_lblNewLabel_68);
+		adminTotalCustomerLabel.setFont(new Font("Tahoma", Font.BOLD, 10));
+		GridBagConstraints gbc_lblNewLabel_68_1 = new GridBagConstraints();
+		gbc_lblNewLabel_68_1.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_68_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_68_1.gridx = 7;
+		gbc_lblNewLabel_68_1.gridy = 3;
+		adminPanel.add(adminTotalCustomerLabel, gbc_lblNewLabel_68_1);
 		
 		JLabel adminTotalCustomerOrder = new JLabel("New label");
+		adminTotalCustomerOrder.setForeground(new Color(0, 128, 0));
 		GridBagConstraints gbc_adminTotalCustomerOrder = new GridBagConstraints();
 		gbc_adminTotalCustomerOrder.insets = new Insets(0, 0, 5, 5);
 		gbc_adminTotalCustomerOrder.gridx = 8;
-		gbc_adminTotalCustomerOrder.gridy = 2;
+		gbc_adminTotalCustomerOrder.gridy = 3;
 		adminPanel.add(adminTotalCustomerOrder, gbc_adminTotalCustomerOrder);
 		
 		JScrollPane reportsPane = new JScrollPane();
@@ -261,7 +287,7 @@ public class CapstoneMainFrame {
 		gbc_reportsPane.insets = new Insets(0, 0, 5, 5);
 		gbc_reportsPane.fill = GridBagConstraints.BOTH;
 		gbc_reportsPane.gridx = 1;
-		gbc_reportsPane.gridy = 3;
+		gbc_reportsPane.gridy = 4;
 		adminPanel.add(reportsPane, gbc_reportsPane);
 		
 		String[] reports = {"", "Outstanding Orders", "Customers with Balances", "Unpaid Orders"};
@@ -287,7 +313,7 @@ public class CapstoneMainFrame {
 		gbc_adminReportsMenu.insets = new Insets(0, 0, 5, 5);
 		gbc_adminReportsMenu.fill = GridBagConstraints.HORIZONTAL;
 		gbc_adminReportsMenu.gridx = 2;
-		gbc_adminReportsMenu.gridy = 2;
+		gbc_adminReportsMenu.gridy = 3;
 		adminPanel.add(adminReportsMenu, gbc_adminReportsMenu);
 		
 		JButton adminBack = new JButton("Back");
@@ -298,11 +324,6 @@ public class CapstoneMainFrame {
 				mainPanel.show();
 			}
 		});
-		GridBagConstraints gbc_adminBack = new GridBagConstraints();
-		gbc_adminBack.insets = new Insets(0, 0, 5, 5);
-		gbc_adminBack.gridx = 7;
-		gbc_adminBack.gridy = 5;
-		adminPanel.add(adminBack, gbc_adminBack);
 		
 		JButton settingsButton = new JButton("Settings");
 		settingsButton.addActionListener(new ActionListener() {
@@ -320,18 +341,32 @@ public class CapstoneMainFrame {
 		});
 		GridBagConstraints gbc_settingsButton = new GridBagConstraints();
 		gbc_settingsButton.insets = new Insets(0, 0, 5, 5);
-		gbc_settingsButton.gridx = 8;
-		gbc_settingsButton.gridy = 5;
+		gbc_settingsButton.gridx = 7;
+		gbc_settingsButton.gridy = 6;
 		adminPanel.add(settingsButton, gbc_settingsButton);
+		GridBagConstraints gbc_adminBack = new GridBagConstraints();
+		gbc_adminBack.insets = new Insets(0, 0, 5, 5);
+		gbc_adminBack.gridx = 8;
+		gbc_adminBack.gridy = 6;
+		adminPanel.add(adminBack, gbc_adminBack);
 		
 		
 		
 		JLabel updateCustomerIDLabel = new JLabel("");
+		updateCustomerIDLabel.setForeground(new Color(255, 0, 0));
 		JLabel orderUpdateOrderDateLabel = new JLabel("");
+		orderUpdateOrderDateLabel.setForeground(new Color(255, 0, 0));
 		JLabel orderUpdateOrderIDLabel = new JLabel("");
+		orderUpdateOrderIDLabel.setForeground(new Color(255, 0, 0));
 		JCheckBox orderUpdateOrderPaidBox = new JCheckBox("Order Paid");
+		orderUpdateOrderPaidBox.setToolTipText("Has order been paid?");
+		orderUpdateOrderPaidBox.setFont(new Font("Tahoma", Font.BOLD, 10));
 		JCheckBox orderUpdateOrderDelivered = new JCheckBox("Order Delivered");
+		orderUpdateOrderDelivered.setToolTipText("Has order been delivered to client?");
+		orderUpdateOrderDelivered.setFont(new Font("Tahoma", Font.BOLD, 10));
 		JCheckBox orderUpdateOrderComplete = new JCheckBox("Order Complete");
+		orderUpdateOrderComplete.setToolTipText("Has order been completed?");
+		orderUpdateOrderComplete.setFont(new Font("Tahoma", Font.BOLD, 10));
 		JButton customerUpdateButton = new JButton("Update");
 		JButton orderUpdateButton = new JButton("Update");
 		
@@ -1271,10 +1306,10 @@ public class CapstoneMainFrame {
 		 * Order History Panel
 		 */
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 81, 103, 0, 0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{27, 7, 35, 218, 94, 0, 0};
-		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.columnWidths = new int[]{50, 100, 100, 100, 100, 100, 50, 0};
+		gridBagLayout.rowHeights = new int[]{25, 0, 7, 35, 218, 20, 25, 0};
+		gridBagLayout.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		orderPanel.setLayout(gridBagLayout);
 		
 		JButton btnNewButton_2 = new JButton("Back");
@@ -1287,44 +1322,58 @@ public class CapstoneMainFrame {
 			}
 		});
 		
+		JLabel lblNewLabel_68 = new JLabel("ORDER LOOKUP");
+		lblNewLabel_68.setFont(new Font("Tahoma", Font.BOLD, 24));
+		GridBagConstraints gbc_lblNewLabel_68 = new GridBagConstraints();
+		gbc_lblNewLabel_68.gridwidth = 5;
+		gbc_lblNewLabel_68.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_68.gridx = 1;
+		gbc_lblNewLabel_68.gridy = 1;
+		orderPanel.add(lblNewLabel_68, gbc_lblNewLabel_68);
+		
 		JLabel lblNewLabel_6 = new JLabel("Order ID");
+		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_6 = new GridBagConstraints();
 		gbc_lblNewLabel_6.anchor = GridBagConstraints.SOUTH;
 		gbc_lblNewLabel_6.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_6.gridx = 1;
-		gbc_lblNewLabel_6.gridy = 1;
+		gbc_lblNewLabel_6.gridy = 2;
 		orderPanel.add(lblNewLabel_6, gbc_lblNewLabel_6);
 		
 		JLabel lblNewLabel_29 = new JLabel("First Name");
+		lblNewLabel_29.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_29 = new GridBagConstraints();
 		gbc_lblNewLabel_29.anchor = GridBagConstraints.SOUTH;
 		gbc_lblNewLabel_29.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_29.gridx = 2;
-		gbc_lblNewLabel_29.gridy = 1;
+		gbc_lblNewLabel_29.gridy = 2;
 		orderPanel.add(lblNewLabel_29, gbc_lblNewLabel_29);
 		
 		JLabel lblNewLabel_30 = new JLabel("Last Name");
+		lblNewLabel_30.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_30 = new GridBagConstraints();
 		gbc_lblNewLabel_30.anchor = GridBagConstraints.SOUTH;
 		gbc_lblNewLabel_30.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_30.gridx = 3;
-		gbc_lblNewLabel_30.gridy = 1;
+		gbc_lblNewLabel_30.gridy = 2;
 		orderPanel.add(lblNewLabel_30, gbc_lblNewLabel_30);
 		
 		JLabel lblNewLabel_32 = new JLabel("Order Date");
+		lblNewLabel_32.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_32 = new GridBagConstraints();
 		gbc_lblNewLabel_32.anchor = GridBagConstraints.SOUTH;
 		gbc_lblNewLabel_32.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_32.gridx = 4;
-		gbc_lblNewLabel_32.gridy = 1;
+		gbc_lblNewLabel_32.gridy = 2;
 		orderPanel.add(lblNewLabel_32, gbc_lblNewLabel_32);
 		
 		orderHistoryOrderIDField = new JTextField();
+		orderHistoryOrderIDField.setToolTipText("Customer ID to be search");
 		GridBagConstraints gbc_orderHistoryOrderIDField = new GridBagConstraints();
 		gbc_orderHistoryOrderIDField.insets = new Insets(0, 0, 5, 5);
 		gbc_orderHistoryOrderIDField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_orderHistoryOrderIDField.gridx = 1;
-		gbc_orderHistoryOrderIDField.gridy = 2;
+		gbc_orderHistoryOrderIDField.gridy = 3;
 		orderPanel.add(orderHistoryOrderIDField, gbc_orderHistoryOrderIDField);
 		orderHistoryOrderIDField.setColumns(10);
 		
@@ -1333,7 +1382,7 @@ public class CapstoneMainFrame {
 		gbc_orderHistoryFirstNameField.insets = new Insets(0, 0, 5, 5);
 		gbc_orderHistoryFirstNameField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_orderHistoryFirstNameField.gridx = 2;
-		gbc_orderHistoryFirstNameField.gridy = 2;
+		gbc_orderHistoryFirstNameField.gridy = 3;
 		orderPanel.add(orderHistoryFirstNameField, gbc_orderHistoryFirstNameField);
 		orderHistoryFirstNameField.setColumns(10);
 		
@@ -1342,17 +1391,18 @@ public class CapstoneMainFrame {
 		gbc_orderHistoryLastNameField.insets = new Insets(0, 0, 5, 5);
 		gbc_orderHistoryLastNameField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_orderHistoryLastNameField.gridx = 3;
-		gbc_orderHistoryLastNameField.gridy = 2;
+		gbc_orderHistoryLastNameField.gridy = 3;
 		orderPanel.add(orderHistoryLastNameField, gbc_orderHistoryLastNameField);
 		orderHistoryLastNameField.setColumns(10);
 		
 		
 		orderHistoryOrderDateField = new JTextField();		
+		orderHistoryOrderDateField.setToolTipText("Date order was placed");
 		GridBagConstraints gbc_orderHistoryOrderDateField = new GridBagConstraints();
 		gbc_orderHistoryOrderDateField.insets = new Insets(0, 0, 5, 5);
 		gbc_orderHistoryOrderDateField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_orderHistoryOrderDateField.gridx = 4;
-		gbc_orderHistoryOrderDateField.gridy = 2;
+		gbc_orderHistoryOrderDateField.gridy = 3;
 		orderPanel.add(orderHistoryOrderDateField, gbc_orderHistoryOrderDateField);
 		orderHistoryOrderDateField.setColumns(10);
 		
@@ -1363,7 +1413,7 @@ public class CapstoneMainFrame {
 		gbc_orderHistoryScroll.insets = new Insets(0, 0, 5, 5);
 		gbc_orderHistoryScroll.fill = GridBagConstraints.BOTH;
 		gbc_orderHistoryScroll.gridx = 1;
-		gbc_orderHistoryScroll.gridy = 3;
+		gbc_orderHistoryScroll.gridy = 4;
 		orderPanel.add(orderHistoryScroll, gbc_orderHistoryScroll);
 		
 		orderHistoryTable = new JTable();
@@ -1408,6 +1458,7 @@ public class CapstoneMainFrame {
 		});
 		
 		JButton deleteOrderButton = new JButton("Delete Order");
+		deleteOrderButton.setForeground(new Color(255, 0, 0));
 		deleteOrderButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -1419,6 +1470,7 @@ public class CapstoneMainFrame {
 			    CreateOrder myOrder = new CreateOrder();
 			    myOrder.loadOrder(orderID, orderUpdateOrderIDLabel, orderUpdateCustomerNumberField, updateOrderEmployeeNumField, orderUpdatePickupDateField, orderUpdatePickupTimeField, orderUpdatePotashField, orderUpdateMapField, orderUpdateAMSField, orderUpdateUreaField, orderUpdateGypsumField, orderUpdateCommentsField, orderUpdateOrderPaidBox, orderUpdateOrderComplete, orderUpdateOrderDelivered, orderUpdateOrderDateLabel);
 			    orderUpdateButton.setText("Delete");
+			    updateOrderLabel.setText("DELETE ORDER");
 			    orderHistoryTable.setModel(new DefaultTableModel());
 			    orderHistoryOrderIDField.setText("");
 				orderHistoryFirstNameField.setText("");
@@ -1433,22 +1485,23 @@ public class CapstoneMainFrame {
 		GridBagConstraints gbc_deleteOrderButton = new GridBagConstraints();
 		gbc_deleteOrderButton.insets = new Insets(0, 0, 5, 5);
 		gbc_deleteOrderButton.gridx = 2;
-		gbc_deleteOrderButton.gridy = 4;
+		gbc_deleteOrderButton.gridy = 5;
 		orderPanel.add(deleteOrderButton, gbc_deleteOrderButton);
 		GridBagConstraints gbc_orderEditButton = new GridBagConstraints();
 		gbc_orderEditButton.insets = new Insets(0, 0, 5, 5);
 		gbc_orderEditButton.gridx = 3;
-		gbc_orderEditButton.gridy = 4;
+		gbc_orderEditButton.gridy = 5;
 		orderPanel.add(orderEditButton, gbc_orderEditButton);
 		GridBagConstraints gbc_orderHistoryCreateButton = new GridBagConstraints();
 		gbc_orderHistoryCreateButton.insets = new Insets(0, 0, 5, 5);
 		gbc_orderHistoryCreateButton.gridx = 4;
-		gbc_orderHistoryCreateButton.gridy = 4;
+		gbc_orderHistoryCreateButton.gridy = 5;
 		orderPanel.add(orderHistoryCreateButton, gbc_orderHistoryCreateButton);
 		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
+		gbc_btnNewButton_2.anchor = GridBagConstraints.WEST;
 		gbc_btnNewButton_2.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton_2.gridx = 5;
-		gbc_btnNewButton_2.gridy = 4;
+		gbc_btnNewButton_2.gridy = 5;
 		orderPanel.add(btnNewButton_2, gbc_btnNewButton_2);
 				
 		JButton orderHistorySearchButton = new JButton("Search");
@@ -1470,7 +1523,7 @@ public class CapstoneMainFrame {
 		GridBagConstraints gbc_orderHistorySearchButton = new GridBagConstraints();
 		gbc_orderHistorySearchButton.insets = new Insets(0, 0, 5, 5);
 		gbc_orderHistorySearchButton.gridx = 5;
-		gbc_orderHistorySearchButton.gridy = 2;
+		gbc_orderHistorySearchButton.gridy = 3;
 		orderPanel.add(orderHistorySearchButton, gbc_orderHistorySearchButton);
 		
 
@@ -1566,39 +1619,52 @@ public class CapstoneMainFrame {
 		 * Customer Panel
 		 */
 		GridBagLayout gbl_customerPanel = new GridBagLayout();
-		gbl_customerPanel.columnWidths = new int[]{40, 100, 100, 100, 100, 100, -62, 0};
-		gbl_customerPanel.rowHeights = new int[]{57, 0, 47, 0, 0, 0, 0};
+		gbl_customerPanel.columnWidths = new int[]{50, 100, 100, 100, 100, 100, 50, 0};
+		gbl_customerPanel.rowHeights = new int[]{25, 57, 0, 47, 218, 0, 0, 25, 0};
 		gbl_customerPanel.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_customerPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_customerPanel.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		customerPanel.setLayout(gbl_customerPanel);
 		
+		JLabel lblNewLabel_73 = new JLabel("CUSTOMER LOOKUP");
+		lblNewLabel_73.setFont(new Font("Tahoma", Font.BOLD, 24));
+		GridBagConstraints gbc_lblNewLabel_73 = new GridBagConstraints();
+		gbc_lblNewLabel_73.gridwidth = 5;
+		gbc_lblNewLabel_73.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_73.gridx = 1;
+		gbc_lblNewLabel_73.gridy = 1;
+		customerPanel.add(lblNewLabel_73, gbc_lblNewLabel_73);
+		
 		JLabel lblNewLabel_33 = new JLabel("Customer ID");
+		lblNewLabel_33.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_33 = new GridBagConstraints();
 		gbc_lblNewLabel_33.anchor = GridBagConstraints.SOUTH;
 		gbc_lblNewLabel_33.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_33.gridx = 1;
-		gbc_lblNewLabel_33.gridy = 1;
+		gbc_lblNewLabel_33.gridy = 2;
 		customerPanel.add(lblNewLabel_33, gbc_lblNewLabel_33);
 		
 		JLabel lblNewLabel_34 = new JLabel("First Name");
+		lblNewLabel_34.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_34 = new GridBagConstraints();
 		gbc_lblNewLabel_34.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_34.gridx = 2;
-		gbc_lblNewLabel_34.gridy = 1;
+		gbc_lblNewLabel_34.gridy = 2;
 		customerPanel.add(lblNewLabel_34, gbc_lblNewLabel_34);
 		
 		JLabel lblLastName = new JLabel("Last Name");
+		lblLastName.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblLastName = new GridBagConstraints();
 		gbc_lblLastName.insets = new Insets(0, 0, 5, 5);
 		gbc_lblLastName.gridx = 3;
-		gbc_lblLastName.gridy = 1;
+		gbc_lblLastName.gridy = 2;
 		customerPanel.add(lblLastName, gbc_lblLastName);
 		
 		JLabel lblPhoneNumber = new JLabel("Phone Number");
+		lblPhoneNumber.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblPhoneNumber = new GridBagConstraints();
 		gbc_lblPhoneNumber.insets = new Insets(0, 0, 5, 5);
 		gbc_lblPhoneNumber.gridx = 4;
-		gbc_lblPhoneNumber.gridy = 1;
+		gbc_lblPhoneNumber.gridy = 2;
 		customerPanel.add(lblPhoneNumber, gbc_lblPhoneNumber);
 		
 		customerLookupCustomerIDField = new JTextField();
@@ -1606,7 +1672,7 @@ public class CapstoneMainFrame {
 		gbc_customerLookupCustomerIDField.insets = new Insets(0, 0, 5, 5);
 		gbc_customerLookupCustomerIDField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_customerLookupCustomerIDField.gridx = 1;
-		gbc_customerLookupCustomerIDField.gridy = 2;
+		gbc_customerLookupCustomerIDField.gridy = 3;
 		customerPanel.add(customerLookupCustomerIDField, gbc_customerLookupCustomerIDField);
 		customerLookupCustomerIDField.setColumns(10);
 		
@@ -1615,7 +1681,7 @@ public class CapstoneMainFrame {
 		gbc_customerLookupCustomerFirstNameField.insets = new Insets(0, 0, 5, 5);
 		gbc_customerLookupCustomerFirstNameField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_customerLookupCustomerFirstNameField.gridx = 2;
-		gbc_customerLookupCustomerFirstNameField.gridy = 2;
+		gbc_customerLookupCustomerFirstNameField.gridy = 3;
 		customerPanel.add(customerLookupCustomerFirstNameField, gbc_customerLookupCustomerFirstNameField);
 		customerLookupCustomerFirstNameField.setColumns(10);
 		
@@ -1624,7 +1690,7 @@ public class CapstoneMainFrame {
 		gbc_customerLookupLastNameField.insets = new Insets(0, 0, 5, 5);
 		gbc_customerLookupLastNameField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_customerLookupLastNameField.gridx = 3;
-		gbc_customerLookupLastNameField.gridy = 2;
+		gbc_customerLookupLastNameField.gridy = 3;
 		customerPanel.add(customerLookupLastNameField, gbc_customerLookupLastNameField);
 		customerLookupLastNameField.setColumns(10);
 		
@@ -1633,7 +1699,7 @@ public class CapstoneMainFrame {
 		gbc_customerLookupPhoneNumberField.insets = new Insets(0, 0, 5, 5);
 		gbc_customerLookupPhoneNumberField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_customerLookupPhoneNumberField.gridx = 4;
-		gbc_customerLookupPhoneNumberField.gridy = 2;
+		gbc_customerLookupPhoneNumberField.gridy = 3;
 		customerPanel.add(customerLookupPhoneNumberField, gbc_customerLookupPhoneNumberField);
 		customerLookupPhoneNumberField.setColumns(10);
 		
@@ -1644,7 +1710,7 @@ public class CapstoneMainFrame {
 		gbc_customerPageScroll.insets = new Insets(0, 0, 5, 5);
 		gbc_customerPageScroll.fill = GridBagConstraints.BOTH;
 		gbc_customerPageScroll.gridx = 1;
-		gbc_customerPageScroll.gridy = 3;
+		gbc_customerPageScroll.gridy = 4;
 		customerPanel.add(customerPageScroll, gbc_customerPageScroll);
 		
 		
@@ -1670,34 +1736,45 @@ public class CapstoneMainFrame {
 		GridBagConstraints gbc_customerLookupSearchButton = new GridBagConstraints();
 		gbc_customerLookupSearchButton.insets = new Insets(0, 0, 5, 5);
 		gbc_customerLookupSearchButton.gridx = 5;
-		gbc_customerLookupSearchButton.gridy = 2;
+		gbc_customerLookupSearchButton.gridy = 3;
 		customerPanel.add(customerLookupSearchButton, gbc_customerLookupSearchButton);
 		
-		
-		Box horizontalBox_6 = Box.createHorizontalBox();
-		GridBagConstraints gbc_horizontalBox_6 = new GridBagConstraints();
-		gbc_horizontalBox_6.gridwidth = 5;
-		gbc_horizontalBox_6.insets = new Insets(0, 0, 5, 5);
-		gbc_horizontalBox_6.gridx = 1;
-		gbc_horizontalBox_6.gridy = 4;
-		customerPanel.add(horizontalBox_6, gbc_horizontalBox_6);
-		
-		JButton btnNewButton_7 = new JButton("Create New");
-		btnNewButton_7.addActionListener(new ActionListener() {
+		JButton btnNewButton_8 = new JButton("Delete Customer");
+		GridBagConstraints gbc_btnNewButton_8 = new GridBagConstraints();
+		gbc_btnNewButton_8.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_8.gridx = 2;
+		gbc_btnNewButton_8.gridy = 5;
+		customerPanel.add(btnNewButton_8, gbc_btnNewButton_8);
+		btnNewButton_8.setForeground(new Color(255, 0, 0));
+		btnNewButton_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setPrevious(customerPanel);
-				customerPanel.hide();
-				customerLookupTable.setModel(new DefaultTableModel());
-				customerLookupCustomerIDField.setText("");
+				try {
+				JFrame frame = new JFrame();
+			    String customerID = JOptionPane.showInputDialog(frame, "Enter ID of Customer to Delete:");
+			    setPrevious(customerPanel);
+			    customerPanel.hide();
+			    CreateCustomer myCustomer = new CreateCustomer();
+			    myCustomer.loadCustomer(customerID, updateCustomerIDLabel, updateCustomerFirstNameField, updateCustomerLastNameField, updateCustomerAddressField, updateCustomerPhoneNumField, updateCustomerEmailField, updateCustomerRepIDField );
+			    customerUpdateButton.setText("Delete");
+			    updateCustomerLabel.setText("DELETE CUSTOMER");
+			    customerLookupTable.setModel(new DefaultTableModel());
+			    customerLookupCustomerIDField.setText("");
 				customerLookupCustomerFirstNameField.setText("");
 				customerLookupLastNameField.setText("");
 				customerLookupPhoneNumberField.setText("");
-				createCustomerPanel.show();
+			    updateCustomerPanel.show();
+				} catch (Exception t) {
+					customerPanel.show();
+				}
 			}
 		});
-		horizontalBox_6.add(btnNewButton_7);
 		
 		JButton updateButton = new JButton("Edit Customer");
+		GridBagConstraints gbc_updateButton = new GridBagConstraints();
+		gbc_updateButton.insets = new Insets(0, 0, 5, 5);
+		gbc_updateButton.gridx = 3;
+		gbc_updateButton.gridy = 5;
+		customerPanel.add(updateButton, gbc_updateButton);
 		updateButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -1720,36 +1797,33 @@ public class CapstoneMainFrame {
 				}
 			}
 		});
-		horizontalBox_6.add(updateButton);
 		
-		JButton btnNewButton_8 = new JButton("Delete");
-		btnNewButton_8.addActionListener(new ActionListener() {
+		JButton btnNewButton_7 = new JButton("Create New");
+		GridBagConstraints gbc_btnNewButton_7 = new GridBagConstraints();
+		gbc_btnNewButton_7.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_7.gridx = 4;
+		gbc_btnNewButton_7.gridy = 5;
+		customerPanel.add(btnNewButton_7, gbc_btnNewButton_7);
+		btnNewButton_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-				JFrame frame = new JFrame();
-			    String customerID = JOptionPane.showInputDialog(frame, "Enter ID of Customer to Delete:");
-			    setPrevious(customerPanel);
-			    customerPanel.hide();
-			    CreateCustomer myCustomer = new CreateCustomer();
-			    myCustomer.loadCustomer(customerID, updateCustomerIDLabel, updateCustomerFirstNameField, updateCustomerLastNameField, updateCustomerAddressField, updateCustomerPhoneNumField, updateCustomerEmailField, updateCustomerRepIDField );
-			    customerUpdateButton.setText("Delete");
-			    customerLookupTable.setModel(new DefaultTableModel());
-			    customerLookupCustomerIDField.setText("");
+				setPrevious(customerPanel);
+				customerPanel.hide();
+				customerLookupTable.setModel(new DefaultTableModel());
+				customerLookupCustomerIDField.setText("");
 				customerLookupCustomerFirstNameField.setText("");
 				customerLookupLastNameField.setText("");
 				customerLookupPhoneNumberField.setText("");
-			    updateCustomerPanel.show();
-				} catch (Exception t) {
-					customerPanel.show();
-				}
+				createCustomerPanel.show();
 			}
 		});
-		horizontalBox_6.add(btnNewButton_8);
-		
-		Component horizontalGlue_2 = Box.createHorizontalGlue();
-		horizontalBox_6.add(horizontalGlue_2);
 		
 		JButton btnNewButton_9 = new JButton("Back");
+		GridBagConstraints gbc_btnNewButton_9 = new GridBagConstraints();
+		gbc_btnNewButton_9.anchor = GridBagConstraints.WEST;
+		gbc_btnNewButton_9.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_9.gridx = 5;
+		gbc_btnNewButton_9.gridy = 5;
+		customerPanel.add(btnNewButton_9, gbc_btnNewButton_9);
 		btnNewButton_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				customerPanel.hide();
@@ -1763,7 +1837,18 @@ public class CapstoneMainFrame {
 				
 			}
 		});
-		horizontalBox_6.add(btnNewButton_9);
+		
+		
+		Box horizontalBox_6 = Box.createHorizontalBox();
+		GridBagConstraints gbc_horizontalBox_6 = new GridBagConstraints();
+		gbc_horizontalBox_6.gridwidth = 5;
+		gbc_horizontalBox_6.insets = new Insets(0, 0, 5, 5);
+		gbc_horizontalBox_6.gridx = 1;
+		gbc_horizontalBox_6.gridy = 6;
+		customerPanel.add(horizontalBox_6, gbc_horizontalBox_6);
+		
+		Component horizontalGlue_2 = Box.createHorizontalGlue();
+		horizontalBox_6.add(horizontalGlue_2);
 		
 		/*
 		 * Employee Panel
@@ -1829,143 +1914,178 @@ public class CapstoneMainFrame {
 		 * Customer Layout
 		 */
 		GridBagLayout gbl_createCustomerPanel = new GridBagLayout();
-		gbl_createCustomerPanel.columnWidths = new int[]{0, 0, 0, 0, 0};
-		gbl_createCustomerPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_createCustomerPanel.columnWeights = new double[]{1.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_createCustomerPanel.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_createCustomerPanel.columnWidths = new int[]{50, 50, 200, 200, 50, 0};
+		gbl_createCustomerPanel.rowHeights = new int[]{25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0};
+		gbl_createCustomerPanel.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_createCustomerPanel.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		createCustomerPanel.setLayout(gbl_createCustomerPanel);
 		
+		JLabel lblNewLabel_74 = new JLabel("CREATE CUSTOMER");
+		lblNewLabel_74.setFont(new Font("Tahoma", Font.BOLD, 24));
+		GridBagConstraints gbc_lblNewLabel_74 = new GridBagConstraints();
+		gbc_lblNewLabel_74.gridwidth = 3;
+		gbc_lblNewLabel_74.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_74.gridx = 1;
+		gbc_lblNewLabel_74.gridy = 1;
+		createCustomerPanel.add(lblNewLabel_74, gbc_lblNewLabel_74);
+		
 		JLabel lblCreateCustomerID = new JLabel("Customer ID");
+		lblCreateCustomerID.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lblCreateCustomerID.setHorizontalAlignment(SwingConstants.TRAILING);
 		GridBagConstraints gbc_lblCreateCustomerID = new GridBagConstraints();
 		gbc_lblCreateCustomerID.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblCreateCustomerID.insets = new Insets(0, 0, 5, 5);
 		gbc_lblCreateCustomerID.gridx = 1;
-		gbc_lblCreateCustomerID.gridy = 1;
+		gbc_lblCreateCustomerID.gridy = 2;
 		createCustomerPanel.add(lblCreateCustomerID, gbc_lblCreateCustomerID);
 		
 		textFieldCreateCustomerID = new JTextField();
+		textFieldCreateCustomerID.setToolTipText("Unique Customer ID (Auto Generated)");
 		CreateCustomer app = new CreateCustomer();
 		String sqlMaxCustomers = "Select customerNum From customers where customerNum = (Select max(customerNum) from customers);";
 		int automaticID = app.selectMaxCustomers(sqlMaxCustomers);
 		textFieldCreateCustomerID.setText(automaticID+1+"");
 		GridBagConstraints gbc_textFieldCreateCustomerID = new GridBagConstraints();
+		gbc_textFieldCreateCustomerID.gridwidth = 2;
 		gbc_textFieldCreateCustomerID.insets = new Insets(0, 0, 5, 5);
 		gbc_textFieldCreateCustomerID.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textFieldCreateCustomerID.gridx = 2;
-		gbc_textFieldCreateCustomerID.gridy = 1;
+		gbc_textFieldCreateCustomerID.gridy = 2;
 		createCustomerPanel.add(textFieldCreateCustomerID, gbc_textFieldCreateCustomerID);
 		textFieldCreateCustomerID.setColumns(10);
 		
 		JLabel lblCreateCustomerFirst = new JLabel("First Name");
+		lblCreateCustomerFirst.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lblCreateCustomerFirst.setHorizontalAlignment(SwingConstants.TRAILING);
 		GridBagConstraints gbc_lblCreateCustomerFirst = new GridBagConstraints();
 		gbc_lblCreateCustomerFirst.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblCreateCustomerFirst.insets = new Insets(0, 0, 5, 5);
 		gbc_lblCreateCustomerFirst.gridx = 1;
-		gbc_lblCreateCustomerFirst.gridy = 2;
+		gbc_lblCreateCustomerFirst.gridy = 3;
 		createCustomerPanel.add(lblCreateCustomerFirst, gbc_lblCreateCustomerFirst);
 		
 		textFieldCreateCustomerFirst = new JTextField();
 		textFieldCreateCustomerFirst.setColumns(10);
 		GridBagConstraints gbc_textFieldCreateCustomerFirst = new GridBagConstraints();
+		gbc_textFieldCreateCustomerFirst.gridwidth = 2;
 		gbc_textFieldCreateCustomerFirst.insets = new Insets(0, 0, 5, 5);
 		gbc_textFieldCreateCustomerFirst.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textFieldCreateCustomerFirst.gridx = 2;
-		gbc_textFieldCreateCustomerFirst.gridy = 2;
+		gbc_textFieldCreateCustomerFirst.gridy = 3;
 		createCustomerPanel.add(textFieldCreateCustomerFirst, gbc_textFieldCreateCustomerFirst);
 		
 		JLabel lblCreateCustomerLast = new JLabel("Last Name");
+		lblCreateCustomerLast.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lblCreateCustomerLast.setHorizontalAlignment(SwingConstants.TRAILING);
 		GridBagConstraints gbc_lblCreateCustomerLast = new GridBagConstraints();
 		gbc_lblCreateCustomerLast.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblCreateCustomerLast.insets = new Insets(0, 0, 5, 5);
 		gbc_lblCreateCustomerLast.gridx = 1;
-		gbc_lblCreateCustomerLast.gridy = 3;
+		gbc_lblCreateCustomerLast.gridy = 4;
 		createCustomerPanel.add(lblCreateCustomerLast, gbc_lblCreateCustomerLast);
 		
 		textFieldCreateCustomerLast = new JTextField();
 		textFieldCreateCustomerLast.setColumns(10);
 		GridBagConstraints gbc_textFieldCreateCustomerLast = new GridBagConstraints();
+		gbc_textFieldCreateCustomerLast.gridwidth = 2;
 		gbc_textFieldCreateCustomerLast.insets = new Insets(0, 0, 5, 5);
 		gbc_textFieldCreateCustomerLast.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textFieldCreateCustomerLast.gridx = 2;
-		gbc_textFieldCreateCustomerLast.gridy = 3;
+		gbc_textFieldCreateCustomerLast.gridy = 4;
 		createCustomerPanel.add(textFieldCreateCustomerLast, gbc_textFieldCreateCustomerLast);
 		
 		JLabel lblCreateCustomerPhone = new JLabel("Phone Number");
+		lblCreateCustomerPhone.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lblCreateCustomerPhone.setHorizontalAlignment(SwingConstants.TRAILING);
 		GridBagConstraints gbc_lblCreateCustomerPhone = new GridBagConstraints();
 		gbc_lblCreateCustomerPhone.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblCreateCustomerPhone.insets = new Insets(0, 0, 5, 5);
 		gbc_lblCreateCustomerPhone.gridx = 1;
-		gbc_lblCreateCustomerPhone.gridy = 4;
+		gbc_lblCreateCustomerPhone.gridy = 5;
 		createCustomerPanel.add(lblCreateCustomerPhone, gbc_lblCreateCustomerPhone);
 		
 		textFieldPhone = new JTextField();
 		textFieldPhone.setColumns(10);
 		GridBagConstraints gbc_textFieldPhone = new GridBagConstraints();
+		gbc_textFieldPhone.gridwidth = 2;
 		gbc_textFieldPhone.insets = new Insets(0, 0, 5, 5);
 		gbc_textFieldPhone.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textFieldPhone.gridx = 2;
-		gbc_textFieldPhone.gridy = 4;
+		gbc_textFieldPhone.gridy = 5;
 		createCustomerPanel.add(textFieldPhone, gbc_textFieldPhone);
 		
 		JLabel lblCreateCustomerAddress = new JLabel("Address");
+		lblCreateCustomerAddress.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lblCreateCustomerAddress.setHorizontalAlignment(SwingConstants.TRAILING);
 		GridBagConstraints gbc_lblCreateCustomerAddress = new GridBagConstraints();
 		gbc_lblCreateCustomerAddress.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblCreateCustomerAddress.insets = new Insets(0, 0, 5, 5);
 		gbc_lblCreateCustomerAddress.gridx = 1;
-		gbc_lblCreateCustomerAddress.gridy = 5;
+		gbc_lblCreateCustomerAddress.gridy = 6;
 		createCustomerPanel.add(lblCreateCustomerAddress, gbc_lblCreateCustomerAddress);
 		
 		textFieldCreateCustomerAddress = new JTextField();
 		textFieldCreateCustomerAddress.setColumns(10);
 		GridBagConstraints gbc_textFieldCreateCustomerAddress = new GridBagConstraints();
+		gbc_textFieldCreateCustomerAddress.gridwidth = 2;
 		gbc_textFieldCreateCustomerAddress.insets = new Insets(0, 0, 5, 5);
 		gbc_textFieldCreateCustomerAddress.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textFieldCreateCustomerAddress.gridx = 2;
-		gbc_textFieldCreateCustomerAddress.gridy = 5;
+		gbc_textFieldCreateCustomerAddress.gridy = 6;
 		createCustomerPanel.add(textFieldCreateCustomerAddress, gbc_textFieldCreateCustomerAddress);
 		
 		JLabel lblCreateCustomerEmail = new JLabel("Email");
+		lblCreateCustomerEmail.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lblCreateCustomerEmail.setHorizontalAlignment(SwingConstants.TRAILING);
 		GridBagConstraints gbc_lblCreateCustomerEmail = new GridBagConstraints();
 		gbc_lblCreateCustomerEmail.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblCreateCustomerEmail.insets = new Insets(0, 0, 5, 5);
 		gbc_lblCreateCustomerEmail.gridx = 1;
-		gbc_lblCreateCustomerEmail.gridy = 6;
+		gbc_lblCreateCustomerEmail.gridy = 7;
 		createCustomerPanel.add(lblCreateCustomerEmail, gbc_lblCreateCustomerEmail);
 		
 		textFieldCreateCustomerEmail = new JTextField();
 		textFieldCreateCustomerEmail.setColumns(10);
 		GridBagConstraints gbc_textFieldCreateCustomerEmail = new GridBagConstraints();
+		gbc_textFieldCreateCustomerEmail.gridwidth = 2;
 		gbc_textFieldCreateCustomerEmail.insets = new Insets(0, 0, 5, 5);
 		gbc_textFieldCreateCustomerEmail.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textFieldCreateCustomerEmail.gridx = 2;
-		gbc_textFieldCreateCustomerEmail.gridy = 6;
+		gbc_textFieldCreateCustomerEmail.gridy = 7;
 		createCustomerPanel.add(textFieldCreateCustomerEmail, gbc_textFieldCreateCustomerEmail);
 		
 		JLabel lblCreateCustomerRep = new JLabel("Assigned Rep");
+		lblCreateCustomerRep.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lblCreateCustomerRep.setHorizontalAlignment(SwingConstants.TRAILING);
 		GridBagConstraints gbc_lblCreateCustomerRep = new GridBagConstraints();
 		gbc_lblCreateCustomerRep.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblCreateCustomerRep.insets = new Insets(0, 0, 5, 5);
 		gbc_lblCreateCustomerRep.gridx = 1;
-		gbc_lblCreateCustomerRep.gridy = 7;
+		gbc_lblCreateCustomerRep.gridy = 8;
 		createCustomerPanel.add(lblCreateCustomerRep, gbc_lblCreateCustomerRep);
 		
 		textField_9 = new JTextField();
+		textField_9.setToolTipText("Specific Employee Working with Customer");
 		textField_9.setColumns(10);
 		GridBagConstraints gbc_textField_9 = new GridBagConstraints();
+		gbc_textField_9.gridwidth = 2;
 		gbc_textField_9.insets = new Insets(0, 0, 5, 5);
 		gbc_textField_9.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_9.gridx = 2;
-		gbc_textField_9.gridy = 7;
+		gbc_textField_9.gridy = 8;
 		createCustomerPanel.add(textField_9, gbc_textField_9);
 		
+		JButton btnNewButton_12 = new JButton("Back");
+		btnNewButton_12.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				createCustomerPanel.hide();
+				getPrevious().show();
+				setPrevious(createCustomerPanel);
+			}
+		});
+		
 		JButton btnNewButton_10 = new JButton("Clear");
+		btnNewButton_10.setForeground(new Color(255, 0, 0));
 		btnNewButton_10.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textFieldCreateCustomerFirst.setText("");
@@ -1977,10 +2097,17 @@ public class CapstoneMainFrame {
 			}
 		});
 		GridBagConstraints gbc_btnNewButton_10 = new GridBagConstraints();
+		gbc_btnNewButton_10.anchor = GridBagConstraints.EAST;
 		gbc_btnNewButton_10.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton_10.gridx = 1;
-		gbc_btnNewButton_10.gridy = 8;
+		gbc_btnNewButton_10.gridy = 9;
 		createCustomerPanel.add(btnNewButton_10, gbc_btnNewButton_10);
+		GridBagConstraints gbc_btnNewButton_12 = new GridBagConstraints();
+		gbc_btnNewButton_12.anchor = GridBagConstraints.EAST;
+		gbc_btnNewButton_12.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_12.gridx = 2;
+		gbc_btnNewButton_12.gridy = 9;
+		createCustomerPanel.add(btnNewButton_12, gbc_btnNewButton_12);
 		
 		JButton btnNewButton_11 = new JButton("Create");
 		btnNewButton_11.addActionListener(new ActionListener() {
@@ -1990,26 +2117,11 @@ public class CapstoneMainFrame {
 			}
 		});
 		GridBagConstraints gbc_btnNewButton_11 = new GridBagConstraints();
-		gbc_btnNewButton_11.anchor = GridBagConstraints.EAST;
+		gbc_btnNewButton_11.anchor = GridBagConstraints.WEST;
 		gbc_btnNewButton_11.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_11.gridx = 2;
-		gbc_btnNewButton_11.gridy = 8;
+		gbc_btnNewButton_11.gridx = 3;
+		gbc_btnNewButton_11.gridy = 9;
 		createCustomerPanel.add(btnNewButton_11, gbc_btnNewButton_11);
-		
-		JButton btnNewButton_12 = new JButton("Back");
-		btnNewButton_12.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				createCustomerPanel.hide();
-				getPrevious().show();
-				setPrevious(createCustomerPanel);
-			}
-		});
-		GridBagConstraints gbc_btnNewButton_12 = new GridBagConstraints();
-		gbc_btnNewButton_12.anchor = GridBagConstraints.EAST;
-		gbc_btnNewButton_12.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_12.gridx = 2;
-		gbc_btnNewButton_12.gridy = 9;
-		createCustomerPanel.add(btnNewButton_12, gbc_btnNewButton_12);
 		
 		/*
 		 * Employee Panel
@@ -2135,198 +2247,234 @@ public class CapstoneMainFrame {
 		
 		GridBagLayout gridBagLayout_2 = new GridBagLayout();
 		gridBagLayout_2.columnWidths = new int[]{0, 75, 65, 65, 65, 65, 65, 0, 0};
-		gridBagLayout_2.rowHeights = new int[]{0, 33, 0, 0, 0, 0, 0, 28, 0, 0, 47, 0, 0};
+		gridBagLayout_2.rowHeights = new int[]{0, 0, 33, 0, 0, 0, 0, 0, 28, 0, 0, 47, 0, 0};
 		gridBagLayout_2.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout_2.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout_2.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		createOrderPanel.setLayout(gridBagLayout_2);
 		
+		JLabel lblNewLabel_76 = new JLabel("CREATE ORDER");
+		lblNewLabel_76.setFont(new Font("Tahoma", Font.BOLD, 24));
+		GridBagConstraints gbc_lblNewLabel_76 = new GridBagConstraints();
+		gbc_lblNewLabel_76.gridwidth = 6;
+		gbc_lblNewLabel_76.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_76.gridx = 1;
+		gbc_lblNewLabel_76.gridy = 1;
+		createOrderPanel.add(lblNewLabel_76, gbc_lblNewLabel_76);
+		
 		JLabel lblNewLabel_35 = new JLabel("Order Number");
+		lblNewLabel_35.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_35 = new GridBagConstraints();
 		gbc_lblNewLabel_35.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel_35.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_35.gridx = 1;
-		gbc_lblNewLabel_35.gridy = 1;
+		gbc_lblNewLabel_35.gridy = 2;
 		createOrderPanel.add(lblNewLabel_35, gbc_lblNewLabel_35);
 		
 		orderCreateOrderIDField = new JTextField();
+		orderCreateOrderIDField.setToolTipText("Unique Order ID");
 		CreateOrder app1 = new CreateOrder();
 		String sqlMaxOrders = "Select orderNum From orders where orderNum = (Select max(orderNum) from orders);";
 		int maxID = app1.selectMaxOrders(sqlMaxOrders);
 		
 		GridBagConstraints gbc_orderCreateOrderIDField = new GridBagConstraints();
-		gbc_orderCreateOrderIDField.gridwidth = 2;
+		gbc_orderCreateOrderIDField.gridwidth = 3;
 		gbc_orderCreateOrderIDField.insets = new Insets(0, 0, 5, 5);
 		gbc_orderCreateOrderIDField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_orderCreateOrderIDField.gridx = 2;
-		gbc_orderCreateOrderIDField.gridy = 1;
+		gbc_orderCreateOrderIDField.gridy = 2;
 		createOrderPanel.add(orderCreateOrderIDField, gbc_orderCreateOrderIDField);
 		orderCreateOrderIDField.setColumns(10);
 		
 		JCheckBox orderCreateOrderPaidBox = new JCheckBox("Order Paid");
+		orderCreateOrderPaidBox.setFont(new Font("Tahoma", Font.BOLD, 10));
+		orderCreateOrderPaidBox.setToolTipText("Has order been paid?");
 		GridBagConstraints gbc_orderCreateOrderPaidBox = new GridBagConstraints();
+		gbc_orderCreateOrderPaidBox.gridwidth = 2;
 		gbc_orderCreateOrderPaidBox.anchor = GridBagConstraints.WEST;
 		gbc_orderCreateOrderPaidBox.insets = new Insets(0, 0, 5, 5);
 		gbc_orderCreateOrderPaidBox.gridx = 5;
-		gbc_orderCreateOrderPaidBox.gridy = 1;
+		gbc_orderCreateOrderPaidBox.gridy = 2;
 		createOrderPanel.add(orderCreateOrderPaidBox, gbc_orderCreateOrderPaidBox);
 		
 		JLabel lblNewLabel_36 = new JLabel("Customer Number");
+		lblNewLabel_36.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_36 = new GridBagConstraints();
 		gbc_lblNewLabel_36.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel_36.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_36.gridx = 1;
-		gbc_lblNewLabel_36.gridy = 2;
+		gbc_lblNewLabel_36.gridy = 3;
 		createOrderPanel.add(lblNewLabel_36, gbc_lblNewLabel_36);
 		
 		orderCreateCustomerIDField = new JTextField();
+		orderCreateCustomerIDField.setToolTipText("Unique Customer ID of Customer Ordering");
 		GridBagConstraints gbc_orderCreateCustomerIDField = new GridBagConstraints();
-		gbc_orderCreateCustomerIDField.gridwidth = 2;
+		gbc_orderCreateCustomerIDField.gridwidth = 3;
 		gbc_orderCreateCustomerIDField.insets = new Insets(0, 0, 5, 5);
 		gbc_orderCreateCustomerIDField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_orderCreateCustomerIDField.gridx = 2;
-		gbc_orderCreateCustomerIDField.gridy = 2;
+		gbc_orderCreateCustomerIDField.gridy = 3;
 		createOrderPanel.add(orderCreateCustomerIDField, gbc_orderCreateCustomerIDField);
 		orderCreateCustomerIDField.setColumns(10);
 		
 		JCheckBox orderCreateOrderCompleteBox = new JCheckBox("Order Complete");
+		orderCreateOrderCompleteBox.setFont(new Font("Tahoma", Font.BOLD, 10));
+		orderCreateOrderCompleteBox.setToolTipText("Has order been completed?");
 		GridBagConstraints gbc_orderCreateOrderCompleteBox = new GridBagConstraints();
+		gbc_orderCreateOrderCompleteBox.gridwidth = 2;
 		gbc_orderCreateOrderCompleteBox.anchor = GridBagConstraints.WEST;
 		gbc_orderCreateOrderCompleteBox.insets = new Insets(0, 0, 5, 5);
 		gbc_orderCreateOrderCompleteBox.gridx = 5;
-		gbc_orderCreateOrderCompleteBox.gridy = 2;
+		gbc_orderCreateOrderCompleteBox.gridy = 3;
 		createOrderPanel.add(orderCreateOrderCompleteBox, gbc_orderCreateOrderCompleteBox);
 		GridBagConstraints gbc_lblNewLabel_37 = new GridBagConstraints();
 		gbc_lblNewLabel_37.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel_37.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_37.gridx = 1;
-		gbc_lblNewLabel_37.gridy = 3;
+		gbc_lblNewLabel_37.gridy = 4;
+		lblNewLabel_37.setFont(new Font("Tahoma", Font.BOLD, 10));
 		createOrderPanel.add(lblNewLabel_37, gbc_lblNewLabel_37);
 		
 		orderCreateEmployeeIDField = new JTextField();
+		orderCreateEmployeeIDField.setToolTipText("Employee Number of Employee Taking Order");
 		GridBagConstraints gbc_orderCreateEmployeeIDField = new GridBagConstraints();
-		gbc_orderCreateEmployeeIDField.gridwidth = 2;
+		gbc_orderCreateEmployeeIDField.gridwidth = 3;
 		gbc_orderCreateEmployeeIDField.insets = new Insets(0, 0, 5, 5);
 		gbc_orderCreateEmployeeIDField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_orderCreateEmployeeIDField.gridx = 2;
-		gbc_orderCreateEmployeeIDField.gridy = 3;
+		gbc_orderCreateEmployeeIDField.gridy = 4;
 		createOrderPanel.add(orderCreateEmployeeIDField, gbc_orderCreateEmployeeIDField);
 		orderCreateEmployeeIDField.setColumns(10);
 		
-		JCheckBox orderCreateOrderDeliveredBox = new JCheckBox("New check box");
+		JCheckBox orderCreateOrderDeliveredBox = new JCheckBox("Order Delivered");
+		orderCreateOrderDeliveredBox.setFont(new Font("Tahoma", Font.BOLD, 10));
+		orderCreateOrderDeliveredBox.setToolTipText("Has order been delivered to client?");
 		GridBagConstraints gbc_orderCreateOrderDeliveredBox = new GridBagConstraints();
+		gbc_orderCreateOrderDeliveredBox.gridwidth = 2;
 		gbc_orderCreateOrderDeliveredBox.anchor = GridBagConstraints.WEST;
 		gbc_orderCreateOrderDeliveredBox.insets = new Insets(0, 0, 5, 5);
 		gbc_orderCreateOrderDeliveredBox.gridx = 5;
-		gbc_orderCreateOrderDeliveredBox.gridy = 3;
+		gbc_orderCreateOrderDeliveredBox.gridy = 4;
 		createOrderPanel.add(orderCreateOrderDeliveredBox, gbc_orderCreateOrderDeliveredBox);
 		
 		JLabel lblNewLabel_38 = new JLabel("Pick Up Date");
+		lblNewLabel_38.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_38 = new GridBagConstraints();
 		gbc_lblNewLabel_38.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel_38.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_38.gridx = 1;
-		gbc_lblNewLabel_38.gridy = 4;
+		gbc_lblNewLabel_38.gridy = 5;
 		createOrderPanel.add(lblNewLabel_38, gbc_lblNewLabel_38);
 		
 		orderCreatePickupDateField = new JTextField();
+		orderCreatePickupDateField.setToolTipText("When will order be picked up? (MM-DD-YYYY)");
 		orderCreatePickupDateField.setText("MM-dd-yyyy");
 		GridBagConstraints gbc_orderCreatePickupDateField = new GridBagConstraints();
-		gbc_orderCreatePickupDateField.gridwidth = 2;
+		gbc_orderCreatePickupDateField.gridwidth = 3;
 		gbc_orderCreatePickupDateField.insets = new Insets(0, 0, 5, 5);
 		gbc_orderCreatePickupDateField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_orderCreatePickupDateField.gridx = 2;
-		gbc_orderCreatePickupDateField.gridy = 4;
+		gbc_orderCreatePickupDateField.gridy = 5;
 		createOrderPanel.add(orderCreatePickupDateField, gbc_orderCreatePickupDateField);
 		orderCreatePickupDateField.setColumns(10);
 		
 		JLabel lblNewLabel_39 = new JLabel("Pick Up Time");
+		lblNewLabel_39.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_39 = new GridBagConstraints();
 		gbc_lblNewLabel_39.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel_39.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_39.gridx = 1;
-		gbc_lblNewLabel_39.gridy = 5;
+		gbc_lblNewLabel_39.gridy = 6;
 		createOrderPanel.add(lblNewLabel_39, gbc_lblNewLabel_39);
 		
 		orderCreatePickupTimeField = new JTextField();
+		orderCreatePickupTimeField.setToolTipText("What time will the order be picked up? (HH:MM)");
 		orderCreatePickupTimeField.setText("hh:mm");
 		GridBagConstraints gbc_orderCreatePickupTimeField = new GridBagConstraints();
-		gbc_orderCreatePickupTimeField.gridwidth = 2;
+		gbc_orderCreatePickupTimeField.gridwidth = 3;
 		gbc_orderCreatePickupTimeField.insets = new Insets(0, 0, 5, 5);
 		gbc_orderCreatePickupTimeField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_orderCreatePickupTimeField.gridx = 2;
-		gbc_orderCreatePickupTimeField.gridy = 5;
+		gbc_orderCreatePickupTimeField.gridy = 6;
 		createOrderPanel.add(orderCreatePickupTimeField, gbc_orderCreatePickupTimeField);
 		orderCreatePickupTimeField.setColumns(10);
 		
 		JLabel lblNewLabel_46 = new JLabel("Order Date");
+		lblNewLabel_46.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_46 = new GridBagConstraints();
 		gbc_lblNewLabel_46.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_46.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel_46.gridx = 1;
-		gbc_lblNewLabel_46.gridy = 6;
+		gbc_lblNewLabel_46.gridy = 7;
 		createOrderPanel.add(lblNewLabel_46, gbc_lblNewLabel_46);
 		
 		orderCreateOrderDateField = new JTextField();
+		orderCreateOrderDateField.setToolTipText("Date order was placed (MM-DD-YYYY)");
 		SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
 		SimpleDateFormat timeFormatter = new SimpleDateFormat("hh:mm");
 		Date date = new Date();  
 		orderCreateOrderDateField.setText(formatter.format(date));
 		
 		GridBagConstraints gbc_orderCreateOrderDateField = new GridBagConstraints();
-		gbc_orderCreateOrderDateField.gridwidth = 2;
+		gbc_orderCreateOrderDateField.gridwidth = 3;
 		gbc_orderCreateOrderDateField.insets = new Insets(0, 0, 5, 5);
 		gbc_orderCreateOrderDateField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_orderCreateOrderDateField.gridx = 2;
-		gbc_orderCreateOrderDateField.gridy = 6;
+		gbc_orderCreateOrderDateField.gridy = 7;
 		createOrderPanel.add(orderCreateOrderDateField, gbc_orderCreateOrderDateField);
 		orderCreateOrderDateField.setColumns(10);
 		
 		JLabel lblNewLabel_40 = new JLabel("Potash");
+		lblNewLabel_40.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_40 = new GridBagConstraints();
 		gbc_lblNewLabel_40.anchor = GridBagConstraints.SOUTH;
 		gbc_lblNewLabel_40.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_40.gridx = 2;
-		gbc_lblNewLabel_40.gridy = 7;
+		gbc_lblNewLabel_40.gridy = 8;
 		createOrderPanel.add(lblNewLabel_40, gbc_lblNewLabel_40);
 		
 		JLabel lblNewLabel_41 = new JLabel("MAP");
+		lblNewLabel_41.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_41 = new GridBagConstraints();
 		gbc_lblNewLabel_41.anchor = GridBagConstraints.SOUTH;
 		gbc_lblNewLabel_41.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_41.gridx = 3;
-		gbc_lblNewLabel_41.gridy = 7;
+		gbc_lblNewLabel_41.gridy = 8;
 		createOrderPanel.add(lblNewLabel_41, gbc_lblNewLabel_41);
 		
 		JLabel lblNewLabel_42 = new JLabel("AMS");
+		lblNewLabel_42.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_42 = new GridBagConstraints();
 		gbc_lblNewLabel_42.anchor = GridBagConstraints.SOUTH;
 		gbc_lblNewLabel_42.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_42.gridx = 4;
-		gbc_lblNewLabel_42.gridy = 7;
+		gbc_lblNewLabel_42.gridy = 8;
 		createOrderPanel.add(lblNewLabel_42, gbc_lblNewLabel_42);
 		
 		JLabel lblNewLabel_43 = new JLabel("Urea");
+		lblNewLabel_43.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_43 = new GridBagConstraints();
 		gbc_lblNewLabel_43.anchor = GridBagConstraints.SOUTH;
 		gbc_lblNewLabel_43.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_43.gridx = 5;
-		gbc_lblNewLabel_43.gridy = 7;
+		gbc_lblNewLabel_43.gridy = 8;
 		createOrderPanel.add(lblNewLabel_43, gbc_lblNewLabel_43);
 		
 		JLabel lblNewLabel_44 = new JLabel("Gypsum");
+		lblNewLabel_44.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_44 = new GridBagConstraints();
 		gbc_lblNewLabel_44.anchor = GridBagConstraints.SOUTH;
 		gbc_lblNewLabel_44.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_44.gridx = 6;
-		gbc_lblNewLabel_44.gridy = 7;
+		gbc_lblNewLabel_44.gridy = 8;
 		createOrderPanel.add(lblNewLabel_44, gbc_lblNewLabel_44);
 		
 		JLabel lblNewLabel_31 = new JLabel("Pounds");
+		lblNewLabel_31.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_31 = new GridBagConstraints();
 		gbc_lblNewLabel_31.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel_31.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_31.gridx = 1;
-		gbc_lblNewLabel_31.gridy = 8;
+		gbc_lblNewLabel_31.gridy = 9;
 		createOrderPanel.add(lblNewLabel_31, gbc_lblNewLabel_31);
 		
 		orderCreatePotashField = new JTextField();
@@ -2335,7 +2483,7 @@ public class CapstoneMainFrame {
 		gbc_orderCreatePotashField.insets = new Insets(0, 0, 5, 5);
 		gbc_orderCreatePotashField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_orderCreatePotashField.gridx = 2;
-		gbc_orderCreatePotashField.gridy = 8;
+		gbc_orderCreatePotashField.gridy = 9;
 		createOrderPanel.add(orderCreatePotashField, gbc_orderCreatePotashField);
 		orderCreatePotashField.setColumns(10);
 		
@@ -2344,7 +2492,7 @@ public class CapstoneMainFrame {
 		gbc_orderCreateMAPField.insets = new Insets(0, 0, 5, 5);
 		gbc_orderCreateMAPField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_orderCreateMAPField.gridx = 3;
-		gbc_orderCreateMAPField.gridy = 8;
+		gbc_orderCreateMAPField.gridy = 9;
 		createOrderPanel.add(orderCreateMAPField, gbc_orderCreateMAPField);
 		orderCreateMAPField.setColumns(10);
 		
@@ -2353,7 +2501,7 @@ public class CapstoneMainFrame {
 		gbc_orderCreateAMSField.insets = new Insets(0, 0, 5, 5);
 		gbc_orderCreateAMSField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_orderCreateAMSField.gridx = 4;
-		gbc_orderCreateAMSField.gridy = 8;
+		gbc_orderCreateAMSField.gridy = 9;
 		createOrderPanel.add(orderCreateAMSField, gbc_orderCreateAMSField);
 		orderCreateAMSField.setColumns(10);
 		
@@ -2362,7 +2510,7 @@ public class CapstoneMainFrame {
 		gbc_orderCreateUreaField.insets = new Insets(0, 0, 5, 5);
 		gbc_orderCreateUreaField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_orderCreateUreaField.gridx = 5;
-		gbc_orderCreateUreaField.gridy = 8;
+		gbc_orderCreateUreaField.gridy = 9;
 		createOrderPanel.add(orderCreateUreaField, gbc_orderCreateUreaField);
 		orderCreateUreaField.setColumns(10);
 		
@@ -2371,7 +2519,7 @@ public class CapstoneMainFrame {
 		gbc_orderCreateGypsumField.insets = new Insets(0, 0, 5, 5);
 		gbc_orderCreateGypsumField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_orderCreateGypsumField.gridx = 6;
-		gbc_orderCreateGypsumField.gridy = 8;
+		gbc_orderCreateGypsumField.gridy = 9;
 		createOrderPanel.add(orderCreateGypsumField, gbc_orderCreateGypsumField);
 		orderCreateGypsumField.setColumns(10);
 		
@@ -2385,11 +2533,12 @@ public class CapstoneMainFrame {
 		});
 		
 		JLabel lblNewLabel_45 = new JLabel("Comments");
+		lblNewLabel_45.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_45 = new GridBagConstraints();
 		gbc_lblNewLabel_45.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_45.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel_45.gridx = 1;
-		gbc_lblNewLabel_45.gridy = 10;
+		gbc_lblNewLabel_45.gridy = 11;
 		createOrderPanel.add(lblNewLabel_45, gbc_lblNewLabel_45);
 		
 		orderCreateOrderCommentsField = new JTextField();
@@ -2398,11 +2547,12 @@ public class CapstoneMainFrame {
 		gbc_orderCreateOrderCommentsField.insets = new Insets(0, 0, 5, 5);
 		gbc_orderCreateOrderCommentsField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_orderCreateOrderCommentsField.gridx = 2;
-		gbc_orderCreateOrderCommentsField.gridy = 10;
+		gbc_orderCreateOrderCommentsField.gridy = 11;
 		createOrderPanel.add(orderCreateOrderCommentsField, gbc_orderCreateOrderCommentsField);
 		orderCreateOrderCommentsField.setColumns(10);
 		
 		JButton orderCreateClearButton = new JButton("Clear");
+		orderCreateClearButton.setForeground(new Color(255, 0, 0));
 		orderCreateClearButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				orderCreateCustomerIDField.setText("");
@@ -2427,7 +2577,7 @@ public class CapstoneMainFrame {
 		GridBagConstraints gbc_orderCreateClearButton = new GridBagConstraints();
 		gbc_orderCreateClearButton.insets = new Insets(0, 0, 0, 5);
 		gbc_orderCreateClearButton.gridx = 3;
-		gbc_orderCreateClearButton.gridy = 11;
+		gbc_orderCreateClearButton.gridy = 12;
 		createOrderPanel.add(orderCreateClearButton, gbc_orderCreateClearButton);
 		
 		JButton orderCreateRunButton = new JButton("Create");
@@ -2440,52 +2590,64 @@ public class CapstoneMainFrame {
 		GridBagConstraints gbc_orderCreateRunButton = new GridBagConstraints();
 		gbc_orderCreateRunButton.insets = new Insets(0, 0, 0, 5);
 		gbc_orderCreateRunButton.gridx = 4;
-		gbc_orderCreateRunButton.gridy = 11;
+		gbc_orderCreateRunButton.gridy = 12;
 		createOrderPanel.add(orderCreateRunButton, gbc_orderCreateRunButton);
 		GridBagConstraints gbc_btnBack_8 = new GridBagConstraints();
 		gbc_btnBack_8.anchor = GridBagConstraints.WEST;
 		gbc_btnBack_8.insets = new Insets(0, 0, 0, 5);
 		gbc_btnBack_8.gridx = 5;
-		gbc_btnBack_8.gridy = 11;
+		gbc_btnBack_8.gridy = 12;
 		createOrderPanel.add(btnBack_8, gbc_btnBack_8);
 		
 		/**
 		 * Update Customer Panel
 		 */
 		GridBagLayout gbl_updateCustomerPanel = new GridBagLayout();
-		gbl_updateCustomerPanel.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
+		gbl_updateCustomerPanel.columnWidths = new int[]{25, 50, 400, 25, 0, 0};
 		gbl_updateCustomerPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_updateCustomerPanel.columnWeights = new double[]{1.0, 0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_updateCustomerPanel.columnWeights = new double[]{1.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		gbl_updateCustomerPanel.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		updateCustomerPanel.setLayout(gbl_updateCustomerPanel);
 		
+
+		GridBagConstraints gbc_updateCustomerLabel = new GridBagConstraints();
+		gbc_updateCustomerLabel.gridwidth = 2;
+		gbc_updateCustomerLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_updateCustomerLabel.gridx = 1;
+		gbc_updateCustomerLabel.gridy = 1;
+		updateCustomerPanel.add(updateCustomerLabel, gbc_updateCustomerLabel);
+		
 		JLabel lblNewLabel_47 = new JLabel("Customer ID");
+		lblNewLabel_47.setForeground(new Color(255, 0, 0));
+		lblNewLabel_47.setToolTipText("Uneditable");
+		lblNewLabel_47.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_47 = new GridBagConstraints();
 		gbc_lblNewLabel_47.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_47.gridx = 1;
-		gbc_lblNewLabel_47.gridy = 1;
+		gbc_lblNewLabel_47.gridy = 2;
 		updateCustomerPanel.add(lblNewLabel_47, gbc_lblNewLabel_47);
 		
 		GridBagConstraints gbc_updateCustomerIDLabel = new GridBagConstraints();
 		gbc_updateCustomerIDLabel.anchor = GridBagConstraints.WEST;
 		gbc_updateCustomerIDLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_updateCustomerIDLabel.gridx = 2;
-		gbc_updateCustomerIDLabel.gridy = 1;
+		gbc_updateCustomerIDLabel.gridy = 2;
 		updateCustomerPanel.add(updateCustomerIDLabel, gbc_updateCustomerIDLabel);
 		
 		JLabel customerIDLabel = new JLabel("");
 		GridBagConstraints gbc_customerIDLabel = new GridBagConstraints();
 		gbc_customerIDLabel.insets = new Insets(0, 0, 5, 0);
 		gbc_customerIDLabel.gridx = 4;
-		gbc_customerIDLabel.gridy = 2;
+		gbc_customerIDLabel.gridy = 3;
 		updateCustomerPanel.add(customerIDLabel, gbc_customerIDLabel);
 		
 		JLabel lblNewLabel_48 = new JLabel("First Name");
+		lblNewLabel_48.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_48 = new GridBagConstraints();
 		gbc_lblNewLabel_48.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel_48.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_48.gridx = 1;
-		gbc_lblNewLabel_48.gridy = 3;
+		gbc_lblNewLabel_48.gridy = 4;
 		updateCustomerPanel.add(lblNewLabel_48, gbc_lblNewLabel_48);
 		
 		updateCustomerFirstNameField = new JTextField();
@@ -2493,16 +2655,17 @@ public class CapstoneMainFrame {
 		gbc_updateCustomerFirstNameField.insets = new Insets(0, 0, 5, 5);
 		gbc_updateCustomerFirstNameField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_updateCustomerFirstNameField.gridx = 2;
-		gbc_updateCustomerFirstNameField.gridy = 3;
+		gbc_updateCustomerFirstNameField.gridy = 4;
 		updateCustomerPanel.add(updateCustomerFirstNameField, gbc_updateCustomerFirstNameField);
 		updateCustomerFirstNameField.setColumns(10);
 		
 		JLabel lblNewLabel_49 = new JLabel("Last Name");
+		lblNewLabel_49.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_49 = new GridBagConstraints();
 		gbc_lblNewLabel_49.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel_49.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_49.gridx = 1;
-		gbc_lblNewLabel_49.gridy = 4;
+		gbc_lblNewLabel_49.gridy = 5;
 		updateCustomerPanel.add(lblNewLabel_49, gbc_lblNewLabel_49);
 		
 		updateCustomerLastNameField = new JTextField();
@@ -2510,16 +2673,17 @@ public class CapstoneMainFrame {
 		gbc_updateCustomerLastNameField.insets = new Insets(0, 0, 5, 5);
 		gbc_updateCustomerLastNameField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_updateCustomerLastNameField.gridx = 2;
-		gbc_updateCustomerLastNameField.gridy = 4;
+		gbc_updateCustomerLastNameField.gridy = 5;
 		updateCustomerPanel.add(updateCustomerLastNameField, gbc_updateCustomerLastNameField);
 		updateCustomerLastNameField.setColumns(10);
 		
 		JLabel lblNewLabel_50 = new JLabel("Phone Number");
+		lblNewLabel_50.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_50 = new GridBagConstraints();
 		gbc_lblNewLabel_50.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel_50.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_50.gridx = 1;
-		gbc_lblNewLabel_50.gridy = 5;
+		gbc_lblNewLabel_50.gridy = 6;
 		updateCustomerPanel.add(lblNewLabel_50, gbc_lblNewLabel_50);
 		
 		updateCustomerPhoneNumField = new JTextField();
@@ -2527,15 +2691,16 @@ public class CapstoneMainFrame {
 		gbc_updateCustomerPhoneNumField.insets = new Insets(0, 0, 5, 5);
 		gbc_updateCustomerPhoneNumField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_updateCustomerPhoneNumField.gridx = 2;
-		gbc_updateCustomerPhoneNumField.gridy = 5;
+		gbc_updateCustomerPhoneNumField.gridy = 6;
 		updateCustomerPanel.add(updateCustomerPhoneNumField, gbc_updateCustomerPhoneNumField);
 		updateCustomerPhoneNumField.setColumns(10);
 		
 		JLabel lblNewLabel_53 = new JLabel("Email Address");
+		lblNewLabel_53.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_53 = new GridBagConstraints();
 		gbc_lblNewLabel_53.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_53.gridx = 1;
-		gbc_lblNewLabel_53.gridy = 6;
+		gbc_lblNewLabel_53.gridy = 7;
 		updateCustomerPanel.add(lblNewLabel_53, gbc_lblNewLabel_53);
 		
 		updateCustomerEmailField = new JTextField();
@@ -2544,14 +2709,15 @@ public class CapstoneMainFrame {
 		gbc_updateCustomerEmailField.insets = new Insets(0, 0, 5, 5);
 		gbc_updateCustomerEmailField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_updateCustomerEmailField.gridx = 2;
-		gbc_updateCustomerEmailField.gridy = 6;
+		gbc_updateCustomerEmailField.gridy = 7;
 		updateCustomerPanel.add(updateCustomerEmailField, gbc_updateCustomerEmailField);
 		updateCustomerEmailField.setColumns(10);
 		GridBagConstraints gbc_lblNewLabel_51 = new GridBagConstraints();
 		gbc_lblNewLabel_51.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel_51.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_51.gridx = 1;
-		gbc_lblNewLabel_51.gridy = 7;
+		gbc_lblNewLabel_51.gridy = 8;
+		lblNewLabel_51.setFont(new Font("Tahoma", Font.BOLD, 10));
 		updateCustomerPanel.add(lblNewLabel_51, gbc_lblNewLabel_51);
 		
 		updateCustomerAddressField = new JTextField();
@@ -2559,24 +2725,26 @@ public class CapstoneMainFrame {
 		gbc_updateCustomerAddressField.insets = new Insets(0, 0, 5, 5);
 		gbc_updateCustomerAddressField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_updateCustomerAddressField.gridx = 2;
-		gbc_updateCustomerAddressField.gridy = 7;
+		gbc_updateCustomerAddressField.gridy = 8;
 		updateCustomerPanel.add(updateCustomerAddressField, gbc_updateCustomerAddressField);
 		updateCustomerAddressField.setColumns(10);
 		
 		JLabel lblNewLabel_52 = new JLabel("Assigned Rep ID");
+		lblNewLabel_52.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_52 = new GridBagConstraints();
 		gbc_lblNewLabel_52.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_52.gridx = 1;
-		gbc_lblNewLabel_52.gridy = 8;
+		gbc_lblNewLabel_52.gridy = 9;
 		updateCustomerPanel.add(lblNewLabel_52, gbc_lblNewLabel_52);
 		
 		updateCustomerRepIDField = new JTextField();
+		updateCustomerRepIDField.setToolTipText("ID of Employee working with Customer");
 		updateCustomerRepIDField.setText("");
 		GridBagConstraints gbc_updateCustomerRepIDField = new GridBagConstraints();
 		gbc_updateCustomerRepIDField.insets = new Insets(0, 0, 5, 5);
 		gbc_updateCustomerRepIDField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_updateCustomerRepIDField.gridx = 2;
-		gbc_updateCustomerRepIDField.gridy = 8;
+		gbc_updateCustomerRepIDField.gridy = 9;
 		updateCustomerPanel.add(updateCustomerRepIDField, gbc_updateCustomerRepIDField);
 		updateCustomerRepIDField.setColumns(10);
 		
@@ -2625,12 +2793,23 @@ public class CapstoneMainFrame {
 
 		GridBagLayout gbl_updateOrderPanel = new GridBagLayout();
 		gbl_updateOrderPanel.columnWidths = new int[]{0, 0, 65, 65, 65, 65, 65, 0, 0};
-		gbl_updateOrderPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_updateOrderPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_updateOrderPanel.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_updateOrderPanel.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_updateOrderPanel.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		updateOrderPanel.setLayout(gbl_updateOrderPanel);
 		
+		
+		GridBagConstraints gbc_updateOrderLabel = new GridBagConstraints();
+		gbc_updateOrderLabel.gridwidth = 6;
+		gbc_updateOrderLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_updateOrderLabel.gridx = 1;
+		gbc_updateOrderLabel.gridy = 1;
+		updateOrderPanel.add(updateOrderLabel, gbc_updateOrderLabel);
+		
 		JLabel lblNewLabel_54 = new JLabel("Order Number");
+		lblNewLabel_54.setFont(new Font("Tahoma", Font.BOLD, 10));
+		lblNewLabel_54.setToolTipText("Uneditable");
+		lblNewLabel_54.setForeground(new Color(255, 0, 0));
 		GridBagConstraints gbc_lblNewLabel_54 = new GridBagConstraints();
 		gbc_lblNewLabel_54.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel_54.insets = new Insets(0, 0, 5, 5);
@@ -2639,12 +2818,14 @@ public class CapstoneMainFrame {
 		updateOrderPanel.add(lblNewLabel_54, gbc_lblNewLabel_54);
 		
 		GridBagConstraints gbc_orderUpdateOrderIDLabel = new GridBagConstraints();
+		gbc_orderUpdateOrderIDLabel.anchor = GridBagConstraints.WEST;
 		gbc_orderUpdateOrderIDLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_orderUpdateOrderIDLabel.gridx = 2;
 		gbc_orderUpdateOrderIDLabel.gridy = 2;
 		updateOrderPanel.add(orderUpdateOrderIDLabel, gbc_orderUpdateOrderIDLabel);
 		
 		GridBagConstraints gbc_orderUpdateOrderPaidBox = new GridBagConstraints();
+		gbc_orderUpdateOrderPaidBox.gridwidth = 2;
 		gbc_orderUpdateOrderPaidBox.anchor = GridBagConstraints.WEST;
 		gbc_orderUpdateOrderPaidBox.insets = new Insets(0, 0, 5, 5);
 		gbc_orderUpdateOrderPaidBox.gridx = 5;
@@ -2652,6 +2833,7 @@ public class CapstoneMainFrame {
 		updateOrderPanel.add(orderUpdateOrderPaidBox, gbc_orderUpdateOrderPaidBox);
 		
 		JLabel lblNewLabel_55 = new JLabel("Customer Number");
+		lblNewLabel_55.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_55 = new GridBagConstraints();
 		gbc_lblNewLabel_55.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel_55.insets = new Insets(0, 0, 5, 5);
@@ -2660,8 +2842,9 @@ public class CapstoneMainFrame {
 		updateOrderPanel.add(lblNewLabel_55, gbc_lblNewLabel_55);
 		
 		orderUpdateCustomerNumberField = new JTextField();
+		orderUpdateCustomerNumberField.setToolTipText("Unique Customer ID");
 		GridBagConstraints gbc_orderUpdateCustomerNumberField = new GridBagConstraints();
-		gbc_orderUpdateCustomerNumberField.gridwidth = 2;
+		gbc_orderUpdateCustomerNumberField.gridwidth = 3;
 		gbc_orderUpdateCustomerNumberField.insets = new Insets(0, 0, 5, 5);
 		gbc_orderUpdateCustomerNumberField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_orderUpdateCustomerNumberField.gridx = 2;
@@ -2671,6 +2854,7 @@ public class CapstoneMainFrame {
 		
 		
 		GridBagConstraints gbc_orderUpdateOrderComplete = new GridBagConstraints();
+		gbc_orderUpdateOrderComplete.gridwidth = 2;
 		gbc_orderUpdateOrderComplete.anchor = GridBagConstraints.WEST;
 		gbc_orderUpdateOrderComplete.insets = new Insets(0, 0, 5, 5);
 		gbc_orderUpdateOrderComplete.gridx = 5;
@@ -2678,6 +2862,7 @@ public class CapstoneMainFrame {
 		updateOrderPanel.add(orderUpdateOrderComplete, gbc_orderUpdateOrderComplete);
 		
 		JLabel lblNewLabel_56 = new JLabel("Employee Number");
+		lblNewLabel_56.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_56 = new GridBagConstraints();
 		gbc_lblNewLabel_56.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel_56.insets = new Insets(0, 0, 5, 5);
@@ -2686,8 +2871,9 @@ public class CapstoneMainFrame {
 		updateOrderPanel.add(lblNewLabel_56, gbc_lblNewLabel_56);
 		
 		updateOrderEmployeeNumField = new JTextField();
+		updateOrderEmployeeNumField.setToolTipText("Employee Number of Employee Updating");
 		GridBagConstraints gbc_updateOrderEmployeeNumField = new GridBagConstraints();
-		gbc_updateOrderEmployeeNumField.gridwidth = 2;
+		gbc_updateOrderEmployeeNumField.gridwidth = 3;
 		gbc_updateOrderEmployeeNumField.insets = new Insets(0, 0, 5, 5);
 		gbc_updateOrderEmployeeNumField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_updateOrderEmployeeNumField.gridx = 2;
@@ -2697,6 +2883,7 @@ public class CapstoneMainFrame {
 		
 		
 		GridBagConstraints gbc_orderUpdateOrderDelivered = new GridBagConstraints();
+		gbc_orderUpdateOrderDelivered.gridwidth = 2;
 		gbc_orderUpdateOrderDelivered.anchor = GridBagConstraints.WEST;
 		gbc_orderUpdateOrderDelivered.insets = new Insets(0, 0, 5, 5);
 		gbc_orderUpdateOrderDelivered.gridx = 5;
@@ -2704,6 +2891,7 @@ public class CapstoneMainFrame {
 		updateOrderPanel.add(orderUpdateOrderDelivered, gbc_orderUpdateOrderDelivered);
 		
 		JLabel lblNewLabel_57 = new JLabel("Pick Up Date");
+		lblNewLabel_57.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_57 = new GridBagConstraints();
 		gbc_lblNewLabel_57.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel_57.insets = new Insets(0, 0, 5, 5);
@@ -2712,9 +2900,10 @@ public class CapstoneMainFrame {
 		updateOrderPanel.add(lblNewLabel_57, gbc_lblNewLabel_57);
 		
 		orderUpdatePickupDateField = new JTextField();
+		orderUpdatePickupDateField.setToolTipText("Date Order is to be picked up (MM-DD-YYYY)");
 		orderUpdatePickupDateField.setText("");
 		GridBagConstraints gbc_orderUpdatePickupDateField = new GridBagConstraints();
-		gbc_orderUpdatePickupDateField.gridwidth = 2;
+		gbc_orderUpdatePickupDateField.gridwidth = 3;
 		gbc_orderUpdatePickupDateField.insets = new Insets(0, 0, 5, 5);
 		gbc_orderUpdatePickupDateField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_orderUpdatePickupDateField.gridx = 2;
@@ -2726,12 +2915,14 @@ public class CapstoneMainFrame {
 		gbc_lblNewLabel_58.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_58.gridx = 1;
 		gbc_lblNewLabel_58.gridy = 6;
+		lblNewLabel_58.setFont(new Font("Tahoma", Font.BOLD, 10));
 		updateOrderPanel.add(lblNewLabel_58, gbc_lblNewLabel_58);
 		
 		orderUpdatePickupTimeField = new JTextField();
+		orderUpdatePickupTimeField.setToolTipText("Time order is to be picked up (HH:MM)");
 		orderUpdatePickupTimeField.setText("");
 		GridBagConstraints gbc_orderUpdatePickupTimeField = new GridBagConstraints();
-		gbc_orderUpdatePickupTimeField.gridwidth = 2;
+		gbc_orderUpdatePickupTimeField.gridwidth = 3;
 		gbc_orderUpdatePickupTimeField.insets = new Insets(0, 0, 5, 5);
 		gbc_orderUpdatePickupTimeField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_orderUpdatePickupTimeField.gridx = 2;
@@ -2740,6 +2931,8 @@ public class CapstoneMainFrame {
 		orderUpdatePickupTimeField.setColumns(10);
 		
 		JLabel lblNewLabel_59 = new JLabel("Order Date");
+		lblNewLabel_59.setForeground(new Color(255, 0, 0));
+		lblNewLabel_59.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_59 = new GridBagConstraints();
 		gbc_lblNewLabel_59.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel_59.insets = new Insets(0, 0, 5, 5);
@@ -2754,46 +2947,52 @@ public class CapstoneMainFrame {
 		updateOrderPanel.add(orderUpdateOrderDateLabel, gbc_orderUpdateOrderDateLabel);
 		
 		JLabel lblNewLabel_61 = new JLabel("Potash");
+		lblNewLabel_61.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_61 = new GridBagConstraints();
 		gbc_lblNewLabel_61.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_61.gridx = 2;
-		gbc_lblNewLabel_61.gridy = 9;
+		gbc_lblNewLabel_61.gridy = 8;
 		updateOrderPanel.add(lblNewLabel_61, gbc_lblNewLabel_61);
 		
 		JLabel lblNewLabel_62 = new JLabel("MAP");
+		lblNewLabel_62.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_62 = new GridBagConstraints();
 		gbc_lblNewLabel_62.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_62.gridx = 3;
-		gbc_lblNewLabel_62.gridy = 9;
+		gbc_lblNewLabel_62.gridy = 8;
 		updateOrderPanel.add(lblNewLabel_62, gbc_lblNewLabel_62);
 		
 		JLabel lblNewLabel_63 = new JLabel("AMS");
+		lblNewLabel_63.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_63 = new GridBagConstraints();
 		gbc_lblNewLabel_63.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_63.gridx = 4;
-		gbc_lblNewLabel_63.gridy = 9;
+		gbc_lblNewLabel_63.gridy = 8;
 		updateOrderPanel.add(lblNewLabel_63, gbc_lblNewLabel_63);
 		
 		JLabel lblNewLabel_64 = new JLabel("Urea");
+		lblNewLabel_64.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_64 = new GridBagConstraints();
 		gbc_lblNewLabel_64.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_64.gridx = 5;
-		gbc_lblNewLabel_64.gridy = 9;
+		gbc_lblNewLabel_64.gridy = 8;
 		updateOrderPanel.add(lblNewLabel_64, gbc_lblNewLabel_64);
 		
 		JLabel lblNewLabel_65 = new JLabel("Gypsum");
+		lblNewLabel_65.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_65 = new GridBagConstraints();
 		gbc_lblNewLabel_65.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_65.gridx = 6;
-		gbc_lblNewLabel_65.gridy = 9;
+		gbc_lblNewLabel_65.gridy = 8;
 		updateOrderPanel.add(lblNewLabel_65, gbc_lblNewLabel_65);
 		
 		JLabel lblNewLabel_60 = new JLabel("Pounds");
+		lblNewLabel_60.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_60 = new GridBagConstraints();
 		gbc_lblNewLabel_60.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel_60.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_60.gridx = 1;
-		gbc_lblNewLabel_60.gridy = 10;
+		gbc_lblNewLabel_60.gridy = 9;
 		updateOrderPanel.add(lblNewLabel_60, gbc_lblNewLabel_60);
 		
 		orderUpdatePotashField = new JTextField();
@@ -2801,7 +3000,7 @@ public class CapstoneMainFrame {
 		gbc_orderUpdatePotashField.insets = new Insets(0, 0, 5, 5);
 		gbc_orderUpdatePotashField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_orderUpdatePotashField.gridx = 2;
-		gbc_orderUpdatePotashField.gridy = 10;
+		gbc_orderUpdatePotashField.gridy = 9;
 		updateOrderPanel.add(orderUpdatePotashField, gbc_orderUpdatePotashField);
 		orderUpdatePotashField.setColumns(10);
 		
@@ -2810,7 +3009,7 @@ public class CapstoneMainFrame {
 		gbc_orderUpdateMapField.insets = new Insets(0, 0, 5, 5);
 		gbc_orderUpdateMapField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_orderUpdateMapField.gridx = 3;
-		gbc_orderUpdateMapField.gridy = 10;
+		gbc_orderUpdateMapField.gridy = 9;
 		updateOrderPanel.add(orderUpdateMapField, gbc_orderUpdateMapField);
 		orderUpdateMapField.setColumns(10);
 		
@@ -2820,7 +3019,7 @@ public class CapstoneMainFrame {
 		gbc_orderUpdateAMSField.insets = new Insets(0, 0, 5, 5);
 		gbc_orderUpdateAMSField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_orderUpdateAMSField.gridx = 4;
-		gbc_orderUpdateAMSField.gridy = 10;
+		gbc_orderUpdateAMSField.gridy = 9;
 		updateOrderPanel.add(orderUpdateAMSField, gbc_orderUpdateAMSField);
 		orderUpdateAMSField.setColumns(10);
 		
@@ -2829,7 +3028,7 @@ public class CapstoneMainFrame {
 		gbc_orderUpdateUreaField.insets = new Insets(0, 0, 5, 5);
 		gbc_orderUpdateUreaField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_orderUpdateUreaField.gridx = 5;
-		gbc_orderUpdateUreaField.gridy = 10;
+		gbc_orderUpdateUreaField.gridy = 9;
 		updateOrderPanel.add(orderUpdateUreaField, gbc_orderUpdateUreaField);
 		orderUpdateUreaField.setColumns(10);
 		
@@ -2839,16 +3038,17 @@ public class CapstoneMainFrame {
 		gbc_orderUpdateGypsumField.insets = new Insets(0, 0, 5, 5);
 		gbc_orderUpdateGypsumField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_orderUpdateGypsumField.gridx = 6;
-		gbc_orderUpdateGypsumField.gridy = 10;
+		gbc_orderUpdateGypsumField.gridy = 9;
 		updateOrderPanel.add(orderUpdateGypsumField, gbc_orderUpdateGypsumField);
 		orderUpdateGypsumField.setColumns(10);
 		
 		JLabel lblNewLabel_66 = new JLabel("Comments");
+		lblNewLabel_66.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel_66 = new GridBagConstraints();
 		gbc_lblNewLabel_66.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel_66.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_66.gridx = 1;
-		gbc_lblNewLabel_66.gridy = 12;
+		gbc_lblNewLabel_66.gridy = 11;
 		updateOrderPanel.add(lblNewLabel_66, gbc_lblNewLabel_66);
 		
 		orderUpdateCommentsField = new JTextField();
@@ -2857,7 +3057,7 @@ public class CapstoneMainFrame {
 		gbc_orderUpdateCommentsField.insets = new Insets(0, 0, 5, 5);
 		gbc_orderUpdateCommentsField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_orderUpdateCommentsField.gridx = 2;
-		gbc_orderUpdateCommentsField.gridy = 12;
+		gbc_orderUpdateCommentsField.gridy = 11;
 		updateOrderPanel.add(orderUpdateCommentsField, gbc_orderUpdateCommentsField);
 		orderUpdateCommentsField.setColumns(10);
 		
@@ -2887,7 +3087,7 @@ public class CapstoneMainFrame {
 		GridBagConstraints gbc_orderUpdateButton = new GridBagConstraints();
 		gbc_orderUpdateButton.insets = new Insets(0, 0, 5, 5);
 		gbc_orderUpdateButton.gridx = 5;
-		gbc_orderUpdateButton.gridy = 13;
+		gbc_orderUpdateButton.gridy = 12;
 		updateOrderPanel.add(orderUpdateButton, gbc_orderUpdateButton);
 		
 		JButton orderUpdateBackButton = new JButton("Back");
@@ -2900,23 +3100,32 @@ public class CapstoneMainFrame {
 		GridBagConstraints gbc_orderUpdateBackButton = new GridBagConstraints();
 		gbc_orderUpdateBackButton.insets = new Insets(0, 0, 5, 5);
 		gbc_orderUpdateBackButton.gridx = 6;
-		gbc_orderUpdateBackButton.gridy = 13;
+		gbc_orderUpdateBackButton.gridy = 12;
 		updateOrderPanel.add(orderUpdateBackButton, gbc_orderUpdateBackButton);
 		
 		
 		GridBagLayout gbl_settingsPanel = new GridBagLayout();
-		gbl_settingsPanel.columnWidths = new int[]{0, 0, 0, 0, 0};
-		gbl_settingsPanel.rowHeights = new int[]{100, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_settingsPanel.columnWidths = new int[]{0, 50, 400, 0, 0};
+		gbl_settingsPanel.rowHeights = new int[]{25, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0};
 		gbl_settingsPanel.columnWeights = new double[]{1.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_settingsPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_settingsPanel.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		settingsPanel.setLayout(gbl_settingsPanel);
+		
+		JLabel lblNewLabel_77 = new JLabel("PRICE SETTING");
+		lblNewLabel_77.setFont(new Font("Tahoma", Font.BOLD, 24));
+		GridBagConstraints gbc_lblNewLabel_77 = new GridBagConstraints();
+		gbc_lblNewLabel_77.gridwidth = 2;
+		gbc_lblNewLabel_77.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_77.gridx = 1;
+		gbc_lblNewLabel_77.gridy = 1;
+		settingsPanel.add(lblNewLabel_77, gbc_lblNewLabel_77);
 		
 		JLabel potashLabel = new JLabel("Potash Price");
 		gbc_potashLabel = new GridBagConstraints();
 		gbc_potashLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_potashLabel.anchor = GridBagConstraints.EAST;
 		gbc_potashLabel.gridx = 1;
-		gbc_potashLabel.gridy = 1;
+		gbc_potashLabel.gridy = 2;
 		settingsPanel.add(potashLabel, gbc_potashLabel);
 		
 		potashPriceField = new JTextField();
@@ -2924,7 +3133,7 @@ public class CapstoneMainFrame {
 		gbc_potashPriceField.insets = new Insets(0, 0, 5, 5);
 		gbc_potashPriceField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_potashPriceField.gridx = 2;
-		gbc_potashPriceField.gridy = 1;
+		gbc_potashPriceField.gridy = 2;
 		settingsPanel.add(potashPriceField, gbc_potashPriceField);
 		potashPriceField.setColumns(10);
 		
@@ -2932,7 +3141,7 @@ public class CapstoneMainFrame {
 		GridBagConstraints gbc_lblNewLabel_69 = new GridBagConstraints();
 		gbc_lblNewLabel_69.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_69.gridx = 1;
-		gbc_lblNewLabel_69.gridy = 2;
+		gbc_lblNewLabel_69.gridy = 3;
 		settingsPanel.add(lblNewLabel_69, gbc_lblNewLabel_69);
 		
 		mapPriceField = new JTextField();
@@ -2941,7 +3150,7 @@ public class CapstoneMainFrame {
 		gbc_mapPriceField.insets = new Insets(0, 0, 5, 5);
 		gbc_mapPriceField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_mapPriceField.gridx = 2;
-		gbc_mapPriceField.gridy = 2;
+		gbc_mapPriceField.gridy = 3;
 		settingsPanel.add(mapPriceField, gbc_mapPriceField);
 		mapPriceField.setColumns(10);
 		
@@ -2950,7 +3159,7 @@ public class CapstoneMainFrame {
 		gbc_lblNewLabel_70.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel_70.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_70.gridx = 1;
-		gbc_lblNewLabel_70.gridy = 3;
+		gbc_lblNewLabel_70.gridy = 4;
 		settingsPanel.add(lblNewLabel_70, gbc_lblNewLabel_70);
 		
 		amsPriceField = new JTextField();
@@ -2959,7 +3168,7 @@ public class CapstoneMainFrame {
 		gbc_amsPriceField.insets = new Insets(0, 0, 5, 5);
 		gbc_amsPriceField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_amsPriceField.gridx = 2;
-		gbc_amsPriceField.gridy = 3;
+		gbc_amsPriceField.gridy = 4;
 		settingsPanel.add(amsPriceField, gbc_amsPriceField);
 		amsPriceField.setColumns(10);
 		
@@ -2968,7 +3177,7 @@ public class CapstoneMainFrame {
 		gbc_lblNewLabel_71.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel_71.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_71.gridx = 1;
-		gbc_lblNewLabel_71.gridy = 4;
+		gbc_lblNewLabel_71.gridy = 5;
 		settingsPanel.add(lblNewLabel_71, gbc_lblNewLabel_71);
 		
 		ureaPriceField = new JTextField();
@@ -2977,7 +3186,7 @@ public class CapstoneMainFrame {
 		gbc_ureaPriceField.insets = new Insets(0, 0, 5, 5);
 		gbc_ureaPriceField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_ureaPriceField.gridx = 2;
-		gbc_ureaPriceField.gridy = 4;
+		gbc_ureaPriceField.gridy = 5;
 		settingsPanel.add(ureaPriceField, gbc_ureaPriceField);
 		ureaPriceField.setColumns(10);
 		
@@ -2986,7 +3195,7 @@ public class CapstoneMainFrame {
 		gbc_lblNewLabel_72.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel_72.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_72.gridx = 1;
-		gbc_lblNewLabel_72.gridy = 5;
+		gbc_lblNewLabel_72.gridy = 6;
 		settingsPanel.add(lblNewLabel_72, gbc_lblNewLabel_72);
 		
 		gypsumPriceField = new JTextField();
@@ -2994,7 +3203,7 @@ public class CapstoneMainFrame {
 		gbc_gypsumPriceField.insets = new Insets(0, 0, 5, 5);
 		gbc_gypsumPriceField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_gypsumPriceField.gridx = 2;
-		gbc_gypsumPriceField.gridy = 5;
+		gbc_gypsumPriceField.gridy = 6;
 		settingsPanel.add(gypsumPriceField, gbc_gypsumPriceField);
 		gypsumPriceField.setColumns(10);
 		
@@ -3025,7 +3234,7 @@ public class CapstoneMainFrame {
 		gbc_btnNewButton_13.anchor = GridBagConstraints.EAST;
 		gbc_btnNewButton_13.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton_13.gridx = 2;
-		gbc_btnNewButton_13.gridy = 6;
+		gbc_btnNewButton_13.gridy = 7;
 		settingsPanel.add(btnNewButton_13, gbc_btnNewButton_13);
 		
 		JButton btnNewButton_14 = new JButton("Back");
@@ -3037,9 +3246,9 @@ public class CapstoneMainFrame {
 		});
 		GridBagConstraints gbc_btnNewButton_14 = new GridBagConstraints();
 		gbc_btnNewButton_14.anchor = GridBagConstraints.EAST;
-		gbc_btnNewButton_14.insets = new Insets(0, 0, 0, 5);
+		gbc_btnNewButton_14.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton_14.gridx = 2;
-		gbc_btnNewButton_14.gridy = 7;
+		gbc_btnNewButton_14.gridy = 8;
 		settingsPanel.add(btnNewButton_14, gbc_btnNewButton_14);
 		
 	}
