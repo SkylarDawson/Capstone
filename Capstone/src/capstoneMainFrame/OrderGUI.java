@@ -295,7 +295,7 @@ public static void displayResults(Vector<String> firstName, Vector<String> lastN
 {
 	// Create objects to hold the data for the table
 	Object[][] rowData = {};
-	Object[] headers = {"First Name", "Last Name", "Order #", "Customer #", "Employee #", "Paid", "Complete", "Delivered", "PickUp Date", "PickUp Time"
+	Object[] headers = {"Order #", "First Name", "Last Name", "Customer #", "Employee #", "Paid", "Complete", "Delivered", "PickUp Date", "PickUp Time"
 			, "Potash", "MAP", "AMS", "Urea", "Gypsum", "Order Date", "Comments"};
 	
 	// Create table object
@@ -304,7 +304,7 @@ public static void displayResults(Vector<String> firstName, Vector<String> lastN
 	
 	// For each returned tuple - create a new row with all order information
 	for(int i = 0; i < firstName.size(); i++) {
-	orderModel.addRow(new Object[]{ firstName.elementAt(i), lastName.elementAt(i), orderNum.elementAt(i), customerNum.elementAt(i), employeeNum.elementAt(i), orderPaid.elementAt(i), orderComplete.elementAt(i), orderDelivered.elementAt(i), pickUpDate.elementAt(i), pickUpTime.elementAt(i),
+	orderModel.addRow(new Object[]{ orderNum.elementAt(i), firstName.elementAt(i), lastName.elementAt(i),customerNum.elementAt(i), employeeNum.elementAt(i), orderPaid.elementAt(i), orderComplete.elementAt(i), orderDelivered.elementAt(i), pickUpDate.elementAt(i), pickUpTime.elementAt(i),
 		Potash.elementAt(i), MAP.elementAt(i), AMS.elementAt(i), Urea.elementAt(i), Gypsum.elementAt(i), orderDate.elementAt(i), comments.elementAt(i) });
 	}
 	

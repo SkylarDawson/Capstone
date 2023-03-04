@@ -30,6 +30,7 @@ import java.awt.Component;
 import javax.swing.JLayeredPane;
 import javax.swing.JCheckBox;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -219,6 +220,9 @@ public class CapstoneMainFrame {
 		
 		JLabel updateOrderLabel = new JLabel("UPDATE ORDER");
 		updateOrderLabel.setFont(new Font("Tahoma", Font.BOLD, 24));
+		
+		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+	    centerRenderer.setHorizontalAlignment( JLabel.CENTER );
 		
 		GridBagLayout gbl_adminPanel = new GridBagLayout();
 		gbl_adminPanel.columnWidths = new int[]{15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -1513,6 +1517,9 @@ public class CapstoneMainFrame {
 				TableModel myModel = mySearch.execute(orderHistoryOrderIDField, orderHistoryFirstNameField, orderHistoryLastNameField, orderHistoryOrderDateField);
 			    orderHistoryTable.setModel(myModel);
 			    orderHistoryTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+			    orderHistoryTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+			    orderHistoryTable.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+			    orderHistoryTable.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
 			    orderHistoryTable.getColumnModel().getColumn(16).setPreferredWidth(300);
 			    orderHistoryTable.setCellEditor(null);
 			    orderHistoryTable.setBounds(37, 143, 397, 183);
@@ -1728,6 +1735,11 @@ public class CapstoneMainFrame {
 				TableModel myModel = mySearch.execute(customerLookupCustomerIDField, customerLookupCustomerFirstNameField, customerLookupLastNameField, customerLookupPhoneNumberField);
 			    customerLookupTable.setModel(myModel);
 			    customerLookupTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+			    customerLookupTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+			    customerLookupTable.getColumnModel().getColumn(3).setPreferredWidth(100);
+			    customerLookupTable.getColumnModel().getColumn(4).setPreferredWidth(200);
+			    customerLookupTable.getColumnModel().getColumn(5).setPreferredWidth(300);
+			    customerLookupTable.getColumnModel().getColumn(6).setPreferredWidth(100);
 			    customerLookupTable.setCellEditor(null);
 			    customerLookupTable.setBounds(37, 143, 397, 183);
 			    		
