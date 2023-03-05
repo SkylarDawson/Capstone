@@ -326,41 +326,253 @@ public class CapstoneMainFrame {
 		GridBagLayout gbl_exportPanel = new GridBagLayout();
 		gbl_exportPanel.columnWidths = new int[]{0, 0, 0, 115, 0, 0};
 		gbl_exportPanel.rowHeights = new int[]{20, 100, 0, 0, 20, 0};
-		gbl_exportPanel.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_exportPanel.columnWeights = new double[]{1.0, 1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		gbl_exportPanel.rowWeights = new double[]{1.0, 1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		exportPanel.setLayout(gbl_exportPanel);
 		
-		Box verticalBox = Box.createVerticalBox();
-		verticalBox.setBorder(new LineBorder(new Color(0, 0, 0)));
-		GridBagConstraints gbc_verticalBox = new GridBagConstraints();
-		gbc_verticalBox.fill = GridBagConstraints.VERTICAL;
-		gbc_verticalBox.insets = new Insets(0, 0, 5, 5);
-		gbc_verticalBox.gridx = 1;
-		gbc_verticalBox.gridy = 1;
-		exportPanel.add(verticalBox, gbc_verticalBox);
+		JLayeredPane layeredPane_2 = new JLayeredPane();
+		GridBagConstraints gbc_layeredPane_2 = new GridBagConstraints();
+		gbc_layeredPane_2.insets = new Insets(0, 0, 5, 5);
+		gbc_layeredPane_2.fill = GridBagConstraints.BOTH;
+		gbc_layeredPane_2.gridx = 1;
+		gbc_layeredPane_2.gridy = 1;
+		exportPanel.add(layeredPane_2, gbc_layeredPane_2);
+		GridBagLayout gbl_layeredPane_2 = new GridBagLayout();
+		gbl_layeredPane_2.columnWidths = new int[]{0, 0, 0, 0};
+		gbl_layeredPane_2.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_layeredPane_2.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_layeredPane_2.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		layeredPane_2.setLayout(gbl_layeredPane_2);
 		
-		Box horizontalBox = Box.createHorizontalBox();
-		verticalBox.add(horizontalBox);
+		JLabel lblNewLabel_1 = new JLabel("Customer");
+		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_1.gridx = 0;
+		gbc_lblNewLabel_1.gridy = 0;
+		layeredPane_2.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
-		JLabel lblNewLabel_1 = new JLabel("Customer ");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		horizontalBox.add(lblNewLabel_1);
+		JLabel lblNewLabel_2 = new JLabel("Priority");
+		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
+		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_2.gridx = 1;
+		gbc_lblNewLabel_2.gridy = 0;
+		layeredPane_2.add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
-		JLabel lblNewLabel_2 = new JLabel("Priority ");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		horizontalBox.add(lblNewLabel_2);
+		JLabel lblNewLabel_68 = new JLabel("Load");
+		GridBagConstraints gbc_lblNewLabel_68 = new GridBagConstraints();
+		gbc_lblNewLabel_68.insets = new Insets(0, 0, 5, 0);
+		gbc_lblNewLabel_68.gridx = 2;
+		gbc_lblNewLabel_68.gridy = 0;
+		layeredPane_2.add(lblNewLabel_68, gbc_lblNewLabel_68);
 		
-		JLabel lblNewLabel_3 = new JLabel("Load");
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		horizontalBox.add(lblNewLabel_3);
+		JLabel lblCustomer_0 = new JLabel("-");
+		GridBagConstraints gbc_lblCustomer_0 = new GridBagConstraints();
+		gbc_lblCustomer_0.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCustomer_0.gridx = 0;
+		gbc_lblCustomer_0.gridy = 1;
+		layeredPane_2.add(lblCustomer_0, gbc_lblCustomer_0);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		verticalBox.add(scrollPane);
+		JLabel lblPriority_0 = new JLabel("-");
+		GridBagConstraints gbc_lblPriority_0 = new GridBagConstraints();
+		gbc_lblPriority_0.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPriority_0.gridx = 1;
+		gbc_lblPriority_0.gridy = 1;
+		layeredPane_2.add(lblPriority_0, gbc_lblPriority_0);
 		
-		Box verticalBoxQueue = Box.createVerticalBox();
-		scrollPane.setViewportView(verticalBoxQueue);
+		JButton btnOrder_0 = new JButton("");
+		GridBagConstraints gbc_btnOrder_0 = new GridBagConstraints();
+		gbc_btnOrder_0.insets = new Insets(0, 0, 5, 0);
+		gbc_btnOrder_0.gridx = 2;
+		gbc_btnOrder_0.gridy = 1;
+		layeredPane_2.add(btnOrder_0, gbc_btnOrder_0);
+		
+		JLabel lblCustomer_1 = new JLabel("-");
+		GridBagConstraints gbc_lblCustomer_1 = new GridBagConstraints();
+		gbc_lblCustomer_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCustomer_1.gridx = 0;
+		gbc_lblCustomer_1.gridy = 2;
+		layeredPane_2.add(lblCustomer_1, gbc_lblCustomer_1);
+		
+		JLabel lblPriority_1 = new JLabel("-");
+		GridBagConstraints gbc_lblPriority_1 = new GridBagConstraints();
+		gbc_lblPriority_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPriority_1.gridx = 1;
+		gbc_lblPriority_1.gridy = 2;
+		layeredPane_2.add(lblPriority_1, gbc_lblPriority_1);
+		
+		JButton btnOrder_1 = new JButton("");
+		GridBagConstraints gbc_btnOrder_1 = new GridBagConstraints();
+		gbc_btnOrder_1.insets = new Insets(0, 0, 5, 0);
+		gbc_btnOrder_1.gridx = 2;
+		gbc_btnOrder_1.gridy = 2;
+		layeredPane_2.add(btnOrder_1, gbc_btnOrder_1);
+		
+		JLabel lblCustomer_2 = new JLabel("-");
+		GridBagConstraints gbc_lblCustomer_2 = new GridBagConstraints();
+		gbc_lblCustomer_2.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCustomer_2.gridx = 0;
+		gbc_lblCustomer_2.gridy = 3;
+		layeredPane_2.add(lblCustomer_2, gbc_lblCustomer_2);
+		
+		JLabel lblPriority_2 = new JLabel("-");
+		GridBagConstraints gbc_lblPriority_2 = new GridBagConstraints();
+		gbc_lblPriority_2.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPriority_2.gridx = 1;
+		gbc_lblPriority_2.gridy = 3;
+		layeredPane_2.add(lblPriority_2, gbc_lblPriority_2);
+		
+		JButton btnOrder_2 = new JButton("");
+		GridBagConstraints gbc_btnOrder_2 = new GridBagConstraints();
+		gbc_btnOrder_2.insets = new Insets(0, 0, 5, 0);
+		gbc_btnOrder_2.gridx = 2;
+		gbc_btnOrder_2.gridy = 3;
+		layeredPane_2.add(btnOrder_2, gbc_btnOrder_2);
+		
+		JLabel lblCustomer_3 = new JLabel("-");
+		GridBagConstraints gbc_lblCustomer_3 = new GridBagConstraints();
+		gbc_lblCustomer_3.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCustomer_3.gridx = 0;
+		gbc_lblCustomer_3.gridy = 4;
+		layeredPane_2.add(lblCustomer_3, gbc_lblCustomer_3);
+		
+		JLabel lblPriority_3 = new JLabel("-");
+		GridBagConstraints gbc_lblPriority_3 = new GridBagConstraints();
+		gbc_lblPriority_3.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPriority_3.gridx = 1;
+		gbc_lblPriority_3.gridy = 4;
+		layeredPane_2.add(lblPriority_3, gbc_lblPriority_3);
+		
+		JButton btnOrder_3 = new JButton("");
+		GridBagConstraints gbc_btnOrder_3 = new GridBagConstraints();
+		gbc_btnOrder_3.insets = new Insets(0, 0, 5, 0);
+		gbc_btnOrder_3.gridx = 2;
+		gbc_btnOrder_3.gridy = 4;
+		layeredPane_2.add(btnOrder_3, gbc_btnOrder_3);
+		
+		JLabel lblCustomer_4 = new JLabel("-");
+		GridBagConstraints gbc_lblCustomer_4 = new GridBagConstraints();
+		gbc_lblCustomer_4.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCustomer_4.gridx = 0;
+		gbc_lblCustomer_4.gridy = 5;
+		layeredPane_2.add(lblCustomer_4, gbc_lblCustomer_4);
+		
+		JLabel lblPriority_4 = new JLabel("-");
+		GridBagConstraints gbc_lblPriority_4 = new GridBagConstraints();
+		gbc_lblPriority_4.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPriority_4.gridx = 1;
+		gbc_lblPriority_4.gridy = 5;
+		layeredPane_2.add(lblPriority_4, gbc_lblPriority_4);
+		
+		JButton btnOrder_4 = new JButton("");
+		GridBagConstraints gbc_btnOrder_4 = new GridBagConstraints();
+		gbc_btnOrder_4.insets = new Insets(0, 0, 5, 0);
+		gbc_btnOrder_4.gridx = 2;
+		gbc_btnOrder_4.gridy = 5;
+		layeredPane_2.add(btnOrder_4, gbc_btnOrder_4);
+		
+		JLabel lblCustomer_5 = new JLabel("-");
+		GridBagConstraints gbc_lblCustomer_5 = new GridBagConstraints();
+		gbc_lblCustomer_5.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCustomer_5.gridx = 0;
+		gbc_lblCustomer_5.gridy = 6;
+		layeredPane_2.add(lblCustomer_5, gbc_lblCustomer_5);
+		
+		JLabel lblPriority_5 = new JLabel("-");
+		GridBagConstraints gbc_lblPriority_5 = new GridBagConstraints();
+		gbc_lblPriority_5.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPriority_5.gridx = 1;
+		gbc_lblPriority_5.gridy = 6;
+		layeredPane_2.add(lblPriority_5, gbc_lblPriority_5);
+		
+		JButton btnOrder_5 = new JButton("");
+		GridBagConstraints gbc_btnOrder_5 = new GridBagConstraints();
+		gbc_btnOrder_5.insets = new Insets(0, 0, 5, 0);
+		gbc_btnOrder_5.gridx = 2;
+		gbc_btnOrder_5.gridy = 6;
+		layeredPane_2.add(btnOrder_5, gbc_btnOrder_5);
+		
+		JLabel lblCustomer_6 = new JLabel("-");
+		GridBagConstraints gbc_lblCustomer_6 = new GridBagConstraints();
+		gbc_lblCustomer_6.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCustomer_6.gridx = 0;
+		gbc_lblCustomer_6.gridy = 7;
+		layeredPane_2.add(lblCustomer_6, gbc_lblCustomer_6);
+		
+		JLabel lblPriority_6 = new JLabel("-");
+		GridBagConstraints gbc_lblPriority_6 = new GridBagConstraints();
+		gbc_lblPriority_6.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPriority_6.gridx = 1;
+		gbc_lblPriority_6.gridy = 7;
+		layeredPane_2.add(lblPriority_6, gbc_lblPriority_6);
+		
+		JButton btnOrder_6 = new JButton("");
+		GridBagConstraints gbc_btnOrder_6 = new GridBagConstraints();
+		gbc_btnOrder_6.insets = new Insets(0, 0, 5, 0);
+		gbc_btnOrder_6.gridx = 2;
+		gbc_btnOrder_6.gridy = 7;
+		layeredPane_2.add(btnOrder_6, gbc_btnOrder_6);
+		
+		JLabel lblCustomer_7 = new JLabel("-");
+		GridBagConstraints gbc_lblCustomer_7 = new GridBagConstraints();
+		gbc_lblCustomer_7.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCustomer_7.gridx = 0;
+		gbc_lblCustomer_7.gridy = 8;
+		layeredPane_2.add(lblCustomer_7, gbc_lblCustomer_7);
+		
+		JLabel lblPriority_7 = new JLabel("-");
+		GridBagConstraints gbc_lblPriority_7 = new GridBagConstraints();
+		gbc_lblPriority_7.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPriority_7.gridx = 1;
+		gbc_lblPriority_7.gridy = 8;
+		layeredPane_2.add(lblPriority_7, gbc_lblPriority_7);
+		
+		JButton btnOrder_7 = new JButton("");
+		GridBagConstraints gbc_btnOrder_7 = new GridBagConstraints();
+		gbc_btnOrder_7.insets = new Insets(0, 0, 5, 0);
+		gbc_btnOrder_7.gridx = 2;
+		gbc_btnOrder_7.gridy = 8;
+		layeredPane_2.add(btnOrder_7, gbc_btnOrder_7);
+		
+		JLabel lblCustomer_8 = new JLabel("-");
+		GridBagConstraints gbc_lblCustomer_8 = new GridBagConstraints();
+		gbc_lblCustomer_8.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCustomer_8.gridx = 0;
+		gbc_lblCustomer_8.gridy = 9;
+		layeredPane_2.add(lblCustomer_8, gbc_lblCustomer_8);
+		
+		JLabel lblPriority_8 = new JLabel("-");
+		GridBagConstraints gbc_lblPriority_8 = new GridBagConstraints();
+		gbc_lblPriority_8.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPriority_8.gridx = 1;
+		gbc_lblPriority_8.gridy = 9;
+		layeredPane_2.add(lblPriority_8, gbc_lblPriority_8);
+		
+		JButton btnOrder_8 = new JButton("");
+		GridBagConstraints gbc_btnOrder_8 = new GridBagConstraints();
+		gbc_btnOrder_8.insets = new Insets(0, 0, 5, 0);
+		gbc_btnOrder_8.gridx = 2;
+		gbc_btnOrder_8.gridy = 9;
+		layeredPane_2.add(btnOrder_8, gbc_btnOrder_8);
+		
+		JLabel lblCustomer_9 = new JLabel("-");
+		GridBagConstraints gbc_lblCustomer_9 = new GridBagConstraints();
+		gbc_lblCustomer_9.insets = new Insets(0, 0, 0, 5);
+		gbc_lblCustomer_9.gridx = 0;
+		gbc_lblCustomer_9.gridy = 10;
+		layeredPane_2.add(lblCustomer_9, gbc_lblCustomer_9);
+		
+		JLabel lblPriority_9 = new JLabel("-");
+		GridBagConstraints gbc_lblPriority_9 = new GridBagConstraints();
+		gbc_lblPriority_9.insets = new Insets(0, 0, 0, 5);
+		gbc_lblPriority_9.gridx = 1;
+		gbc_lblPriority_9.gridy = 10;
+		layeredPane_2.add(lblPriority_9, gbc_lblPriority_9);
+		
+		JButton btnOrder_9 = new JButton("");
+		GridBagConstraints gbc_btnOrder_9 = new GridBagConstraints();
+		gbc_btnOrder_9.gridx = 2;
+		gbc_btnOrder_9.gridy = 10;
+		layeredPane_2.add(btnOrder_9, gbc_btnOrder_9);
 		
 		JLayeredPane layeredPane = new JLayeredPane();
 		GridBagConstraints gbc_layeredPane = new GridBagConstraints();
