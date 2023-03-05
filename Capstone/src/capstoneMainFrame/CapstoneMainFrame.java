@@ -105,6 +105,7 @@ public class CapstoneMainFrame {
 	private JTextField employeeLookupFirstName;
 	private JTextField employeeLookupLastName;
 	private JTextField employeeLookupJobTitle;
+	private JTable employeeLookupTable;
 	
 	/**
 	 * Launch the application.
@@ -1666,21 +1667,38 @@ public class CapstoneMainFrame {
 		employeeLookupJobTitle.setColumns(10);
 		
 		JButton employeeLookupSearchButton = new JButton("Search");
+		employeeLookupSearchButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EmployeeGUI mySearch = new EmployeeGUI();
+				
+				// Create the table based on the returned results
+				TableModel myModel = mySearch.execute(employeeLookupEmployeeID, employeeLookupFirstName, employeeLookupLastName, employeeLookupJobTitle);
+			    employeeLookupTable.setModel(myModel);
+			    employeeLookupTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+			    employeeLookupTable.setCellEditor(null);
+			    employeeLookupTable.setBounds(37, 143, 397, 183);
+			    		
+				employeePanel.setVisible(true);
+			}
+		});
 		GridBagConstraints gbc_employeeLookupSearchButton = new GridBagConstraints();
 		gbc_employeeLookupSearchButton.insets = new Insets(0, 0, 5, 0);
 		gbc_employeeLookupSearchButton.gridx = 5;
 		gbc_employeeLookupSearchButton.gridy = 2;
 		employeePanel.add(employeeLookupSearchButton, gbc_employeeLookupSearchButton);
 		
-		JScrollPane scrollPane_3 = new JScrollPane();
-		scrollPane_3.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		GridBagConstraints gbc_scrollPane_3 = new GridBagConstraints();
-		gbc_scrollPane_3.gridwidth = 4;
-		gbc_scrollPane_3.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane_3.insets = new Insets(0, 0, 5, 5);
-		gbc_scrollPane_3.gridx = 1;
-		gbc_scrollPane_3.gridy = 3;
-		employeePanel.add(scrollPane_3, gbc_scrollPane_3);
+		JScrollPane employeePageScroll = new JScrollPane();
+		employeePageScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		GridBagConstraints gbc_employeePageScroll = new GridBagConstraints();
+		gbc_employeePageScroll.gridwidth = 4;
+		gbc_employeePageScroll.fill = GridBagConstraints.BOTH;
+		gbc_employeePageScroll.insets = new Insets(0, 0, 5, 5);
+		gbc_employeePageScroll.gridx = 1;
+		gbc_employeePageScroll.gridy = 3;
+		employeePanel.add(employeePageScroll, gbc_employeePageScroll);
+		
+		employeeLookupTable = new JTable();
+		employeePageScroll.setViewportView(employeeLookupTable);
 		
 		Box horizontalBox_7 = Box.createHorizontalBox();
 		GridBagConstraints gbc_horizontalBox_7 = new GridBagConstraints();
@@ -1693,14 +1711,57 @@ public class CapstoneMainFrame {
 		JButton btnNewButton_7_1 = new JButton("Create New");
 		btnNewButton_7_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setPrevious(employeePanel);
+				employeePanel.hide();
+				employeeLookupTable.setModel(new DefaultTableModel());
+				employeeLookupEmployeeID.setText("");
+				employeeLookupFirstName.setText("");
+				employeeLookupLastName.setText("");
+				employeeLookupJobTitle.setText("");
+				createEmployeePanel.show();
 			}
 		});
 		horizontalBox_7.add(btnNewButton_7_1);
 		
-		JButton btnNewButton_13 = new JButton("Edit Customer");
+		JButton btnNewButton_13 = new JButton("Edit Employee");
+		updateButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrame frame = new JFrame();
+			    String employeeID = JOptionPane.showInputDialog(frame, "Enter ID of Employee to Edit:");
+			    
+			    setPrevious(employeePanel);
+			    employeePanel.hide();
+			    CreateEmployee myEmployee = new CreateEmployee();
+			    myEmployee.loadEmployee(employeeID, updateEmployeeID, updateEmployeeFirstName, updateEmployeeLastName, updateEmployeeJobTitle );
+			    employeeUpdateButton.setText("Update");
+			    employeeLookupTable.setModel(new DefaultTableModel());
+			    employeeLookupEmployeeID.setText("");
+				employeeLookupFirstName.setText("");
+				employeeLookupLastName.setText("");
+				employeeLookupJobTitle.setText("");
+			    updateEmployeePanel.show();
+			}
+		});
 		horizontalBox_7.add(btnNewButton_13);
 		
 		JButton btnNewButton_8_1 = new JButton("Delete");
+		btnNewButton_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrame frame = new JFrame();
+			    String customerID = JOptionPane.showInputDialog(frame, "Enter ID of Customer to Delete:");
+			    setPrevious(customerPanel);
+			    customerPanel.hide();
+			    CreateCustomer myCustomer = new CreateCustomer();
+			    myCustomer.loadCustomer(customerID, updateCustomerIDLabel, updateCustomerFirstNameField, updateCustomerLastNameField, updateCustomerAddressField, updateCustomerPhoneNumField, updateCustomerEmailField, updateCustomerRepIDField );
+			    customerUpdateButton.setText("Delete");
+			    customerLookupTable.setModel(new DefaultTableModel());
+			    customerLookupCustomerIDField.setText("");
+				customerLookupCustomerFirstNameField.setText("");
+				customerLookupLastNameField.setText("");
+				customerLookupPhoneNumberField.setText("");
+			    updateCustomerPanel.show();
+			}
+		});
 		horizontalBox_7.add(btnNewButton_8_1);
 		
 		Component horizontalGlue_2_1 = Box.createHorizontalGlue();
