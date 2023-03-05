@@ -101,6 +101,10 @@ public class CapstoneMainFrame {
 	private JTextField orderUpdateUreaField;
 	private JTextField orderUpdateGypsumField;
 	private JTextField orderUpdateCommentsField;
+	private JTextField employeeLookupEmployeeID;
+	private JTextField employeeLookupFirstName;
+	private JTextField employeeLookupLastName;
+	private JTextField employeeLookupJobTitle;
 	
 	/**
 	 * Launch the application.
@@ -1592,9 +1596,9 @@ public class CapstoneMainFrame {
 		 */
 		GridBagLayout gbl_employeePanel = new GridBagLayout();
 		gbl_employeePanel.columnWidths = new int[]{0, 100, 100, 100, 100, 0, 0};
-		gbl_employeePanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
+		gbl_employeePanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
 		gbl_employeePanel.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_employeePanel.rowWeights = new double[]{1.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_employeePanel.rowWeights = new double[]{1.0, 0.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
 		employeePanel.setLayout(gbl_employeePanel);
 		
 		JLabel employeeIDLabel = new JLabel("Employee ID");
@@ -1625,6 +1629,49 @@ public class CapstoneMainFrame {
 		gbc_jobTitleLabel.gridy = 1;
 		employeePanel.add(jobTitleLabel, gbc_jobTitleLabel);
 		
+		employeeLookupEmployeeID = new JTextField();
+		GridBagConstraints gbc_employeeLookupEmployeeID = new GridBagConstraints();
+		gbc_employeeLookupEmployeeID.insets = new Insets(0, 0, 5, 5);
+		gbc_employeeLookupEmployeeID.fill = GridBagConstraints.HORIZONTAL;
+		gbc_employeeLookupEmployeeID.gridx = 1;
+		gbc_employeeLookupEmployeeID.gridy = 2;
+		employeePanel.add(employeeLookupEmployeeID, gbc_employeeLookupEmployeeID);
+		employeeLookupEmployeeID.setColumns(10);
+		
+		employeeLookupFirstName = new JTextField();
+		GridBagConstraints gbc_employeeLookupFirstName = new GridBagConstraints();
+		gbc_employeeLookupFirstName.insets = new Insets(0, 0, 5, 5);
+		gbc_employeeLookupFirstName.fill = GridBagConstraints.HORIZONTAL;
+		gbc_employeeLookupFirstName.gridx = 2;
+		gbc_employeeLookupFirstName.gridy = 2;
+		employeePanel.add(employeeLookupFirstName, gbc_employeeLookupFirstName);
+		employeeLookupFirstName.setColumns(10);
+		
+		employeeLookupLastName = new JTextField();
+		GridBagConstraints gbc_employeeLookupLastName = new GridBagConstraints();
+		gbc_employeeLookupLastName.insets = new Insets(0, 0, 5, 5);
+		gbc_employeeLookupLastName.fill = GridBagConstraints.HORIZONTAL;
+		gbc_employeeLookupLastName.gridx = 3;
+		gbc_employeeLookupLastName.gridy = 2;
+		employeePanel.add(employeeLookupLastName, gbc_employeeLookupLastName);
+		employeeLookupLastName.setColumns(10);
+		
+		employeeLookupJobTitle = new JTextField();
+		GridBagConstraints gbc_employeeLookupJobTitle = new GridBagConstraints();
+		gbc_employeeLookupJobTitle.insets = new Insets(0, 0, 5, 5);
+		gbc_employeeLookupJobTitle.fill = GridBagConstraints.HORIZONTAL;
+		gbc_employeeLookupJobTitle.gridx = 4;
+		gbc_employeeLookupJobTitle.gridy = 2;
+		employeePanel.add(employeeLookupJobTitle, gbc_employeeLookupJobTitle);
+		employeeLookupJobTitle.setColumns(10);
+		
+		JButton employeeLookupSearchButton = new JButton("Search");
+		GridBagConstraints gbc_employeeLookupSearchButton = new GridBagConstraints();
+		gbc_employeeLookupSearchButton.insets = new Insets(0, 0, 5, 0);
+		gbc_employeeLookupSearchButton.gridx = 5;
+		gbc_employeeLookupSearchButton.gridy = 2;
+		employeePanel.add(employeeLookupSearchButton, gbc_employeeLookupSearchButton);
+		
 		JScrollPane scrollPane_3 = new JScrollPane();
 		scrollPane_3.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		GridBagConstraints gbc_scrollPane_3 = new GridBagConstraints();
@@ -1632,7 +1679,7 @@ public class CapstoneMainFrame {
 		gbc_scrollPane_3.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane_3.insets = new Insets(0, 0, 5, 5);
 		gbc_scrollPane_3.gridx = 1;
-		gbc_scrollPane_3.gridy = 2;
+		gbc_scrollPane_3.gridy = 3;
 		employeePanel.add(scrollPane_3, gbc_scrollPane_3);
 		
 		Box horizontalBox_7 = Box.createHorizontalBox();
@@ -1640,7 +1687,7 @@ public class CapstoneMainFrame {
 		gbc_horizontalBox_7.gridwidth = 4;
 		gbc_horizontalBox_7.insets = new Insets(0, 0, 5, 5);
 		gbc_horizontalBox_7.gridx = 1;
-		gbc_horizontalBox_7.gridy = 3;
+		gbc_horizontalBox_7.gridy = 4;
 		employeePanel.add(horizontalBox_7, gbc_horizontalBox_7);
 		
 		JButton btnNewButton_7_1 = new JButton("Create New");
@@ -1649,6 +1696,9 @@ public class CapstoneMainFrame {
 			}
 		});
 		horizontalBox_7.add(btnNewButton_7_1);
+		
+		JButton btnNewButton_13 = new JButton("Edit Customer");
+		horizontalBox_7.add(btnNewButton_13);
 		
 		JButton btnNewButton_8_1 = new JButton("Delete");
 		horizontalBox_7.add(btnNewButton_8_1);
