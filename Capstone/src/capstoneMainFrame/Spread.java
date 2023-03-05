@@ -3,6 +3,8 @@
  */
 package capstoneMainFrame;
 
+import java.util.Date;
+
 /**
  * @author 19sky
  *
@@ -11,14 +13,14 @@ public class Spread {
 
 	private int number;
 	private int customerID;
-	private int date;
+	private Date date;
 	/**
 	 * 
 	 */
 	public Spread(int number) {
 		this.number = number;
 		this.customerID = -1;
-		this.date = -1;
+		this.date = null;
 	}
 	
 	public int getNumber() {
@@ -29,22 +31,21 @@ public class Spread {
 		return this.customerID;
 	}
 	
-	public void setCustomerID(int ID) {
-		// Check if ID is in data base  before set
-		if(ID == 1) {
-			this.customerID = ID;
-		}
-		else {
-			// Print ID not found
-		}
+	/*
+	 * assumes customer in database
+	 */
+	public void assignSpreader(int customerID) {
+		this.customerID = customerID;
+		this.date = new Date();
 	}
 	
-	public int getdate() {
+	public Date getdate() {
 		return this.date;
 	}
 	
-	public void setdate() {
-		this.date = 0;
+	public void reset() {
+		this.customerID = -1;
+		this.date = null;
 	}
 
 }
