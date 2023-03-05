@@ -178,7 +178,7 @@ public class Spreader {
 	 * Check if customerID exist and update date to current date at number index
 	 * check if arraylist is empty
 	 */
-	public void claimSpreader(int number, int customerID, int date) {
+	public void claimSpreader(int number, int customerID) {
 		if(Spreaders.isEmpty()) {
 			System.out.print("Array is empty");
 		}

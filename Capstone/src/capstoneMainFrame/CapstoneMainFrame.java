@@ -1340,10 +1340,6 @@ public class CapstoneMainFrame {
 		JLabel lblNewLabel_25 = new JLabel("Load");
 		horizontalBox_3.add(lblNewLabel_25);
 		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		verticalBox_1.add(scrollPane_1);
-		
 		JLayeredPane layeredPane_1 = new JLayeredPane();
 		GridBagConstraints gbc_layeredPane_1 = new GridBagConstraints();
 		gbc_layeredPane_1.insets = new Insets(0, 0, 5, 5);
