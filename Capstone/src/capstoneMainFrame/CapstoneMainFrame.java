@@ -1708,8 +1708,8 @@ public class CapstoneMainFrame {
 		gbc_horizontalBox_7.gridy = 4;
 		employeePanel.add(horizontalBox_7, gbc_horizontalBox_7);
 		
-		JButton btnNewButton_7_1 = new JButton("Create New");
-		btnNewButton_7_1.addActionListener(new ActionListener() {
+		JButton employeeCreateNewButton = new JButton("Create New");
+		employeeCreateNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setPrevious(employeePanel);
 				employeePanel.hide();
@@ -1721,54 +1721,27 @@ public class CapstoneMainFrame {
 				createEmployeePanel.show();
 			}
 		});
-		horizontalBox_7.add(btnNewButton_7_1);
+		horizontalBox_7.add(employeeCreateNewButton);
 		
-		JButton btnNewButton_13 = new JButton("Edit Employee");
-		updateButton.addActionListener(new ActionListener() {
+		JButton employeeDeleteButton = new JButton("Delete");
+		employeeDeleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrame frame = new JFrame();
-			    String employeeID = JOptionPane.showInputDialog(frame, "Enter ID of Employee to Edit:");
-			    
-			    setPrevious(employeePanel);
-			    employeePanel.hide();
-			    CreateEmployee myEmployee = new CreateEmployee();
-			    myEmployee.loadEmployee(employeeID, updateEmployeeID, updateEmployeeFirstName, updateEmployeeLastName, updateEmployeeJobTitle );
-			    employeeUpdateButton.setText("Update");
+			    String employeeID = JOptionPane.showInputDialog(frame, "Enter ID of Employee to Delete:");
 			    employeeLookupTable.setModel(new DefaultTableModel());
 			    employeeLookupEmployeeID.setText("");
 				employeeLookupFirstName.setText("");
 				employeeLookupLastName.setText("");
 				employeeLookupJobTitle.setText("");
-			    updateEmployeePanel.show();
 			}
 		});
-		horizontalBox_7.add(btnNewButton_13);
-		
-		JButton btnNewButton_8_1 = new JButton("Delete");
-		btnNewButton_8.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JFrame frame = new JFrame();
-			    String customerID = JOptionPane.showInputDialog(frame, "Enter ID of Customer to Delete:");
-			    setPrevious(customerPanel);
-			    customerPanel.hide();
-			    CreateCustomer myCustomer = new CreateCustomer();
-			    myCustomer.loadCustomer(customerID, updateCustomerIDLabel, updateCustomerFirstNameField, updateCustomerLastNameField, updateCustomerAddressField, updateCustomerPhoneNumField, updateCustomerEmailField, updateCustomerRepIDField );
-			    customerUpdateButton.setText("Delete");
-			    customerLookupTable.setModel(new DefaultTableModel());
-			    customerLookupCustomerIDField.setText("");
-				customerLookupCustomerFirstNameField.setText("");
-				customerLookupLastNameField.setText("");
-				customerLookupPhoneNumberField.setText("");
-			    updateCustomerPanel.show();
-			}
-		});
-		horizontalBox_7.add(btnNewButton_8_1);
+		horizontalBox_7.add(employeeDeleteButton);
 		
 		Component horizontalGlue_2_1 = Box.createHorizontalGlue();
 		horizontalBox_7.add(horizontalGlue_2_1);
 		
-		JButton btnNewButton_9_1 = new JButton("Back");
-		horizontalBox_7.add(btnNewButton_9_1);
+		JButton employeeBackButton = new JButton("Back");
+		horizontalBox_7.add(employeeBackButton);
 		
 		/*
 		 * Customer Layout
