@@ -2026,6 +2026,15 @@ public class CapstoneMainFrame {
 		textFieldCreateEmployeeTitle.setColumns(10);
 		
 		JButton btnClearEmployee = new JButton("Clear");
+		btnClearEmployee.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textFieldCreateEmployeeID.setText("");
+				textFieldCreateEmployeeFirst.setText("");
+				textFieldCreateEmployeeLast.setText("");
+				textFieldCreateEmployeePhone.setText("");
+				textFieldCreateEmployeeTitle.setText("");
+			}
+		});
 		GridBagConstraints gbc_btnClearEmployee = new GridBagConstraints();
 		gbc_btnClearEmployee.insets = new Insets(0, 0, 5, 5);
 		gbc_btnClearEmployee.gridx = 1;
@@ -2033,6 +2042,12 @@ public class CapstoneMainFrame {
 		createEmployeePanel.add(btnClearEmployee, gbc_btnClearEmployee);
 		
 		JButton btnCreateEmployee = new JButton("Create");
+		btnCreateEmployee.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CreateEmployee newEmployee = new CreateEmployee();
+				newEmployee.execute(textFieldCreateEmployeeID, textFieldCreateEmployeeFirst, textFieldCreateEmployeeLast, textFieldCreateEmployeePhone, textFieldCreateEmployeeTitle);
+			}
+		});
 		GridBagConstraints gbc_btnCreateEmployee = new GridBagConstraints();
 		gbc_btnCreateEmployee.anchor = GridBagConstraints.EAST;
 		gbc_btnCreateEmployee.insets = new Insets(0, 0, 5, 5);
@@ -2040,13 +2055,21 @@ public class CapstoneMainFrame {
 		gbc_btnCreateEmployee.gridy = 6;
 		createEmployeePanel.add(btnCreateEmployee, gbc_btnCreateEmployee);
 		
-		JButton btnBack_9 = new JButton("Back");
-		GridBagConstraints gbc_btnBack_9 = new GridBagConstraints();
-		gbc_btnBack_9.anchor = GridBagConstraints.EAST;
-		gbc_btnBack_9.insets = new Insets(0, 0, 5, 5);
-		gbc_btnBack_9.gridx = 2;
-		gbc_btnBack_9.gridy = 7;
-		createEmployeePanel.add(btnBack_9, gbc_btnBack_9);
+		JButton btnBackEmployee = new JButton("Back");
+		btnBackEmployee.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				createCustomerPanel.hide();
+				getPrevious().show();
+				setPrevious(createCustomerPanel);
+			}
+		});
+		
+		GridBagConstraints gbc_btnBackEmployee = new GridBagConstraints();
+		gbc_btnBackEmployee.anchor = GridBagConstraints.EAST;
+		gbc_btnBackEmployee.insets = new Insets(0, 0, 5, 5);
+		gbc_btnBackEmployee.gridx = 2;
+		gbc_btnBackEmployee.gridy = 7;
+		createEmployeePanel.add(btnBackEmployee, gbc_btnBackEmployee);
 		
 		GridBagLayout gridBagLayout_2 = new GridBagLayout();
 		gridBagLayout_2.columnWidths = new int[]{0, 75, 65, 0, 0, 0, 60, 0, 0};
