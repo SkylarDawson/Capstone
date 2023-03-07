@@ -433,6 +433,197 @@ public class Admin {
 		return false;
 		}
 	}
+	
+	public double getPotashPrice() {
+		try {
+            Connection conn = this.connect();  
+            Statement stmt  = conn.createStatement(); 
+            
+            String potash = String.format("Select varValue from variabls where varName = \"PotashPrice\"");
+            
+            // Run SQL statement and return the result
+            ResultSet rs  = stmt.executeQuery(potash);
+            
+            double p = rs.getDouble("varValue");
+            stmt.close();
+            conn.close();
+            return p;
+            	} catch (SQLException e) {  
+            		JOptionPane.showMessageDialog(null,(e.getMessage()));
+            		return 0.0;
+            	}  
+	}
+	public void setPotashPrice(Double p) {
+		try {
+            String potash = String.format("Update variabls set varValue = ? where varName = \"PotashPrice\"");
+            
+            Connection conn = this.connect();  
+            PreparedStatement pstmt  = conn.prepareStatement(potash);  
+            pstmt.setDouble(1, p);
+            pstmt.executeUpdate();
+            
+            pstmt.close();
+            conn.close();
+            return;
+   
+            	} catch (SQLException e) {  
+            		JOptionPane.showMessageDialog(null,(e.getMessage()));
+            		return;
+            	}
+	}
+	public double getMAPPrice() {
+		try {
+            Connection conn = this.connect();  
+            Statement stmt  = conn.createStatement(); 
+            
+            String potash = String.format("Select varValue from variabls where varName = \"MAPPrice\"");
+            
+            // Run SQL statement and return the result
+            ResultSet rs  = stmt.executeQuery(potash);
+            
+            double p = rs.getDouble("varValue");
+            stmt.close();
+            conn.close();
+            return p;
+   
+            	} catch (SQLException e) {  
+            		JOptionPane.showMessageDialog(null,(e.getMessage()));
+            		return 0.0;
+            	}  
+	}
+	public void setMAPPrice(Double p) {
+		try {
+			String potash = String.format("Update variabls set varValue = ? where varName = \"MAPPrice\"");
+            
+            Connection conn = this.connect();  
+            PreparedStatement pstmt  = conn.prepareStatement(potash);  
+            pstmt.setDouble(1, p);
+            pstmt.executeUpdate();
+            
+            pstmt.close();
+            conn.close();
+            return;
+   
+            	} catch (SQLException e) {  
+            		JOptionPane.showMessageDialog(null,(e.getMessage()));
+            		return;
+            	}
+	}
+	public double getAMSPrice() {
+		try {
+            Connection conn = this.connect();  
+            Statement stmt  = conn.createStatement(); 
+            
+            String potash = String.format("Select varValue from variabls where varName = \"AMSPrice\"");
+            
+            // Run SQL statement and return the result
+            ResultSet rs  = stmt.executeQuery(potash);
+          
+            double p = rs.getDouble("varValue");
+            stmt.close();
+            conn.close();
+            return p;
+   
+            	} catch (SQLException e) {  
+            		JOptionPane.showMessageDialog(null,(e.getMessage()));
+            		return 0.0;
+            	}  
+	}
+	public void setAMSPrice(Double p) {
+		try {
+			String potash = String.format("Update variabls set varValue = ? where varName = \"AMSPrice\"");
+            
+            Connection conn = this.connect();  
+            PreparedStatement pstmt  = conn.prepareStatement(potash);  
+            pstmt.setDouble(1, p);
+            pstmt.executeUpdate();
+            
+            pstmt.close();
+            conn.close();
+            return;
+   
+            	} catch (SQLException e) {  
+            		JOptionPane.showMessageDialog(null,(e.getMessage()));
+            		return;
+            	}
+	}
+	public double getUreaPrice() {
+		try {
+            Connection conn = this.connect();  
+            Statement stmt  = conn.createStatement(); 
+            
+            String potash = String.format("Select varValue from variabls where varName = \"UreaPrice\"");
+            
+            // Run SQL statement and return the result
+            ResultSet rs  = stmt.executeQuery(potash);
+          
+            double p = rs.getDouble("varValue");
+            stmt.close();
+            conn.close();
+            return p;
+   
+            	} catch (SQLException e) {  
+            		JOptionPane.showMessageDialog(null,(e.getMessage()));
+            		return 0.0;
+            	}  
+	}
+	public void setUreaPrice(Double p) {
+		try {
+			String potash = String.format("Update variabls set varValue = ? where varName = \"UreaPrice\"");
+            
+            Connection conn = this.connect();  
+            PreparedStatement pstmt  = conn.prepareStatement(potash);  
+            pstmt.setDouble(1, p);
+            pstmt.executeUpdate();
+            
+            pstmt.close();
+            conn.close();
+            return;
+   
+            	} catch (SQLException e) {  
+            		JOptionPane.showMessageDialog(null,(e.getMessage()));
+            		return;
+            	}
+	}
+	public double getGypsumPrice() {
+		try {
+            Connection conn = this.connect();  
+            Statement stmt  = conn.createStatement(); 
+            
+            String potash = String.format("Select varValue from variabls where varName = \"GypsumPrice\"");
+            
+            // Run SQL statement and return the result
+            ResultSet rs  = stmt.executeQuery(potash);
+          
+            double p = rs.getDouble("varValue");
+            stmt.close();
+            conn.close();
+            return p;
+   
+            	} catch (SQLException e) {  
+            		JOptionPane.showMessageDialog(null,(e.getMessage()));
+            		return 0.0;
+            	}  
+	}
+	public void setGypsumPrice(Double p) {
+		try {
+			String potash = String.format("Update variabls set varValue = ? where varName = \"GypsumPrice\"");
+            
+            Connection conn = this.connect();  
+            PreparedStatement pstmt  = conn.prepareStatement(potash);  
+            pstmt.setDouble(1, p);
+            pstmt.executeUpdate();
+            
+            pstmt.close();
+            conn.close();
+            return;
+   
+            	} catch (SQLException e) {  
+            		JOptionPane.showMessageDialog(null,(e.getMessage()));
+            		return;
+            	}
+	}
+	
 		
 	}
 

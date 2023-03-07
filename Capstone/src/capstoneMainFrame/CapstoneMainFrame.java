@@ -122,7 +122,7 @@ public class CapstoneMainFrame {
 	private GridBagConstraints gbc_potashLabel;
 	
 	
-	private double potashPriceAmnt = 10.0;
+	private double potashPriceAmnt = 12.0;
 	private double mapPriceAmnt = 10.0;
 	private double amsPriceAmnt = 10.0;
 	private double ureaPriceAmnt = 10.0;
@@ -368,6 +368,13 @@ public class CapstoneMainFrame {
 				adminPanel.hide();
 				settingsPanel.show();
 				reportsTable.setModel(new DefaultTableModel());
+				
+				Admin myAdmin = new Admin();
+				potashPriceAmnt = myAdmin.getPotashPrice();
+				mapPriceAmnt = myAdmin.getMAPPrice();
+				amsPriceAmnt = myAdmin.getAMSPrice();
+				ureaPriceAmnt = myAdmin.getUreaPrice();
+				gypsumPriceAmnt = myAdmin.getGypsumPrice();
 				
 				potashPriceField.setText(potashPriceAmnt + "");
 				mapPriceField.setText(mapPriceAmnt + "");
@@ -2634,6 +2641,12 @@ public class CapstoneMainFrame {
 		orderCreateRunButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CreateOrder newOrder = new CreateOrder();
+				Admin myAdmin = new Admin();
+				potashPriceAmnt = myAdmin.getPotashPrice();
+				mapPriceAmnt = myAdmin.getMAPPrice();
+				amsPriceAmnt = myAdmin.getAMSPrice();
+				ureaPriceAmnt = myAdmin.getUreaPrice();
+				gypsumPriceAmnt = myAdmin.getGypsumPrice();
 				newOrder.execute(orderCreateOrderIDField, orderCreateCustomerIDField, orderCreateEmployeeIDField, orderCreatePickupDateField, orderCreatePickupTimeField, orderCreatePotashField, orderCreateMAPField, orderCreateAMSField, orderCreateUreaField, orderCreateGypsumField, orderCreateOrderCommentsField, orderCreateOrderDateField, orderCreateOrderPaidBox, orderCreateOrderCompleteBox, orderCreateOrderDeliveredBox, potashPriceAmnt, mapPriceAmnt, amsPriceAmnt, ureaPriceAmnt, gypsumPriceAmnt);
 			}
 		});
@@ -3263,18 +3276,33 @@ public class CapstoneMainFrame {
 				try {
 				
 				if(Double.parseDouble(potashPriceField.getText()) <= 0 || Double.parseDouble(mapPriceField.getText()) <= 0 || Double.parseDouble(amsPriceField.getText()) <=0 || Double.parseDouble(ureaPriceField.getText()) <= 0 || Double.parseDouble(gypsumPriceField.getText()) <= 0) {throw new Exception ("Invalid Input");}
-					
-				potashPriceAmnt = Double.parseDouble(potashPriceField.getText());
-				mapPriceAmnt = Double.parseDouble(mapPriceField.getText());
-				amsPriceAmnt = Double.parseDouble(amsPriceField.getText());
-				ureaPriceAmnt = Double.parseDouble(ureaPriceField.getText());
-				gypsumPriceAmnt = Double.parseDouble(gypsumPriceField.getText());
+				
+				Admin myAdmin = new Admin();
+				
+				double p = Double.parseDouble(potashPriceField.getText());
+				double m = Double.parseDouble(mapPriceField.getText());
+				double a = Double.parseDouble(amsPriceField.getText());
+				double u = Double.parseDouble(ureaPriceField.getText());
+				double g = Double.parseDouble(gypsumPriceField.getText());
+				
+				myAdmin.setPotashPrice(p);
+				//myAdmin.setMAPPrice(m);
+				//myAdmin.setAMSPrice(a);
+				//myAdmin.setUreaPrice(u);
+				//myAdmin.setGypsumPrice(g);
+				
+				
+				potashPriceAmnt = myAdmin.getPotashPrice();
+				mapPriceAmnt = myAdmin.getMAPPrice();
+				amsPriceAmnt = myAdmin.getAMSPrice();
+				ureaPriceAmnt = myAdmin.getUreaPrice();
+				gypsumPriceAmnt = myAdmin.getGypsumPrice();
 				 
 				// Tell user that operation was successful
 	        	JOptionPane.showMessageDialog(null, "Price Updated");
 				} catch (Exception f) {
 					 // Tell user that operation was successful
-    	        	JOptionPane.showMessageDialog(null, "Invalid Input");
+    	        	JOptionPane.showMessageDialog(null, f.getMessage());
 				}
 				
 				
