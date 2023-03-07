@@ -339,10 +339,11 @@ public class Admin {
 	public void changePassword (int employeeID, String newPassword)
 	{
 		String updatePassword = "Update employees set password = ? where employeeNum = ? ";
+		String hashedPassword = newPassword.hashCode()+"";
 		try {
             Connection conn = this.connect();  
             PreparedStatement pstmt  = conn.prepareStatement(updatePassword);  
-            pstmt.setString(1, newPassword);
+            pstmt.setString(1, hashedPassword);
             pstmt.setInt(2, employeeID);
             pstmt.executeUpdate();
             
@@ -421,7 +422,7 @@ public class Admin {
             ResultSet rs  = stmt.executeQuery(userIDcheck);
             if(rs.next() == false) {return false;}
             // loop through the result set - prints out each attribute for each tuple pulled
-                if(rs.getString("password").equals(password)) {return true;}
+                if(rs.getString("password").equals(password.hashCode()+"")) {return true;}
    
             	} catch (SQLException e) {  
             		System.out.println(e.getMessage());  
