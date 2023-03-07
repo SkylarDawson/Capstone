@@ -425,7 +425,7 @@ public class Admin {
                 if(rs.getString("password").equals(password.hashCode()+"")) {return true;}
    
             	} catch (SQLException e) {  
-            		System.out.println(e.getMessage());  
+            		JOptionPane.showMessageDialog(null,(e.getMessage()));  
             		return false;
             	}  
 		
