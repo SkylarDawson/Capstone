@@ -147,7 +147,29 @@ public class CapstoneMainFrame {
 	 * Create the application.
 	 */
 	public CapstoneMainFrame() {
-		initialize();
+		Admin myPage = new Admin();
+		// Add dialog box to update a password
+		JTextField username = new JTextField();
+		JTextField password = new JTextField();
+			Object[] message = {
+			    "Username:", username,
+			    "Password:", password,
+			};
+		
+		// If they confirm check the password
+		int option = JOptionPane.showConfirmDialog(null, message, "Change Password", JOptionPane.OK_CANCEL_OPTION);
+		if(option == JOptionPane.OK_OPTION)
+		{
+			boolean passwordCheck = myPage.checkLogin(username.getText(), password.getText());
+					if(passwordCheck)
+					{
+						initialize();
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null, "Incorrect Login");
+					}
+		}
 	}
 	
 	/**

@@ -338,11 +338,12 @@ public class Admin {
 		
 	public void changePassword (int employeeID, String newPassword)
 	{
-		String updatePassword = "Update employees set password = ? where employeeNum = employeeID ";
+		String updatePassword = "Update employees set password = ? where employeeNum = ? ";
 		try {
             Connection conn = this.connect();  
             PreparedStatement pstmt  = conn.prepareStatement(updatePassword);  
             pstmt.setString(1, newPassword);
+            pstmt.setInt(2, employeeID);
             pstmt.executeUpdate();
             
             pstmt.close();
