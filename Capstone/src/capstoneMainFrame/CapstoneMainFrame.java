@@ -1433,6 +1433,10 @@ public class CapstoneMainFrame {
 				orderHistoryFirstNameField.setText("");
 				orderHistoryLastNameField.setText("");
 				orderHistoryOrderDateField.setText("");
+				String sqlMaxOrders = "Select orderNum From orders where orderNum = (Select max(orderNum) from orders);";
+				CreateOrder app1 = new CreateOrder();
+				int maxID = app1.selectMaxOrders(sqlMaxOrders);
+				orderCreateOrderIDField.setText(maxID+1+"");
 				setPrevious(orderPanel);
 			}
 		});
