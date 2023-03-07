@@ -420,9 +420,10 @@ public class Admin {
             
             // Run SQL statement and return the result
             ResultSet rs  = stmt.executeQuery(userIDcheck);
+            
             if(rs.next() == false) {return false;}
             // loop through the result set - prints out each attribute for each tuple pulled
-                if(rs.getString("password").equals(password.hashCode()+"")) {return true;}
+                if(rs.getString("password").equals(password.hashCode()+"")) {conn.close(); return true;}
    
             	} catch (SQLException e) {  
             		JOptionPane.showMessageDialog(null,(e.getMessage()));  

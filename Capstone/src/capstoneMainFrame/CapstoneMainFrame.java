@@ -3286,10 +3286,10 @@ public class CapstoneMainFrame {
 				double g = Double.parseDouble(gypsumPriceField.getText());
 				
 				myAdmin.setPotashPrice(p);
-				//myAdmin.setMAPPrice(m);
-				//myAdmin.setAMSPrice(a);
-				//myAdmin.setUreaPrice(u);
-				//myAdmin.setGypsumPrice(g);
+				myAdmin.setMAPPrice(m);
+				myAdmin.setAMSPrice(a);
+				myAdmin.setUreaPrice(u);
+				myAdmin.setGypsumPrice(g);
 				
 				
 				potashPriceAmnt = myAdmin.getPotashPrice();
