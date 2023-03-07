@@ -420,18 +420,16 @@ public class Admin {
             // Run SQL statement and return the result
             ResultSet rs  = stmt.executeQuery(userIDcheck);
             if(rs.next() == false) {return false;}
-            
             // loop through the result set - prints out each attribute for each tuple pulled
-            while (rs.next()) {  
-                if(!rs.getString("password").equals(username)) {return false;}
-            }  
+                if(rs.getString("password").equals(password)) {return true;}
+   
             	} catch (SQLException e) {  
             		System.out.println(e.getMessage());  
             		return false;
             	}  
 		
 		// If it went through loop
-		return true;
+		return false;
 		}
 	}
 		
