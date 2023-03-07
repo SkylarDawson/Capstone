@@ -2,12 +2,16 @@ package capstoneMainFrame;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -332,9 +336,79 @@ public class Admin {
 			}
 		}
 		
+	public void changePassword (int employeeID, String newPassword)
+	{
+		String updatePassword = "Update employees set password = ? where employeeNum = employeeID ";
+		try {
+            Connection conn = this.connect();  
+            PreparedStatement pstmt  = conn.prepareStatement(updatePassword);  
+            pstmt.setString(1, newPassword);
+            pstmt.executeUpdate();
+            
+            pstmt.close();
+            conn.close();
+            JOptionPane.showMessageDialog(null, "Password Updated");
+            return;
+        } catch (SQLException e) {  
+            System.out.println(e.getMessage());  
+            return;
+        }
+		
+	}
 	
 	public Boolean checkLogin(String username, String password ) {
+		String yubistring = "PASS";
+		// Activates override into system to be able to change password
 		
+		if(username.equals("ADMINOVERRIDE")) {
+			
+			// Check to make sure override password is correct
+			if(password.equals(yubistring)) { 
+				// If yes then 
+				try {
+				// Add dialog box to update a password
+				JTextField userID = new JTextField();
+				JTextField newPassword = new JTextField();
+				JTextField confirmPassword = new JTextField();
+					Object[] message = {
+					    "Employee ID:", userID,
+					    "New Password:", newPassword,
+					    "Confirm New Password: ", confirmPassword
+					};
+				
+				// If they confirm check the password
+				int option = JOptionPane.showConfirmDialog(null, message, "Change Password", JOptionPane.OK_CANCEL_OPTION);
+				if(option == JOptionPane.OK_OPTION)
+				{
+				// Check to make sure password is correct
+				if(newPassword.getText().equals(confirmPassword.getText())){
+					
+					// If so then update password and return in
+					int employeeNum = Integer.parseInt(userID.getText());
+					changePassword(employeeNum, confirmPassword.getText());
+					return true;
+				}
+				// Else spit out an error
+				else {
+					JOptionPane.showMessageDialog(null, "Password could not be reset");
+					return false;
+				}
+				// If they cancel return false
+				} else {
+					return false;
+				}}
+				
+				// Catch exceptions in error handling
+			catch(Exception e) {
+				 JOptionPane.showMessageDialog(null, "Error in formatting - exiting");
+				 return false;
+			}
+			}
+			else {
+				return false;
+				}
+		}
+		else {
 		// Check to see if userID exists and if it does check the password
 		try {
             Connection conn = this.connect();  
@@ -357,6 +431,7 @@ public class Admin {
 		
 		// If it went through loop
 		return true;
+		}
 	}
 		
 	}
