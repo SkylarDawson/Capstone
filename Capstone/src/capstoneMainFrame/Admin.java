@@ -332,6 +332,32 @@ public class Admin {
 			}
 		}
 		
+	
+	public Boolean checkLogin(String username, String password ) {
+		
+		// Check to see if userID exists and if it does check the password
+		try {
+            Connection conn = this.connect();  
+            Statement stmt  = conn.createStatement(); 
+            
+            String userIDcheck = String.format("Select username, password from employees where username = \"%s\"", username);
+            
+            // Run SQL statement and return the result
+            ResultSet rs  = stmt.executeQuery(userIDcheck);
+            if(rs.next() == false) {return false;}
+            
+            // loop through the result set - prints out each attribute for each tuple pulled
+            while (rs.next()) {  
+                if(!rs.getString("password").equals(username)) {return false;}
+            }  
+            	} catch (SQLException e) {  
+            		System.out.println(e.getMessage());  
+            		return false;
+            	}  
+		
+		// If it went through loop
+		return true;
+	}
 		
 	}
 
