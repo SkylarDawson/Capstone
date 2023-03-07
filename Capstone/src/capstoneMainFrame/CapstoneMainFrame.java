@@ -1741,6 +1741,18 @@ public class CapstoneMainFrame {
 		horizontalBox_7.add(horizontalGlue_2_1);
 		
 		JButton employeeBackButton = new JButton("Back");
+		employeeBackButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				employeePanel.hide();
+				mainPanel.show();
+				employeeLookupTable.setModel(new DefaultTableModel());
+				employeeLookupEmployeeID.setText("");
+				employeeLookupFirstName.setText("");
+				employeeLookupLastName.setText("");
+				employeeLookupJobTitle.setText("");
+				setPrevious(employeePanel);
+			}
+		});
 		horizontalBox_7.add(employeeBackButton);
 		
 		/*
