@@ -19,6 +19,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -150,7 +151,7 @@ public class CapstoneMainFrame {
 		Admin myPage = new Admin();
 		// Add dialog box to update a password
 		JTextField username = new JTextField();
-		JTextField password = new JTextField();
+		JTextField password = new JPasswordField();
 			Object[] message = {
 			    "Username:", username,
 			    "Password:", password,
@@ -160,6 +161,7 @@ public class CapstoneMainFrame {
 		int option = JOptionPane.showConfirmDialog(null, message, "Change Password", JOptionPane.OK_CANCEL_OPTION);
 		if(option == JOptionPane.OK_OPTION)
 		{
+			try {
 			boolean passwordCheck = myPage.checkLogin(username.getText(), password.getText());
 					if(passwordCheck)
 					{
@@ -168,7 +170,16 @@ public class CapstoneMainFrame {
 					else
 					{
 						JOptionPane.showMessageDialog(null, "Incorrect Login");
+						System.exit(0);
 					}
+		} catch (Exception e)
+			{
+				JOptionPane.showMessageDialog(null, "Error in Formatting");
+				System.exit(0);;
+			}
+		}
+		else {
+			System.exit(0);
 		}
 	}
 	
