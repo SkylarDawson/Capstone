@@ -581,7 +581,7 @@ public class CapstoneMainFrame {
 		gbc_layeredPane.gridx = 3;
 		gbc_layeredPane.gridy = 1;
 		exportPanel.add(layeredPane, gbc_layeredPane);
-		//layeredPane.setLayout(new MigLayout("", "[77px][6px][42px][6px][79px]", "[13px][13px][21px][13px][13px][13px][13px][13px][13px][19px][13px][13px]"));
+		layeredPane.setLayout(new MigLayout("", "[77px][6px][42px][6px][79px]", "[13px][13px][21px][13px][13px][13px][13px][13px][13px][19px][13px][13px]"));
 		
 		JLabel lblNewLabel_7 = new JLabel("Customer");
 		layeredPane.add(lblNewLabel_7, "cell 0 0 3 1,growx,aligny top");
@@ -1559,7 +1559,7 @@ public class CapstoneMainFrame {
 		gbc_layeredPane_1.gridx = 3;
 		gbc_layeredPane_1.gridy = 1;
 		spreaderPanel.add(layeredPane_1, gbc_layeredPane_1);
-	//	layeredPane_1.setLayout(new MigLayout("", "[60.00][]", "[][][]"));
+		layeredPane_1.setLayout(new MigLayout("", "[60.00][]", "[][][]"));
 		
 		JLabel lblNewLabel_26 = new JLabel("Spreader #");
 		lblNewLabel_26.setHorizontalAlignment(SwingConstants.CENTER);
