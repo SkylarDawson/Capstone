@@ -1499,7 +1499,7 @@ public class CapstoneMainFrame {
 					export.addOrder(orderID, priority);
 				}
 				catch(Exception ex) {
-					System.out.print("Invalid Input");
+					System.out.print(ex.getMessage());
 				}
 			}
 		});
