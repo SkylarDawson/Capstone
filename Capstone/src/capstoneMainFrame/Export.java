@@ -25,8 +25,8 @@ public class Export {
 	 * Update creation of orders to be pulled from database
 	 * check if arraylist is empty
 	 */
-	public void addOrder(int priority) {
-		Order sort = new Order(priority);
+	public void addOrder(String orderID, String priority) {
+		Order sort = new Order(orderID, priority);
 		for(int i = 0; i < Orders.size(); i++ ) {
 			if(sort.getPriority() >= Orders.get(i).getPriority()) {
 				Orders.add(i,sort);
@@ -35,7 +35,8 @@ public class Export {
 		}
 	}
 	
-	public void updatePage(JLabel currpage, JLabel maxpage, JLabel lbnumber_0, JLabel lbnumber_1, JLabel lbnumber_2, JLabel lbnumber_3, JLabel lbnumber_4, JLabel lbnumber_5, JLabel lbnumber_6, JLabel lbnumber_7, JLabel lbnumber_8, JLabel lbnumber_9, JLabel lbcustomer_0, JLabel lbcustomer_1, JLabel lbcustomer_2, JLabel lbcustomer_3, JLabel lbcustomer_4, JLabel lbcustomer_5, JLabel lbcustomer_6, JLabel lbcustomer_7, JLabel lbcustomer_8, JLabel lbcustomer_9, JLabel lbdate_0, JLabel lbdate_1, JLabel lbdate_2, JLabel lbdate_3, JLabel lbdate_4, JLabel lbdate_5, JLabel lbdate_6, JLabel lbdate_7, JLabel lbdate_8, JLabel lbdate_9) {
+	public void updatePage(JLabel lbPageNumber, JLabel lbnumber_0, JLabel lbnumber_1, JLabel lbnumber_2, JLabel lbnumber_3, JLabel lbnumber_4, JLabel lbnumber_5, JLabel lbnumber_6, JLabel lbnumber_7, JLabel lbnumber_8, JLabel lbnumber_9, JLabel lbcustomer_0, JLabel lbcustomer_1, JLabel lbcustomer_2, JLabel lbcustomer_3, JLabel lbcustomer_4, JLabel lbcustomer_5, JLabel lbcustomer_6, JLabel lbcustomer_7, JLabel lbcustomer_8, JLabel lbcustomer_9, JLabel lbdate_0, JLabel lbdate_1, JLabel lbdate_2, JLabel lbdate_3, JLabel lbdate_4, JLabel lbdate_5, JLabel lbdate_6, JLabel lbdate_7, JLabel lbdate_8, JLabel lbdate_9) {
+		lbPageNumber.setText(String.format("%s/%d",page+1,((Orders.size()-1)/10)+1));
 		// Page full
 		if(Orders.size() / 10 > page) {
 			lbnumber_0.setText(null);

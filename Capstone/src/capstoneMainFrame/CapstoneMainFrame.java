@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -339,9 +340,9 @@ public class CapstoneMainFrame {
 		exportPanel.add(layeredPane_2, gbc_layeredPane_2);
 		GridBagLayout gbl_layeredPane_2 = new GridBagLayout();
 		gbl_layeredPane_2.columnWidths = new int[]{0, 0, 0, 0};
-		gbl_layeredPane_2.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_layeredPane_2.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_layeredPane_2.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_layeredPane_2.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_layeredPane_2.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		layeredPane_2.setLayout(gbl_layeredPane_2);
 		
 		JLabel lblNewLabel_1 = new JLabel("Customer");
@@ -556,23 +557,44 @@ public class CapstoneMainFrame {
 		
 		JLabel lblCustomer_9 = new JLabel("-");
 		GridBagConstraints gbc_lblCustomer_9 = new GridBagConstraints();
-		gbc_lblCustomer_9.insets = new Insets(0, 0, 0, 5);
+		gbc_lblCustomer_9.insets = new Insets(0, 0, 5, 5);
 		gbc_lblCustomer_9.gridx = 0;
 		gbc_lblCustomer_9.gridy = 10;
 		layeredPane_2.add(lblCustomer_9, gbc_lblCustomer_9);
 		
 		JLabel lblPriority_9 = new JLabel("-");
 		GridBagConstraints gbc_lblPriority_9 = new GridBagConstraints();
-		gbc_lblPriority_9.insets = new Insets(0, 0, 0, 5);
+		gbc_lblPriority_9.insets = new Insets(0, 0, 5, 5);
 		gbc_lblPriority_9.gridx = 1;
 		gbc_lblPriority_9.gridy = 10;
 		layeredPane_2.add(lblPriority_9, gbc_lblPriority_9);
 		
 		JButton btnOrder_9 = new JButton("");
 		GridBagConstraints gbc_btnOrder_9 = new GridBagConstraints();
+		gbc_btnOrder_9.insets = new Insets(0, 0, 5, 0);
 		gbc_btnOrder_9.gridx = 2;
 		gbc_btnOrder_9.gridy = 10;
 		layeredPane_2.add(btnOrder_9, gbc_btnOrder_9);
+		
+		JLabel lblPageNumber = new JLabel("0/1");
+		GridBagConstraints gbc_lblPageNumber = new GridBagConstraints();
+		gbc_lblPageNumber.insets = new Insets(0, 0, 0, 5);
+		gbc_lblPageNumber.gridx = 0;
+		gbc_lblPageNumber.gridy = 11;
+		layeredPane_2.add(lblPageNumber, gbc_lblPageNumber);
+		
+		JButton btnPageBack = new JButton("<");
+		GridBagConstraints gbc_btnPageBack = new GridBagConstraints();
+		gbc_btnPageBack.insets = new Insets(0, 0, 0, 5);
+		gbc_btnPageBack.gridx = 1;
+		gbc_btnPageBack.gridy = 11;
+		layeredPane_2.add(btnPageBack, gbc_btnPageBack);
+		
+		JButton btnPageForward = new JButton(">");
+		GridBagConstraints gbc_btnPageForward = new GridBagConstraints();
+		gbc_btnPageForward.gridx = 2;
+		gbc_btnPageForward.gridy = 11;
+		layeredPane_2.add(btnPageForward, gbc_btnPageForward);
 		
 		JLayeredPane layeredPane = new JLayeredPane();
 		GridBagConstraints gbc_layeredPane = new GridBagConstraints();
@@ -698,20 +720,11 @@ public class CapstoneMainFrame {
 		gbc_horizontalBox_1.gridy = 2;
 		exportPanel.add(horizontalBox_1, gbc_horizontalBox_1);
 		
+		// Button will prompt user to input order number to add to list
 		JButton btnNewButton_1 = new JButton("Create");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Box horizontalBox_1 = Box.createHorizontalBox();
-				verticalBoxQueue.add(horizontalBox_1);
-		
-				JLabel lblNewLabel_4 = new JLabel("John Doe");
-				horizontalBox_1.add(lblNewLabel_4);
-		
-				JLabel lblNewLabel_5 = new JLabel("1");
-				horizontalBox_1.add(lblNewLabel_5);
-		
-				JButton btnNewButton = new JButton("");
-				horizontalBox_1.add(btnNewButton);
+				
 				
 				exportPanel.hide();
 				exportPanel.show();
@@ -1475,6 +1488,26 @@ public class CapstoneMainFrame {
 			    updateOrderPanel.show();
 			}
 		});
+		
+		// Prompts user to input Order ID then forward ID to queue
+		JButton addToQueue = new JButton("Add To Queue");
+		addToQueue.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					String orderID = JOptionPane.showInputDialog( "Enter ID of Order to Add to queue:");
+					String priority = JOptionPane.showInputDialog( "Enter priority of order:");
+					export.addOrder(orderID, priority);
+				}
+				catch(Exception ex) {
+					System.out.print("Invalid Input");
+				}
+			}
+		});
+		GridBagConstraints gbc_addToQueue = new GridBagConstraints();
+		gbc_addToQueue.insets = new Insets(0, 0, 5, 5);
+		gbc_addToQueue.gridx = 1;
+		gbc_addToQueue.gridy = 4;
+		orderPanel.add(addToQueue, gbc_addToQueue);
 		GridBagConstraints gbc_deleteOrderButton = new GridBagConstraints();
 		gbc_deleteOrderButton.insets = new Insets(0, 0, 5, 5);
 		gbc_deleteOrderButton.gridx = 2;
