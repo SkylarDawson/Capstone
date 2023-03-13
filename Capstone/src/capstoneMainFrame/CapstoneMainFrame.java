@@ -45,7 +45,7 @@ public class CapstoneMainFrame {
 	private JTextField textFieldBinInput;
 	private JTextField textFieldIngredientInput;
 	private JTextField textFieldStorageInput;
-	private JTextField textField;
+	private JTextField textFieldSpreader;
 	private JTextField textField_2;
 	private JTextField textField_1;
 	private JTextField textFieldCreateCustomerID;
@@ -364,13 +364,6 @@ public class CapstoneMainFrame {
 		gbc_lblPriority_0.gridy = 1;
 		layeredPane_2.add(lblPriority_0, gbc_lblPriority_0);
 		
-		JButton btnOrder_0 = new JButton("");
-		GridBagConstraints gbc_btnOrder_0 = new GridBagConstraints();
-		gbc_btnOrder_0.insets = new Insets(0, 0, 5, 0);
-		gbc_btnOrder_0.gridx = 2;
-		gbc_btnOrder_0.gridy = 1;
-		layeredPane_2.add(btnOrder_0, gbc_btnOrder_0);
-		
 		JLabel lblCustomer_1 = new JLabel("-");
 		GridBagConstraints gbc_lblCustomer_1 = new GridBagConstraints();
 		gbc_lblCustomer_1.insets = new Insets(0, 0, 5, 5);
@@ -384,13 +377,6 @@ public class CapstoneMainFrame {
 		gbc_lblPriority_1.gridx = 1;
 		gbc_lblPriority_1.gridy = 2;
 		layeredPane_2.add(lblPriority_1, gbc_lblPriority_1);
-		
-		JButton btnOrder_1 = new JButton("");
-		GridBagConstraints gbc_btnOrder_1 = new GridBagConstraints();
-		gbc_btnOrder_1.insets = new Insets(0, 0, 5, 0);
-		gbc_btnOrder_1.gridx = 2;
-		gbc_btnOrder_1.gridy = 2;
-		layeredPane_2.add(btnOrder_1, gbc_btnOrder_1);
 		
 		JLabel lblCustomer_2 = new JLabel("-");
 		GridBagConstraints gbc_lblCustomer_2 = new GridBagConstraints();
@@ -406,13 +392,6 @@ public class CapstoneMainFrame {
 		gbc_lblPriority_2.gridy = 3;
 		layeredPane_2.add(lblPriority_2, gbc_lblPriority_2);
 		
-		JButton btnOrder_2 = new JButton("");
-		GridBagConstraints gbc_btnOrder_2 = new GridBagConstraints();
-		gbc_btnOrder_2.insets = new Insets(0, 0, 5, 0);
-		gbc_btnOrder_2.gridx = 2;
-		gbc_btnOrder_2.gridy = 3;
-		layeredPane_2.add(btnOrder_2, gbc_btnOrder_2);
-		
 		JLabel lblCustomer_3 = new JLabel("-");
 		GridBagConstraints gbc_lblCustomer_3 = new GridBagConstraints();
 		gbc_lblCustomer_3.insets = new Insets(0, 0, 5, 5);
@@ -426,13 +405,6 @@ public class CapstoneMainFrame {
 		gbc_lblPriority_3.gridx = 1;
 		gbc_lblPriority_3.gridy = 4;
 		layeredPane_2.add(lblPriority_3, gbc_lblPriority_3);
-		
-		JButton btnOrder_3 = new JButton("");
-		GridBagConstraints gbc_btnOrder_3 = new GridBagConstraints();
-		gbc_btnOrder_3.insets = new Insets(0, 0, 5, 0);
-		gbc_btnOrder_3.gridx = 2;
-		gbc_btnOrder_3.gridy = 4;
-		layeredPane_2.add(btnOrder_3, gbc_btnOrder_3);
 		
 		JLabel lblCustomer_4 = new JLabel("-");
 		GridBagConstraints gbc_lblCustomer_4 = new GridBagConstraints();
@@ -448,13 +420,6 @@ public class CapstoneMainFrame {
 		gbc_lblPriority_4.gridy = 5;
 		layeredPane_2.add(lblPriority_4, gbc_lblPriority_4);
 		
-		JButton btnOrder_4 = new JButton("");
-		GridBagConstraints gbc_btnOrder_4 = new GridBagConstraints();
-		gbc_btnOrder_4.insets = new Insets(0, 0, 5, 0);
-		gbc_btnOrder_4.gridx = 2;
-		gbc_btnOrder_4.gridy = 5;
-		layeredPane_2.add(btnOrder_4, gbc_btnOrder_4);
-		
 		JLabel lblCustomer_5 = new JLabel("-");
 		GridBagConstraints gbc_lblCustomer_5 = new GridBagConstraints();
 		gbc_lblCustomer_5.insets = new Insets(0, 0, 5, 5);
@@ -468,13 +433,6 @@ public class CapstoneMainFrame {
 		gbc_lblPriority_5.gridx = 1;
 		gbc_lblPriority_5.gridy = 6;
 		layeredPane_2.add(lblPriority_5, gbc_lblPriority_5);
-		
-		JButton btnOrder_5 = new JButton("");
-		GridBagConstraints gbc_btnOrder_5 = new GridBagConstraints();
-		gbc_btnOrder_5.insets = new Insets(0, 0, 5, 0);
-		gbc_btnOrder_5.gridx = 2;
-		gbc_btnOrder_5.gridy = 6;
-		layeredPane_2.add(btnOrder_5, gbc_btnOrder_5);
 		
 		JLabel lblCustomer_6 = new JLabel("-");
 		GridBagConstraints gbc_lblCustomer_6 = new GridBagConstraints();
@@ -490,13 +448,6 @@ public class CapstoneMainFrame {
 		gbc_lblPriority_6.gridy = 7;
 		layeredPane_2.add(lblPriority_6, gbc_lblPriority_6);
 		
-		JButton btnOrder_6 = new JButton("");
-		GridBagConstraints gbc_btnOrder_6 = new GridBagConstraints();
-		gbc_btnOrder_6.insets = new Insets(0, 0, 5, 0);
-		gbc_btnOrder_6.gridx = 2;
-		gbc_btnOrder_6.gridy = 7;
-		layeredPane_2.add(btnOrder_6, gbc_btnOrder_6);
-		
 		JLabel lblCustomer_7 = new JLabel("-");
 		GridBagConstraints gbc_lblCustomer_7 = new GridBagConstraints();
 		gbc_lblCustomer_7.insets = new Insets(0, 0, 5, 5);
@@ -510,13 +461,6 @@ public class CapstoneMainFrame {
 		gbc_lblPriority_7.gridx = 1;
 		gbc_lblPriority_7.gridy = 8;
 		layeredPane_2.add(lblPriority_7, gbc_lblPriority_7);
-		
-		JButton btnOrder_7 = new JButton("");
-		GridBagConstraints gbc_btnOrder_7 = new GridBagConstraints();
-		gbc_btnOrder_7.insets = new Insets(0, 0, 5, 0);
-		gbc_btnOrder_7.gridx = 2;
-		gbc_btnOrder_7.gridy = 8;
-		layeredPane_2.add(btnOrder_7, gbc_btnOrder_7);
 		
 		JLabel lblCustomer_8 = new JLabel("-");
 		GridBagConstraints gbc_lblCustomer_8 = new GridBagConstraints();
@@ -532,13 +476,6 @@ public class CapstoneMainFrame {
 		gbc_lblPriority_8.gridy = 9;
 		layeredPane_2.add(lblPriority_8, gbc_lblPriority_8);
 		
-		JButton btnOrder_8 = new JButton("");
-		GridBagConstraints gbc_btnOrder_8 = new GridBagConstraints();
-		gbc_btnOrder_8.insets = new Insets(0, 0, 5, 0);
-		gbc_btnOrder_8.gridx = 2;
-		gbc_btnOrder_8.gridy = 9;
-		layeredPane_2.add(btnOrder_8, gbc_btnOrder_8);
-		
 		JLabel lblCustomer_9 = new JLabel("-");
 		GridBagConstraints gbc_lblCustomer_9 = new GridBagConstraints();
 		gbc_lblCustomer_9.insets = new Insets(0, 0, 5, 5);
@@ -552,13 +489,6 @@ public class CapstoneMainFrame {
 		gbc_lblPriority_9.gridx = 1;
 		gbc_lblPriority_9.gridy = 10;
 		layeredPane_2.add(lblPriority_9, gbc_lblPriority_9);
-		
-		JButton btnOrder_9 = new JButton("");
-		GridBagConstraints gbc_btnOrder_9 = new GridBagConstraints();
-		gbc_btnOrder_9.insets = new Insets(0, 0, 5, 0);
-		gbc_btnOrder_9.gridx = 2;
-		gbc_btnOrder_9.gridy = 10;
-		layeredPane_2.add(btnOrder_9, gbc_btnOrder_9);
 		
 		JLabel lblPageNumber = new JLabel("0/1");
 		GridBagConstraints gbc_lblPageNumber = new GridBagConstraints();
@@ -622,24 +552,24 @@ public class CapstoneMainFrame {
 			}
 		});
 		
-		JLabel lblNewLabel_7 = new JLabel("Customer");
-		layeredPane.add(lblNewLabel_7, "cell 0 0 3 1,growx,aligny top");
+		JLabel lblCustomer = new JLabel("Customer");
+		layeredPane.add(lblCustomer, "cell 0 0 3 1,growx,aligny top");
 		
-		JLabel lblNewLabel_8 = new JLabel("Date");
-		layeredPane.add(lblNewLabel_8, "cell 4 0,alignx right,aligny top");
+		JLabel lblDate = new JLabel("Date");
+		layeredPane.add(lblDate, "cell 4 0,alignx right,aligny top");
 		
-		JLabel lblNewLabel_7_1 = new JLabel("Address");
-		layeredPane.add(lblNewLabel_7_1, "cell 0 1 5 1,growx,aligny top");
+		JLabel lblAddress = new JLabel("Address");
+		layeredPane.add(lblAddress, "cell 0 1 5 1,growx,aligny top");
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Delivered");
-		layeredPane.add(chckbxNewCheckBox, "cell 0 2,growx,aligny top");
+		JCheckBox chckbxDelivered = new JCheckBox("Delivered");
+		layeredPane.add(chckbxDelivered, "cell 0 2,growx,aligny top");
 		
 		JLabel lblNewLabel_11 = new JLabel("Spreader");
 		layeredPane.add(lblNewLabel_11, "cell 2 2,alignx right,aligny center");
 		
-		textField = new JTextField();
-		layeredPane.add(textField, "cell 4 2,growx,aligny center");
-		textField.setColumns(10);
+		textFieldSpreader = new JTextField();
+		layeredPane.add(textFieldSpreader, "cell 4 2,growx,aligny center");
+		textFieldSpreader.setColumns(10);
 		
 		JLabel lblNewLabel_12 = new JLabel("Pounds");
 		lblNewLabel_12.setHorizontalAlignment(SwingConstants.CENTER);
@@ -726,8 +656,8 @@ public class CapstoneMainFrame {
 		JLabel lblNewLabel_20 = new JLabel("Employee");
 		layeredPane.add(lblNewLabel_20, "cell 0 11,growx,aligny top");
 		
-		JLabel lblNewLabel_21 = new JLabel("-");
-		layeredPane.add(lblNewLabel_21, "cell 2 11 3 1,growx,aligny top");
+		JLabel lblEmployee = new JLabel("-");
+		layeredPane.add(lblEmployee, "cell 2 11 3 1,growx,aligny top");
 		
 		Box horizontalBox_1 = Box.createHorizontalBox();
 		GridBagConstraints gbc_horizontalBox_1 = new GridBagConstraints();
@@ -769,6 +699,127 @@ public class CapstoneMainFrame {
 		
 		Component horizontalGlue_1 = Box.createHorizontalGlue();
 		horizontalBox_2.add(horizontalGlue_1);
+		
+		JButton btnOrder_0 = new JButton("");
+		btnOrder_0.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				export.displayOrder(0, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
+			}
+		});
+		GridBagConstraints gbc_btnOrder_0 = new GridBagConstraints();
+		gbc_btnOrder_0.insets = new Insets(0, 0, 5, 0);
+		gbc_btnOrder_0.gridx = 2;
+		gbc_btnOrder_0.gridy = 1;
+		layeredPane_2.add(btnOrder_0, gbc_btnOrder_0);
+		
+		JButton btnOrder_1 = new JButton("");
+		btnOrder_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				export.displayOrder(1, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
+			}
+		});
+		GridBagConstraints gbc_btnOrder_1 = new GridBagConstraints();
+		gbc_btnOrder_1.insets = new Insets(0, 0, 5, 0);
+		gbc_btnOrder_1.gridx = 2;
+		gbc_btnOrder_1.gridy = 2;
+		layeredPane_2.add(btnOrder_1, gbc_btnOrder_1);
+		
+		JButton btnOrder_2 = new JButton("");
+		btnOrder_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				export.displayOrder(2, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
+
+			}
+		});
+		GridBagConstraints gbc_btnOrder_2 = new GridBagConstraints();
+		gbc_btnOrder_2.insets = new Insets(0, 0, 5, 0);
+		gbc_btnOrder_2.gridx = 2;
+		gbc_btnOrder_2.gridy = 3;
+		layeredPane_2.add(btnOrder_2, gbc_btnOrder_2);
+		
+		JButton btnOrder_3 = new JButton("");
+		btnOrder_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				export.displayOrder(3, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
+			}
+		});
+		GridBagConstraints gbc_btnOrder_3 = new GridBagConstraints();
+		gbc_btnOrder_3.insets = new Insets(0, 0, 5, 0);
+		gbc_btnOrder_3.gridx = 2;
+		gbc_btnOrder_3.gridy = 4;
+		layeredPane_2.add(btnOrder_3, gbc_btnOrder_3);
+		
+		JButton btnOrder_4 = new JButton("");
+		btnOrder_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				export.displayOrder(4, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
+			}
+		});
+		GridBagConstraints gbc_btnOrder_4 = new GridBagConstraints();
+		gbc_btnOrder_4.insets = new Insets(0, 0, 5, 0);
+		gbc_btnOrder_4.gridx = 2;
+		gbc_btnOrder_4.gridy = 5;
+		layeredPane_2.add(btnOrder_4, gbc_btnOrder_4);
+		
+		JButton btnOrder_5 = new JButton("");
+		btnOrder_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				export.displayOrder(5, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
+			}
+		});
+		GridBagConstraints gbc_btnOrder_5 = new GridBagConstraints();
+		gbc_btnOrder_5.insets = new Insets(0, 0, 5, 0);
+		gbc_btnOrder_5.gridx = 2;
+		gbc_btnOrder_5.gridy = 6;
+		layeredPane_2.add(btnOrder_5, gbc_btnOrder_5);
+		
+		JButton btnOrder_6 = new JButton("");
+		btnOrder_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				export.displayOrder(6, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
+			}
+		});
+		GridBagConstraints gbc_btnOrder_6 = new GridBagConstraints();
+		gbc_btnOrder_6.insets = new Insets(0, 0, 5, 0);
+		gbc_btnOrder_6.gridx = 2;
+		gbc_btnOrder_6.gridy = 7;
+		layeredPane_2.add(btnOrder_6, gbc_btnOrder_6);
+		
+		JButton btnOrder_7 = new JButton("");
+		btnOrder_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				export.displayOrder(7, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
+			}
+		});
+		GridBagConstraints gbc_btnOrder_7 = new GridBagConstraints();
+		gbc_btnOrder_7.insets = new Insets(0, 0, 5, 0);
+		gbc_btnOrder_7.gridx = 2;
+		gbc_btnOrder_7.gridy = 8;
+		layeredPane_2.add(btnOrder_7, gbc_btnOrder_7);
+		
+		JButton btnOrder_8 = new JButton("");
+		btnOrder_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				export.displayOrder(8, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
+			}
+		});
+		GridBagConstraints gbc_btnOrder_8 = new GridBagConstraints();
+		gbc_btnOrder_8.insets = new Insets(0, 0, 5, 0);
+		gbc_btnOrder_8.gridx = 2;
+		gbc_btnOrder_8.gridy = 9;
+		layeredPane_2.add(btnOrder_8, gbc_btnOrder_8);
+		
+		JButton btnOrder_9 = new JButton("");
+		btnOrder_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				export.displayOrder(9, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
+			}
+		});
+		GridBagConstraints gbc_btnOrder_9 = new GridBagConstraints();
+		gbc_btnOrder_9.insets = new Insets(0, 0, 5, 0);
+		gbc_btnOrder_9.gridx = 2;
+		gbc_btnOrder_9.gridy = 10;
+		layeredPane_2.add(btnOrder_9, gbc_btnOrder_9);
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {

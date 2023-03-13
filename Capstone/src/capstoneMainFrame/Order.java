@@ -9,6 +9,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
 /**
  * @author 19sky
  *
@@ -123,14 +127,65 @@ public class Order {
         }
 	}
 	
+	public String getAddress() {
+		String address = null;
+		
+		String sql = String.format("SELECT * from customers where customerNum = \"%d\"", this.customerNum);
+		// Try and connect to the database
+        try {  
+            Connection conn = this.connect();  
+            Statement stmt  = conn.createStatement();  
+            
+            // Run SQL statement and return the result
+            ResultSet rs    = stmt.executeQuery(sql);
+            
+            // Extract the needed information
+            address = rs.getString("address");
+            
+            stmt.close();
+            conn.close();
+            return address;
+    
+        } catch (SQLException e) {  
+        	System.out.println(e.getMessage());  
+        	return null;
+        
+        }
+	}
+	
 	public int getPriority() {
 		return this.priority;
+	}
+	
+	public int getSpreader() {
+		return 1;
 	}
 
 	/*
 	 * Set labels with provided order information
 	 */
-	public void display() {
+	public void display(JLabel lblcustomer, JLabel lbldate, JLabel lbladdress, JCheckBox lbldelivered, JTextField spreader, JLabel potashAmt, JLabel mapAmt, JLabel amsAmt, JLabel ureaAmt, JLabel gypsumAmt, JLabel potashMix, JLabel mapMix, JLabel amsMix, JLabel ureaMix, JLabel gypsumMix, JLabel employeeID) {
+		Double mix0 = this.Potash;
+		Double mix1 = mix0 + this.MAP;
+		Double mix2 = mix1 + this.AMS;
+		Double mix3 = mix2 + this.Urea;
+		Double mix4 = mix3 + this.Gypsum;
 		
+		lblcustomer.setText(this.getCustomerName());
+		lbldate.setText(this.PickUpDate);
+		lbladdress.setText(this.getAddress());
+		lbldelivered.setSelected(this.delivered);
+		spreader.setText(String.valueOf(this.getSpreader()));
+		potashAmt.setText(String.valueOf(this.Potash));
+		mapAmt.setText(String.valueOf(this.MAP));
+		amsAmt.setText(String.valueOf(this.AMS));
+		ureaAmt.setText(String.valueOf(this.Urea));
+		gypsumAmt.setText(String.valueOf(this.Gypsum));
+		potashMix.setText(String.valueOf(mix0));
+		mapMix.setText(String.valueOf(mix1));
+		amsMix.setText(String.valueOf(mix2));
+		ureaMix.setText(String.valueOf(mix3));
+		gypsumMix.setText(String.valueOf(mix4));
+		employeeID.setText(String.valueOf(employeeNum));
 	}
 }

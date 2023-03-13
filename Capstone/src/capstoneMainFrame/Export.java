@@ -2,8 +2,10 @@ package capstoneMainFrame;
 
 import java.util.ArrayList;
 
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  * @author 19sky
@@ -51,8 +53,8 @@ public class Export {
 	}
 	
 	// give label parameters
-	public void displayOrder(int index) {
-		Orders.get(page * 10 + index).display();
+	public void displayOrder(int index, JLabel lblcustomer, JLabel lbldate, JLabel lbladdress, JCheckBox lbldelivered, JTextField spreader, JLabel potashAmt, JLabel mapAmt, JLabel amsAmt, JLabel ureaAmt, JLabel gypsumAmt, JLabel potashMix, JLabel mapMix, JLabel amsMix, JLabel ureaMix, JLabel gypsumMix, JLabel employeeID) {
+		Orders.get(page * 10 + index).display(lblcustomer, lbldate, lbladdress, lbldelivered, spreader, potashAmt, mapAmt, amsAmt, ureaAmt, gypsumAmt, potashMix, mapMix, amsMix, ureaMix, gypsumMix, employeeID);
 	}
 	
 	public void updatePage(JLabel lbPageNumber, JLabel lbnumber_0, JLabel lbnumber_1, JLabel lbnumber_2, JLabel lbnumber_3, JLabel lbnumber_4, JLabel lbnumber_5, JLabel lbnumber_6, JLabel lbnumber_7, JLabel lbnumber_8, JLabel lbnumber_9, JLabel lbcustomer_0, JLabel lbcustomer_1, JLabel lbcustomer_2, JLabel lbcustomer_3, JLabel lbcustomer_4, JLabel lbcustomer_5, JLabel lbcustomer_6, JLabel lbcustomer_7, JLabel lbcustomer_8, JLabel lbcustomer_9) {
