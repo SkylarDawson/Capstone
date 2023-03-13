@@ -36,7 +36,8 @@ public class Export {
 					Orders.add(i, sort);
 					break;
 				}
-				else if(sort.getPriority() >= Orders.get(i).getPriority()) {
+				// < for 1 high priority > for 10 high priority
+				else if(sort.getPriority() < Orders.get(i).getPriority()) {
 					Orders.add(i, sort);
 					break;
 				}
@@ -44,7 +45,9 @@ public class Export {
 			}
 		}
 		
-		System.out.println(Orders.size());
+		// Debugging code
+		System.out.println(String.format("Orders in Queue: %s", Orders.size()));
+		System.out.println(String.format("Pages of Queue: %s", ((Orders.size() - 1) / 10) + 1));
 	}
 	
 	// give label parameters
@@ -52,134 +55,114 @@ public class Export {
 		Orders.get(page * 10 + index).display();
 	}
 	
-	public void updatePage(JLabel lbPageNumber, JLabel lbnumber_0, JLabel lbnumber_1, JLabel lbnumber_2, JLabel lbnumber_3, JLabel lbnumber_4, JLabel lbnumber_5, JLabel lbnumber_6, JLabel lbnumber_7, JLabel lbnumber_8, JLabel lbnumber_9, JLabel lbcustomer_0, JLabel lbcustomer_1, JLabel lbcustomer_2, JLabel lbcustomer_3, JLabel lbcustomer_4, JLabel lbcustomer_5, JLabel lbcustomer_6, JLabel lbcustomer_7, JLabel lbcustomer_8, JLabel lbcustomer_9, JLabel lbdate_0, JLabel lbdate_1, JLabel lbdate_2, JLabel lbdate_3, JLabel lbdate_4, JLabel lbdate_5, JLabel lbdate_6, JLabel lbdate_7, JLabel lbdate_8, JLabel lbdate_9) {
+	public void updatePage(JLabel lbPageNumber, JLabel lbnumber_0, JLabel lbnumber_1, JLabel lbnumber_2, JLabel lbnumber_3, JLabel lbnumber_4, JLabel lbnumber_5, JLabel lbnumber_6, JLabel lbnumber_7, JLabel lbnumber_8, JLabel lbnumber_9, JLabel lbcustomer_0, JLabel lbcustomer_1, JLabel lbcustomer_2, JLabel lbcustomer_3, JLabel lbcustomer_4, JLabel lbcustomer_5, JLabel lbcustomer_6, JLabel lbcustomer_7, JLabel lbcustomer_8, JLabel lbcustomer_9) {
 		lbPageNumber.setText(String.format("%s/%d",page+1,((Orders.size()-1)/10)+1));
 		// Page full
 		if(Orders.size() / 10 > page) {
-			lbnumber_0.setText(null);
-			lbcustomer_0.setText(null);
-			lbdate_0.setText(null);
-			lbnumber_1.setText(null);
-			lbcustomer_1.setText(null);
-			lbdate_1.setText(null);
-			lbnumber_2.setText(null);
-			lbcustomer_2.setText(null);
-			lbdate_2.setText(null);
-			lbnumber_3.setText(null);
-			lbcustomer_3.setText(null);
-			lbdate_3.setText(null);
-			lbnumber_4.setText(null);
-			lbcustomer_4.setText(null);
-			lbdate_4.setText(null);
-			lbnumber_5.setText(null);
-			lbcustomer_5.setText(null);
-			lbdate_5.setText(null);
-			lbnumber_6.setText(null);
-			lbcustomer_6.setText(null);
-			lbdate_6.setText(null);
-			lbnumber_7.setText(null);
-			lbcustomer_7.setText(null);
-			lbdate_7.setText(null);
-			lbnumber_8.setText(null);
-			lbcustomer_8.setText(null);
-			lbdate_8.setText(null);
-			lbnumber_9.setText(null);			
-			lbcustomer_9.setText(null);
-			lbdate_9.setText(null);
+			lbnumber_0.setText(String.valueOf(Orders.get(page * 10 + 0).getPriority()));
+			lbcustomer_0.setText(Orders.get(page * 10 + 0).getCustomerName());
+			lbnumber_1.setText(String.valueOf(Orders.get(page * 10 + 1).getPriority()));
+			lbcustomer_1.setText(Orders.get(page * 10 + 1).getCustomerName());
+			lbnumber_2.setText(String.valueOf(Orders.get(page * 10 + 2).getPriority()));
+			lbcustomer_2.setText(Orders.get(page * 10 + 2).getCustomerName());
+			lbnumber_3.setText(String.valueOf(Orders.get(page * 10 + 3).getPriority()));
+			lbcustomer_3.setText(Orders.get(page * 10 + 3).getCustomerName());
+			lbnumber_4.setText(String.valueOf(Orders.get(page * 10 + 4).getPriority()));
+			lbcustomer_4.setText(Orders.get(page * 10 + 4).getCustomerName());
+			lbnumber_5.setText(String.valueOf(Orders.get(page * 10 + 5).getPriority()));
+			lbcustomer_5.setText(Orders.get(page * 10 + 5).getCustomerName());
+			lbnumber_6.setText(String.valueOf(Orders.get(page * 10 + 6).getPriority()));
+			lbcustomer_6.setText(Orders.get(page * 10 + 6).getCustomerName());
+			lbnumber_7.setText(String.valueOf(Orders.get(page * 10 + 7).getPriority()));
+			lbcustomer_7.setText(Orders.get(page * 10 + 7).getCustomerName());
+			lbnumber_8.setText(String.valueOf(Orders.get(page * 10 + 8).getPriority()));
+			lbcustomer_8.setText(Orders.get(page * 10 + 8).getCustomerName());
+			lbnumber_9.setText(String.valueOf(Orders.get(page * 10 + 9).getPriority()));			
+			lbcustomer_9.setText(Orders.get(page * 10 + 9).getCustomerName());
 		}
 		// Page partially full
 		else if(Orders.size() / 10 == page) {
 			if(Orders.size() % 10 >= 1) {
-				lbnumber_0.setText(null);
-				lbcustomer_0.setText(null);
-				lbdate_0.setText(null);
+				lbnumber_0.setText(String.valueOf(Orders.get(page * 10 + 0).getPriority()));
+				lbcustomer_0.setText(Orders.get(page * 10 + 0).getCustomerName());
 			}
 			else {
 				lbnumber_0.setText("-");
 				lbcustomer_0.setText("-");
-				lbdate_0.setText("-");
 			}
 			if(Orders.size() % 10 >= 2) {
-				lbnumber_1.setText(null);
-				lbcustomer_1.setText(null);
-				lbdate_1.setText(null);
+				lbnumber_1.setText(String.valueOf(Orders.get(page * 10 + 1).getPriority()));
+				lbcustomer_1.setText(Orders.get(page * 10 + 1).getCustomerName());
 			}
 			else {
 				lbnumber_1.setText("-");
 				lbcustomer_1.setText("-");
-				lbdate_1.setText("-");
 			}
 			if(Orders.size() % 10 >= 3) {
-				lbnumber_2.setText(null);
-				lbcustomer_2.setText(null);
-				lbdate_2.setText(null);
+				lbnumber_2.setText(String.valueOf(Orders.get(page * 10 + 2).getPriority()));
+				lbcustomer_2.setText(Orders.get(page * 10 + 2).getCustomerName());
 			}
 			else {
 				lbnumber_2.setText("-");
 				lbcustomer_2.setText("-");
-				lbdate_2.setText("-");
 			}
 			if(Orders.size() % 10 >= 4) {
-				lbnumber_3.setText(null);
-				lbcustomer_3.setText(null);
-				lbdate_3.setText(null);
+				lbnumber_3.setText(String.valueOf(Orders.get(page * 10 + 3).getPriority()));
+				lbcustomer_3.setText(Orders.get(page * 10 + 3).getCustomerName());
 			}
 			else {
 				lbnumber_3.setText("-");
 				lbcustomer_3.setText("-");
-				lbdate_3.setText("-");
 			}
 			if(Orders.size() % 10 >= 5) {
-				lbnumber_4.setText(null);
-				lbcustomer_4.setText(null);
-				lbdate_4.setText(null);
+				lbnumber_4.setText(String.valueOf(Orders.get(page * 10 + 4).getPriority()));
+				lbcustomer_4.setText(Orders.get(page * 10 + 4).getCustomerName());
 			}
 			else {
 				lbnumber_4.setText("-");
 				lbcustomer_4.setText("-");
-				lbdate_4.setText("-");
 			}
 			if(Orders.size() % 10 >= 6) {
-				lbnumber_5.setText(null);
-				lbcustomer_5.setText(null);
-				lbdate_5.setText(null);
+				lbnumber_5.setText(String.valueOf(Orders.get(page * 10 + 5).getPriority()));
+				lbcustomer_5.setText(Orders.get(page * 10 + 5).getCustomerName());
 			}
 			else {
 				lbnumber_5.setText("-");
 				lbcustomer_5.setText("-");
-				lbdate_5.setText("-");
 			}
 			if(Orders.size() % 10 >= 7) {
-				lbnumber_6.setText(null);
-				lbcustomer_6.setText(null);
-				lbdate_6.setText(null);
+				lbnumber_6.setText(String.valueOf(Orders.get(page * 10 + 6).getPriority()));
+				lbcustomer_6.setText(Orders.get(page * 10 + 6).getCustomerName());
 			}
 			else {
 				lbnumber_6.setText("-");
 				lbcustomer_6.setText("-");
-				lbdate_6.setText("-");
 			}
 			if(Orders.size() % 10 >= 8) {
-				lbnumber_7.setText(null);
-				lbcustomer_7.setText(null);
-				lbdate_7.setText(null);
+				lbnumber_7.setText(String.valueOf(Orders.get(page * 10 + 7).getPriority()));
+				lbcustomer_7.setText(Orders.get(page * 10 + 7).getCustomerName());
 			}
 			else {
 				lbnumber_7.setText("-");
 				lbcustomer_7.setText("-");
-				lbdate_7.setText("-");
 			}
 			if(Orders.size() % 10 == 9) {
-				lbnumber_8.setText(null);
-				lbcustomer_8.setText(null);
-				lbdate_8.setText(null);
+				lbnumber_8.setText(String.valueOf(Orders.get(page * 10 + 8).getPriority()));
+				lbcustomer_8.setText(Orders.get(page * 10 + 8).getCustomerName());
 			}
 			else {
 				lbnumber_8.setText("-");
 				lbcustomer_8.setText("-");
-				lbdate_8.setText("-");
 			}
 		}
+	}
+	
+	public void forward() {
+		if((page + 1) < ((Orders.size()-1) / 10 + 1)) page++;
+	}
+	
+	public void backward() {
+		if(page > 0) page--;
 	}
 	
 	public void back(JPanel CurrPanel,JPanel NextPanel) {

@@ -230,22 +230,6 @@ public class CapstoneMainFrame {
 		gbc_lblNewLabel.gridy = 1;
 		mainPanel.add(lblNewLabel, gbc_lblNewLabel);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		JButton btnExport = new JButton("Export");
-		GridBagConstraints gbc_btnExport = new GridBagConstraints();
-		gbc_btnExport.fill = GridBagConstraints.BOTH;
-		gbc_btnExport.insets = new Insets(0, 0, 5, 5);
-		gbc_btnExport.gridx = 1;
-		gbc_btnExport.gridy = 2;
-		mainPanel.add(btnExport, gbc_btnExport);
-		btnExport.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setPrevious(mainPanel);
-				mainPanel.hide();
-				exportPanel.show();
-				
-			}
-		});
 				
 		JButton btnOrders = new JButton("Orders");
 		btnOrders.addActionListener(new ActionListener() {
@@ -584,6 +568,14 @@ public class CapstoneMainFrame {
 		layeredPane_2.add(lblPageNumber, gbc_lblPageNumber);
 		
 		JButton btnPageBack = new JButton("<");
+		btnPageBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				export.backward();
+				export.updatePage(lblPageNumber, lblPriority_0, lblPriority_1, lblPriority_2, lblPriority_3, lblPriority_4, lblPriority_5, lblPriority_6, lblPriority_7, lblPriority_8, lblPriority_9, lblCustomer_0, lblCustomer_1, lblCustomer_2, lblCustomer_3, lblCustomer_4, lblCustomer_5, lblCustomer_6, lblCustomer_7, lblCustomer_8, lblCustomer_9);
+				exportPanel.hide();
+				exportPanel.show();
+			}
+		});
 		GridBagConstraints gbc_btnPageBack = new GridBagConstraints();
 		gbc_btnPageBack.insets = new Insets(0, 0, 0, 5);
 		gbc_btnPageBack.gridx = 1;
@@ -591,6 +583,14 @@ public class CapstoneMainFrame {
 		layeredPane_2.add(btnPageBack, gbc_btnPageBack);
 		
 		JButton btnPageForward = new JButton(">");
+		btnPageForward.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				export.forward();
+				export.updatePage(lblPageNumber, lblPriority_0, lblPriority_1, lblPriority_2, lblPriority_3, lblPriority_4, lblPriority_5, lblPriority_6, lblPriority_7, lblPriority_8, lblPriority_9, lblCustomer_0, lblCustomer_1, lblCustomer_2, lblCustomer_3, lblCustomer_4, lblCustomer_5, lblCustomer_6, lblCustomer_7, lblCustomer_8, lblCustomer_9);
+				exportPanel.hide();
+				exportPanel.show();
+			}
+		});
 		GridBagConstraints gbc_btnPageForward = new GridBagConstraints();
 		gbc_btnPageForward.gridx = 2;
 		gbc_btnPageForward.gridy = 11;
@@ -604,6 +604,23 @@ public class CapstoneMainFrame {
 		gbc_layeredPane.gridy = 1;
 		exportPanel.add(layeredPane, gbc_layeredPane);
 		layeredPane.setLayout(new MigLayout("", "[77px][6px][42px][6px][79px]", "[13px][13px][21px][13px][13px][13px][13px][13px][13px][19px][13px][13px]"));
+		
+		JButton btnExport = new JButton("Export");
+		GridBagConstraints gbc_btnExport = new GridBagConstraints();
+		gbc_btnExport.fill = GridBagConstraints.BOTH;
+		gbc_btnExport.insets = new Insets(0, 0, 5, 5);
+		gbc_btnExport.gridx = 1;
+		gbc_btnExport.gridy = 2;
+		mainPanel.add(btnExport, gbc_btnExport);
+		btnExport.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setPrevious(mainPanel);
+				export.updatePage(lblPageNumber, lblPriority_0, lblPriority_1, lblPriority_2, lblPriority_3, lblPriority_4, lblPriority_5, lblPriority_6, lblPriority_7, lblPriority_8, lblPriority_9, lblCustomer_0, lblCustomer_1, lblCustomer_2, lblCustomer_3, lblCustomer_4, lblCustomer_5, lblCustomer_6, lblCustomer_7, lblCustomer_8, lblCustomer_9);
+				mainPanel.hide();
+				exportPanel.show();
+				
+			}
+		});
 		
 		JLabel lblNewLabel_7 = new JLabel("Customer");
 		layeredPane.add(lblNewLabel_7, "cell 0 0 3 1,growx,aligny top");

@@ -95,6 +95,34 @@ public class Order {
         } 
 	}
 	
+	public String getCustomerName() {
+		String firstName = null;
+		String lastName = null;
+		
+		String sql = String.format("SELECT * from customers where customerNum = \"%d\"", this.customerNum);
+		// Try and connect to the database
+        try {  
+            Connection conn = this.connect();  
+            Statement stmt  = conn.createStatement();  
+            
+            // Run SQL statement and return the result
+            ResultSet rs    = stmt.executeQuery(sql);
+            
+            // Extract the needed information
+            firstName = rs.getString("firstName");
+            lastName = rs.getString("lastName");
+            
+            stmt.close();
+            conn.close();
+            return firstName + " " + lastName;
+    
+        } catch (SQLException e) {  
+        	System.out.println(e.getMessage());  
+        	return null;
+        
+        }
+	}
+	
 	public int getPriority() {
 		return this.priority;
 	}
