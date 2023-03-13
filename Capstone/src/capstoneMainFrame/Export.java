@@ -159,6 +159,9 @@ public class Export {
 		}
 	}
 	
+	public void delete(int selectedOrder) {
+		Orders.remove((page * 10) + selectedOrder);
+	}
 	public void forward() {
 		if((page + 1) < ((Orders.size()-1) / 10 + 1)) page++;
 	}

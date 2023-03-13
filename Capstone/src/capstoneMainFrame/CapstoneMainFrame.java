@@ -102,6 +102,7 @@ public class CapstoneMainFrame {
 	private JTextField orderUpdateUreaField;
 	private JTextField orderUpdateGypsumField;
 	private JTextField orderUpdateCommentsField;
+	private int selectedOrder = -1;
 	
 	/**
 	 * Launch the application.
@@ -307,7 +308,7 @@ public class CapstoneMainFrame {
 		
 		/**
 		 * Export panel initialization
-		 */
+		 */		
 		GridBagLayout gbl_exportPanel = new GridBagLayout();
 		gbl_exportPanel.columnWidths = new int[]{0, 0, 0, 115, 0, 0};
 		gbl_exportPanel.rowHeights = new int[]{20, 100, 0, 0, 20, 0};
@@ -670,11 +671,9 @@ public class CapstoneMainFrame {
 		// Button will prompt user to input order number to add to list
 		JButton btnNewButton_1 = new JButton("Create");
 		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				
+			public void actionPerformed(ActionEvent e) {				
 				exportPanel.hide();
-				exportPanel.show();
+				orderPanel.show();
 			}
 		});
 		horizontalBox_1.add(btnNewButton_1);
@@ -695,6 +694,18 @@ public class CapstoneMainFrame {
 		exportPanel.add(horizontalBox_2, gbc_horizontalBox_2);
 		
 		JButton btnNewButton_4 = new JButton("Delete");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the selected option?", "WARNING",
+				        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+				    export.delete(selectedOrder);
+				    selectedOrder = -1;
+				} else {
+				    System.out.print(false);
+				}
+				export.updatePage(lblPageNumber, lblPriority_0, lblPriority_1, lblPriority_2, lblPriority_3, lblPriority_4, lblPriority_5, lblPriority_6, lblPriority_7, lblPriority_8, lblPriority_9, lblCustomer_0, lblCustomer_1, lblCustomer_2, lblCustomer_3, lblCustomer_4, lblCustomer_5, lblCustomer_6, lblCustomer_7, lblCustomer_8, lblCustomer_9);
+			}
+		});
 		horizontalBox_2.add(btnNewButton_4);
 		
 		Component horizontalGlue_1 = Box.createHorizontalGlue();
@@ -703,7 +714,8 @@ public class CapstoneMainFrame {
 		JButton btnOrder_0 = new JButton("");
 		btnOrder_0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				export.displayOrder(0, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
+				selectedOrder = 0;
+				if(selectedOrder != -1)	export.displayOrder(selectedOrder, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
 			}
 		});
 		GridBagConstraints gbc_btnOrder_0 = new GridBagConstraints();
@@ -715,7 +727,8 @@ public class CapstoneMainFrame {
 		JButton btnOrder_1 = new JButton("");
 		btnOrder_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				export.displayOrder(1, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
+				selectedOrder = 1;
+				if(selectedOrder != -1)	export.displayOrder(selectedOrder, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
 			}
 		});
 		GridBagConstraints gbc_btnOrder_1 = new GridBagConstraints();
@@ -727,8 +740,8 @@ public class CapstoneMainFrame {
 		JButton btnOrder_2 = new JButton("");
 		btnOrder_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				export.displayOrder(2, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
-
+				selectedOrder = 2;
+				if(selectedOrder != -1)	export.displayOrder(selectedOrder, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
 			}
 		});
 		GridBagConstraints gbc_btnOrder_2 = new GridBagConstraints();
@@ -740,7 +753,8 @@ public class CapstoneMainFrame {
 		JButton btnOrder_3 = new JButton("");
 		btnOrder_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				export.displayOrder(3, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
+				selectedOrder = 3;
+				if(selectedOrder != -1)	export.displayOrder(selectedOrder, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
 			}
 		});
 		GridBagConstraints gbc_btnOrder_3 = new GridBagConstraints();
@@ -752,7 +766,8 @@ public class CapstoneMainFrame {
 		JButton btnOrder_4 = new JButton("");
 		btnOrder_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				export.displayOrder(4, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
+				selectedOrder = 4;
+				if(selectedOrder != -1)	export.displayOrder(selectedOrder, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
 			}
 		});
 		GridBagConstraints gbc_btnOrder_4 = new GridBagConstraints();
@@ -764,7 +779,8 @@ public class CapstoneMainFrame {
 		JButton btnOrder_5 = new JButton("");
 		btnOrder_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				export.displayOrder(5, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
+				selectedOrder = 5;
+				if(selectedOrder != -1)	export.displayOrder(selectedOrder, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
 			}
 		});
 		GridBagConstraints gbc_btnOrder_5 = new GridBagConstraints();
@@ -776,7 +792,8 @@ public class CapstoneMainFrame {
 		JButton btnOrder_6 = new JButton("");
 		btnOrder_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				export.displayOrder(6, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
+				selectedOrder = 6;
+				if(selectedOrder != -1)	export.displayOrder(selectedOrder, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
 			}
 		});
 		GridBagConstraints gbc_btnOrder_6 = new GridBagConstraints();
@@ -788,7 +805,8 @@ public class CapstoneMainFrame {
 		JButton btnOrder_7 = new JButton("");
 		btnOrder_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				export.displayOrder(7, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
+				selectedOrder = 7;
+				if(selectedOrder != -1)	export.displayOrder(selectedOrder, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
 			}
 		});
 		GridBagConstraints gbc_btnOrder_7 = new GridBagConstraints();
@@ -800,7 +818,8 @@ public class CapstoneMainFrame {
 		JButton btnOrder_8 = new JButton("");
 		btnOrder_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				export.displayOrder(8, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
+				selectedOrder = 8;
+				if(selectedOrder != -1)	export.displayOrder(selectedOrder, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
 			}
 		});
 		GridBagConstraints gbc_btnOrder_8 = new GridBagConstraints();
@@ -812,7 +831,8 @@ public class CapstoneMainFrame {
 		JButton btnOrder_9 = new JButton("");
 		btnOrder_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				export.displayOrder(9, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
+				selectedOrder = 9;
+				if(selectedOrder != -1)	export.displayOrder(selectedOrder, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
 			}
 		});
 		GridBagConstraints gbc_btnOrder_9 = new GridBagConstraints();
