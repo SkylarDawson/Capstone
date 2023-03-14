@@ -174,7 +174,6 @@ public class Export {
 		employeeID.setText("-");
 	}
 	
-	
 	public Order getOrder(int selectedOrder) {
 		return Orders.get((page * 10) + selectedOrder);
 	}

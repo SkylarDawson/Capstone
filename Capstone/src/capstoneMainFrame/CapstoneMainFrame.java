@@ -650,6 +650,7 @@ public class CapstoneMainFrame {
 			public void actionPerformed(ActionEvent e) {				
 				exportPanel.hide();
 				orderPanel.show();
+				setPrevious(exportPanel);
 			}
 		});
 		horizontalBox_1.add(btnNewButton_1);
@@ -660,7 +661,17 @@ public class CapstoneMainFrame {
 		JButton btnNewButton = new JButton("Export");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				spreader.claimSpreader(Integer.parseInt(textFieldSpreader.getText()), export.getOrder(selectedOrder).getCustomerID());
+				try {
+					inventory.computeOrder(export.getOrder(selectedOrder).getOutputs());				
+					spreader.claimSpreader(Integer.parseInt(textFieldSpreader.getText()), export.getOrder(selectedOrder).getCustomerID());
+				    export.delete(selectedOrder);
+					export.reset(lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
+				    selectedOrder = -1;
+					System.out.println("Successful Order");
+				} catch (Exception ex) {
+					System.out.print(ex.getMessage());
+					System.out.println("Unsuccessful Order");
+				}
 			}
 		});
 		btnNewButton.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -694,13 +705,11 @@ public class CapstoneMainFrame {
 		JButton btnNewButton_4 = new JButton("Delete");
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the selected option?", "WARNING",
+				if (selectedOrder != -1 && JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the selected option?", "WARNING",
 				        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 				    export.delete(selectedOrder);
 				    export.reset(lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
 				    selectedOrder = -1;
-				} else {
-				    System.out.print(false);
 				}
 				export.updatePage(lblPageNumber, lblPriority_0, lblPriority_1, lblPriority_2, lblPriority_3, lblPriority_4, lblPriority_5, lblPriority_6, lblPriority_7, lblPriority_8, lblPriority_9, lblCustomer_0, lblCustomer_1, lblCustomer_2, lblCustomer_3, lblCustomer_4, lblCustomer_5, lblCustomer_6, lblCustomer_7, lblCustomer_8, lblCustomer_9);
 			}
@@ -1326,6 +1335,19 @@ public class CapstoneMainFrame {
 		gbc_btnInvLoad_9.gridy = 11;
 		inventoryPanel.add(btnInvLoad_9, gbc_btnInvLoad_9);
 		
+		JButton btnSelectBins = new JButton("Select Bins");
+		btnSelectBins.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				inventory.selectBins();
+			}
+		});
+		btnSelectBins.setToolTipText("Select bins for inventory to be pulled from when order is exported");
+		GridBagConstraints gbc_btnSelectBins = new GridBagConstraints();
+		gbc_btnSelectBins.insets = new Insets(0, 0, 5, 5);
+		gbc_btnSelectBins.gridx = 7;
+		gbc_btnSelectBins.gridy = 11;
+		inventoryPanel.add(btnSelectBins, gbc_btnSelectBins);
+		
 		JLabel lblBin_10 = new JLabel("10");
 		lblBin_10.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lblBin_10 = new GridBagConstraints();
@@ -1453,7 +1475,7 @@ public class CapstoneMainFrame {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				orderPanel.hide();
-				mainPanel.show();
+				getPrevious().show();
 				orderHistoryTable.setModel(new DefaultTableModel());
 				setPrevious(orderPanel);
 			}

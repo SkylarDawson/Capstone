@@ -36,15 +36,12 @@ public class Bin {
 		this.storage += inbound;
 	}
 	
-	public boolean subStorage(double outbound) {
-		if(this.storage >= outbound) {
-			this.storage -= outbound;
-			if(this.storage == 0) {
-				this.ingredient = "-";
-			}
-			return true;
+	public void subStorage(double outbound) {
+		this.storage -= outbound;
+		if(this.storage == 0) {
+			this.ingredient = "-";
 		}
-		return false;
+		return;
 	}
 	
 	/**

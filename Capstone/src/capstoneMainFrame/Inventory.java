@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -21,6 +22,11 @@ import javax.swing.JPanel;
 public class Inventory {
 
 	private static Bin[] Bins = new Bin[10];
+	private int selectedPotash = -1;
+	private int selectedMAP = -1;
+	private int selectedAMS = -1;
+	private int selectedUrea = -1;
+	private int selectedGypsum = -1;
 	
 	/**
 	 * 
@@ -97,6 +103,21 @@ public class Inventory {
 		return false;
 	}
 	
+	public boolean computeOrder(Double[] outbound) throws Exception {
+		if(Bins[selectedPotash].getStorage()  < outbound[0]) throw new Exception();
+		if(Bins[selectedMAP].getStorage()  < outbound[1]) throw new Exception();
+		if(Bins[selectedAMS].getStorage()  < outbound[2]) throw new Exception();
+		if(Bins[selectedUrea].getStorage()  < outbound[3]) throw new Exception();
+		if(Bins[selectedGypsum].getStorage()  < outbound[4]) throw new Exception();
+		
+		Bins[selectedPotash].subStorage(outbound[0]);
+		Bins[selectedMAP].subStorage(outbound[1]);
+		Bins[selectedAMS].subStorage(outbound[2]);
+		Bins[selectedUrea].subStorage(outbound[3]);
+		Bins[selectedGypsum].subStorage(outbound[4]);
+		return true;
+	}
+	
 	public void emptyBin(int currIndex, int nextIndex) {
 		if(Bins[currIndex].getIngredient().equals(Bins[nextIndex].getIngredient())) {
 			Bins[nextIndex].addStorage(Bins[currIndex].emptyBin());
@@ -106,25 +127,25 @@ public class Inventory {
 	
 	public void updateInventory(JLabel bin1Ingredient, JLabel bin2Ingredient, JLabel bin3Ingredient, JLabel bin4Ingredient, JLabel bin5Ingredient, JLabel bin6Ingredient, JLabel bin7Ingredient, JLabel bin8Ingredient, JLabel bin9Ingredient, JLabel bin10Ingredient, JLabel bin1Storage, JLabel bin2Storage, JLabel bin3Storage, JLabel bin4Storage, JLabel bin5Storage, JLabel bin6Storage, JLabel bin7Storage, JLabel bin8Storage, JLabel bin9Storage, JLabel bin10Storage ) {
 		bin1Ingredient.setText(Bins[0].getIngredient());
-		bin1Storage.setText(String.valueOf(Bins[0].getStorage()));
+		bin1Storage.setText(String.format("%.0f", Bins[0].getStorage()));
 		bin2Ingredient.setText(Bins[1].getIngredient());
-		bin2Storage.setText(String.valueOf(Bins[1].getStorage()));
+		bin2Storage.setText(String.format("%.0f", Bins[1].getStorage()));
 		bin3Ingredient.setText(Bins[2].getIngredient());
-		bin3Storage.setText(String.valueOf(Bins[2].getStorage()));
+		bin3Storage.setText(String.format("%.0f", Bins[2].getStorage()));
 		bin4Ingredient.setText(Bins[3].getIngredient());
-		bin4Storage.setText(String.valueOf(Bins[3].getStorage()));
+		bin4Storage.setText(String.format("%.0f", Bins[3].getStorage()));
 		bin5Ingredient.setText(Bins[4].getIngredient());
-		bin5Storage.setText(String.valueOf(Bins[4].getStorage()));
+		bin5Storage.setText(String.format("%.0f", Bins[4].getStorage()));
 		bin6Ingredient.setText(Bins[5].getIngredient());
-		bin6Storage.setText(String.valueOf(Bins[5].getStorage()));
+		bin6Storage.setText(String.format("%.0f", Bins[5].getStorage()));
 		bin7Ingredient.setText(Bins[6].getIngredient());
-		bin7Storage.setText(String.valueOf(Bins[6].getStorage()));
+		bin7Storage.setText(String.format("%.0f", Bins[6].getStorage()));
 		bin8Ingredient.setText(Bins[7].getIngredient());
-		bin8Storage.setText(String.valueOf(Bins[7].getStorage()));
+		bin8Storage.setText(String.format("%.0f", Bins[7].getStorage()));
 		bin9Ingredient.setText(Bins[8].getIngredient());
-		bin9Storage.setText(String.valueOf(Bins[8].getStorage()));
+		bin9Storage.setText(String.format("%.0f", Bins[8].getStorage()));
 		bin10Ingredient.setText(Bins[9].getIngredient());
-		bin10Storage.setText(String.valueOf(Bins[9].getStorage()));
+		bin10Storage.setText(String.format("%.0f", Bins[9].getStorage()));
 	}
 	
 	public static void updateDatabase() {
@@ -160,6 +181,44 @@ public class Inventory {
 	public double getBinStorage(int index) {
 		return Bins[index].getStorage();
 	}	
+	
+	public void selectBins() {
+		while(true) {
+			int potash = Integer.valueOf(JOptionPane.showInputDialog("Bin to pull Potash from:"));
+			if (Bins[potash - 1].getIngredient().equals("Potash") && potash > 0 && potash < 10) {
+				this.selectedPotash = potash - 1;
+				break;
+			}
+		}
+		while(true) {
+			int map = Integer.valueOf(JOptionPane.showInputDialog("Bin to pull MAP from:"));
+			if (Bins[map - 1].getIngredient().equals("MAP") && map > 0 && map < 9) {
+				this.selectedMAP = map - 1;
+				break;
+			}
+		}
+		while(true) {
+			int ams = Integer.valueOf(JOptionPane.showInputDialog("Bin to pull AMS from:"));
+			if (Bins[ams - 1].getIngredient().equals("AMS") && ams > 0 && ams < 9) {
+				this.selectedAMS = ams - 1;
+				break;
+			}
+		}
+		while(true) {
+			int urea = Integer.valueOf(JOptionPane.showInputDialog("Bin to pull Urea from:"));
+			if (Bins[urea - 1].getIngredient().equals("Urea") && urea > 0 && urea < 9) {
+				this.selectedUrea = urea - 1;
+				break;
+			}
+		}
+		while(true) {
+			int gypsum = Integer.valueOf(JOptionPane.showInputDialog("Bin to pull Gypsum from:"));
+			if (Bins[gypsum - 1].getIngredient().equals("Gypsum") && gypsum > 0 && gypsum < 9) {
+				this.selectedGypsum = gypsum - 1;
+				break;
+			}
+		}
+	}
 	
 	/**
 	 * Back Function will hide the current panel and show the next panel.

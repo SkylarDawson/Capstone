@@ -186,6 +186,11 @@ public class Order {
         
         }
 	}
+	
+	public Double[] getOutputs() {
+		Double[] arr = {this.Potash, this.MAP, this.AMS, this.Urea, this.Gypsum};
+		return arr;
+	}
 
 	/*
 	 * Set labels with provided order information
