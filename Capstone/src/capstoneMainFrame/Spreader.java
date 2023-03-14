@@ -26,7 +26,6 @@ public class Spreader {
 	 * 
 	 */
 	public Spreader() {
-		// //Load Spreader information from database
 		
 	}
 	
