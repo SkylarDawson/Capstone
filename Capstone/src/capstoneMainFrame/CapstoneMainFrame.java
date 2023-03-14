@@ -248,21 +248,6 @@ public class CapstoneMainFrame {
 		gbc_btnOrders.gridy = 3;
 		mainPanel.add(btnOrders, gbc_btnOrders);
 		
-		JButton btnInventory = new JButton("Inventory");
-		btnInventory.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setPrevious(mainPanel);
-				mainPanel.hide();
-				inventoryPanel.show();
-			}
-		});
-		GridBagConstraints gbc_btnInventory = new GridBagConstraints();
-		gbc_btnInventory.fill = GridBagConstraints.BOTH;
-		gbc_btnInventory.insets = new Insets(0, 0, 5, 5);
-		gbc_btnInventory.gridx = 1;
-		gbc_btnInventory.gridy = 4;
-		mainPanel.add(btnInventory, gbc_btnInventory);
-		
 		JButton btnCustomer = new JButton("Customers");
 		btnCustomer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1421,6 +1406,22 @@ public class CapstoneMainFrame {
 		gbc_btnSave.gridx = 7;
 		gbc_btnSave.gridy = 7;
 		inventoryPanel.add(btnSave, gbc_btnSave);
+		
+		JButton btnInventory = new JButton("Inventory");
+		btnInventory.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				inventory.updateInventory(lblIngredient_1, lblIngredient_2, lblIngredient_3, lblIngredient_4, lblIngredient_5, lblIngredient_6, lblIngredient_7, lblIngredient_8, lblIngredient_9, lblIngredient_10, lblStorage_1, lblStorage_2, lblStorage_3, lblStorage_4, lblStorage_5, lblStorage_6, lblStorage_7, lblStorage_8, lblStorage_9, lblStorage_10);
+				setPrevious(mainPanel);
+				mainPanel.hide();
+				inventoryPanel.show();
+			}
+		});
+		GridBagConstraints gbc_btnInventory = new GridBagConstraints();
+		gbc_btnInventory.fill = GridBagConstraints.BOTH;
+		gbc_btnInventory.insets = new Insets(0, 0, 5, 5);
+		gbc_btnInventory.gridx = 1;
+		gbc_btnInventory.gridy = 4;
+		mainPanel.add(btnInventory, gbc_btnInventory);
 		
 		// Temporary Back button
 		JButton btnBack_1 = new JButton("Back");

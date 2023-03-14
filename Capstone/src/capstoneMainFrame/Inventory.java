@@ -20,7 +20,7 @@ import javax.swing.JPanel;
  */
 public class Inventory {
 
-	private Bin[] Bins = new Bin[10];
+	private static Bin[] Bins = new Bin[10];
 	
 	/**
 	 * 
@@ -68,7 +68,7 @@ public class Inventory {
 	/*
 	 * connect to the database the specified based on the file path
 	 */
-    private Connection connect() {  
+    private static Connection connect() {  
         // SQLite connection string  - this string is the file path to the database
         String url = "jdbc:sqlite:C:/sqlite/fertilizer.db";  
         Connection conn = null; 
@@ -85,11 +85,13 @@ public class Inventory {
 	public boolean inboundBin(int index, String ingredient, int inbound) {
 		if(Bins[index].getIngredient().equals(ingredient) && inbound > 0 && !ingredient.equals("-")) {
 			Bins[index].addStorage(inbound);
+			updateDatabase();
 			return true;
 		}
 		else if(Bins[index].getIngredient().equals("-") && !ingredient.equals("-")) {
 			Bins[index].setIngredient(ingredient);
 			Bins[index].addStorage(inbound);
+			updateDatabase();
 			return true;
 		}
 		return false;
@@ -99,6 +101,7 @@ public class Inventory {
 		if(Bins[currIndex].getIngredient().equals(Bins[nextIndex].getIngredient())) {
 			Bins[nextIndex].addStorage(Bins[currIndex].emptyBin());
 		}
+		updateDatabase();
 	}
 	
 	public void updateInventory(JLabel bin1Ingredient, JLabel bin2Ingredient, JLabel bin3Ingredient, JLabel bin4Ingredient, JLabel bin5Ingredient, JLabel bin6Ingredient, JLabel bin7Ingredient, JLabel bin8Ingredient, JLabel bin9Ingredient, JLabel bin10Ingredient, JLabel bin1Storage, JLabel bin2Storage, JLabel bin3Storage, JLabel bin4Storage, JLabel bin5Storage, JLabel bin6Storage, JLabel bin7Storage, JLabel bin8Storage, JLabel bin9Storage, JLabel bin10Storage ) {
@@ -125,7 +128,29 @@ public class Inventory {
 	}
 	
 	public static void updateDatabase() {
-		
+		// Update
+		String updateSpreader = "Update inventory "
+				+ "SET ingredient = ? , "
+				+ "amount = ? "
+				+ "WHERE binNum = ?";
+							
+		try {
+		     Connection conn = connect();  
+		     PreparedStatement pstmt  = conn.prepareStatement(updateSpreader);
+		     for(int i = 0 ; i < 10 ; i++) {
+		    	 pstmt.setString(1, Bins[i].getIngredient());
+		    	 pstmt.setDouble(2, Bins[i].getStorage());
+		    	 pstmt.setInt(3, i + 1);	            
+		    	 pstmt.executeUpdate();
+			 }
+						
+			 pstmt.close();
+			 conn.close();
+			 return;
+		} catch (SQLException e) {  
+		     System.out.println(e.getMessage());  
+		     return; 
+		}
 	}
 	
 	public String getBinIngredient(int index) {
