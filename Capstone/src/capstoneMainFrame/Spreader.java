@@ -3,18 +3,24 @@
  */
 package capstoneMainFrame;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Vector;
 
 /**
  * @author 19sky
  *
  */
 public class Spreader {
-
-	private ArrayList<Spread> Spreaders = new ArrayList<Spread>();
-	private int page = 0;
 	
 	/**
 	 * 
@@ -25,189 +31,183 @@ public class Spreader {
 	}
 	
 	/*
-	 * check if arraylist is empty
+	 * connect to the database the specified based on the file path
 	 */
-	public void newSpreader(int number) {
-		Spread sort = new Spread(number);
-		for(int i = 0; i < Spreaders.size(); i++ ) {
-			if(sort.getNumber() == Spreaders.get(i).getNumber()) {
-				//Caution already exists
-				break;
-			}
-			else if(sort.getNumber() < Spreaders.get(i).getNumber()) {
-				Spreaders.add(i,sort);
-				break;
-			}
+    private static Connection connect() {  
+    	 // SQLite connection string  - this string is the file path to the database 
+        String url = "jdbc:sqlite:C://sqlite/fertilizer.db";  
+        Connection conn = null;  
+        
+        // Test to make sure that the database exists
+        try {  
+            conn = DriverManager.getConnection(url);  
+        } catch (SQLException e) {  
+            System.out.println(e.getMessage());  
+        }  
+        return conn;  
+    }
+	
+	public static TableModel getTable() {
+
+		ArrayList<Integer> spreaderNum = new ArrayList<Integer>();
+		ArrayList<Integer> customerID = new ArrayList<Integer>();
+		ArrayList<String> takenDate = new ArrayList<String>();
+    	
+		String sql = "Select * from spreaders";
+		// Try and connect to the database
+        try {  
+            Connection conn = connect();  
+            Statement stmt  = conn.createStatement();  
+            
+            // Run SQL statement and return the result
+            ResultSet rs    = stmt.executeQuery(sql);
+            
+            while (rs.next()) { 
+            	// Extract the needed information
+            	spreaderNum.add(rs.getInt("spreaderNum"));
+            	customerID.add(rs.getInt("customerID"));
+            	takenDate.add(rs.getString("dateOut"));
+            }
+            
+            stmt.close();
+            conn.close();    
+        } catch (SQLException e) {  
+        	System.out.println(e.getMessage());  
+        	return null;
+        }
+		
+		// Create objects to hold the data for the table
+		Object[][] rowData = {};
+		Object[] headers = {"Spreader #", "Customer", "Date"};
+		
+		// Create table object
+		DefaultTableModel spreaderModel;
+		spreaderModel = new DefaultTableModel (rowData, headers);
+		
+		// For each returned tuple - create a new row with all order information
+		for(int i = 0; i < spreaderNum.size(); i++) {
+			spreaderModel.addRow(new Object[]{ spreaderNum.get(i), getCustomerName(customerID.get(i)), takenDate.get(i) });
 		}
+
+		return spreaderModel;
+	}
+	
+	public static String getCustomerName(int customerNum) {
+		String firstName = null;
+		String lastName = null;
+		
+		String sql = String.format("SELECT * from customers where customerNum = \"%d\"", customerNum);
+		// Try and connect to the database
+        try {  
+            Connection conn = connect();  
+            Statement stmt  = conn.createStatement();  
+            
+            // Run SQL statement and return the result
+            ResultSet rs    = stmt.executeQuery(sql);
+            
+            // Extract the needed information
+            firstName = rs.getString("firstName");
+            lastName = rs.getString("lastName");
+            
+            stmt.close();
+            conn.close();
+            return firstName + " " + lastName;
+    
+        } catch (SQLException e) {  
+        	System.out.println(e.getMessage());  
+        	return null;
+        }
 	}
 	
 	/*
-	 * Updates the information on spreader page. import all labels and assign appropiatly.
-	 * Needs to pull from database
+	 * 
 	 */
-	public void updatePage(JLabel currpage, JLabel maxpage, JLabel lbnumber_0, JLabel lbnumber_1, JLabel lbnumber_2, JLabel lbnumber_3, JLabel lbnumber_4, JLabel lbnumber_5, JLabel lbnumber_6, JLabel lbnumber_7, JLabel lbnumber_8, JLabel lbnumber_9, JLabel lbcustomer_0, JLabel lbcustomer_1, JLabel lbcustomer_2, JLabel lbcustomer_3, JLabel lbcustomer_4, JLabel lbcustomer_5, JLabel lbcustomer_6, JLabel lbcustomer_7, JLabel lbcustomer_8, JLabel lbcustomer_9, JLabel lbdate_0, JLabel lbdate_1, JLabel lbdate_2, JLabel lbdate_3, JLabel lbdate_4, JLabel lbdate_5, JLabel lbdate_6, JLabel lbdate_7, JLabel lbdate_8, JLabel lbdate_9) {
-		// Page full
-		if(Spreaders.size() / 10 > page) {
-			lbnumber_0.setText(null);
-			lbcustomer_0.setText(null);
-			lbdate_0.setText(null);
-			lbnumber_1.setText(null);
-			lbcustomer_1.setText(null);
-			lbdate_1.setText(null);
-			lbnumber_2.setText(null);
-			lbcustomer_2.setText(null);
-			lbdate_2.setText(null);
-			lbnumber_3.setText(null);
-			lbcustomer_3.setText(null);
-			lbdate_3.setText(null);
-			lbnumber_4.setText(null);
-			lbcustomer_4.setText(null);
-			lbdate_4.setText(null);
-			lbnumber_5.setText(null);
-			lbcustomer_5.setText(null);
-			lbdate_5.setText(null);
-			lbnumber_6.setText(null);
-			lbcustomer_6.setText(null);
-			lbdate_6.setText(null);
-			lbnumber_7.setText(null);
-			lbcustomer_7.setText(null);
-			lbdate_7.setText(null);
-			lbnumber_8.setText(null);
-			lbcustomer_8.setText(null);
-			lbdate_8.setText(null);
-			lbnumber_9.setText(null);			
-			lbcustomer_9.setText(null);
-			lbdate_9.setText(null);
+	public void newSpreader(int number) {
+		if (number <= 0) {
+			System.out.print("Invalid spreader number");
+			return;
 		}
-		// Page partially full
-		else if(Spreaders.size() / 10 == page) {
-			if(Spreaders.size() % 10 >= 1) {
-				lbnumber_0.setText(null);
-				lbcustomer_0.setText(null);
-				lbdate_0.setText(null);
-			}
-			else {
-				lbnumber_0.setText("-");
-				lbcustomer_0.setText("-");
-				lbdate_0.setText("-");
-			}
-			if(Spreaders.size() % 10 >= 2) {
-				lbnumber_1.setText(null);
-				lbcustomer_1.setText(null);
-				lbdate_1.setText(null);
-			}
-			else {
-				lbnumber_1.setText("-");
-				lbcustomer_1.setText("-");
-				lbdate_1.setText("-");
-			}
-			if(Spreaders.size() % 10 >= 3) {
-				lbnumber_2.setText(null);
-				lbcustomer_2.setText(null);
-				lbdate_2.setText(null);
-			}
-			else {
-				lbnumber_2.setText("-");
-				lbcustomer_2.setText("-");
-				lbdate_2.setText("-");
-			}
-			if(Spreaders.size() % 10 >= 4) {
-				lbnumber_3.setText(null);
-				lbcustomer_3.setText(null);
-				lbdate_3.setText(null);
-			}
-			else {
-				lbnumber_3.setText("-");
-				lbcustomer_3.setText("-");
-				lbdate_3.setText("-");
-			}
-			if(Spreaders.size() % 10 >= 5) {
-				lbnumber_4.setText(null);
-				lbcustomer_4.setText(null);
-				lbdate_4.setText(null);
-			}
-			else {
-				lbnumber_4.setText("-");
-				lbcustomer_4.setText("-");
-				lbdate_4.setText("-");
-			}
-			if(Spreaders.size() % 10 >= 6) {
-				lbnumber_5.setText(null);
-				lbcustomer_5.setText(null);
-				lbdate_5.setText(null);
-			}
-			else {
-				lbnumber_5.setText("-");
-				lbcustomer_5.setText("-");
-				lbdate_5.setText("-");
-			}
-			if(Spreaders.size() % 10 >= 7) {
-				lbnumber_6.setText(null);
-				lbcustomer_6.setText(null);
-				lbdate_6.setText(null);
-			}
-			else {
-				lbnumber_6.setText("-");
-				lbcustomer_6.setText("-");
-				lbdate_6.setText("-");
-			}
-			if(Spreaders.size() % 10 >= 8) {
-				lbnumber_7.setText(null);
-				lbcustomer_7.setText(null);
-				lbdate_7.setText(null);
-			}
-			else {
-				lbnumber_7.setText("-");
-				lbcustomer_7.setText("-");
-				lbdate_7.setText("-");
-			}
-			if(Spreaders.size() % 10 == 9) {
-				lbnumber_8.setText(null);
-				lbcustomer_8.setText(null);
-				lbdate_8.setText(null);
-			}
-			else {
-				lbnumber_8.setText("-");
-				lbcustomer_8.setText("-");
-				lbdate_8.setText("-");
-			}
-		}
+		
+		// The needed SQL command to be executed on the database to succssfully insert a customer
+    	String sql = "INSERT INTO spreaders(spreaderNum, customerID, dateOut) VALUES(?,?,?)";  
+   
+        try{  
+        	// Connect to the database
+            Connection conn = connect();  
+            
+            // Execute the statement and insert the passed values
+            PreparedStatement pstmt = conn.prepareStatement(sql);  
+            pstmt.setInt(1, number);  
+            pstmt.setInt(2, 0);
+            pstmt.setString(3, null);
+            
+            // Update after executing
+            pstmt.executeUpdate();  
+            
+            return;
+        } catch (SQLException e) {  
+            System.out.println(e.getMessage()); 
+            return;
+        }  
 	}
 	
 	/*
 	 * Check if customerID exist and update date to current date at number index
-	 * check if arraylist is empty
+	 * 
 	 */
 	public void claimSpreader(int number, int customerID) {
-		if(Spreaders.isEmpty()) {
-			System.out.print("Array is empty");
-		}
-		for(int i = 0; i < Spreaders.size(); i++ ) {
-			if(number == Spreaders.get(i).getNumber()) {
-				// If customer exists in database
-				if(customerID == 0) {
-					Spreaders.get(i).assignSpreader(customerID);
-				}
-			}
+		// Update
+		String updateSpreader = "Update spreaders "
+				+ "SET customerID = ? , "
+				+ "dateOut = ? "
+				+ "WHERE spreaderNum = ?";
+						
+		try {
+		    Connection conn = connect();  
+		    PreparedStatement pstmt  = conn.prepareStatement(updateSpreader);  
+		    pstmt.setInt(1, customerID);
+		    pstmt.setString(2, null);
+		    pstmt.setInt(3, number);	            
+		    pstmt.executeUpdate();
+			
+		    pstmt.close();
+		    conn.close();
+		    return;
+		} catch (SQLException e) {  
+			System.out.println(e.getMessage());  
+		    return;
+		        
 		}
 	}
 	
 	/*
 	 * reset spreader information to return state with location blank
 	 */
-	public void returnSpreader(int number) {
-		if(Spreaders.isEmpty()) {
-			System.out.print("Array is empty");
-		}
-		// Locate index of spreader in array
-		for(int i = 0; i < Spreaders.size(); i++ ) {
-			if(number == Spreaders.get(i).getNumber()) {
-				Spreaders.get(i).reset();
-				return;
-			}
-		}
-		
-		System.out.print("Spreader Not Found");
+	public void returnSpreader(int number, boolean check) {
+		if (check) {
+			// Update
+			String updateSpreader = "Update spreaders "
+					+ "SET customerID = ? , "
+					+ "dateOut = ? "
+					+ "WHERE spreaderNum = ?";
+							
+			try {
+	            Connection conn = connect();  
+	            PreparedStatement pstmt  = conn.prepareStatement(updateSpreader);  
+	            pstmt.setInt(1, 0);
+	            pstmt.setString(2, null);
+	            pstmt.setInt(3, number);	            
+	            pstmt.executeUpdate();
+				
+	            pstmt.close();
+	            conn.close();
+	            return;
+	        } catch (SQLException e) {  
+	            System.out.println(e.getMessage());  
+	            return;
+	            
+	        }
+		} 
 	}
 	
 	/**

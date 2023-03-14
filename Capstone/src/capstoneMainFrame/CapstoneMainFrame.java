@@ -47,7 +47,7 @@ public class CapstoneMainFrame {
 	private JTextField textFieldStorageInput;
 	private JTextField textFieldSpreader;
 	private JTextField textField_2;
-	private JTextField textField_1;
+	private JTextField textFieldSpreaderReturn;
 	private JTextField textFieldCreateCustomerID;
 	private JTextField textFieldCreateCustomerFirst;
 	private JTextField textFieldCreateCustomerLast;
@@ -103,6 +103,7 @@ public class CapstoneMainFrame {
 	private JTextField orderUpdateGypsumField;
 	private JTextField orderUpdateCommentsField;
 	private int selectedOrder = -1;
+	private JTable tableSpreaders;
 	
 	/**
 	 * Launch the application.
@@ -294,6 +295,13 @@ public class CapstoneMainFrame {
 		JButton btnSpreader = new JButton("Spreaders");
 		btnSpreader.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// Create the table based on the returned results
+				TableModel myModel = Spreader.getTable();
+				tableSpreaders.setModel(myModel);
+			    tableSpreaders.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+			    tableSpreaders.setCellEditor(null);
+			    tableSpreaders.setBounds(37, 143, 397, 183);
+			    
 				setPrevious(mainPanel);
 				mainPanel.hide();
 				spreaderPanel.show();
@@ -536,23 +544,6 @@ public class CapstoneMainFrame {
 		exportPanel.add(layeredPane, gbc_layeredPane);
 		layeredPane.setLayout(new MigLayout("", "[77px][6px][42px][6px][79px]", "[13px][13px][21px][13px][13px][13px][13px][13px][13px][19px][13px][13px]"));
 		
-		JButton btnExport = new JButton("Export");
-		GridBagConstraints gbc_btnExport = new GridBagConstraints();
-		gbc_btnExport.fill = GridBagConstraints.BOTH;
-		gbc_btnExport.insets = new Insets(0, 0, 5, 5);
-		gbc_btnExport.gridx = 1;
-		gbc_btnExport.gridy = 2;
-		mainPanel.add(btnExport, gbc_btnExport);
-		btnExport.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setPrevious(mainPanel);
-				export.updatePage(lblPageNumber, lblPriority_0, lblPriority_1, lblPriority_2, lblPriority_3, lblPriority_4, lblPriority_5, lblPriority_6, lblPriority_7, lblPriority_8, lblPriority_9, lblCustomer_0, lblCustomer_1, lblCustomer_2, lblCustomer_3, lblCustomer_4, lblCustomer_5, lblCustomer_6, lblCustomer_7, lblCustomer_8, lblCustomer_9);
-				mainPanel.hide();
-				exportPanel.show();
-				
-			}
-		});
-		
 		JLabel lblCustomer = new JLabel("Customer");
 		layeredPane.add(lblCustomer, "cell 0 0 3 1,growx,aligny top");
 		
@@ -682,6 +673,11 @@ public class CapstoneMainFrame {
 		horizontalBox_1.add(horizontalGlue);
 		
 		JButton btnNewButton = new JButton("Export");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				spreader.claimSpreader(Integer.parseInt(textFieldSpreader.getText()), export.getOrder(selectedOrder).getCustomerID());
+			}
+		});
 		btnNewButton.setHorizontalAlignment(SwingConstants.RIGHT);
 		horizontalBox_1.add(btnNewButton);
 		
@@ -693,12 +689,30 @@ public class CapstoneMainFrame {
 		gbc_horizontalBox_2.gridy = 3;
 		exportPanel.add(horizontalBox_2, gbc_horizontalBox_2);
 		
+		JButton btnExport = new JButton("Export");
+		GridBagConstraints gbc_btnExport = new GridBagConstraints();
+		gbc_btnExport.fill = GridBagConstraints.BOTH;
+		gbc_btnExport.insets = new Insets(0, 0, 5, 5);
+		gbc_btnExport.gridx = 1;
+		gbc_btnExport.gridy = 2;
+		mainPanel.add(btnExport, gbc_btnExport);
+		btnExport.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setPrevious(mainPanel);
+				export.updatePage(lblPageNumber, lblPriority_0, lblPriority_1, lblPriority_2, lblPriority_3, lblPriority_4, lblPriority_5, lblPriority_6, lblPriority_7, lblPriority_8, lblPriority_9, lblCustomer_0, lblCustomer_1, lblCustomer_2, lblCustomer_3, lblCustomer_4, lblCustomer_5, lblCustomer_6, lblCustomer_7, lblCustomer_8, lblCustomer_9);
+			    export.reset(lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
+				mainPanel.hide();
+				exportPanel.show();
+			}
+		});
+		
 		JButton btnNewButton_4 = new JButton("Delete");
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the selected option?", "WARNING",
 				        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 				    export.delete(selectedOrder);
+				    export.reset(lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
 				    selectedOrder = -1;
 				} else {
 				    System.out.print(false);
@@ -1646,32 +1660,20 @@ public class CapstoneMainFrame {
 		GridBagLayout gridBagLayout_1 = new GridBagLayout();
 		gridBagLayout_1.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout_1.rowHeights = new int[]{0, 100, 0, 0, 0};
-		gridBagLayout_1.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout_1.columnWeights = new double[]{1.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout_1.rowWeights = new double[]{1.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
 		spreaderPanel.setLayout(gridBagLayout_1);
 		
-		Box verticalBox_1 = Box.createVerticalBox();
-		GridBagConstraints gbc_verticalBox_1 = new GridBagConstraints();
-		gbc_verticalBox_1.fill = GridBagConstraints.VERTICAL;
-		gbc_verticalBox_1.insets = new Insets(0, 0, 5, 5);
-		gbc_verticalBox_1.gridx = 1;
-		gbc_verticalBox_1.gridy = 1;
-		spreaderPanel.add(verticalBox_1, gbc_verticalBox_1);
+		JScrollPane scrollPane = new JScrollPane();
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridx = 1;
+		gbc_scrollPane.gridy = 1;
+		spreaderPanel.add(scrollPane, gbc_scrollPane);
 		
-		Box horizontalBox_3 = Box.createHorizontalBox();
-		verticalBox_1.add(horizontalBox_3);
-		
-		JLabel lblNewLabel_22 = new JLabel("Spreader");
-		horizontalBox_3.add(lblNewLabel_22);
-		
-		JLabel lblNewLabel_23 = new JLabel("Customer");
-		horizontalBox_3.add(lblNewLabel_23);
-		
-		JLabel lblNewLabel_24 = new JLabel("Date Taken");
-		horizontalBox_3.add(lblNewLabel_24);
-		
-		JLabel lblNewLabel_25 = new JLabel("Load");
-		horizontalBox_3.add(lblNewLabel_25);
+		tableSpreaders = new JTable();
+		scrollPane.setViewportView(tableSpreaders);
 		
 		JLayeredPane layeredPane_1 = new JLayeredPane();
 		GridBagConstraints gbc_layeredPane_1 = new GridBagConstraints();
@@ -1680,34 +1682,51 @@ public class CapstoneMainFrame {
 		gbc_layeredPane_1.gridx = 3;
 		gbc_layeredPane_1.gridy = 1;
 		spreaderPanel.add(layeredPane_1, gbc_layeredPane_1);
-		layeredPane_1.setLayout(new MigLayout("", "[60.00][]", "[][][]"));
+		layeredPane_1.setLayout(new MigLayout("", "[60.00][]", "[][][][]"));
 		
 		JLabel lblNewLabel_26 = new JLabel("Spreader #");
 		lblNewLabel_26.setHorizontalAlignment(SwingConstants.CENTER);
 		layeredPane_1.add(lblNewLabel_26, "cell 0 0,growx");
 		
-		JLabel lblNewLabel_27 = new JLabel("Customer");
-		lblNewLabel_27.setHorizontalAlignment(SwingConstants.CENTER);
-		layeredPane_1.add(lblNewLabel_27, "cell 1 0");
+		textFieldSpreaderReturn = new JTextField();
+		layeredPane_1.add(textFieldSpreaderReturn, "cell 0 1,growx");
+		textFieldSpreaderReturn.setColumns(10);
 		
-		textField_1 = new JTextField();
-		layeredPane_1.add(textField_1, "cell 0 1,growx");
-		textField_1.setColumns(10);
-		
-		JLabel lblNewLabel_28 = new JLabel("-");
-		lblNewLabel_28.setHorizontalAlignment(SwingConstants.CENTER);
-		layeredPane_1.add(lblNewLabel_28, "cell 1 1,growx");
-		
-		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("Returned");
-		layeredPane_1.add(chckbxNewCheckBox_1, "cell 0 2");
+		JCheckBox chckbxReturned = new JCheckBox("Returned");
+		layeredPane_1.add(chckbxReturned, "cell 0 2");
 		
 		JButton btnNewButton_6 = new JButton("Save");
-		layeredPane_1.add(btnNewButton_6, "cell 1 2");
+		btnNewButton_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				spreader.returnSpreader(Integer.valueOf(textFieldSpreaderReturn.getText()), chckbxReturned.isSelected());
+				
+				// Update the table based on the returned results
+				TableModel myModel = Spreader.getTable();
+				tableSpreaders.setModel(myModel);
+			    tableSpreaders.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+			    tableSpreaders.setCellEditor(null);
+			    tableSpreaders.setBounds(37, 143, 397, 183);			
+			}
+		});
+		layeredPane_1.add(btnNewButton_6, "cell 0 3");
 		
 		JButton btnNewButton_5 = new JButton("New Spreader");
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				try {
+					JFrame frame = new JFrame();
+					spreader.newSpreader(Integer.valueOf(JOptionPane.showInputDialog(frame, "Enter New Spreader Number:")));
+					
+					// Update the table based on the returned results
+					TableModel myModel = Spreader.getTable();
+					tableSpreaders.setModel(myModel);
+				    tableSpreaders.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+				    tableSpreaders.setCellEditor(null);
+				    tableSpreaders.setBounds(37, 143, 397, 183);
+				}
+				catch (Exception ex){
+					
+				}
 			}
 		});
 		GridBagConstraints gbc_btnNewButton_5 = new GridBagConstraints();

@@ -46,10 +46,6 @@ public class Export {
 				
 			}
 		}
-		
-		// Debugging code
-		System.out.println(String.format("Orders in Queue: %s", Orders.size()));
-		System.out.println(String.format("Pages of Queue: %s", ((Orders.size() - 1) / 10) + 1));
 	}
 	
 	// give label parameters
@@ -159,9 +155,34 @@ public class Export {
 		}
 	}
 	
+	public void reset(JLabel lblcustomer, JLabel lbldate, JLabel lbladdress, JCheckBox lbldelivered, JTextField spreader, JLabel potashAmt, JLabel mapAmt, JLabel amsAmt, JLabel ureaAmt, JLabel gypsumAmt, JLabel potashMix, JLabel mapMix, JLabel amsMix, JLabel ureaMix, JLabel gypsumMix, JLabel employeeID) {
+		lblcustomer.setText("Customer");
+		lbldate.setText("Date");
+		lbladdress.setText("Address");
+		lbldelivered.setSelected(false);
+		spreader.setText("");
+		potashAmt.setText("-");
+		mapAmt.setText("-");
+		amsAmt.setText("-");
+		ureaAmt.setText("-");
+		gypsumAmt.setText("-");
+		potashMix.setText("-");
+		mapMix.setText("-");
+		amsMix.setText("-");
+		ureaMix.setText("-");
+		gypsumMix.setText("-");
+		employeeID.setText("-");
+	}
+	
+	
+	public Order getOrder(int selectedOrder) {
+		return Orders.get((page * 10) + selectedOrder);
+	}
+	
 	public void delete(int selectedOrder) {
 		Orders.remove((page * 10) + selectedOrder);
 	}
+	
 	public void forward() {
 		if((page + 1) < ((Orders.size()-1) / 10 + 1)) page++;
 	}

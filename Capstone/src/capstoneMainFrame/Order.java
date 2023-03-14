@@ -157,8 +157,34 @@ public class Order {
 		return this.priority;
 	}
 	
+	public int getCustomerID() {
+		return this.customerNum;
+	}
+	
 	public int getSpreader() {
-		return 1;
+		int number;
+		
+		String sql = String.format("SELECT * from spreaders where customerID = \"%d\"", this.customerNum);
+		// Try and connect to the database
+        try {  
+            Connection conn = this.connect();  
+            Statement stmt  = conn.createStatement();  
+            
+            // Run SQL statement and return the result
+            ResultSet rs    = stmt.executeQuery(sql);
+            
+            // Extract the needed information
+            number = rs.getInt("spreaderNum");
+            
+            stmt.close();
+            conn.close();
+            return number;
+    
+        } catch (SQLException e) {  
+        	System.out.println(e.getMessage());  
+        	return 0;
+        
+        }
 	}
 
 	/*
@@ -175,7 +201,8 @@ public class Order {
 		lbldate.setText(this.PickUpDate);
 		lbladdress.setText(this.getAddress());
 		lbldelivered.setSelected(this.delivered);
-		spreader.setText(String.valueOf(this.getSpreader()));
+		if(this.getSpreader() == 0) spreader.setText("");
+		else spreader.setText(String.valueOf(this.getSpreader()));
 		potashAmt.setText(String.valueOf(this.Potash));
 		mapAmt.setText(String.valueOf(this.MAP));
 		amsAmt.setText(String.valueOf(this.AMS));
