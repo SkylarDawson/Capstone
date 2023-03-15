@@ -13,6 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -21,6 +23,9 @@ import java.util.Vector;
  *
  */
 public class Spreader {
+	
+	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM-dd-yyyy");  
+	LocalDateTime now = LocalDateTime.now();  
 	
 	/**
 	 * 
@@ -165,7 +170,7 @@ public class Spreader {
 		    Connection conn = connect();  
 		    PreparedStatement pstmt  = conn.prepareStatement(updateSpreader);  
 		    pstmt.setInt(1, customerID);
-		    pstmt.setString(2, null);
+		    pstmt.setString(2, dtf.format(now));
 		    pstmt.setInt(3, number);	            
 		    pstmt.executeUpdate();
 			
