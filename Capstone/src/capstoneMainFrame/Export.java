@@ -1,11 +1,21 @@
 package capstoneMainFrame;
 
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.printing.PDFPageable;
+
 
 /**
  * @author 19sky
@@ -172,6 +182,39 @@ public class Export {
 		ureaMix.setText("-");
 		gypsumMix.setText("-");
 		employeeID.setText("-");
+	}
+	
+	
+	public void printOrder(int selectedOrder) throws PrinterException {
+		// Create PDF 
+		
+		try {
+			PDDocument document = new PDDocument();
+			PDPage page = new PDPage();
+			document.addPage(page);
+
+			PDPageContentStream contentStream = new PDPageContentStream(document, page);
+
+			contentStream.setFont(PDType1Font.COURIER, 12);
+			contentStream.beginText();
+			contentStream.showText("Hello World");
+			contentStream.endText();
+			contentStream.close();
+
+			document.save("pdfBoxHelloWorld.pdf");
+			
+		    PrinterJob job = PrinterJob.getPrinterJob();
+		    job.setPageable(new PDFPageable(document));
+		    job.print();
+		    
+		    document.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		// Print
+	
 	}
 	
 	public Order getOrder(int selectedOrder) {

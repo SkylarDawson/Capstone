@@ -666,6 +666,7 @@ public class CapstoneMainFrame {
 					if(!textFieldSpreader.getText().equals("")) {
 						spreader.claimSpreader(Integer.parseInt(textFieldSpreader.getText()), export.getOrder(selectedOrder).getCustomerID());
 					}
+					export.printOrder(selectedOrder);
 				    export.delete(selectedOrder);
 					export.reset(lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
 				    selectedOrder = -1;
