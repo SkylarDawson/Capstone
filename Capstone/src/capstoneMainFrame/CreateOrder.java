@@ -173,7 +173,7 @@ public class CreateOrder {
 	            	}  
 	        // Bounds for ingredients
 	        double minValue = 0;
-	        double maxValue = 100;
+	        double maxValue = 10000;
 	        
 	        // Potash is valid number (not negative & does not exceed bound)
 	        if(Potash < minValue || Potash > maxValue) {error = true; errorMessage += "Potash Invalid # \n";}

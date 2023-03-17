@@ -1577,7 +1577,7 @@ public class CapstoneMainFrame {
 				orderHistoryFirstNameField.setText("");
 				orderHistoryLastNameField.setText("");
 				orderHistoryOrderDateField.setText("");
-				setPrevious(orderPanel);
+				//setPrevious(orderPanel);
 			}
 		});
 		
@@ -2569,8 +2569,7 @@ public class CapstoneMainFrame {
 		btnBack_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				createOrderPanel.hide();
-				getPrevious().show();
-				setPrevious(createOrderPanel);
+				orderPanel.show();
 			}
 		});
 		
