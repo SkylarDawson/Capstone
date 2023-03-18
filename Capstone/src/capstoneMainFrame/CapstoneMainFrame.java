@@ -136,6 +136,11 @@ public class CapstoneMainFrame {
 	private int selectedOrder = -1;
 	private JTable tableSpreaders;
 
+	private JTextField employeeLookupEmployeeID;
+	private JTextField employeeLookupFirstName;
+	private JTextField employeeLookupLastName;
+	private JTextField employeeLookupJobTitle;
+	private JTable employeeLookupTable;
 	
 	/**
 	 * Launch the application.
@@ -2301,61 +2306,164 @@ public class CapstoneMainFrame {
 		 * Employee Panel
 		 */
 		GridBagLayout gbl_employeePanel = new GridBagLayout();
-		gbl_employeePanel.columnWidths = new int[]{0, 0, 0, 0};
-		gbl_employeePanel.rowHeights = new int[]{0, 0, 0, 0, 0};
-		gbl_employeePanel.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_employeePanel.rowWeights = new double[]{1.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_employeePanel.columnWidths = new int[]{0, 100, 100, 100, 100, 0, 0};
+		gbl_employeePanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
+		gbl_employeePanel.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_employeePanel.rowWeights = new double[]{1.0, 0.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
 		employeePanel.setLayout(gbl_employeePanel);
 		
-		JScrollPane scrollPane_3 = new JScrollPane();
-		scrollPane_3.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		GridBagConstraints gbc_scrollPane_3 = new GridBagConstraints();
-		gbc_scrollPane_3.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane_3.insets = new Insets(0, 0, 5, 5);
-		gbc_scrollPane_3.gridx = 1;
-		gbc_scrollPane_3.gridy = 1;
-		employeePanel.add(scrollPane_3, gbc_scrollPane_3);
+		JLabel employeeIDLabel = new JLabel("Employee ID");
+		GridBagConstraints gbc_employeeIDLabel = new GridBagConstraints();
+		gbc_employeeIDLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_employeeIDLabel.gridx = 1;
+		gbc_employeeIDLabel.gridy = 1;
+		employeePanel.add(employeeIDLabel, gbc_employeeIDLabel);
 		
-		Box horizontalBox_4_1 = Box.createHorizontalBox();
-		scrollPane_3.setColumnHeaderView(horizontalBox_4_1);
+		JLabel firstNameLabel = new JLabel("First Name");
+		GridBagConstraints gbc_firstNameLabel = new GridBagConstraints();
+		gbc_firstNameLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_firstNameLabel.gridx = 2;
+		gbc_firstNameLabel.gridy = 1;
+		employeePanel.add(firstNameLabel, gbc_firstNameLabel);
 		
-		JLabel lblEmployeeID = new JLabel("Employee ID");
-		horizontalBox_4_1.add(lblEmployeeID);
+		JLabel lastNameLabel = new JLabel("Last Name");
+		GridBagConstraints gbc_lastNameLabel = new GridBagConstraints();
+		gbc_lastNameLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_lastNameLabel.gridx = 3;
+		gbc_lastNameLabel.gridy = 1;
+		employeePanel.add(lastNameLabel, gbc_lastNameLabel);
 		
-		JLabel lblEmployeeFirst = new JLabel("First");
-		horizontalBox_4_1.add(lblEmployeeFirst);
+		JLabel jobTitleLabel = new JLabel("Job Title");
+		GridBagConstraints gbc_jobTitleLabel = new GridBagConstraints();
+		gbc_jobTitleLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_jobTitleLabel.gridx = 4;
+		gbc_jobTitleLabel.gridy = 1;
+		employeePanel.add(jobTitleLabel, gbc_jobTitleLabel);
 		
-		JLabel lblEmployeeLast = new JLabel("Last");
-		horizontalBox_4_1.add(lblEmployeeLast);
+		employeeLookupEmployeeID = new JTextField();
+		GridBagConstraints gbc_employeeLookupEmployeeID = new GridBagConstraints();
+		gbc_employeeLookupEmployeeID.insets = new Insets(0, 0, 5, 5);
+		gbc_employeeLookupEmployeeID.fill = GridBagConstraints.HORIZONTAL;
+		gbc_employeeLookupEmployeeID.gridx = 1;
+		gbc_employeeLookupEmployeeID.gridy = 2;
+		employeePanel.add(employeeLookupEmployeeID, gbc_employeeLookupEmployeeID);
+		employeeLookupEmployeeID.setColumns(10);
 		
-		JLabel lblEmployeePhone = new JLabel("Phone");
-		horizontalBox_4_1.add(lblEmployeePhone);
+		employeeLookupFirstName = new JTextField();
+		GridBagConstraints gbc_employeeLookupFirstName = new GridBagConstraints();
+		gbc_employeeLookupFirstName.insets = new Insets(0, 0, 5, 5);
+		gbc_employeeLookupFirstName.fill = GridBagConstraints.HORIZONTAL;
+		gbc_employeeLookupFirstName.gridx = 2;
+		gbc_employeeLookupFirstName.gridy = 2;
+		employeePanel.add(employeeLookupFirstName, gbc_employeeLookupFirstName);
+		employeeLookupFirstName.setColumns(10);
 		
-		JLabel lblEmployeeTitle = new JLabel("Title");
-		horizontalBox_4_1.add(lblEmployeeTitle);
+		employeeLookupLastName = new JTextField();
+		GridBagConstraints gbc_employeeLookupLastName = new GridBagConstraints();
+		gbc_employeeLookupLastName.insets = new Insets(0, 0, 5, 5);
+		gbc_employeeLookupLastName.fill = GridBagConstraints.HORIZONTAL;
+		gbc_employeeLookupLastName.gridx = 3;
+		gbc_employeeLookupLastName.gridy = 2;
+		employeePanel.add(employeeLookupLastName, gbc_employeeLookupLastName);
+		employeeLookupLastName.setColumns(10);
+		
+		employeeLookupJobTitle = new JTextField();
+		GridBagConstraints gbc_employeeLookupJobTitle = new GridBagConstraints();
+		gbc_employeeLookupJobTitle.insets = new Insets(0, 0, 5, 5);
+		gbc_employeeLookupJobTitle.fill = GridBagConstraints.HORIZONTAL;
+		gbc_employeeLookupJobTitle.gridx = 4;
+		gbc_employeeLookupJobTitle.gridy = 2;
+		employeePanel.add(employeeLookupJobTitle, gbc_employeeLookupJobTitle);
+		employeeLookupJobTitle.setColumns(10);
+		
+		JButton employeeLookupSearchButton = new JButton("Search");
+		employeeLookupSearchButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EmployeeGUI mySearch = new EmployeeGUI();
+				
+				// Create the table based on the returned results
+				TableModel myModel = mySearch.execute(employeeLookupEmployeeID, employeeLookupFirstName, employeeLookupLastName, employeeLookupJobTitle);
+			    employeeLookupTable.setModel(myModel);
+			    employeeLookupTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+			    employeeLookupTable.setCellEditor(null);
+			    employeeLookupTable.setBounds(37, 143, 397, 183);
+			    		
+				employeePanel.setVisible(true);
+			}
+		});
+		GridBagConstraints gbc_employeeLookupSearchButton = new GridBagConstraints();
+		gbc_employeeLookupSearchButton.insets = new Insets(0, 0, 5, 0);
+		gbc_employeeLookupSearchButton.gridx = 5;
+		gbc_employeeLookupSearchButton.gridy = 2;
+		employeePanel.add(employeeLookupSearchButton, gbc_employeeLookupSearchButton);
+		
+		JScrollPane employeePageScroll = new JScrollPane();
+		employeePageScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		GridBagConstraints gbc_employeePageScroll = new GridBagConstraints();
+		gbc_employeePageScroll.gridwidth = 4;
+		gbc_employeePageScroll.fill = GridBagConstraints.BOTH;
+		gbc_employeePageScroll.insets = new Insets(0, 0, 5, 5);
+		gbc_employeePageScroll.gridx = 1;
+		gbc_employeePageScroll.gridy = 3;
+		employeePanel.add(employeePageScroll, gbc_employeePageScroll);
+		
+		employeeLookupTable = new JTable();
+		employeePageScroll.setViewportView(employeeLookupTable);
 		
 		Box horizontalBox_7 = Box.createHorizontalBox();
 		GridBagConstraints gbc_horizontalBox_7 = new GridBagConstraints();
+		gbc_horizontalBox_7.gridwidth = 4;
 		gbc_horizontalBox_7.insets = new Insets(0, 0, 5, 5);
 		gbc_horizontalBox_7.gridx = 1;
-		gbc_horizontalBox_7.gridy = 2;
+		gbc_horizontalBox_7.gridy = 4;
 		employeePanel.add(horizontalBox_7, gbc_horizontalBox_7);
 		
-		JButton btnNewButton_7_1 = new JButton("Create New");
-		btnNewButton_7_1.addActionListener(new ActionListener() {
+		JButton employeeCreateNewButton = new JButton("Create New");
+		employeeCreateNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setPrevious(employeePanel);
+				employeePanel.hide();
+				employeeLookupTable.setModel(new DefaultTableModel());
+				employeeLookupEmployeeID.setText("");
+				employeeLookupFirstName.setText("");
+				employeeLookupLastName.setText("");
+				employeeLookupJobTitle.setText("");
+				createEmployeePanel.show();
 			}
 		});
-		horizontalBox_7.add(btnNewButton_7_1);
+		horizontalBox_7.add(employeeCreateNewButton);
 		
-		JButton btnNewButton_8_1 = new JButton("Delete");
-		horizontalBox_7.add(btnNewButton_8_1);
+		JButton employeeDeleteButton = new JButton("Delete");
+		employeeDeleteButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrame frame = new JFrame();
+			    String employeeID = JOptionPane.showInputDialog(frame, "Enter ID of Employee to Delete:");
+			    employeeLookupTable.setModel(new DefaultTableModel());
+			    employeeLookupEmployeeID.setText("");
+				employeeLookupFirstName.setText("");
+				employeeLookupLastName.setText("");
+				employeeLookupJobTitle.setText("");
+			}
+		});
+		horizontalBox_7.add(employeeDeleteButton);
 		
 		Component horizontalGlue_2_1 = Box.createHorizontalGlue();
 		horizontalBox_7.add(horizontalGlue_2_1);
 		
-		JButton btnNewButton_9_1 = new JButton("Back");
-		horizontalBox_7.add(btnNewButton_9_1);
+		JButton employeeBackButton = new JButton("Back");
+		employeeBackButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				employeePanel.hide();
+				mainPanel.show();
+				employeeLookupTable.setModel(new DefaultTableModel());
+				employeeLookupEmployeeID.setText("");
+				employeeLookupFirstName.setText("");
+				employeeLookupLastName.setText("");
+				employeeLookupJobTitle.setText("");
+				setPrevious(employeePanel);
+			}
+		});
+		horizontalBox_7.add(employeeBackButton);
 		
 		/*
 		 * Customer Layout
@@ -2670,6 +2778,15 @@ public class CapstoneMainFrame {
 		textFieldCreateEmployeeTitle.setColumns(10);
 		
 		JButton btnClearEmployee = new JButton("Clear");
+		btnClearEmployee.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textFieldCreateEmployeeID.setText("");
+				textFieldCreateEmployeeFirst.setText("");
+				textFieldCreateEmployeeLast.setText("");
+				textFieldCreateEmployeePhone.setText("");
+				textFieldCreateEmployeeTitle.setText("");
+			}
+		});
 		GridBagConstraints gbc_btnClearEmployee = new GridBagConstraints();
 		gbc_btnClearEmployee.insets = new Insets(0, 0, 5, 5);
 		gbc_btnClearEmployee.gridx = 1;
@@ -2677,6 +2794,12 @@ public class CapstoneMainFrame {
 		createEmployeePanel.add(btnClearEmployee, gbc_btnClearEmployee);
 		
 		JButton btnCreateEmployee = new JButton("Create");
+		btnCreateEmployee.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CreateEmployee newEmployee = new CreateEmployee();
+				newEmployee.execute(textFieldCreateEmployeeID, textFieldCreateEmployeeFirst, textFieldCreateEmployeeLast, textFieldCreateEmployeePhone, textFieldCreateEmployeeTitle);
+			}
+		});
 		GridBagConstraints gbc_btnCreateEmployee = new GridBagConstraints();
 		gbc_btnCreateEmployee.anchor = GridBagConstraints.EAST;
 		gbc_btnCreateEmployee.insets = new Insets(0, 0, 5, 5);
@@ -2684,13 +2807,21 @@ public class CapstoneMainFrame {
 		gbc_btnCreateEmployee.gridy = 6;
 		createEmployeePanel.add(btnCreateEmployee, gbc_btnCreateEmployee);
 		
-		JButton btnBack_9 = new JButton("Back");
-		GridBagConstraints gbc_btnBack_9 = new GridBagConstraints();
-		gbc_btnBack_9.anchor = GridBagConstraints.EAST;
-		gbc_btnBack_9.insets = new Insets(0, 0, 5, 5);
-		gbc_btnBack_9.gridx = 2;
-		gbc_btnBack_9.gridy = 7;
-		createEmployeePanel.add(btnBack_9, gbc_btnBack_9);
+		JButton btnBackEmployee = new JButton("Back");
+		btnBackEmployee.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				createCustomerPanel.hide();
+				getPrevious().show();
+				setPrevious(createCustomerPanel);
+			}
+		});
+		
+		GridBagConstraints gbc_btnBackEmployee = new GridBagConstraints();
+		gbc_btnBackEmployee.anchor = GridBagConstraints.EAST;
+		gbc_btnBackEmployee.insets = new Insets(0, 0, 5, 5);
+		gbc_btnBackEmployee.gridx = 2;
+		gbc_btnBackEmployee.gridy = 7;
+		createEmployeePanel.add(btnBackEmployee, gbc_btnBackEmployee);
 		
 		GridBagLayout gridBagLayout_2 = new GridBagLayout();
 		gridBagLayout_2.columnWidths = new int[]{0, 75, 65, 65, 65, 65, 65, 0, 0};

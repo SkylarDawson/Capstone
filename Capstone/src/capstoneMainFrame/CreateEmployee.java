@@ -57,7 +57,7 @@ public class CreateEmployee {
      * @param JTextField AssignedRepID is the passed in Employee Number from the GUI
      * @return nothing
      */
-	public void execute(JTextField EmployeeIDField, JTextField FirstNameField, JTextField LastNameField, JTextField JobTitleField, JTextField AssignedRepIDField) {
+	public void execute(JTextField EmployeeIDField, JTextField FirstNameField, JTextField LastNameField, JTextField AssignedRepIDField, JTextField JobTitleField) {
 		
 		// Attributes needed for new Employee (based on the attributes found in the Employees Table in the Database)
 		int employeeNum = 0;
