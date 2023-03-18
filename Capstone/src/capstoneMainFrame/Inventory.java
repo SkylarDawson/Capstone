@@ -59,7 +59,7 @@ public class Inventory {
         } catch (SQLException e) {  
         	System.out.println(e.getMessage());  
         }
-		/*
+	
 		Bins[0] = new Bin(ingredient.get(0), storage.get(0));
 		Bins[1] = new Bin(ingredient.get(1), storage.get(1));
 		Bins[2] = new Bin(ingredient.get(2), storage.get(2));
@@ -69,7 +69,7 @@ public class Inventory {
 		Bins[6] = new Bin(ingredient.get(6), storage.get(6));
 		Bins[7] = new Bin(ingredient.get(7), storage.get(7));
 		Bins[8] = new Bin(ingredient.get(8), storage.get(8));
-		Bins[9] = new Bin(ingredient.get(9), storage.get(9));*/
+		Bins[9] = new Bin(ingredient.get(9), storage.get(9));
 	}
 	
 	/*
