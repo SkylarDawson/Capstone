@@ -9,14 +9,14 @@ package capstoneMainFrame;
  */
 public class Bin {
 	private String ingredient;
-	private int storage;
+	private double storage;
 	
 	/**
 	 * 
 	 */
-	public Bin() {
-		this.ingredient = "-";
-		this.storage = 0;
+	public Bin(String ingredient, double storage) {
+		this.ingredient = ingredient;
+		this.storage = storage;
 	}
 	
 	public String getIngredient() {
@@ -28,31 +28,28 @@ public class Bin {
 		return;
 	}
 	
-	public int getStorage() {
+	public double getStorage() {
 		return storage;
 	}
 	
-	public void addStorage(int inbound) {
+	public void addStorage(double inbound) {
 		this.storage += inbound;
 	}
 	
-	public boolean subStorage(int outbound) {
-		if(this.storage >= outbound) {
-			this.storage -= outbound;
-			if(this.storage == 0) {
-				this.ingredient = "-";
-			}
-			return true;
+	public void subStorage(double outbound) {
+		this.storage -= outbound;
+		if(this.storage == 0) {
+			this.ingredient = "-";
 		}
-		return false;
+		return;
 	}
 	
 	/**
 	 * This emptyBin function will reset a bin to be empty.
 	 * @return amount remaining in bin before emptied.
 	 */
-	public int emptyBin() {
-		int temp = this.storage;
+	public double emptyBin() {
+		double temp = this.storage;
 		this.ingredient = "-";
 		this.storage = 0;
 		return temp;
