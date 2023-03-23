@@ -37,6 +37,7 @@ import javax.swing.JCheckBox;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 
 import java.awt.Color;
@@ -1827,7 +1828,28 @@ public class CapstoneMainFrame {
 		gbc_orderHistoryScroll.gridy = 4;
 		orderPanel.add(orderHistoryScroll, gbc_orderHistoryScroll);
 		
-		orderHistoryTable = new JTable();
+		orderHistoryTable = new JTable(new DefaultTableModel()) {
+			@Override
+	        public Component prepareRenderer(TableCellRenderer renderer, int rowIndex, int columnIndex) {
+	            Component cell = super.prepareRenderer(renderer, rowIndex, columnIndex);  
+	            
+	            if(getValueAt(rowIndex, 5).toString().equalsIgnoreCase("false") && columnIndex == 5) {
+	                cell.setBackground(Color.RED);
+	            } 
+	            
+	            else if(getValueAt(rowIndex, 6).toString().equalsIgnoreCase("false") && columnIndex == 6) {
+	                cell.setBackground(Color.RED);
+	            } 
+	            else if(getValueAt(rowIndex, 7).toString().equalsIgnoreCase("false") && columnIndex == 7) {
+	                cell.setBackground(Color.RED);
+	            } else {
+	            	cell.setBackground(Color.WHITE);
+	            }
+
+	            return cell;
+	        }
+	    }; 
+		
 		orderHistoryScroll.setViewportView(orderHistoryTable);
 		
 		JButton orderHistoryCreateButton = new JButton("Create New");
@@ -1949,6 +1971,7 @@ public class CapstoneMainFrame {
 				// Create the table based on the returned results
 				TableModel myModel = mySearch.execute(orderHistoryOrderIDField, orderHistoryFirstNameField, orderHistoryLastNameField, orderHistoryOrderDateField);
 			    orderHistoryTable.setModel(myModel);
+				
 			    orderHistoryTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);                    
 			    orderHistoryTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
 			    orderHistoryTable.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
