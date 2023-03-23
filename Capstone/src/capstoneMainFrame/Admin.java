@@ -1,11 +1,14 @@
 package capstoneMainFrame;
 
+import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Vector;
 
 import javax.swing.JFrame;
@@ -625,6 +628,68 @@ public class Admin {
             	}
 	}
 	
+	public void backup() throws IOException{
+		// Creating two stream
+        // one input and other output
+        FileInputStream fis = null;
+        FileOutputStream fos = null;
+ 
+        // Try block to check for exceptions
+        try {
+ 
+        	Date date = new Date() ;
+        	SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-YYYY HH-mm") ;
+        	
+            // Initializing both the streams with
+            // respective file directory on local machine
+        	
+        	String backupName = String.format("backup"+dateFormat.format(date)+".db");
+            // Custom directory path on local machine
+            fis = new FileInputStream(
+                "C:\\sqlite\\fertilizer.db");
+ 
+            // Custom directory path on local machine
+            fos = new FileOutputStream(
+                "C:\\Users\\zkrat\\Desktop\\" + backupName);
+ 
+            int c;
+ 
+            // Condition check
+            // Reading the input file till there is input
+            // present
+            while ((c = fis.read()) != -1) {
+ 
+                // Writing to output file of the specified
+                // directory
+                fos.write(c);
+            }
+ 
+            // By now writing to the file has ended, so
+ 
+            // Display message on the console
+            System.out.println(
+                "copied the file successfully");
+        }
+ 
+        // Optional finally keyword but is good practice to
+        // empty the occupied space is recommended whenever
+        // closing files,connections,streams
+        finally {
+ 
+            // Closing the streams
+ 
+            if (fis != null) {
+ 
+                // Closing the fileInputStream
+                fis.close();
+            }
+            if (fos != null) {
+ 
+                // Closing the fileOutputStream
+                fos.close();
+            }
+        }
+	}
 		
 	}
 

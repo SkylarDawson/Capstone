@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -3854,5 +3854,25 @@ public class CapstoneMainFrame {
 		gbc_btnNewButton_14.gridy = 8;
 		settingsPanel.add(btnNewButton_14, gbc_btnNewButton_14);
 		
+		/*
+		mainFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+		    @Override
+		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+		        	Admin myAdmin = new Admin();
+		        	JFrame frame = new JFrame();
+		        	if (JOptionPane.showConfirmDialog(frame, "Would you like to save backup file before closing?", "Close Window?", 
+		        			JOptionPane.YES_NO_OPTION,
+		        			JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+		        		try {
+							myAdmin.backup();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+			            System.exit(0);
+		        	}
+		        System.exit(0);
+		    }
+		});*/
 	}
 }
