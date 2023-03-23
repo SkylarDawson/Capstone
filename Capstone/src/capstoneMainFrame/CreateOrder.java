@@ -231,7 +231,7 @@ public class CreateOrder {
 	            	}  
 	        // Bounds for ingredients
 	        double minValue = 0;
-	        double maxValue = 10000;
+	        double maxValue = 25000;
 	        
 	        // Potash is valid number (not negative & does not exceed bound)
 	        if(Potash < minValue || Potash > maxValue) {error = true; errorMessage += "Potash Invalid # \n";}
@@ -608,6 +608,11 @@ public class CreateOrder {
 			// Update Billing
 			// Automatically add billing
         	double orderPrice = (Potash * potashPrice) + (MAP * mapPrice) + (AMS * amsPrice) + (Urea * ureaPrice) + (Gypsum * gypsumPrice);
+        	if(previouslyPaid == true) {
+        		// Tell user that operation was successful
+	        	JOptionPane.showMessageDialog(null, "Order Updated");
+ 	            return;
+        	}
         	// Update Customer's Outstanding Balance
         	if(paid == false)
         	{

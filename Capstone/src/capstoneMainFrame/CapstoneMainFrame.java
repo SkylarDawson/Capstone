@@ -1842,7 +1842,14 @@ public class CapstoneMainFrame {
 	            } 
 	            else if(getValueAt(rowIndex, 7).toString().equalsIgnoreCase("false") && columnIndex == 7) {
 	                cell.setBackground(Color.RED);
-	            } else {
+	            } else if(getValueAt(rowIndex, 6).toString().equalsIgnoreCase("true") && columnIndex == 6) {
+	                cell.setBackground(Color.GREEN);
+	            } 
+	            else if(getValueAt(rowIndex, 7).toString().equalsIgnoreCase("true") && columnIndex == 7) {
+	                cell.setBackground(Color.GREEN);
+	            }else if(getValueAt(rowIndex, 5).toString().equalsIgnoreCase("true") && columnIndex == 5) {
+	                cell.setBackground(Color.GREEN);
+	            }else {
 	            	cell.setBackground(Color.WHITE);
 	            }
 
@@ -3678,7 +3685,7 @@ public class CapstoneMainFrame {
 				
 				if(orderUpdateButton.getText() == "Update") {
 				CreateOrder updateOrder = new CreateOrder();
-				updateOrder.updateOrder(orderUpdateOrderIDLabel.getText(), orderUpdateCustomerNumberField, updateOrderEmployeeNumField, orderUpdatePickupDateField, orderUpdatePickupTimeField, orderUpdatePotashField, orderUpdateMapField, orderUpdateAMSField, orderUpdateUreaField, orderUpdateGypsumField, orderUpdateCommentsField, orderUpdateOrderPaidBox, orderCreateOrderCompleteBox, orderCreateOrderDeliveredBox, potashPriceAmnt, mapPriceAmnt, amsPriceAmnt, ureaPriceAmnt, gypsumPriceAmnt);
+				updateOrder.updateOrder(orderUpdateOrderIDLabel.getText(), orderUpdateCustomerNumberField, updateOrderEmployeeNumField, orderUpdatePickupDateField, orderUpdatePickupTimeField, orderUpdatePotashField, orderUpdateMapField, orderUpdateAMSField, orderUpdateUreaField, orderUpdateGypsumField, orderUpdateCommentsField, orderUpdateOrderPaidBox, orderUpdateOrderComplete, orderUpdateOrderDelivered, potashPriceAmnt, mapPriceAmnt, amsPriceAmnt, ureaPriceAmnt, gypsumPriceAmnt);
 				}
 				
 				else if(orderUpdateButton.getText() == "Delete")
