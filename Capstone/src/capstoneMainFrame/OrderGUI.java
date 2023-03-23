@@ -3,6 +3,7 @@
  */
 package capstoneMainFrame;
 
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -15,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.JPanel;
@@ -23,7 +25,7 @@ import javax.swing.JPanel;
  * @author 19sky
  *
  */
-public class OrderGUI {
+public class OrderGUI  {
 
 	private static TableModel myTable;
 	/**

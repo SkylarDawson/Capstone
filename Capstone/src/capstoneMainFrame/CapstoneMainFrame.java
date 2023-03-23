@@ -1949,7 +1949,7 @@ public class CapstoneMainFrame {
 				// Create the table based on the returned results
 				TableModel myModel = mySearch.execute(orderHistoryOrderIDField, orderHistoryFirstNameField, orderHistoryLastNameField, orderHistoryOrderDateField);
 			    orderHistoryTable.setModel(myModel);
-			    orderHistoryTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+			    orderHistoryTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);                    
 			    orderHistoryTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
 			    orderHistoryTable.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
 			    orderHistoryTable.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
@@ -3056,6 +3056,7 @@ public class CapstoneMainFrame {
 		createOrderPanel.add(lblNewLabel_31, gbc_lblNewLabel_31);
 		
 		orderCreatePotashField = new JTextField();
+		orderCreatePotashField.setText("0");
 		GridBagConstraints gbc_orderCreatePotashField = new GridBagConstraints();
 		gbc_orderCreatePotashField.anchor = GridBagConstraints.NORTH;
 		gbc_orderCreatePotashField.insets = new Insets(0, 0, 5, 5);
@@ -3066,6 +3067,7 @@ public class CapstoneMainFrame {
 		orderCreatePotashField.setColumns(10);
 		
 		orderCreateMAPField = new JTextField();
+		orderCreateMAPField.setText("0");
 		GridBagConstraints gbc_orderCreateMAPField = new GridBagConstraints();
 		gbc_orderCreateMAPField.insets = new Insets(0, 0, 5, 5);
 		gbc_orderCreateMAPField.fill = GridBagConstraints.HORIZONTAL;
@@ -3075,6 +3077,7 @@ public class CapstoneMainFrame {
 		orderCreateMAPField.setColumns(10);
 		
 		orderCreateAMSField = new JTextField();
+		orderCreateAMSField.setText("0");
 		GridBagConstraints gbc_orderCreateAMSField = new GridBagConstraints();
 		gbc_orderCreateAMSField.insets = new Insets(0, 0, 5, 5);
 		gbc_orderCreateAMSField.fill = GridBagConstraints.HORIZONTAL;
@@ -3084,6 +3087,7 @@ public class CapstoneMainFrame {
 		orderCreateAMSField.setColumns(10);
 		
 		orderCreateUreaField = new JTextField();
+		orderCreateUreaField.setText("0");
 		GridBagConstraints gbc_orderCreateUreaField = new GridBagConstraints();
 		gbc_orderCreateUreaField.insets = new Insets(0, 0, 5, 5);
 		gbc_orderCreateUreaField.fill = GridBagConstraints.HORIZONTAL;
@@ -3093,6 +3097,7 @@ public class CapstoneMainFrame {
 		orderCreateUreaField.setColumns(10);
 		
 		orderCreateGypsumField = new JTextField();
+		orderCreateGypsumField.setText("0");
 		GridBagConstraints gbc_orderCreateGypsumField = new GridBagConstraints();
 		gbc_orderCreateGypsumField.insets = new Insets(0, 0, 5, 5);
 		gbc_orderCreateGypsumField.fill = GridBagConstraints.HORIZONTAL;
