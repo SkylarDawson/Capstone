@@ -249,7 +249,14 @@ public class CustomerGUI {
     			
     			// Create table object
     			DefaultTableModel CustomerModel;
-    			CustomerModel = new DefaultTableModel (rowData, headers);
+    			CustomerModel = new DefaultTableModel (rowData, headers){
+
+    			    @Override
+    			    public boolean isCellEditable(int row, int column) {
+    			       //all cells false
+    			       return false;
+    			    }
+    			};
     			
     			// Step through each result from the query pulling each piece of customer infromation
     			for(int i = 0; i < firstName.size(); i++) {

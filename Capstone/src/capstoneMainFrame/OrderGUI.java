@@ -302,7 +302,14 @@ public static void displayResults(Vector<String> firstName, Vector<String> lastN
 	
 	// Create table object
 	DefaultTableModel orderModel;
-	orderModel = new DefaultTableModel (rowData, headers);
+	orderModel = new DefaultTableModel (rowData, headers){
+
+	    @Override
+	    public boolean isCellEditable(int row, int column) {
+	       //all cells false
+	       return false;
+	    }
+	};
 	
 	// For each returned tuple - create a new row with all order information
 	for(int i = 0; i < firstName.size(); i++) {

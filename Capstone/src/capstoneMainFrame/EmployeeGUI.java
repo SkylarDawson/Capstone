@@ -229,7 +229,14 @@ public class EmployeeGUI {
     			
     			// Create table object
     			DefaultTableModel EmployeeModel;
-    			EmployeeModel = new DefaultTableModel (rowData, headers);
+    			EmployeeModel = new DefaultTableModel (rowData, headers){
+
+    			    @Override
+    			    public boolean isCellEditable(int row, int column) {
+    			       //all cells false
+    			       return false;
+    			    }
+    			};
     			
     			// Step through each result from the query pulling each piece of employee information
     			for(int i = 0; i < firstName.size(); i++) {
