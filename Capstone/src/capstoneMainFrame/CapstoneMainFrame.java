@@ -1668,7 +1668,8 @@ public class CapstoneMainFrame {
 					textFieldStorageInput.setText("");
 				}
 				catch (Exception ex) {
-					System.out.print("Invalid Input\n");
+					JFrame frame = new JFrame();
+					JOptionPane.showMessageDialog(frame, "Invalid Input");
 				}					
 			}
 		});
@@ -1724,7 +1725,7 @@ public class CapstoneMainFrame {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				orderPanel.hide();
-				mainPanel.show();
+				getPrevious().show();
 				orderHistoryTable.setModel(new DefaultTableModel());
 				//setPrevious(orderPanel);
 				

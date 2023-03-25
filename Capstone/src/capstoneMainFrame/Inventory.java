@@ -89,19 +89,19 @@ public class Inventory {
         return conn;  
     }
 	
-	public boolean inboundBin(int index, String ingredient, int inbound) {
+	public boolean inboundBin(int index, String ingredient, int inbound) throws Exception {
 		if(Bins[index].getIngredient().equals(ingredient) && inbound > 0 && !ingredient.equals("-")) {
 			Bins[index].addStorage(inbound);
 			updateDatabase();
 			return true;
 		}
-		else if(Bins[index].getIngredient().equals("-") && !ingredient.equals("-")) {
+		else if(Bins[index].getIngredient().equals("-") && !ingredient.equals("-") && inbound > 0 && (ingredient.equals("Potash") || ingredient.equals("MAP") || ingredient.equals("AMS") || ingredient.equals("Urea") || ingredient.equals("Gypsum"))) {
 			Bins[index].setIngredient(ingredient);
 			Bins[index].addStorage(inbound);
 			updateDatabase();
 			return true;
 		}
-		return false;
+		throw new Exception();
 	}
 	
 	public boolean computeOrder(Double[] outbound) throws Exception {
