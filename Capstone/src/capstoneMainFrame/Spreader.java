@@ -163,7 +163,7 @@ public class Spreader {
 	 */
 	public void claimSpreader(int number, int customerID) throws Exception {
 		
-		String checkSpreader = String.format( "Select customerID from spreaders where spreaderNum = \"%x\" ;", number);
+		String checkSpreader = String.format( "Select COUNT(spreaderNum = \"%x\") from spreaders", number);
 		// Update
 		String updateSpreader = "Update spreaders "
 				+ "SET customerID = ? , "
@@ -176,9 +176,7 @@ public class Spreader {
 		    
 		    Statement stmt  = conn.createStatement();  
             ResultSet rs    = stmt.executeQuery(checkSpreader); 
-            while(rs.next()) {
-            	if(rs.getString("customerID") == null) throw new Exception("Not Valid Spreader");
-            }
+            if(rs.getRow() == 0) throw new Exception("Not Valid Spreader\n");
 		    
 		    PreparedStatement pstmt  = conn.prepareStatement(updateSpreader);  
 		    pstmt.setInt(1, customerID);
