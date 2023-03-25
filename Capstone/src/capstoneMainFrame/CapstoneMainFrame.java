@@ -909,10 +909,10 @@ public class CapstoneMainFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					inventory.computeOrder(export.getOrder(selectedOrder).getOutputs());
 					if(!textFieldSpreader.getText().equals("")) {
 						spreader.claimSpreader(Integer.parseInt(textFieldSpreader.getText()), export.getOrder(selectedOrder).getCustomerID());
 					}
+					inventory.computeOrder(export.getOrder(selectedOrder).getOutputs());
 				    export.delete(selectedOrder);
 					export.reset(lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
 				    selectedOrder = -1;

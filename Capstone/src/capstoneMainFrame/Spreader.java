@@ -115,6 +115,8 @@ public class Spreader {
             
             stmt.close();
             conn.close();
+            if(firstName == null) firstName = "";
+            if(lastName == null) lastName = "";
             return firstName + " " + lastName;
     
         } catch (SQLException e) {  
@@ -159,7 +161,9 @@ public class Spreader {
 	 * Check if customerID exist and update date to current date at number index
 	 * 
 	 */
-	public void claimSpreader(int number, int customerID) {
+	public void claimSpreader(int number, int customerID) throws Exception {
+		
+		String checkSpreader = String.format( "Select customerID from spreaders where spreaderNum = \"%x\" ;", number);
 		// Update
 		String updateSpreader = "Update spreaders "
 				+ "SET customerID = ? , "
@@ -168,6 +172,14 @@ public class Spreader {
 						
 		try {
 		    Connection conn = connect();  
+		    
+		    
+		    Statement stmt  = conn.createStatement();  
+            ResultSet rs    = stmt.executeQuery(checkSpreader); 
+            while(rs.next()) {
+            	if(rs.getString("customerID") == null) throw new Exception("Not Valid Spreader");
+            }
+		    
 		    PreparedStatement pstmt  = conn.prepareStatement(updateSpreader);  
 		    pstmt.setInt(1, customerID);
 		    pstmt.setString(2, dtf.format(now));

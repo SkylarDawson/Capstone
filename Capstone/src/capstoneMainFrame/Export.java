@@ -152,7 +152,7 @@ public class Export {
 				lbnumber_8.setText("-");
 				lbcustomer_8.setText("-");
 			}
-			if(Orders.size() % 10 == 0) {
+			if(Orders.size() % 10 == 0 && Orders.size() != 0) {
 				lbnumber_9.setText(String.valueOf(Orders.get(page * 10 + 9).getPriority()));
 				lbcustomer_9.setText(Orders.get(page * 10 + 9).getCustomerName());
 			}
