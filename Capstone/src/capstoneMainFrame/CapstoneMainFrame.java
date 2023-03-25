@@ -89,7 +89,7 @@ public class CapstoneMainFrame {
 	private JTable customerLookupTable;
 	private JPanel previousPanel;
 	private JTextField orderCreateOrderIDField;
-	private final JLabel lblNewLabel_37 = new JLabel("Employee Number");
+	private JLabel lblNewLabel_37 = new JLabel("Employee Number");
 	private JTextField orderCreateCustomerIDField;
 	private JTextField orderCreateEmployeeIDField;
 	private JTextField orderCreatePickupDateField;
@@ -163,7 +163,7 @@ public class CapstoneMainFrame {
 	 * Create the application.
 	 */
 	public CapstoneMainFrame() {
-		Admin myPage = new Admin();
+		/*Admin myPage = new Admin();
 		// Add dialog box to update a password
 		JTextField username = new JTextField();
 		JTextField password = new JPasswordField();
@@ -195,7 +195,8 @@ public class CapstoneMainFrame {
 		}
 		else {
 			System.exit(0);
-		}
+		}*/
+		initialize();
 	}
 	
 	/**
@@ -2952,8 +2953,8 @@ public class CapstoneMainFrame {
 		gbc_orderCreateEmployeeIDField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_orderCreateEmployeeIDField.gridx = 2;
 		gbc_orderCreateEmployeeIDField.gridy = 4;
-		createOrderPanel.add(orderCreateEmployeeIDField, gbc_orderCreateEmployeeIDField);
 		orderCreateEmployeeIDField.setColumns(10);
+		createOrderPanel.add(orderCreateEmployeeIDField, gbc_orderCreateEmployeeIDField);
 		
 		JCheckBox orderCreateOrderDeliveredBox = new JCheckBox("Order Delivered");
 		orderCreateOrderDeliveredBox.setFont(new Font("Tahoma", Font.BOLD, 10));
