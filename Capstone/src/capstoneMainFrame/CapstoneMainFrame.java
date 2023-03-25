@@ -2069,7 +2069,8 @@ public class CapstoneMainFrame {
 				    tableSpreaders.setBounds(37, 143, 397, 183);
 				}
 				catch (Exception ex){
-					
+					JFrame frame = new JFrame();
+					JOptionPane.showMessageDialog(frame, "Spreader Number Not Valid");
 				}
 			}
 		});

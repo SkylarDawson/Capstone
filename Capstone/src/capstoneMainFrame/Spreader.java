@@ -128,10 +128,9 @@ public class Spreader {
 	/*
 	 * 
 	 */
-	public void newSpreader(int number) {
+	public void newSpreader(int number) throws Exception {
 		if (number <= 0) {
-			System.out.print("Invalid spreader number");
-			return;
+			throw new Exception();
 		}
 		
 		// The needed SQL command to be executed on the database to succssfully insert a customer
