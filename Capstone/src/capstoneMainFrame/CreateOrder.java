@@ -13,6 +13,7 @@ import java.sql.Statement;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -69,7 +70,8 @@ public class CreateOrder {
 		 */
 		public void execute(JTextField orderIDField, JTextField customerIDField, JTextField employeeIDField, JTextField pickupDateField, JTextField pickupTimeField,
 				JTextField potashField, JTextField mapField, JTextField amsField, JTextField ureaField, JTextField gypsumField, JTextField commentsField, JTextField orderDateField,
-				JCheckBox OrderPaidBox, JCheckBox OrderCompleteBox, JCheckBox OrderDeliveredBox, double potashPrice, double mapPrice, double amsPrice, double ureaPrice, double gypsumPrice) {
+				JCheckBox OrderPaidBox, JCheckBox OrderCompleteBox, JCheckBox OrderDeliveredBox, double potashPrice, double mapPrice, double amsPrice, double ureaPrice, double gypsumPrice,
+				JRadioButton perTon, JRadioButton perAcre, JTextField amount) {
 	        
 	        // All Attributes For Order
 	        int orderNum = 0;
@@ -87,6 +89,9 @@ public class CreateOrder {
 	        double Gypsum = 0;
 	        String comments = null;
 	        String orderDate = null;
+	        boolean perTonSelected = false;
+	        boolean perAcreSelected = false;
+	        double amountSelected = 0.0;
 	        
 	        // Flag for error checking
 	        boolean error = false;
@@ -165,6 +170,24 @@ public class CreateOrder {
 	            } catch (Exception e) {
 	            	error = true;
 		        	errorMessage += "Gypsum Invalid # \n";
+	            }
+	            
+	            if(perTon.isSelected() == true) { perTonSelected = true;}
+	            if(perAcre.isSelected() == true) { perAcreSelected = true;}
+	            
+	            try {
+	            	amountSelected = Double.parseDouble(amount.getText());
+	            } catch (Exception e) {
+	            	error = true;
+	            	errorMessage += "Amount Value not Valid \n";
+	            }
+	            
+	            if(perTonSelected || perAcreSelected)
+	            {
+	            	if(amountSelected <= 0.0) {
+	            		error = true;
+	            		errorMessage += "Amount cannot be less than or equal to 0 \n";
+	            	}
 	            }
 	        comments = commentsField.getText();
 	        orderDate = orderDateField.getText();
@@ -248,7 +271,14 @@ public class CreateOrder {
 	        // Gypsum is valid number (not negative & does not exceed bound)
 	        if(Gypsum < minValue || Gypsum > maxValue) {error = true; errorMessage += "Gypsum Invalid #";}
 	        
-	        // Check for SQL injection
+	        // Adjust weights based on per selection as needed
+	        if(perAcreSelected || perTonSelected) {
+	        	Potash = Potash*amountSelected;
+	        	MAP = MAP*amountSelected;
+	        	AMS= AMS*amountSelected;
+	        	Urea = Urea*amountSelected;
+	        	Gypsum = Gypsum*amountSelected;
+	        }
 	        
 	        // If no error was found in the error checking - insert and clear
 	        if(!error) {

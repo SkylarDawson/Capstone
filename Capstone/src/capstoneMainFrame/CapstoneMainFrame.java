@@ -53,7 +53,10 @@ import javax.swing.JOptionPane;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JComboBox;
 import java.awt.Font;
+import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
 
+import java.lang.Object;
 
 public class CapstoneMainFrame {
 
@@ -142,6 +145,7 @@ public class CapstoneMainFrame {
 	private JTextField employeeLookupLastName;
 	private JTextField employeeLookupJobTitle;
 	private JTable employeeLookupTable;
+	private JTextField createOrderPerField;
 	
 	/**
 	 * Launch the application.
@@ -3139,13 +3143,51 @@ public class CapstoneMainFrame {
 		createOrderPanel.add(orderCreateGypsumField, gbc_orderCreateGypsumField);
 		orderCreateGypsumField.setColumns(10);
 		
-		JButton btnBack_8 = new JButton("Back");
-		btnBack_8.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				createOrderPanel.hide();
-				orderPanel.show();
-			}
-		});
+		JLabel lblNewLabel_4 = new JLabel("Pounds Per:");
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 10));
+		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
+		gbc_lblNewLabel_4.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_4.gridx = 1;
+		gbc_lblNewLabel_4.gridy = 10;
+		createOrderPanel.add(lblNewLabel_4, gbc_lblNewLabel_4);
+		
+		JRadioButton createOrderPerAcreButton = new JRadioButton("Per Acre");
+		GridBagConstraints gbc_createOrderPerAcreButton = new GridBagConstraints();
+		gbc_createOrderPerAcreButton.insets = new Insets(0, 0, 5, 5);
+		gbc_createOrderPerAcreButton.gridx = 2;
+		gbc_createOrderPerAcreButton.gridy = 10;
+		createOrderPanel.add(createOrderPerAcreButton, gbc_createOrderPerAcreButton);
+		
+		JRadioButton createOrderPerTonButton = new JRadioButton("Per Ton");
+		GridBagConstraints gbc_createOrderPerTonButton = new GridBagConstraints();
+		gbc_createOrderPerTonButton.insets = new Insets(0, 0, 5, 5);
+		gbc_createOrderPerTonButton.gridx = 3;
+		gbc_createOrderPerTonButton.gridy = 10;
+		createOrderPanel.add(createOrderPerTonButton, gbc_createOrderPerTonButton);
+		
+		ButtonGroup g = new ButtonGroup();
+		g.add(createOrderPerTonButton);
+		g.add(createOrderPerAcreButton);
+		
+		JLabel lblNewLabel_3 = new JLabel("Amount");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 10));
+		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
+		gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_3.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_3.gridx = 5;
+		gbc_lblNewLabel_3.gridy = 10;
+		createOrderPanel.add(lblNewLabel_3, gbc_lblNewLabel_3);
+		
+		createOrderPerField = new JTextField();
+		createOrderPerField.setText("0");
+		GridBagConstraints gbc_createOrderPerField = new GridBagConstraints();
+		gbc_createOrderPerField.insets = new Insets(0, 0, 5, 5);
+		gbc_createOrderPerField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_createOrderPerField.gridx = 6;
+		gbc_createOrderPerField.gridy = 10;
+		createOrderPanel.add(createOrderPerField, gbc_createOrderPerField);
+		createOrderPerField.setColumns(10);
 		
 		JLabel lblNewLabel_45 = new JLabel("Comments");
 		lblNewLabel_45.setFont(new Font("Tahoma", Font.BOLD, 10));
@@ -3166,6 +3208,30 @@ public class CapstoneMainFrame {
 		createOrderPanel.add(orderCreateOrderCommentsField, gbc_orderCreateOrderCommentsField);
 		orderCreateOrderCommentsField.setColumns(10);
 		
+		JButton btnBack_8 = new JButton("Back");
+		btnBack_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				createOrderPanel.hide();
+				orderPanel.show();
+				orderCreateGypsumField.setText("0");
+				orderCreateUreaField.setText("0");
+				orderCreateAMSField.setText("0");
+				orderCreateMAPField.setText("0");
+				orderCreatePotashField.setText("0");
+				orderCreatePickupTimeField.setText("hh:mm");
+				orderCreatePickupDateField.setText("MM-dd-yyyy");
+				orderCreateEmployeeIDField.setText("");
+				orderCreateCustomerIDField.setText("");
+				orderCreateOrderCommentsField.setText("");
+				orderCreateOrderPaidBox.setSelected(false);
+				orderCreateOrderCompleteBox.setSelected(false);
+				orderCreateOrderDeliveredBox.setSelected(false);
+				createOrderPerTonButton.setSelected(false);
+				createOrderPerAcreButton.setSelected(false);
+				createOrderPerField.setText("0");
+			}
+		});
+		
 		JButton orderCreateClearButton = new JButton("Clear");
 		orderCreateClearButton.setForeground(new Color(255, 0, 0));
 		orderCreateClearButton.addActionListener(new ActionListener() {
@@ -3174,11 +3240,11 @@ public class CapstoneMainFrame {
 				orderCreateEmployeeIDField.setText("");
 				orderCreatePickupDateField.setText("MM-dd-yyyy");
 				orderCreatePickupTimeField.setText("hh:mm");
-				orderCreatePotashField.setText("");
-				orderCreateMAPField.setText("");
-				orderCreateAMSField.setText("");
-				orderCreateUreaField.setText("");
-				orderCreateGypsumField.setText("");
+				orderCreatePotashField.setText("0");
+				orderCreateMAPField.setText("0");
+				orderCreateAMSField.setText("0");
+				orderCreateUreaField.setText("0");
+				orderCreateGypsumField.setText("0");
 				orderCreateOrderCommentsField.setText("");
 				SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
 				SimpleDateFormat timeFormatter = new SimpleDateFormat("hh:mm");
@@ -3187,6 +3253,9 @@ public class CapstoneMainFrame {
 				orderCreateOrderPaidBox.setSelected(false);
 				orderCreateOrderCompleteBox.setSelected(false);
 				orderCreateOrderDeliveredBox.setSelected(false);
+				createOrderPerTonButton.setSelected(false);
+				createOrderPerAcreButton.setSelected(false);
+				createOrderPerField.setText("0");
 			}
 		});
 		GridBagConstraints gbc_orderCreateClearButton = new GridBagConstraints();
@@ -3205,7 +3274,7 @@ public class CapstoneMainFrame {
 				amsPriceAmnt = myAdmin.getAMSPrice();
 				ureaPriceAmnt = myAdmin.getUreaPrice();
 				gypsumPriceAmnt = myAdmin.getGypsumPrice();
-				newOrder.execute(orderCreateOrderIDField, orderCreateCustomerIDField, orderCreateEmployeeIDField, orderCreatePickupDateField, orderCreatePickupTimeField, orderCreatePotashField, orderCreateMAPField, orderCreateAMSField, orderCreateUreaField, orderCreateGypsumField, orderCreateOrderCommentsField, orderCreateOrderDateField, orderCreateOrderPaidBox, orderCreateOrderCompleteBox, orderCreateOrderDeliveredBox, potashPriceAmnt, mapPriceAmnt, amsPriceAmnt, ureaPriceAmnt, gypsumPriceAmnt);
+				newOrder.execute(orderCreateOrderIDField, orderCreateCustomerIDField, orderCreateEmployeeIDField, orderCreatePickupDateField, orderCreatePickupTimeField, orderCreatePotashField, orderCreateMAPField, orderCreateAMSField, orderCreateUreaField, orderCreateGypsumField, orderCreateOrderCommentsField, orderCreateOrderDateField, orderCreateOrderPaidBox, orderCreateOrderCompleteBox, orderCreateOrderDeliveredBox, potashPriceAmnt, mapPriceAmnt, amsPriceAmnt, ureaPriceAmnt, gypsumPriceAmnt, createOrderPerTonButton, createOrderPerAcreButton, createOrderPerField );
 			}
 		});
 		GridBagConstraints gbc_orderCreateRunButton = new GridBagConstraints();
