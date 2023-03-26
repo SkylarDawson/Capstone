@@ -1882,7 +1882,6 @@ public class CapstoneMainFrame {
 				CreateOrder app1 = new CreateOrder();
 				int maxID = app1.selectMaxOrders(sqlMaxOrders);
 				orderCreateOrderIDField.setText(maxID+1+"");
-				setPrevious(orderPanel);
 
 			}
 		});
@@ -1895,7 +1894,6 @@ public class CapstoneMainFrame {
 			    	String orderID = JOptionPane.showInputDialog(frame, "Enter ID of Order to Edit:");
 			    
 			    
-			    setPrevious(orderPanel);
 			    orderPanel.hide();
 			    CreateOrder myOrder = new CreateOrder();
 			    myOrder.loadOrder(orderID, orderUpdateOrderIDLabel, orderUpdateCustomerNumberField, updateOrderEmployeeNumField, orderUpdatePickupDateField, orderUpdatePickupTimeField, orderUpdatePotashField, orderUpdateMapField, orderUpdateAMSField, orderUpdateUreaField, orderUpdateGypsumField, orderUpdateCommentsField, orderUpdateOrderPaidBox, orderUpdateOrderComplete, orderUpdateOrderDelivered, orderUpdateOrderDateLabel);
