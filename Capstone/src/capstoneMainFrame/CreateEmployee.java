@@ -57,14 +57,16 @@ public class CreateEmployee {
      * @param JTextField AssignedRepID is the passed in Employee Number from the GUI
      * @return nothing
      */
-	public void execute(JTextField EmployeeIDField, JTextField FirstNameField, JTextField LastNameField, JTextField AssignedRepIDField, JTextField JobTitleField) {
+	public void execute(JTextField EmployeeIDField, JTextField FirstNameField, JTextField LastNameField, JTextField JobTitleField, JTextField userNameField, JTextField passwordField) {
 		
 		// Attributes needed for new Employee (based on the attributes found in the Employees Table in the Database)
 		int employeeNum = 0;
 		String firstName = null;
 		String lastName = null;
 		String jobTitle = null;
-		int assignedRepID = 0;
+		String userName = null;
+		String password = null;
+		int passwordHash = 0;
 		
 		// For error checking
 		boolean error = false;
@@ -75,22 +77,26 @@ public class CreateEmployee {
 		// Check that the fields are not empty and all needed information is included
 		// Needed information is ID, First Name, Last Name, Job Title
 		
-		if(EmployeeIDField.getText() == null || EmployeeIDField.getText() == "") { error = true; errorMessage += "Employee ID Missing \n";}
-		if(FirstNameField.getText() == null || FirstNameField.getText() == "") { error = true; errorMessage += "First Name Missing \n";}
-		if(LastNameField.getText() == null || LastNameField.getText() == "") { error = true; errorMessage += "Last Name Missing \n";}
-		if(JobTitleField.getText() == null || JobTitleField.getText() == "") { error = true; errorMessage += "Job Title Missing \n";}
+		if(EmployeeIDField.getText().equals(null) || EmployeeIDField.getText().equals("")) { error = true; errorMessage += "Employee ID Missing \n";}
+		if(FirstNameField.getText().equals(null) || FirstNameField.getText().equals("")) { error = true; errorMessage += "First Name Missing \n";}
+		if(LastNameField.getText().equals(null) || LastNameField.getText().equals("")) { error = true; errorMessage += "Last Name Missing \n";}
+		if(JobTitleField.getText().equals(null) || JobTitleField.getText().equals("")) { error = true; errorMessage += "Job Title Missing \n";}
+		if(userNameField.getText().equals(null) || userNameField.getText().equals("")) { error = true; errorMessage += "User Name Missing \n";}
+		if(passwordField.getText().equals(null) || passwordField.getText().equals("")) { error = true; errorMessage += "Password Missing \n";}
 		
 		// Using the passed in JTextFields - extract the needed information to create a Employee
 		employeeNum = Integer.parseInt(EmployeeIDField.getText());
 		firstName = FirstNameField.getText();
 		lastName = LastNameField.getText();
 		jobTitle = JobTitleField.getText();
-		assignedRepID = Integer.parseInt(AssignedRepIDField.getText());
+		userName = userNameField.getText();
+		passwordHash = passwordField.getText().hashCode();
+		password = passwordHash+"";
 		
 		
 		// Check to make sure that the information put in is valid
     		// Employee ID Doesn't Exist
-		 	String sqlCheckID = String.format("Select employeeNum from Employees where employeeNum = \"%d\"", employeeNum);
+		 	String sqlCheckID = String.format("Select employeeNum from employees where employeeNum = \"%d\"", employeeNum);
 	        
 	        try {
 	        Connection conn = this.connect();  
@@ -111,23 +117,7 @@ public class CreateEmployee {
         	// Employee ID is not a negative
 	        if(employeeNum <= 0 ) {error = true; errorMessage += "Employee ID Cannot Be Negative \n";}
 	        
-        	// Employee ID exists in system
-	        String employeeIDExists = String.format("Select employeeNum from employees where employeeNum = \"%d\"", assignedRepID);
-	        
-	        try {
-	            Connection conn = this.connect();  
-	            Statement stmt  = conn.createStatement(); 
-	            
-	            // Run SQL statement and return the result
-	            ResultSet rs  = stmt.executeQuery(employeeIDExists);
-	            
-	            // loop through the result set - prints out each attribute for each tuple pulled
-	            while (rs.next()) {  
-	                if(rs.getInt("employeeNum") != assignedRepID) {error = true; errorMessage += "Employee ID Does Not Exist \n";}
-	            }  
-	            	} catch (SQLException e) {  
-	            System.out.println(e.getMessage());  
-	            	}  
+        	
 	        
 			// Phone Number is valid & does not exist
 
@@ -136,7 +126,7 @@ public class CreateEmployee {
 			// If no error was found in the input information - insert the employee and clear
 			if(!error) {
 				// Insert the employee into the Database
-				insertEmployee(employeeNum, firstName, lastName, jobTitle, assignedRepID);
+				insertEmployee(employeeNum, firstName, lastName, jobTitle, userName, password);
 				
 				// Update System
 				
@@ -146,7 +136,8 @@ public class CreateEmployee {
 				FirstNameField.setText("");
 				LastNameField.setText("");
 				JobTitleField.setText("");
-				AssignedRepIDField.setText("");
+				userNameField.setText("");
+				passwordField.setText("");
 				
 				return;
 			}
@@ -169,11 +160,11 @@ public class CreateEmployee {
      * @param int assignedRepID is the corresponding employeeID for the sales rep associated
      * @return nothing
      */
-    public void insertEmployee(int employeeNum, String firstName, String lastName, String jobTitle, int assignedRepID) {  
+    public void insertEmployee(int employeeNum, String firstName, String lastName, String jobTitle, String username, String password) {  
         
     	// The needed SQL command to be executed on the database to successfully insert an employee
-    	String sql = "INSERT INTO employee(employeeNum, firstName, lastName, jobTitle, assignedRepID)"
-        		+ " VALUES(?,?,?,?,?)";  
+    	String sql = "INSERT INTO employees(employeeNum, firstName, lastName, jobTitle, username, password )"
+        		+ " VALUES(?,?,?,?,?,?)";  
    
         try{  
         	// Connect to the database
@@ -185,7 +176,8 @@ public class CreateEmployee {
             pstmt.setString(2, firstName);
             pstmt.setString(3, lastName);
             pstmt.setString(4, jobTitle);
-            pstmt.setInt(5, assignedRepID); 
+            pstmt.setString(5, username); 
+            pstmt.setString(6, password);
             
             // Update after executing
             pstmt.executeUpdate();  
@@ -207,7 +199,7 @@ public class CreateEmployee {
      * @param JTextField AssignedRepID is the Text Field Containing the Customer's assigned sales rep
      * @return nothing
      */
-    public void updateEmployee(String employeeNum, JTextField FirstNameField, JTextField LastNameField, JTextField JobTitleField, JTextField AssignedRepIDField) {
+    public void updateEmployee(String employeeNum, JTextField FirstNameField, JTextField LastNameField, JTextField JobTitleField) {
 		// Convert the employeeNum from String to Int
     	int employeeID = Integer.parseInt(employeeNum);
 		
@@ -215,12 +207,10 @@ public class CreateEmployee {
     	String firstName = null;
 		String lastName = null;
 		String jobTitle = null;
-		int assignedRepID = 0;
             
             firstName = FirstNameField.getText();
             lastName = LastNameField.getText();
             jobTitle = JobTitleField.getText();
-            assignedRepID = Integer.parseInt(AssignedRepIDField.getText());
     	
         /*
          * Pass through the fields & ensure that they aren't blank - if not alter what the variable is assigned
@@ -239,17 +229,12 @@ public class CreateEmployee {
 			jobTitle = JobTitleField.getText();
 		}
 		
-		if(AssignedRepIDField.getText().length() != 0)
-		{
-			assignedRepID = Integer.parseInt(AssignedRepIDField.getText());
-		}
 		
 		// Update
-		String updateEmployee = "Update employee "
+		String updateEmployee = "Update employees "
 				+ "SET firstName = ? , "
 				+ "lastName = ?,"
 				+ "jobTitle = ?,"
-				+ "assignedRepID = ? "
 				+ "WHERE employeeNum = ?";
 				
 		try {
@@ -258,8 +243,7 @@ public class CreateEmployee {
             pstmt.setString(1, firstName);
             pstmt.setString(2, lastName);
             pstmt.setString(3, jobTitle);
-            pstmt.setInt(4, assignedRepID);
-            pstmt.setInt(5, employeeID);
+            pstmt.setInt(4, employeeID);
             pstmt.executeUpdate();
 		
             pstmt.close();
@@ -310,7 +294,7 @@ public class CreateEmployee {
      * @param JTextField AssignedRepID is the Text Field Containing the Customer's assigned sales rep
      * @return nothing
      */
-    public void loadEmployee(String employeeNum, JLabel IDLabel, JTextField FirstNameField, JTextField LastNameField, JTextField JobTitleField, JTextField AssignedRepIDField) {
+    public void loadEmployee(String employeeNum, JLabel IDLabel, JTextField FirstNameField, JTextField LastNameField, JTextField JobTitleField) {
     	// Convert the ID into an integer
     	int employeeID = Integer.parseInt(employeeNum);
 		
@@ -318,7 +302,6 @@ public class CreateEmployee {
     	String firstName = null;
 		String lastName = null;
 		String jobTitle = null;
-		int assignedRepID = 0;
 		
 		String sql = String.format("SELECT * from employees where employeeNum = \"%d\"", employeeID); 
 		// Try and connect to the database
@@ -333,14 +316,12 @@ public class CreateEmployee {
             firstName = rs.getString("firstName");
             lastName = rs.getString("lastName");
             jobTitle = rs.getString("jobTitle");
-            assignedRepID = rs.getInt("assignedRepID");
             
             // Set the text of the fields
             IDLabel.setText(employeeID + "");
             FirstNameField.setText(firstName);
             LastNameField.setText(lastName);
             JobTitleField.setText(jobTitle);
-            AssignedRepIDField.setText(assignedRepID + "");
             
             stmt.close();
             conn.close();
@@ -352,6 +333,33 @@ public class CreateEmployee {
         
         }  
     }
+    
+    /*
+     * function that runs selection on Customers table - specifically to pull information from all columns
+     * @param String sql is the passed in SQL command to be sent to the Database
+     */
+    public Integer selectMaxEmployees(String sql){  
+    	// Connect to the database
+        try {  
+            Connection conn = this.connect();  
+            Statement stmt  = conn.createStatement();
+            
+            // Run SQL statement and return the result
+            ResultSet rs    = stmt.executeQuery(sql);  
+            // Result
+            int result = 0;
+            // loop through the result set - prints out each attribute for each tuple pulled
+            while (rs.next()) {  
+                result = (rs.getInt("employeeNum"));  
+            }  
+           
+            return result;
+            
+        } catch (SQLException e) {  
+            System.out.println(e.getMessage());  
+            return -1;
+        }  
+    }  
     
 }
 

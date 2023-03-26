@@ -77,7 +77,7 @@ public class CapstoneMainFrame {
 	private JTextField textFieldCreateEmployeeID;
 	private JTextField textFieldCreateEmployeeFirst;
 	private JTextField textFieldCreateEmployeeLast;
-	private JTextField textFieldCreateEmployeePhone;
+	private JTextField textFieldCreateEmployeeUserName;
 	private JTextField textFieldCreateEmployeeTitle;
 	private JTextField orderHistoryOrderIDField;
 	private JTextField orderHistoryOrderDateField;
@@ -146,6 +146,8 @@ public class CapstoneMainFrame {
 	private JTextField employeeLookupJobTitle;
 	private JTable employeeLookupTable;
 	private JTextField createOrderPerField;
+	private final JLabel lblNewLabel_5 = new JLabel("EMPLOYEE LOOKUP");
+	private JTextField textFieldCreateEmployeePassword;
 	
 	/**
 	 * Launch the application.
@@ -2344,12 +2346,20 @@ public class CapstoneMainFrame {
 		 */
 		GridBagLayout gbl_employeePanel = new GridBagLayout();
 		gbl_employeePanel.columnWidths = new int[]{0, 100, 100, 100, 100, 0, 0};
-		gbl_employeePanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
+		gbl_employeePanel.rowHeights = new int[]{100, 0, 0, 0, 0, 14, 0};
 		gbl_employeePanel.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_employeePanel.rowWeights = new double[]{1.0, 0.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_employeePanel.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		employeePanel.setLayout(gbl_employeePanel);
+		GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
+		gbc_lblNewLabel_5.gridwidth = 4;
+		gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_5.gridx = 1;
+		gbc_lblNewLabel_5.gridy = 0;
+		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 24));
+		employeePanel.add(lblNewLabel_5, gbc_lblNewLabel_5);
 		
-		JLabel employeeIDLabel = new JLabel("Employee ID");
+		JLabel employeeIDLabel = new JLabel("Employee Num");
+		employeeIDLabel.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_employeeIDLabel = new GridBagConstraints();
 		gbc_employeeIDLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_employeeIDLabel.gridx = 1;
@@ -2357,6 +2367,7 @@ public class CapstoneMainFrame {
 		employeePanel.add(employeeIDLabel, gbc_employeeIDLabel);
 		
 		JLabel firstNameLabel = new JLabel("First Name");
+		firstNameLabel.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_firstNameLabel = new GridBagConstraints();
 		gbc_firstNameLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_firstNameLabel.gridx = 2;
@@ -2364,6 +2375,7 @@ public class CapstoneMainFrame {
 		employeePanel.add(firstNameLabel, gbc_firstNameLabel);
 		
 		JLabel lastNameLabel = new JLabel("Last Name");
+		lastNameLabel.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lastNameLabel = new GridBagConstraints();
 		gbc_lastNameLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_lastNameLabel.gridx = 3;
@@ -2371,6 +2383,7 @@ public class CapstoneMainFrame {
 		employeePanel.add(lastNameLabel, gbc_lastNameLabel);
 		
 		JLabel jobTitleLabel = new JLabel("Job Title");
+		jobTitleLabel.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_jobTitleLabel = new GridBagConstraints();
 		gbc_jobTitleLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_jobTitleLabel.gridx = 4;
@@ -2429,6 +2442,7 @@ public class CapstoneMainFrame {
 			}
 		});
 		GridBagConstraints gbc_employeeLookupSearchButton = new GridBagConstraints();
+		gbc_employeeLookupSearchButton.anchor = GridBagConstraints.WEST;
 		gbc_employeeLookupSearchButton.insets = new Insets(0, 0, 5, 0);
 		gbc_employeeLookupSearchButton.gridx = 5;
 		gbc_employeeLookupSearchButton.gridy = 2;
@@ -2471,6 +2485,7 @@ public class CapstoneMainFrame {
 		horizontalBox_7.add(employeeCreateNewButton);
 		
 		JButton employeeDeleteButton = new JButton("Delete");
+		employeeDeleteButton.setForeground(new Color(255, 0, 0));
 		employeeDeleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrame frame = new JFrame();
@@ -2720,12 +2735,22 @@ public class CapstoneMainFrame {
 		 */
 		GridBagLayout gbl_createEmployeePanel = new GridBagLayout();
 		gbl_createEmployeePanel.columnWidths = new int[]{0, 0, 0, 0, 0};
-		gbl_createEmployeePanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_createEmployeePanel.rowHeights = new int[]{100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_createEmployeePanel.columnWeights = new double[]{1.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_createEmployeePanel.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_createEmployeePanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		createEmployeePanel.setLayout(gbl_createEmployeePanel);
 		
+		JLabel lblNewLabel_7 = new JLabel("CREATE EMPLOYEE");
+		lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 24));
+		GridBagConstraints gbc_lblNewLabel_7 = new GridBagConstraints();
+		gbc_lblNewLabel_7.gridwidth = 2;
+		gbc_lblNewLabel_7.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_7.gridx = 1;
+		gbc_lblNewLabel_7.gridy = 0;
+		createEmployeePanel.add(lblNewLabel_7, gbc_lblNewLabel_7);
+		
 		JLabel lblCreateEmployeeID = new JLabel("Employee ID");
+		lblCreateEmployeeID.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lblCreateEmployeeID.setHorizontalAlignment(SwingConstants.TRAILING);
 		GridBagConstraints gbc_lblCreateEmployeeID = new GridBagConstraints();
 		gbc_lblCreateEmployeeID.fill = GridBagConstraints.HORIZONTAL;
@@ -2735,6 +2760,10 @@ public class CapstoneMainFrame {
 		createEmployeePanel.add(lblCreateEmployeeID, gbc_lblCreateEmployeeID);
 		
 		textFieldCreateEmployeeID = new JTextField();
+		CreateEmployee app11 = new CreateEmployee();
+		String sqlMaxEmployees = "Select employeeNum From employees where employeeNum = (Select max(employeeNum) from employees);";
+		int maxIDEmp = app11.selectMaxEmployees(sqlMaxEmployees) + 1;
+		textFieldCreateEmployeeID.setText(maxIDEmp + "");
 		GridBagConstraints gbc_textFieldCreateEmployeeID = new GridBagConstraints();
 		gbc_textFieldCreateEmployeeID.insets = new Insets(0, 0, 5, 5);
 		gbc_textFieldCreateEmployeeID.fill = GridBagConstraints.HORIZONTAL;
@@ -2744,6 +2773,7 @@ public class CapstoneMainFrame {
 		textFieldCreateEmployeeID.setColumns(10);
 		
 		JLabel lblCreateEmployeeFirst = new JLabel("First Name");
+		lblCreateEmployeeFirst.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lblCreateEmployeeFirst.setHorizontalAlignment(SwingConstants.TRAILING);
 		GridBagConstraints gbc_lblCreateEmployeeFirst = new GridBagConstraints();
 		gbc_lblCreateEmployeeFirst.anchor = GridBagConstraints.EAST;
@@ -2762,6 +2792,7 @@ public class CapstoneMainFrame {
 		textFieldCreateEmployeeFirst.setColumns(10);
 		
 		JLabel lblCreateEmployeeLast = new JLabel("Last Name");
+		lblCreateEmployeeLast.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lblCreateEmployeeLast.setHorizontalAlignment(SwingConstants.TRAILING);
 		GridBagConstraints gbc_lblCreateEmployeeLast = new GridBagConstraints();
 		gbc_lblCreateEmployeeLast.anchor = GridBagConstraints.EAST;
@@ -2779,30 +2810,26 @@ public class CapstoneMainFrame {
 		createEmployeePanel.add(textFieldCreateEmployeeLast, gbc_textFieldCreateEmployeeLast);
 		textFieldCreateEmployeeLast.setColumns(10);
 		
-		JLabel lblCreateEmployeePhone = new JLabel("Phone");
-		GridBagConstraints gbc_lblCreateEmployeePhone = new GridBagConstraints();
-		gbc_lblCreateEmployeePhone.anchor = GridBagConstraints.EAST;
-		gbc_lblCreateEmployeePhone.insets = new Insets(0, 0, 5, 5);
-		gbc_lblCreateEmployeePhone.gridx = 1;
-		gbc_lblCreateEmployeePhone.gridy = 4;
-		createEmployeePanel.add(lblCreateEmployeePhone, gbc_lblCreateEmployeePhone);
-		
-		textFieldCreateEmployeePhone = new JTextField();
-		GridBagConstraints gbc_textFieldCreateEmployeePhone = new GridBagConstraints();
-		gbc_textFieldCreateEmployeePhone.insets = new Insets(0, 0, 5, 5);
-		gbc_textFieldCreateEmployeePhone.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textFieldCreateEmployeePhone.gridx = 2;
-		gbc_textFieldCreateEmployeePhone.gridy = 4;
-		createEmployeePanel.add(textFieldCreateEmployeePhone, gbc_textFieldCreateEmployeePhone);
-		textFieldCreateEmployeePhone.setColumns(10);
+		JButton btnClearEmployee = new JButton("Clear");
+		btnClearEmployee.setForeground(new Color(255, 0, 0));
+		btnClearEmployee.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textFieldCreateEmployeeFirst.setText("");
+				textFieldCreateEmployeeLast.setText("");
+				textFieldCreateEmployeeUserName.setText("");
+				textFieldCreateEmployeePassword.setText("");
+				textFieldCreateEmployeeTitle.setText("");
+			}
+		});
 		
 		JLabel lblCreateEmployeeTitle = new JLabel("Job Title");
+		lblCreateEmployeeTitle.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lblCreateEmployeeTitle.setHorizontalAlignment(SwingConstants.TRAILING);
 		GridBagConstraints gbc_lblCreateEmployeeTitle = new GridBagConstraints();
 		gbc_lblCreateEmployeeTitle.anchor = GridBagConstraints.EAST;
 		gbc_lblCreateEmployeeTitle.insets = new Insets(0, 0, 5, 5);
 		gbc_lblCreateEmployeeTitle.gridx = 1;
-		gbc_lblCreateEmployeeTitle.gridy = 5;
+		gbc_lblCreateEmployeeTitle.gridy = 4;
 		createEmployeePanel.add(lblCreateEmployeeTitle, gbc_lblCreateEmployeeTitle);
 		
 		textFieldCreateEmployeeTitle = new JTextField();
@@ -2810,46 +2837,70 @@ public class CapstoneMainFrame {
 		gbc_textFieldCreateEmployeeTitle.insets = new Insets(0, 0, 5, 5);
 		gbc_textFieldCreateEmployeeTitle.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textFieldCreateEmployeeTitle.gridx = 2;
-		gbc_textFieldCreateEmployeeTitle.gridy = 5;
+		gbc_textFieldCreateEmployeeTitle.gridy = 4;
 		createEmployeePanel.add(textFieldCreateEmployeeTitle, gbc_textFieldCreateEmployeeTitle);
 		textFieldCreateEmployeeTitle.setColumns(10);
 		
-		JButton btnClearEmployee = new JButton("Clear");
-		btnClearEmployee.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				textFieldCreateEmployeeID.setText("");
-				textFieldCreateEmployeeFirst.setText("");
-				textFieldCreateEmployeeLast.setText("");
-				textFieldCreateEmployeePhone.setText("");
-				textFieldCreateEmployeeTitle.setText("");
-			}
-		});
+		JLabel lblCreateEmployeePhone = new JLabel("Username");
+		lblCreateEmployeePhone.setFont(new Font("Tahoma", Font.BOLD, 10));
+		GridBagConstraints gbc_lblCreateEmployeePhone = new GridBagConstraints();
+		gbc_lblCreateEmployeePhone.anchor = GridBagConstraints.EAST;
+		gbc_lblCreateEmployeePhone.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCreateEmployeePhone.gridx = 1;
+		gbc_lblCreateEmployeePhone.gridy = 5;
+		createEmployeePanel.add(lblCreateEmployeePhone, gbc_lblCreateEmployeePhone);
+		
+		textFieldCreateEmployeeUserName = new JTextField();
+		GridBagConstraints gbc_textFieldCreateEmployeeUserName = new GridBagConstraints();
+		gbc_textFieldCreateEmployeeUserName.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldCreateEmployeeUserName.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldCreateEmployeeUserName.gridx = 2;
+		gbc_textFieldCreateEmployeeUserName.gridy = 5;
+		createEmployeePanel.add(textFieldCreateEmployeeUserName, gbc_textFieldCreateEmployeeUserName);
+		textFieldCreateEmployeeUserName.setColumns(10);
+		
+		JLabel passwordLabelEmployee = new JLabel("Password");
+		passwordLabelEmployee.setFont(new Font("Tahoma", Font.BOLD, 10));
+		GridBagConstraints gbc_passwordLabelEmployee = new GridBagConstraints();
+		gbc_passwordLabelEmployee.insets = new Insets(0, 0, 5, 5);
+		gbc_passwordLabelEmployee.anchor = GridBagConstraints.EAST;
+		gbc_passwordLabelEmployee.gridx = 1;
+		gbc_passwordLabelEmployee.gridy = 6;
+		createEmployeePanel.add(passwordLabelEmployee, gbc_passwordLabelEmployee);
+		
+		textFieldCreateEmployeePassword = new JTextField();
+		GridBagConstraints gbc_textFieldCreateEmployeePassword = new GridBagConstraints();
+		gbc_textFieldCreateEmployeePassword.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldCreateEmployeePassword.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldCreateEmployeePassword.gridx = 2;
+		gbc_textFieldCreateEmployeePassword.gridy = 6;
+		createEmployeePanel.add(textFieldCreateEmployeePassword, gbc_textFieldCreateEmployeePassword);
+		textFieldCreateEmployeePassword.setColumns(10);
 		GridBagConstraints gbc_btnClearEmployee = new GridBagConstraints();
 		gbc_btnClearEmployee.insets = new Insets(0, 0, 5, 5);
 		gbc_btnClearEmployee.gridx = 1;
-		gbc_btnClearEmployee.gridy = 6;
+		gbc_btnClearEmployee.gridy = 7;
 		createEmployeePanel.add(btnClearEmployee, gbc_btnClearEmployee);
 		
 		JButton btnCreateEmployee = new JButton("Create");
 		btnCreateEmployee.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CreateEmployee newEmployee = new CreateEmployee();
-				newEmployee.execute(textFieldCreateEmployeeID, textFieldCreateEmployeeFirst, textFieldCreateEmployeeLast, textFieldCreateEmployeePhone, textFieldCreateEmployeeTitle);
+				newEmployee.execute(textFieldCreateEmployeeID, textFieldCreateEmployeeFirst, textFieldCreateEmployeeLast, textFieldCreateEmployeeTitle, textFieldCreateEmployeeUserName, textFieldCreateEmployeePassword);
 			}
 		});
 		GridBagConstraints gbc_btnCreateEmployee = new GridBagConstraints();
 		gbc_btnCreateEmployee.anchor = GridBagConstraints.EAST;
 		gbc_btnCreateEmployee.insets = new Insets(0, 0, 5, 5);
 		gbc_btnCreateEmployee.gridx = 2;
-		gbc_btnCreateEmployee.gridy = 6;
+		gbc_btnCreateEmployee.gridy = 7;
 		createEmployeePanel.add(btnCreateEmployee, gbc_btnCreateEmployee);
 		
 		JButton btnBackEmployee = new JButton("Back");
 		btnBackEmployee.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				createCustomerPanel.hide();
-				getPrevious().show();
-				setPrevious(createCustomerPanel);
+				createEmployeePanel.hide();
+				employeePanel.show();
 			}
 		});
 		
@@ -2857,7 +2908,7 @@ public class CapstoneMainFrame {
 		gbc_btnBackEmployee.anchor = GridBagConstraints.EAST;
 		gbc_btnBackEmployee.insets = new Insets(0, 0, 5, 5);
 		gbc_btnBackEmployee.gridx = 2;
-		gbc_btnBackEmployee.gridy = 7;
+		gbc_btnBackEmployee.gridy = 8;
 		createEmployeePanel.add(btnBackEmployee, gbc_btnBackEmployee);
 		
 		GridBagLayout gridBagLayout_2 = new GridBagLayout();

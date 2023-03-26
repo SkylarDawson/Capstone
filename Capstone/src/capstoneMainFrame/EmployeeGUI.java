@@ -95,7 +95,7 @@ public class EmployeeGUI {
     	// If there exists a employeeNum value that is valid (i.e. greater than 0)
     	if(employeeNum > 0) {
     		// run the SQL command searching by employeeNum
-    		String sqlemployeeNum = String.format( "Select employeeNum, firstName, lastName, jobTitle"
+    		String sqlemployeeNum = String.format( "Select employeeNum, firstName, lastName, jobTitle, username"
 	        		+ " from employees"
 	        		+ " where employeeNum = \"%x\" ;", employeeNum);
     		
@@ -109,7 +109,7 @@ public class EmployeeGUI {
     	// If there exists a phone number passed into the search
     	if(jobTitle.length() > 0) {
     		// run the SQL command searching by phone
-    		String sqljobTitle = String.format( "Select employeeNum, firstName, lastName, jobTitle"
+    		String sqljobTitle = String.format( "Select employeeNum, firstName, lastName, jobTitle, username"
 	        		+ " from employees"
 	        		+ " where jobTitle = \"%s\" ;", jobTitle);
     		
@@ -122,7 +122,7 @@ public class EmployeeGUI {
     	// If First Name is entered but no last name - only search based on entered values for first name				
 		if(firstName.length() > 0 && lastName.length() == 0) {
 			// Executed SQL command
-			String sqlFirst = String.format( "Select employeeNum, firstName, lastName, jobTitle"
+			String sqlFirst = String.format( "Select employeeNum, firstName, lastName, jobTitle, username"
 	        		+ " from employees"
 	        		+ " where  firstName like \"%s%c\" ;", firstName, '%');
 			
@@ -135,7 +135,7 @@ public class EmployeeGUI {
 				else if(firstName.length() == 0 && lastName.length() > 0)
 				{
 					// Execute SQL command - for searching last name only
-					String sqlLast = String.format( "Select employeeNum, firstName, lastName, jobTitle"
+					String sqlLast = String.format( "Select employeeNum, firstName, lastName, jobTitle, username"
 			        		+ " from employees"
 			        		+ " where lastName like \"%s%c\";", lastName, '%');
 			  
@@ -146,7 +146,7 @@ public class EmployeeGUI {
 				// Else execute based on first and last name combination
 				else if(firstName.length() > 0 && lastName.length() > 0){
 					// SQL command to be executed
-					String sqlFirstLast = String.format( "Select employeeNum, firstName, lastName, jobTitle"
+					String sqlFirstLast = String.format( "Select employeeNum, firstName, lastName, jobTitle, username"
 			        		+ " from employees"
 			        		+ " where firstName like \"%s%c\" AND lastName like \"%s%c\";", firstName, '%', lastName, '%');
 			  
@@ -158,7 +158,7 @@ public class EmployeeGUI {
 				else {
 					
 				// No specific search - pull all orders
-				String allOrders = "Select employeeNum, firstName, lastName, jobTitle"
+				String allOrders = "Select employeeNum, firstName, lastName, jobTitle, username"
 		        		+ " from employees";
 				
 				// Select all
@@ -178,6 +178,7 @@ public class EmployeeGUI {
     	Vector<String> firstNames = new Vector<String>();
     	Vector<String> lastNames = new Vector<String>();
     	Vector<String> jobTitles = new Vector<String>();
+    	Vector<String> userNames = new Vector<String>();
     	
     	
     	// Try and connect to the database
@@ -197,11 +198,12 @@ public class EmployeeGUI {
             	firstNames.add(rs.getString("firstName"));
             	lastNames.add(rs.getString("lastName"));
             	jobTitles.add(rs.getString("jobTitle"));
+            	userNames.add(rs.getString("username"));
                 
             }
            
            // After results are gathered - display result
-          displayResults(employeeNums, firstNames, lastNames, jobTitles);
+          displayResults(employeeNums, firstNames, lastNames, jobTitles, userNames);
            
           return;
           
@@ -222,10 +224,10 @@ public class EmployeeGUI {
      * @param Vector<String> jobTitle is the list of all returned employee job titles
      * @return nothing
      */
-    public void displayResults(Vector<Integer> employeeNum, Vector<String> firstName, Vector<String> lastName, Vector<String> jobTitle) {
+    public void displayResults(Vector<Integer> employeeNum, Vector<String> firstName, Vector<String> lastName, Vector<String> jobTitle, Vector<String> userNames) {
     	// Create objects to hold the data for the table
     			Object[][] rowData = {};
-    			Object[] headers = {"Employee Number", "First Name", "Last Name", "Job Title"};
+    			Object[] headers = {"Employee Number", "First Name", "Last Name", "Job Title", "Username"};
     			
     			// Create table object
     			DefaultTableModel EmployeeModel;
@@ -240,7 +242,7 @@ public class EmployeeGUI {
     			
     			// Step through each result from the query pulling each piece of employee information
     			for(int i = 0; i < firstName.size(); i++) {
-    			EmployeeModel.addRow(new Object[]{ employeeNum.elementAt(i),firstName.elementAt(i), lastName.elementAt(i), jobTitle.elementAt(i)});
+    			EmployeeModel.addRow(new Object[]{ employeeNum.elementAt(i),firstName.elementAt(i), lastName.elementAt(i), jobTitle.elementAt(i), userNames.elementAt(i)});
     			}
     			
     			/* Save for Reference
