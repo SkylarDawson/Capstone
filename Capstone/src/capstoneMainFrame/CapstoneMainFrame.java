@@ -194,7 +194,7 @@ public class CapstoneMainFrame {
 						System.exit(0);
 					}
 		} catch (Exception e)
-			{
+			{w
 				JOptionPane.showMessageDialog(null, "Error in Formatting");
 				System.exit(0);;
 			}
@@ -2343,13 +2343,13 @@ public class CapstoneMainFrame {
 		 * Employee Panel
 		 */
 		GridBagLayout gbl_employeePanel = new GridBagLayout();
-		gbl_employeePanel.columnWidths = new int[]{0, 100, 100, 100, 100, 0, 0};
+		gbl_employeePanel.columnWidths = new int[]{0, 100, 100, 100, 100, 100, 0, 0};
 		gbl_employeePanel.rowHeights = new int[]{100, 0, 0, 0, 0, 14, 0};
-		gbl_employeePanel.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_employeePanel.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		gbl_employeePanel.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		employeePanel.setLayout(gbl_employeePanel);
 		GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
-		gbc_lblNewLabel_5.gridwidth = 4;
+		gbc_lblNewLabel_5.gridwidth = 5;
 		gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_5.gridx = 1;
 		gbc_lblNewLabel_5.gridy = 0;
@@ -2441,7 +2441,7 @@ public class CapstoneMainFrame {
 		});
 		GridBagConstraints gbc_employeeLookupSearchButton = new GridBagConstraints();
 		gbc_employeeLookupSearchButton.anchor = GridBagConstraints.WEST;
-		gbc_employeeLookupSearchButton.insets = new Insets(0, 0, 5, 0);
+		gbc_employeeLookupSearchButton.insets = new Insets(0, 0, 5, 5);
 		gbc_employeeLookupSearchButton.gridx = 5;
 		gbc_employeeLookupSearchButton.gridy = 2;
 		employeePanel.add(employeeLookupSearchButton, gbc_employeeLookupSearchButton);
@@ -2449,7 +2449,7 @@ public class CapstoneMainFrame {
 		JScrollPane employeePageScroll = new JScrollPane();
 		employeePageScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		GridBagConstraints gbc_employeePageScroll = new GridBagConstraints();
-		gbc_employeePageScroll.gridwidth = 4;
+		gbc_employeePageScroll.gridwidth = 5;
 		gbc_employeePageScroll.fill = GridBagConstraints.BOTH;
 		gbc_employeePageScroll.insets = new Insets(0, 0, 5, 5);
 		gbc_employeePageScroll.gridx = 1;
@@ -2461,7 +2461,7 @@ public class CapstoneMainFrame {
 		
 		Box horizontalBox_7 = Box.createHorizontalBox();
 		GridBagConstraints gbc_horizontalBox_7 = new GridBagConstraints();
-		gbc_horizontalBox_7.gridwidth = 4;
+		gbc_horizontalBox_7.gridwidth = 5;
 		gbc_horizontalBox_7.insets = new Insets(0, 0, 5, 5);
 		gbc_horizontalBox_7.gridx = 1;
 		gbc_horizontalBox_7.gridy = 4;
@@ -2493,6 +2493,11 @@ public class CapstoneMainFrame {
 				employeeLookupFirstName.setText("");
 				employeeLookupLastName.setText("");
 				employeeLookupJobTitle.setText("");
+				
+				CreateEmployee myEmployee = new CreateEmployee(); 
+				myEmployee.deleteEmployee(employeeID);
+				
+				
 			}
 		});
 		horizontalBox_7.add(employeeDeleteButton);

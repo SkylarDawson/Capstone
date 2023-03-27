@@ -275,6 +275,9 @@ public class CreateEmployee {
     		
             pstmt.close();
             conn.close();
+            
+            // Tell user that operation was successful
+        	JOptionPane.showMessageDialog(null, "Employee Deleted");
             return;
     	} catch (SQLException e) {  
             System.out.println(e.getMessage());  
