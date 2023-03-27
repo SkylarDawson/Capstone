@@ -11,6 +11,7 @@ import java.sql.Statement;
 import java.util.Vector;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -66,21 +67,37 @@ public class EmployeeGUI {
     	
     	// Extract all passed through information
     	int employeeNum = 0;
+    	boolean error = false;
+    	String errorMessage = "";
     	if(employeeNumField.getText().length() == 0) {
     		employeeNum = 0;
     	}
     	else {
-    	employeeNum = Integer.parseInt(employeeNumField.getText());
-    	}
+    		try {
+    			employeeNum = Integer.parseInt(employeeNumField.getText());
+    			}
+    		catch(Exception e) {
+    			error = true;
+    			errorMessage += "Employee Number is not an Integer \n";
+    		}
+    	} 		
+    	
     	String firstName = firstNameField.getText();
     	String lastName = lastNameField.getText();
     	String jobTitle = jobTitleField.getText();
     	
+    	if(!error) {
     	// Conduct search on the database
     	runSearch(employeeNum, firstName, lastName, jobTitle);
     	
     	TableModel employeeSearch = getTable();
     	return employeeSearch;
+    }
+    	else {
+    		// Tell user that operation was successful
+    		JOptionPane.showMessageDialog(null, errorMessage);
+    		return new DefaultTableModel();
+    	}
     }
 
     /*
