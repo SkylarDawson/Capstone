@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -264,6 +265,12 @@ public class CreateEmployee {
     public void deleteEmployee(String employeeID) {
     	int employeeNum = Integer.parseInt(employeeID);
     	
+    	JFrame frame = new JFrame();
+		int result = JOptionPane.showConfirmDialog(frame,"Are you sure you want to delete user", "CAUTION",
+	               JOptionPane.YES_NO_OPTION,
+	               JOptionPane.QUESTION_MESSAGE);
+		
+	    if(result == JOptionPane.YES_OPTION){
     	String sqlDelete = "Delete from employees where employeeNum = ?";
     	
     	try {
@@ -284,6 +291,10 @@ public class CreateEmployee {
             return;
             
         }  
+	    } else {
+	    	return;
+	    }
+	    
     }
 
 

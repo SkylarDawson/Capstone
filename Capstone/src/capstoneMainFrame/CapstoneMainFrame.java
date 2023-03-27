@@ -2344,7 +2344,7 @@ public class CapstoneMainFrame {
 		 */
 		GridBagLayout gbl_employeePanel = new GridBagLayout();
 		gbl_employeePanel.columnWidths = new int[]{0, 100, 100, 100, 100, 100, 0, 0};
-		gbl_employeePanel.rowHeights = new int[]{100, 0, 0, 0, 0, 14, 0};
+		gbl_employeePanel.rowHeights = new int[]{50, 0, 0, 0, 0, 14, 0};
 		gbl_employeePanel.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		gbl_employeePanel.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		employeePanel.setLayout(gbl_employeePanel);
