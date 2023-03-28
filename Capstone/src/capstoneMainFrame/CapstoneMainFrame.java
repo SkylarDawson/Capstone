@@ -169,7 +169,7 @@ public class CapstoneMainFrame {
 	 * Create the application.
 	 */
 	public CapstoneMainFrame() {
-		/*Admin myPage = new Admin();
+		Admin myPage = new Admin();
 		// Add dialog box to update a password
 		JTextField username = new JTextField();
 		JTextField password = new JPasswordField();
@@ -188,20 +188,24 @@ public class CapstoneMainFrame {
 					{
 						initialize();
 					}
+					else if (username.getText().isEmpty() || password.getText().isEmpty())
+					{
+						JOptionPane.showMessageDialog(null, "Username and password cannot be blank. Please try again.");
+					}
 					else
 					{
 						JOptionPane.showMessageDialog(null, "Incorrect Login");
 						System.exit(0);
 					}
 		} catch (Exception e)
-			{w
+			{
 				JOptionPane.showMessageDialog(null, "Error in Formatting");
 				System.exit(0);;
 			}
 		}
 		else {
 			System.exit(0);
-		}*/
+		}
 		initialize();
 	}
 	
