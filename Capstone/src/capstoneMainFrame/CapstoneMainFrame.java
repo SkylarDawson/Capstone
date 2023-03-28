@@ -179,7 +179,7 @@ public class CapstoneMainFrame {
 			};
 		
 		// If they confirm check the password
-		int option = JOptionPane.showConfirmDialog(null, message, "Change Password", JOptionPane.OK_CANCEL_OPTION);
+		int option = JOptionPane.showConfirmDialog(null, message, "Login", JOptionPane.OK_CANCEL_OPTION);
 		if(option == JOptionPane.OK_OPTION)
 		{
 			try {
