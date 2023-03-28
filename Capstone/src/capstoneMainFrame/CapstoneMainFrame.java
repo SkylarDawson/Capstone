@@ -190,7 +190,8 @@ public class CapstoneMainFrame {
 					}
 					else if (username.getText().isEmpty() || password.getText().isEmpty())
 					{
-						JOptionPane.showMessageDialog(null, "Username and password cannot be blank. Please try again.");
+						JOptionPane.showMessageDialog(null, "Please enter both username and password.");
+						System.exit(0);
 					}
 					else
 					{
