@@ -235,7 +235,7 @@ public class CapstoneMainFrame {
 		mainFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(CapstoneMainFrame.class.getResource("/resources/icon.png")));
 		mainFrame.getContentPane().setBackground(new Color(255, 255, 255));
 		mainFrame.setTitle("Fertilizer Ordering System");
-		mainFrame.setBounds(100, 100, 646, 500);
+		mainFrame.setBounds(100, 100, 700, 500);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.getContentPane().setLayout(new CardLayout(0, 0));
 		
@@ -294,7 +294,7 @@ public class CapstoneMainFrame {
 		gbl_adminPanel.columnWidths = new int[]{15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_adminPanel.rowHeights = new int[]{45, 0, 0, -117, 0, 216, 0, 0, 0};
 		gbl_adminPanel.columnWeights = new double[]{1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_adminPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_adminPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
 		adminPanel.setLayout(gbl_adminPanel);
 		
 		JLabel lblNewLabel_75 = new JLabel("ADMINISTRATIVE PAGE");
@@ -1741,7 +1741,7 @@ public class CapstoneMainFrame {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{50, 100, 100, 100, 100, 100, 50, 0};
 		gridBagLayout.rowHeights = new int[]{25, 0, 25, 35, 218, 20, 25, 0};
-		gridBagLayout.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		orderPanel.setLayout(gridBagLayout);
 		
@@ -2121,8 +2121,8 @@ public class CapstoneMainFrame {
 		GridBagLayout gbl_customerPanel = new GridBagLayout();
 		gbl_customerPanel.columnWidths = new int[]{50, 100, 100, 100, 100, 100, 50, 0};
 		gbl_customerPanel.rowHeights = new int[]{25, 57, 0, 47, 218, 0, 0, 25, 0};
-		gbl_customerPanel.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_customerPanel.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_customerPanel.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_customerPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		customerPanel.setLayout(gbl_customerPanel);
 		
 		JLabel lblNewLabel_73 = new JLabel("CUSTOMER LOOKUP");
