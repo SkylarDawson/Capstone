@@ -20,6 +20,7 @@ import java.sql.SQLException;
 
 import java.awt.event.ActionEvent;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JPanel;
@@ -58,6 +59,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 
 import java.lang.Object;
+import java.awt.Toolkit;
 
 public class CapstoneMainFrame {
 
@@ -230,7 +232,9 @@ public class CapstoneMainFrame {
 		 * All actions will start from this frame and operate other panels by showing and calling functions from a class for each panel.
 		 */
 		mainFrame = new JFrame();
-		mainFrame.setTitle("Main");
+		mainFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(CapstoneMainFrame.class.getResource("/resources/icon.png")));
+		mainFrame.getContentPane().setBackground(new Color(255, 255, 255));
+		mainFrame.setTitle("Fertilizer Ordering System");
 		mainFrame.setBounds(100, 100, 646, 500);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.getContentPane().setLayout(new CardLayout(0, 0));
@@ -248,7 +252,7 @@ public class CapstoneMainFrame {
 		 * Spreader Panel - 
 		 */
 		JPanel mainPanel = new JPanel();
-		mainPanel.setBackground(new Color(255, 255, 255));
+		mainPanel.setBackground(new Color(240, 240, 240));
 		mainFrame.getContentPane().add(mainPanel, "name_768171061063700");
 		JPanel exportPanel = new JPanel();
 		mainFrame.getContentPane().add(exportPanel, "name_768316222739400");
@@ -470,7 +474,11 @@ public class CapstoneMainFrame {
 		mainPanel.setLayout(gbl_mainPanel);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(CapstoneMainFrame.class.getResource("/resources/Co-Op.png")));
+		ImageIcon imageIcon = new ImageIcon(CapstoneMainFrame.class.getResource("/resources/Centerra.png"));
+		Image image = imageIcon.getImage(); // transform it 
+		Image newimg = image.getScaledInstance(240, 240,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+		imageIcon = new ImageIcon(newimg);  // transform it back
+		lblNewLabel.setIcon(imageIcon);
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.fill = GridBagConstraints.VERTICAL;
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
@@ -950,6 +958,7 @@ public class CapstoneMainFrame {
 		exportPanel.add(horizontalBox_2, gbc_horizontalBox_2);
 		
 		JButton btnExport = new JButton("Export");
+		
 		GridBagConstraints gbc_btnExport = new GridBagConstraints();
 		gbc_btnExport.fill = GridBagConstraints.BOTH;
 		gbc_btnExport.insets = new Insets(0, 0, 5, 5);
@@ -1731,9 +1740,9 @@ public class CapstoneMainFrame {
 		 */
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{50, 100, 100, 100, 100, 100, 50, 0};
-		gridBagLayout.rowHeights = new int[]{25, 0, 7, 35, 218, 20, 25, 0};
+		gridBagLayout.rowHeights = new int[]{25, 0, 25, 35, 218, 20, 25, 0};
 		gridBagLayout.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		orderPanel.setLayout(gridBagLayout);
 		
 		JButton btnNewButton_2 = new JButton("Back");
