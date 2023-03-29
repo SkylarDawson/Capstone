@@ -55,6 +55,7 @@ import javax.swing.JComboBox;
 import java.awt.Font;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 
 import java.lang.Object;
 
@@ -179,7 +180,7 @@ public class CapstoneMainFrame {
 			};
 		
 		// If they confirm check the password
-		int option = JOptionPane.showConfirmDialog(null, message, "Login", JOptionPane.OK_CANCEL_OPTION);
+		/*int option = JOptionPane.showConfirmDialog(null, message, "Login", JOptionPane.OK_CANCEL_OPTION);
 		if(option == JOptionPane.OK_OPTION)
 		{
 			try {
@@ -206,7 +207,7 @@ public class CapstoneMainFrame {
 		}
 		else {
 			System.exit(0);
-		}
+		}*/
 		initialize();
 	}
 	
@@ -230,7 +231,7 @@ public class CapstoneMainFrame {
 		 */
 		mainFrame = new JFrame();
 		mainFrame.setTitle("Main");
-		mainFrame.setBounds(100, 100, 646, 472);
+		mainFrame.setBounds(100, 100, 646, 500);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.getContentPane().setLayout(new CardLayout(0, 0));
 		
@@ -247,6 +248,7 @@ public class CapstoneMainFrame {
 		 * Spreader Panel - 
 		 */
 		JPanel mainPanel = new JPanel();
+		mainPanel.setBackground(new Color(255, 255, 255));
 		mainFrame.getContentPane().add(mainPanel, "name_768171061063700");
 		JPanel exportPanel = new JPanel();
 		mainFrame.getContentPane().add(exportPanel, "name_768316222739400");
@@ -467,7 +469,8 @@ public class CapstoneMainFrame {
 		gbl_mainPanel.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		mainPanel.setLayout(gbl_mainPanel);
 		
-		JLabel lblNewLabel = new JLabel("FOS");
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(CapstoneMainFrame.class.getResource("/resources/Co-Op.png")));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.fill = GridBagConstraints.VERTICAL;
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
