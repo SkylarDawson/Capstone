@@ -574,17 +574,26 @@ public class CapstoneMainFrame {
 		 */		
 		GridBagLayout gbl_exportPanel = new GridBagLayout();
 		gbl_exportPanel.columnWidths = new int[]{0, 0, 0, 115, 0, 0};
-		gbl_exportPanel.rowHeights = new int[]{20, 100, 0, 0, 20, 0};
+		gbl_exportPanel.rowHeights = new int[]{15, 20, 100, 0, 0, 20, 0};
 		gbl_exportPanel.columnWeights = new double[]{1.0, 1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_exportPanel.rowWeights = new double[]{1.0, 1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_exportPanel.rowWeights = new double[]{1.0, 1.0, 1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		exportPanel.setLayout(gbl_exportPanel);
+		
+		JLabel lblNewLabel_8 = new JLabel("EXPORT ORDER");
+		lblNewLabel_8.setFont(new Font("Tahoma", Font.BOLD, 24));
+		GridBagConstraints gbc_lblNewLabel_8 = new GridBagConstraints();
+		gbc_lblNewLabel_8.gridwidth = 3;
+		gbc_lblNewLabel_8.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_8.gridx = 1;
+		gbc_lblNewLabel_8.gridy = 1;
+		exportPanel.add(lblNewLabel_8, gbc_lblNewLabel_8);
 		
 		JLayeredPane layeredPane_2 = new JLayeredPane();
 		GridBagConstraints gbc_layeredPane_2 = new GridBagConstraints();
 		gbc_layeredPane_2.insets = new Insets(0, 0, 5, 5);
 		gbc_layeredPane_2.fill = GridBagConstraints.BOTH;
 		gbc_layeredPane_2.gridx = 1;
-		gbc_layeredPane_2.gridy = 1;
+		gbc_layeredPane_2.gridy = 2;
 		exportPanel.add(layeredPane_2, gbc_layeredPane_2);
 		GridBagLayout gbl_layeredPane_2 = new GridBagLayout();
 		gbl_layeredPane_2.columnWidths = new int[]{0, 0, 0, 0};
@@ -795,7 +804,7 @@ public class CapstoneMainFrame {
 		gbc_layeredPane.insets = new Insets(0, 0, 5, 5);
 		gbc_layeredPane.fill = GridBagConstraints.BOTH;
 		gbc_layeredPane.gridx = 3;
-		gbc_layeredPane.gridy = 1;
+		gbc_layeredPane.gridy = 2;
 		exportPanel.add(layeredPane, gbc_layeredPane);
 		layeredPane.setLayout(new MigLayout("", "[77px][6px][42px][6px][79px]", "[13px][13px][21px][13px][13px][13px][13px][13px][13px][19px][13px][13px]"));
 		
@@ -911,7 +920,7 @@ public class CapstoneMainFrame {
 		gbc_horizontalBox_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_horizontalBox_1.insets = new Insets(0, 0, 5, 5);
 		gbc_horizontalBox_1.gridx = 3;
-		gbc_horizontalBox_1.gridy = 2;
+		gbc_horizontalBox_1.gridy = 3;
 		exportPanel.add(horizontalBox_1, gbc_horizontalBox_1);
 		
 		// Button will prompt user to input order number to add to list
@@ -954,7 +963,7 @@ public class CapstoneMainFrame {
 		gbc_horizontalBox_2.fill = GridBagConstraints.HORIZONTAL;
 		gbc_horizontalBox_2.insets = new Insets(0, 0, 5, 5);
 		gbc_horizontalBox_2.gridx = 3;
-		gbc_horizontalBox_2.gridy = 3;
+		gbc_horizontalBox_2.gridy = 4;
 		exportPanel.add(horizontalBox_2, gbc_horizontalBox_2);
 		
 		JButton btnExport = new JButton("Export");
