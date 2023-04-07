@@ -28,7 +28,7 @@ public class Spreader {
 	LocalDateTime now = LocalDateTime.now();  
 	
 	/**
-	 * 
+	 * Spreader Constructor
 	 */
 	public Spreader() {
 		
@@ -51,6 +51,10 @@ public class Spreader {
         return conn;  
     }
 	
+    /**
+     * Get the information from the data base to create a Table
+     * @return TableModel with the spreader information
+     */
 	public static TableModel getTable() {
 
 		ArrayList<Integer> spreaderNum = new ArrayList<Integer>();
@@ -96,6 +100,11 @@ public class Spreader {
 		return spreaderModel;
 	}
 	
+	/**
+	 * Get customer name from database using the customerID
+	 * @param customerNum integer of customerID
+	 * @return String of customers first and last name
+	 */
 	public static String getCustomerName(int customerNum) {
 		String firstName = null;
 		String lastName = null;
@@ -125,8 +134,10 @@ public class Spreader {
         }
 	}
 	
-	/*
-	 * 
+	/**
+	 * Create new spreader in database
+	 * @param number integer of the new spreader
+	 * @throws Exception thrown if the spreader number is invalid
 	 */
 	public void newSpreader(int number) throws Exception {
 		if (number <= 0) {
@@ -156,9 +167,11 @@ public class Spreader {
         }  
 	}
 	
-	/*
-	 * Check if customerID exist and update date to current date at number index
-	 * 
+	/**
+	 * Claim the spreader by the customer and assign taken date
+	 * @param number integer of spreader claimed
+	 * @param customerID integer of customer claiming the spreader
+	 * @throws Exception thrown if the spreader is not valid
 	 */
 	public void claimSpreader(int number, int customerID) throws Exception {
 		
@@ -192,8 +205,10 @@ public class Spreader {
 		}
 	}
 	
-	/*
-	 * reset spreader information to return state with location blank
+	/**
+	 * Return spreader to the company
+	 * @param number integer of the spreader number being returned
+	 * @param check boolean true means spreader is returned
 	 */
 	public void returnSpreader(int number, boolean check) {
 		if (check) {

@@ -30,7 +30,7 @@ public class Inventory {
 	private int selectedGypsum = -1;
 	
 	/**
-	 * 
+	 * Load the inventory from the data stored in the database
 	 */
 	public Inventory() {
 		//Load Bin information from database
@@ -89,6 +89,14 @@ public class Inventory {
         return conn;  
     }
 	
+    /**
+     * Add inputs to the proper storage selected
+     * @param index integer of the bin to add storage to
+     * @param ingredient String of the ingredient being added
+     * @param inbound double of the amount inputed
+     * @return boolean true if storage is added
+     * @throws Exception if invalid inputs
+     */
 	public boolean inboundBin(int index, String ingredient, int inbound) throws Exception {
 		if(Bins[index].getIngredient().equals(ingredient) && inbound > 0 && !ingredient.equals("-")) {
 			Bins[index].addStorage(inbound);
@@ -104,6 +112,12 @@ public class Inventory {
 		throw new Exception();
 	}
 	
+	/**
+	 * Subtract order ingredients from storage if storage is valid
+	 * @param outbound double array of the ingredient amounts in an order
+	 * @return boolean true if order is valid and computed
+	 * @throws Exception if error in executing order
+	 */
 	public boolean computeOrder(Double[] outbound) throws Exception {
 		try {
 			if(Bins[selectedPotash].getStorage()  < outbound[0] || 
@@ -125,6 +139,11 @@ public class Inventory {
 		return true;
 	}
 	
+	/**
+	 * Move bin storage from one bin to another
+	 * @param currIndex integer of currently selected storage
+	 * @param nextIndex integer to move storage to
+	 */
 	public void emptyBin(int currIndex, int nextIndex) {
 		if(Bins[currIndex].getIngredient().equals(Bins[nextIndex].getIngredient())) {
 			Bins[nextIndex].addStorage(Bins[currIndex].emptyBin());
@@ -132,6 +151,29 @@ public class Inventory {
 		updateDatabase();
 	}
 	
+	/**
+	 * Update display of storage information
+	 * @param bin1Ingredient label for ingredient 1 name
+	 * @param bin2Ingredient label for ingredient 2 name
+	 * @param bin3Ingredient label for ingredient 3 name
+	 * @param bin4Ingredient label for ingredient 4 name
+	 * @param bin5Ingredient label for ingredient 5 name
+	 * @param bin6Ingredient label for ingredient 6 name
+	 * @param bin7Ingredient label for ingredient 7 name
+	 * @param bin8Ingredient label for ingredient 8 name
+	 * @param bin9Ingredient label for ingredient 9 name
+	 * @param bin10Ingredient label for ingredient 10 name
+	 * @param bin1Storage label for bin 1 storage
+	 * @param bin2Storage label for bin 2 storage
+	 * @param bin3Storage label for bin 3 storage
+	 * @param bin4Storage label for bin 4 storage
+	 * @param bin5Storage label for bin 5 storage
+	 * @param bin6Storage label for bin 6 storage
+	 * @param bin7Storage label for bin 7 storage
+	 * @param bin8Storage label for bin 8 storage
+	 * @param bin9Storage label for bin 9 storage
+	 * @param bin10Storage label for bin 10 storage
+	 */
 	public void updateInventory(JLabel bin1Ingredient, JLabel bin2Ingredient, JLabel bin3Ingredient, JLabel bin4Ingredient, JLabel bin5Ingredient, JLabel bin6Ingredient, JLabel bin7Ingredient, JLabel bin8Ingredient, JLabel bin9Ingredient, JLabel bin10Ingredient, JLabel bin1Storage, JLabel bin2Storage, JLabel bin3Storage, JLabel bin4Storage, JLabel bin5Storage, JLabel bin6Storage, JLabel bin7Storage, JLabel bin8Storage, JLabel bin9Storage, JLabel bin10Storage ) {
 		bin1Ingredient.setText(Bins[0].getIngredient());
 		bin1Storage.setText(String.format("%,.0f", Bins[0].getStorage()));
@@ -155,6 +197,9 @@ public class Inventory {
 		bin10Storage.setText(String.format("%,.0f", Bins[9].getStorage()));
 	}
 	
+	/**
+	 * Update the inventory information in the database
+	 */
 	public static void updateDatabase() {
 		// Update
 		String updateSpreader = "Update inventory "
@@ -181,14 +226,27 @@ public class Inventory {
 		}
 	}
 	
+	/**
+	 * Get the ingredient name in the bin
+	 * @param index integer select of the index in the bin arraylist
+	 * @return String of the ingredient name
+	 */
 	public String getBinIngredient(int index) {
 		return Bins[index].getIngredient();
 	}
 	
+	/**
+	 * Get the storage in the bin
+	 * @param index integer select of the index in the bin arraylist
+	 * @return double of the storage in the selected bin
+	 */
 	public double getBinStorage(int index) {
 		return Bins[index].getStorage();
 	}	
 	
+	/**
+	 * Select the bins to pull from when inventory is removed from the system
+	 */
 	public void selectBins() {
 		while(true) {
 			int potash = Integer.valueOf(JOptionPane.showInputDialog("Bin to pull Potash from:"));

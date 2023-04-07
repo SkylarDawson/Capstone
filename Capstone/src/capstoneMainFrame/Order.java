@@ -50,8 +50,10 @@ public class Order {
 	}
 	
 	/**
-	 * @throws Exception 
-	 * 
+	 * Create order given the order from the database and a priority of order
+	 * @param OrderNum integer of the orderID to search in the database
+	 * @param prior integer 1 - 10 of urgency of the order
+	 * @throws Exception for when an invalid input is made
 	 */
 	public Order(String OrderNum, String prior) throws Exception {
 		// Convert the customerNum from String to Int
@@ -99,6 +101,10 @@ public class Order {
         } 
 	}
 	
+	/**
+	 * Get the customer name associated to the customer ID from the database
+	 * @return String of customers first and last name together
+	 */
 	public String getCustomerName() {
 		String firstName = null;
 		String lastName = null;
@@ -127,6 +133,10 @@ public class Order {
         }
 	}
 	
+	/**
+	 * Get the address associated to the customer ID from the database
+	 * @return String of customer address
+	 */
 	public String getAddress() {
 		String address = null;
 		
@@ -153,14 +163,26 @@ public class Order {
         }
 	}
 	
+	/**
+	 * Get priority assigned to order
+	 * @return integer of order priority
+	 */
 	public int getPriority() {
 		return this.priority;
 	}
 	
+	/**
+	 * Get customer ID of order
+	 * @return integer of customer ID
+	 */
 	public int getCustomerID() {
 		return this.customerNum;
 	}
 	
+	/**
+	 * Get spreader number of customer associated with the order
+	 * @return integer of spreader number
+	 */
 	public int getSpreader() {
 		int number;
 		
@@ -187,13 +209,33 @@ public class Order {
         }
 	}
 	
+	/**
+	 * Get all the ingredient amounts in an array
+	 * @return array of ingredient amounts
+	 */
 	public Double[] getOutputs() {
 		Double[] arr = {this.Potash, this.MAP, this.AMS, this.Urea, this.Gypsum};
 		return arr;
 	}
 
-	/*
-	 * Set labels with provided order information
+	/**
+	 * Set all the labels to display the order information
+	 * @param lblcustomer label to display customer name
+	 * @param lbldate label to display order date
+	 * @param lbladdress label to display the address of delivery
+	 * @param lbldelivered checkbox to display delivery status
+	 * @param spreader textbox to display if customer has a spreader
+	 * @param potashAmt label to display the amount of potash
+	 * @param mapAmt label to display the amount of map
+	 * @param amsAmt label to display the amount of ams
+	 * @param ureaAmt label to display the amount of urea
+	 * @param gypsumAmt label to display the amount of gypsum
+	 * @param potashMix label to display the mixing label of potash
+	 * @param mapMix label to display the mixing label of map
+	 * @param amsMix label to display the mixing label of ams
+	 * @param ureaMix label to display the mixing label of urea
+	 * @param gypsumMix label to display the mixing label of gypsum
+	 * @param employeeID label to display the employee's ID
 	 */
 	public void display(JLabel lblcustomer, JLabel lbldate, JLabel lbladdress, JCheckBox lbldelivered, JTextField spreader, JLabel potashAmt, JLabel mapAmt, JLabel amsAmt, JLabel ureaAmt, JLabel gypsumAmt, JLabel potashMix, JLabel mapMix, JLabel amsMix, JLabel ureaMix, JLabel gypsumMix, JLabel employeeID) {
 		Double mix0 = this.Potash;
