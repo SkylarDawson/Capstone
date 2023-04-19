@@ -903,11 +903,11 @@ public class CapstoneMainFrame {
 		JLabel lblNewLabel_19 = new JLabel("Cu. Density ____");
 		layeredPane.add(lblNewLabel_19, "cell 0 10,alignx left,aligny top");
 		
-		JLabel lblExportCost = new JLabel("Est. Cost:");
-		layeredPane.add(lblExportCost, "cell 2 10");
+		JLabel lblExportNPK = new JLabel("NPK:");
+		layeredPane.add(lblExportNPK, "cell 2 10");
 		
-		JLabel lblExportCalcCost = new JLabel("-");
-		layeredPane.add(lblExportCalcCost, "cell 4 10");
+		JLabel lblExportNPKMix = new JLabel("0 - 0 - 0 - 0s");
+		layeredPane.add(lblExportNPKMix, "cell 4 10");
 		
 		JLabel lblNewLabel_20 = new JLabel("Employee");
 		layeredPane.add(lblNewLabel_20, "cell 0 11,growx,aligny top");
@@ -940,6 +940,7 @@ public class CapstoneMainFrame {
 		JButton btnNewButton = new JButton("Export");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JFrame frame = new JFrame();
 				try {
 					if(!textFieldSpreader.getText().equals("")) {
 						spreader.claimSpreader(Integer.parseInt(textFieldSpreader.getText()), export.getOrder(selectedOrder).getCustomerID());
@@ -949,7 +950,9 @@ public class CapstoneMainFrame {
 					export.reset(lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
 				    selectedOrder = -1;
 					System.out.println("Successful Order");
+					JOptionPane.showMessageDialog(frame, "Order was successful.");
 				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(frame, "The Order was unsuccessful.");
 					System.out.print(ex.getMessage());
 					System.out.println("Unsuccessful Order");
 				}
@@ -1005,7 +1008,7 @@ public class CapstoneMainFrame {
 		btnOrder_0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				selectedOrder = 0;
-				if(selectedOrder != -1)	export.displayOrder(selectedOrder, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
+				if(selectedOrder != -1)	export.displayOrder(selectedOrder, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblExportNPKMix, lblEmployee);
 			}
 		});
 		GridBagConstraints gbc_btnOrder_0 = new GridBagConstraints();
@@ -1018,7 +1021,7 @@ public class CapstoneMainFrame {
 		btnOrder_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				selectedOrder = 1;
-				if(selectedOrder != -1)	export.displayOrder(selectedOrder, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
+				if(selectedOrder != -1)	export.displayOrder(selectedOrder, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblExportNPKMix, lblEmployee);
 			}
 		});
 		GridBagConstraints gbc_btnOrder_1 = new GridBagConstraints();
@@ -1031,7 +1034,7 @@ public class CapstoneMainFrame {
 		btnOrder_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				selectedOrder = 2;
-				if(selectedOrder != -1)	export.displayOrder(selectedOrder, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
+				if(selectedOrder != -1)	export.displayOrder(selectedOrder, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblExportNPKMix, lblEmployee);
 			}
 		});
 		GridBagConstraints gbc_btnOrder_2 = new GridBagConstraints();
@@ -1044,7 +1047,7 @@ public class CapstoneMainFrame {
 		btnOrder_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				selectedOrder = 3;
-				if(selectedOrder != -1)	export.displayOrder(selectedOrder, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
+				if(selectedOrder != -1)	export.displayOrder(selectedOrder, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblExportNPKMix, lblEmployee);
 			}
 		});
 		GridBagConstraints gbc_btnOrder_3 = new GridBagConstraints();
@@ -1057,7 +1060,7 @@ public class CapstoneMainFrame {
 		btnOrder_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				selectedOrder = 4;
-				if(selectedOrder != -1)	export.displayOrder(selectedOrder, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
+				if(selectedOrder != -1)	export.displayOrder(selectedOrder, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblExportNPKMix, lblEmployee);
 			}
 		});
 		GridBagConstraints gbc_btnOrder_4 = new GridBagConstraints();
@@ -1070,7 +1073,7 @@ public class CapstoneMainFrame {
 		btnOrder_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				selectedOrder = 5;
-				if(selectedOrder != -1)	export.displayOrder(selectedOrder, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
+				if(selectedOrder != -1)	export.displayOrder(selectedOrder, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblExportNPKMix, lblEmployee);
 			}
 		});
 		GridBagConstraints gbc_btnOrder_5 = new GridBagConstraints();
@@ -1083,7 +1086,7 @@ public class CapstoneMainFrame {
 		btnOrder_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				selectedOrder = 6;
-				if(selectedOrder != -1)	export.displayOrder(selectedOrder, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
+				if(selectedOrder != -1)	export.displayOrder(selectedOrder, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblExportNPKMix, lblEmployee);
 			}
 		});
 		GridBagConstraints gbc_btnOrder_6 = new GridBagConstraints();
@@ -1096,7 +1099,7 @@ public class CapstoneMainFrame {
 		btnOrder_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				selectedOrder = 7;
-				if(selectedOrder != -1)	export.displayOrder(selectedOrder, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
+				if(selectedOrder != -1)	export.displayOrder(selectedOrder, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblExportNPKMix, lblEmployee);
 			}
 		});
 		GridBagConstraints gbc_btnOrder_7 = new GridBagConstraints();
@@ -1109,7 +1112,7 @@ public class CapstoneMainFrame {
 		btnOrder_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				selectedOrder = 8;
-				if(selectedOrder != -1)	export.displayOrder(selectedOrder, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
+				if(selectedOrder != -1)	export.displayOrder(selectedOrder, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblExportNPKMix, lblEmployee);
 			}
 		});
 		GridBagConstraints gbc_btnOrder_8 = new GridBagConstraints();
@@ -1122,7 +1125,7 @@ public class CapstoneMainFrame {
 		btnOrder_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				selectedOrder = 9;
-				if(selectedOrder != -1)	export.displayOrder(selectedOrder, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
+				if(selectedOrder != -1)	export.displayOrder(selectedOrder, lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblExportNPKMix, lblEmployee);
 			}
 		});
 		GridBagConstraints gbc_btnOrder_9 = new GridBagConstraints();

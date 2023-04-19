@@ -237,12 +237,23 @@ public class Order {
 	 * @param gypsumMix label to display the mixing label of gypsum
 	 * @param employeeID label to display the employee's ID
 	 */
-	public void display(JLabel lblcustomer, JLabel lbldate, JLabel lbladdress, JCheckBox lbldelivered, JTextField spreader, JLabel potashAmt, JLabel mapAmt, JLabel amsAmt, JLabel ureaAmt, JLabel gypsumAmt, JLabel potashMix, JLabel mapMix, JLabel amsMix, JLabel ureaMix, JLabel gypsumMix, JLabel employeeID) {
+	public void display(JLabel lblcustomer, JLabel lbldate, JLabel lbladdress, JCheckBox lbldelivered, JTextField spreader, JLabel potashAmt, JLabel mapAmt, JLabel amsAmt, JLabel ureaAmt, JLabel gypsumAmt, JLabel potashMix, JLabel mapMix, JLabel amsMix, JLabel ureaMix, JLabel gypsumMix, JLabel NPK, JLabel employeeID) {
 		Double mix0 = this.Potash;
 		Double mix1 = mix0 + this.MAP;
 		Double mix2 = mix1 + this.AMS;
 		Double mix3 = mix2 + this.Urea;
 		Double mix4 = mix3 + this.Gypsum;
+		
+		int[] npkPotash = new int[] {0, 0, 60, 0};
+		int[] npkMAP = new int[] {11, 52, 0, 0};
+		int[] npkAMS = new int[] {21, 0, 0, 24};
+		int[] npkUrea = new int[] {46, 0, 0, 0};
+		
+		Double n = ((npkPotash[0] * this.Potash) + (npkMAP[0] * this.MAP) + (npkAMS[0] * this.AMS) + (npkUrea[0] * this.Urea)) / mix3;
+		Double p = ((npkPotash[1] * this.Potash) + (npkMAP[1] * this.MAP) + (npkAMS[1] * this.AMS) + (npkUrea[1] * this.Urea)) / mix3;;
+		Double k = ((npkPotash[2] * this.Potash) + (npkMAP[2] * this.MAP) + (npkAMS[2] * this.AMS) + (npkUrea[2] * this.Urea)) / mix3;;
+		Double s = ((npkPotash[3] * this.Potash) + (npkMAP[3] * this.MAP) + (npkAMS[3] * this.AMS) + (npkUrea[3] * this.Urea)) / mix3;;
+		String npk = String.format("%.0f - %.0f - %.0f - %.0fs", n, p, k, s);
 		
 		lblcustomer.setText(this.getCustomerName());
 		lbldate.setText(this.PickUpDate);
@@ -260,6 +271,7 @@ public class Order {
 		amsMix.setText(String.valueOf(mix2));
 		ureaMix.setText(String.valueOf(mix3));
 		gypsumMix.setText(String.valueOf(mix4));
+		NPK.setText(npk);
 		employeeID.setText(String.valueOf(employeeNum));
 	}
 }

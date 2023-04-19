@@ -70,8 +70,8 @@ public class Export {
 	 * @param gypsumMix label to display the mixing label of gypsum
 	 * @param employeeID label to display the employee's ID
 	 */
-	public void displayOrder(int index, JLabel lblcustomer, JLabel lbldate, JLabel lbladdress, JCheckBox lbldelivered, JTextField spreader, JLabel potashAmt, JLabel mapAmt, JLabel amsAmt, JLabel ureaAmt, JLabel gypsumAmt, JLabel potashMix, JLabel mapMix, JLabel amsMix, JLabel ureaMix, JLabel gypsumMix, JLabel employeeID) {
-		Orders.get(page * 10 + index).display(lblcustomer, lbldate, lbladdress, lbldelivered, spreader, potashAmt, mapAmt, amsAmt, ureaAmt, gypsumAmt, potashMix, mapMix, amsMix, ureaMix, gypsumMix, employeeID);
+	public void displayOrder(int index, JLabel lblcustomer, JLabel lbldate, JLabel lbladdress, JCheckBox lbldelivered, JTextField spreader, JLabel potashAmt, JLabel mapAmt, JLabel amsAmt, JLabel ureaAmt, JLabel gypsumAmt, JLabel potashMix, JLabel mapMix, JLabel amsMix, JLabel ureaMix, JLabel gypsumMix, JLabel NPK, JLabel employeeID) {
+		Orders.get(page * 10 + index).display(lblcustomer, lbldate, lbladdress, lbldelivered, spreader, potashAmt, mapAmt, amsAmt, ureaAmt, gypsumAmt, potashMix, mapMix, amsMix, ureaMix, gypsumMix, NPK, employeeID);
 	}
 	
 	/**
