@@ -650,7 +650,7 @@ public class Admin {
  
             // Custom directory path on local machine
             fos = new FileOutputStream(
-                "C:\\" + backupName);
+                "D:\\" + backupName);
  
             int c;
  
