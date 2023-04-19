@@ -5,12 +5,14 @@ package capstoneMainFrame;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -19,6 +21,7 @@ import javax.swing.JTextField;
  */
 public class Order {
 
+	private int orderID = 0;
 	private int priority;
 	private int customerNum = 0;
 	private int employeeNum = 0;
@@ -75,6 +78,7 @@ public class Order {
             ResultSet rs    = stmt.executeQuery(sql);
             
             // Extract the needed information
+            this.orderID = orderID;
             this.customerNum = rs.getInt("customerNum");
             this.employeeNum = rs.getInt("employeeNum");
             this.paid = rs.getBoolean("orderPaid");
@@ -164,6 +168,14 @@ public class Order {
 	}
 	
 	/**
+	 * Get orderID to order
+	 * @return integer of orderID
+	 */
+	public int getOrderID() {
+		return this.orderID;
+	}
+	
+	/**
 	 * Get priority assigned to order
 	 * @return integer of order priority
 	 */
@@ -216,6 +228,31 @@ public class Order {
 	public Double[] getOutputs() {
 		Double[] arr = {this.Potash, this.MAP, this.AMS, this.Urea, this.Gypsum};
 		return arr;
+	}
+	
+	/**
+	 * Updates order in database to show completed
+	 */
+	public void completeOrder() {
+		// Update
+		String updateOrder = "Update orders SET "
+				+ "orderComplete = ?"
+		     	+ " WHERE orderNum = ?";
+						
+		try {
+			Connection conn = this.connect();  
+			PreparedStatement pstmt  = conn.prepareStatement(updateOrder);  
+			pstmt.setBoolean(1, true);
+			pstmt.setInt(2, this.orderID);
+			pstmt.executeUpdate();
+			        
+			pstmt.close();
+			conn.close();
+			return;
+			} catch (SQLException e) {  
+				System.out.println(e.getMessage());  
+			return;
+			} 
 	}
 
 	/**

@@ -1,9 +1,13 @@
 package capstoneMainFrame;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -227,7 +231,7 @@ public class Export {
 	 * @param gypsumMix label to display the mixing label of gypsum
 	 * @param employeeID label to display the employee's ID
 	 */
-	public void reset(JLabel lblcustomer, JLabel lbldate, JLabel lbladdress, JCheckBox lbldelivered, JTextField spreader, JLabel potashAmt, JLabel mapAmt, JLabel amsAmt, JLabel ureaAmt, JLabel gypsumAmt, JLabel potashMix, JLabel mapMix, JLabel amsMix, JLabel ureaMix, JLabel gypsumMix, JLabel employeeID) {
+	public void reset(JLabel lblcustomer, JLabel lbldate, JLabel lbladdress, JCheckBox lbldelivered, JTextField spreader, JLabel potashAmt, JLabel mapAmt, JLabel amsAmt, JLabel ureaAmt, JLabel gypsumAmt, JLabel potashMix, JLabel mapMix, JLabel amsMix, JLabel ureaMix, JLabel gypsumMix, JLabel NPK, JLabel employeeID) {
 		lblcustomer.setText("Customer");
 		lbldate.setText("Date");
 		lbladdress.setText("Address");
@@ -243,6 +247,7 @@ public class Export {
 		amsMix.setText("-");
 		ureaMix.setText("-");
 		gypsumMix.setText("-");
+		NPK.setText("0 - 0 - 0 - 0s");
 		employeeID.setText("-");
 	}
 	
@@ -253,6 +258,15 @@ public class Export {
 	 */
 	public Order getOrder(int selectedOrder) {
 		return Orders.get((page * 10) + selectedOrder);
+	}
+	
+	/**
+	 * Updates the database to complete order and remove from queue
+	 * @param selectedOrder order selected from page
+	 */
+	public void completeOrder(int selectedOrder) {
+		Orders.get((page * 10) + selectedOrder).completeOrder();;
+		Orders.remove((page * 10) + selectedOrder);
 	}
 	
 	/**

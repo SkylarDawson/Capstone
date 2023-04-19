@@ -946,9 +946,10 @@ public class CapstoneMainFrame {
 						spreader.claimSpreader(Integer.parseInt(textFieldSpreader.getText()), export.getOrder(selectedOrder).getCustomerID());
 					}
 					inventory.computeOrder(export.getOrder(selectedOrder).getOutputs());
-				    export.delete(selectedOrder);
-					export.reset(lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
-				    selectedOrder = -1;
+				    export.completeOrder(selectedOrder);
+					export.reset(lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblExportNPKMix,lblEmployee);
+					export.updatePage(lblPageNumber, lblPriority_0, lblPriority_1, lblPriority_2, lblPriority_3, lblPriority_4, lblPriority_5, lblPriority_6, lblPriority_7, lblPriority_8, lblPriority_9, lblCustomer_0, lblCustomer_1, lblCustomer_2, lblCustomer_3, lblCustomer_4, lblCustomer_5, lblCustomer_6, lblCustomer_7, lblCustomer_8, lblCustomer_9);
+					selectedOrder = -1;
 					System.out.println("Successful Order");
 					JOptionPane.showMessageDialog(frame, "Order was successful.");
 				} catch (Exception ex) {
@@ -981,7 +982,7 @@ public class CapstoneMainFrame {
 			public void actionPerformed(ActionEvent e) {
 				setPrevious(mainPanel);
 				export.updatePage(lblPageNumber, lblPriority_0, lblPriority_1, lblPriority_2, lblPriority_3, lblPriority_4, lblPriority_5, lblPriority_6, lblPriority_7, lblPriority_8, lblPriority_9, lblCustomer_0, lblCustomer_1, lblCustomer_2, lblCustomer_3, lblCustomer_4, lblCustomer_5, lblCustomer_6, lblCustomer_7, lblCustomer_8, lblCustomer_9);
-			    export.reset(lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
+			    export.reset(lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblExportNPKMix, lblEmployee);
 				mainPanel.hide();
 				exportPanel.show();
 			}
@@ -993,7 +994,7 @@ public class CapstoneMainFrame {
 				if (selectedOrder != -1 && JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the selected option?", "WARNING",
 				        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 				    export.delete(selectedOrder);
-				    export.reset(lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
+				    export.reset(lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblExportNPKMix, lblEmployee);
 				    selectedOrder = -1;
 				}
 				export.updatePage(lblPageNumber, lblPriority_0, lblPriority_1, lblPriority_2, lblPriority_3, lblPriority_4, lblPriority_5, lblPriority_6, lblPriority_7, lblPriority_8, lblPriority_9, lblCustomer_0, lblCustomer_1, lblCustomer_2, lblCustomer_3, lblCustomer_4, lblCustomer_5, lblCustomer_6, lblCustomer_7, lblCustomer_8, lblCustomer_9);
@@ -1766,8 +1767,7 @@ public class CapstoneMainFrame {
 				//setPrevious(orderPanel);
 				
 				export.updatePage(lblPageNumber, lblPriority_0, lblPriority_1, lblPriority_2, lblPriority_3, lblPriority_4, lblPriority_5, lblPriority_6, lblPriority_7, lblPriority_8, lblPriority_9, lblCustomer_0, lblCustomer_1, lblCustomer_2, lblCustomer_3, lblCustomer_4, lblCustomer_5, lblCustomer_6, lblCustomer_7, lblCustomer_8, lblCustomer_9);
-			    export.reset(lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblEmployee);
-
+			    export.reset(lblCustomer, lblDate, lblAddress, chckbxDelivered, textFieldSpreader, lblPotashPound, lblMAPPound, lblAMSPound, lblUreaPound, lblGypsumPound, lblPotashMix, lblMAPMix, lblAMSMix, lblUreaMix, lblGypsumMix, lblExportNPKMix, lblEmployee);
 			}
 		});
 		
