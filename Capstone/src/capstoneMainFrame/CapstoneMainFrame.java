@@ -182,7 +182,7 @@ public class CapstoneMainFrame {
 			};
 		
 		// If they confirm check the password
-		/*int option = JOptionPane.showConfirmDialog(null, message, "Login", JOptionPane.OK_CANCEL_OPTION);
+		int option = JOptionPane.showConfirmDialog(null, message, "Login", JOptionPane.OK_CANCEL_OPTION);
 		if(option == JOptionPane.OK_OPTION)
 		{
 			try {
@@ -209,8 +209,8 @@ public class CapstoneMainFrame {
 		}
 		else {
 			System.exit(0);
-		}*/
-		initialize();
+		}
+		//initialize();
 	}
 	
 	/**
@@ -4039,7 +4039,7 @@ public class CapstoneMainFrame {
 		gbc_btnNewButton_14.gridy = 8;
 		settingsPanel.add(btnNewButton_14, gbc_btnNewButton_14);
 		
-		/*
+		
 		mainFrame.addWindowListener(new java.awt.event.WindowAdapter() {
 		    @Override
 		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
@@ -4058,6 +4058,6 @@ public class CapstoneMainFrame {
 		        	}
 		        System.exit(0);
 		    }
-		});*/
+		});
 	}
 }
